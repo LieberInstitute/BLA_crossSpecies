@@ -6,3 +6,4 @@
 # Data directories
 /raw-data/*
 /processed-data/*
+/plots/*
