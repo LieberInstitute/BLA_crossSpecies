@@ -1,0 +1,82 @@
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.10
+Loading LIBD module for ruby/3.1.2
+Loading conda_R/4.3
+**** Job starts ****
+Wed Aug  9 12:11:59 EDT 2023
+**** JHPCE info ****
+User: rmiller
+Job id: 3671685
+Job name: update_permissions
+Hostname: compute-063.cm.cluster
+Task id: undefined
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/3.1.2
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.10
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.3
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+
+# file: /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/
+A::OWNER@:rwaDxtTcCy
+A::GROUP@:rwaDxtcy
+A:g:lieber_lcolladotor@cm.cluster:rwaDxtcy
+A:g:lieber_marmaypag@cm.cluster:rwaDxtcy
+A:g:hickslab@cm.cluster:rwaDxtcy
+A::EVERYONE@:rtcy
+A:fdi:OWNER@:rwaDxtTcCy
+A:fdi:GROUP@:rwaDxtcy
+A:fdig:lieber_lcolladotor@cm.cluster:rwaDxtcy
+A:fdig:lieber_marmaypag@cm.cluster:rwaDxtcy
+A:fdig:hickslab@cm.cluster:rwaDxtcy
+A:fdi:EVERYONE@:tcy
+**** Job ends ****
+Wed Aug  9 12:12:01 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.10
+Loading LIBD module for ruby/3.1.2
+Loading conda_R/4.3
+**** Job starts ****
+Thu Aug 10 15:32:31 EDT 2023
+**** JHPCE info ****
+User: rmiller
+Job id: 3673668
+Job name: update_permissions
+Hostname: compute-057.cm.cluster
+Task id: undefined
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/3.1.2
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.10
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.3
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+
+# file: /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/
+A::OWNER@:rwaDxtTcCy
+A::GROUP@:rwaDxtcy
+A:g:lieber_lcolladotor@cm.cluster:rwaDxtcy
+A:g:lieber_marmaypag@cm.cluster:rwaDxtcy
+A:g:hickslab@cm.cluster:rwaDxtcy
+A::EVERYONE@:rtcy
+A:fdi:OWNER@:rwaDxtTcCy
+A:fdi:GROUP@:rwaDxtcy
+A:fdig:lieber_lcolladotor@cm.cluster:rwaDxtcy
+A:fdig:lieber_marmaypag@cm.cluster:rwaDxtcy
+A:fdig:hickslab@cm.cluster:rwaDxtcy
+A:fdi:EVERYONE@:tcy
+**** Job ends ****
+Thu Aug 10 15:32:44 EDT 2023

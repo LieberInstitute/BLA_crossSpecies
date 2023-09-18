@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Data directories
+/raw-data/*
+/processed-data/*
