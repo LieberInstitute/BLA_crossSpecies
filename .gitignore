@@ -3,6 +3,14 @@
 .RData
 .Ruserdata
 
+
+*.tif
+*.rda
+*.Rdata
+*.rds
+*.csv
+
+
 # Data directories
 /raw-data/*
 /processed-data/*

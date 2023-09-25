@@ -1,4 +1,5 @@
-# qrsh -l mem_free=80G,h_vmem=80G -now n
+# qrsh -l mem_free=120G,h_vmem=120G -now n
+
 library("SingleCellExperiment")
 #library("jaffelab")
 library("scater")
@@ -7,11 +8,11 @@ library("here")
 library("sessioninfo")
 
 # Save directories
-plot_dir = here("plots", "03_clustering")
-processed_dir = here("processed-data","03_clustering")
+plot_dir = here("plots", "costa_rds", "03_clustering")
+processed_dir = here("processed-data","costa_rds", "03_clustering")
 
-load(here("processed-data", "03_clustering", "sce_combined_harmony.rda"), verbose = TRUE)
-load(here("processed-data", "03_clustering", "sce_combined_mnn.rda"), verbose = TRUE)
+load(here("processed-data", "costa_rds",  "03_clustering", "sce_combined_harmony.rda"), verbose = TRUE)
+load(here("processed-data",  "costa_rds", "03_clustering", "sce_combined_mnn.rda"), verbose = TRUE)
 sce <- mnn.out
 
 # Extract the "corrected" reduced dimension from mnn.out
@@ -39,14 +40,17 @@ table(clust50)
 ##add to sce
 sce$k_50_label<-clust50
 
+message("saving data - ", Sys.time())
+save(sce, file=here(processed_dir, "sce_clustered_k50.rda"))
+
 ##make some prelim plots
 pdf(here(plot_dir,"UMAP_k50_mnn.pdf"))
-plotUMAP(sce,colour_by='k_10_label',text_by='k_10_label')
+plotUMAP(sce,colour_by='k_50_label',text_by='k_50_label')
 dev.off()
 
 ##make some prelim plots
 pdf(here(plot_dir,"TSNE_k50_mnn.pdf"))
-plotTSNE(sce,colour_by='k_10_label',text_by='k_10_label')
+plotTSNE(sce,colour_by='k_50_label',text_by='k_50_label')
 dev.off()
 
 
@@ -59,17 +63,7 @@ sce <- logNormCounts(sce)
 sce
 
 message("saving data - ", Sys.time())
-save(sce, file=here(processed_dir, "sce_clustered_Ks_10_60.rda"))
-
-pdf(here(plot_dir,"markers_k50.pdf"))
-plotExpression(sce,features=c('SYT1','SLC17A7','SLC17A6',
-                              'GAD1','GAD2','MBP',
-                              'GFAP','TTR','CSF1R',
-                              'PDGFRA','FLT1','TNNT2'),
-               x="k_50_label", colour_by="k_50_label", point_alpha=0.5, point_size=.7,add_legend=F)+
-  stat_summary(fun = median, fun.min = median, fun.max = median, geom = "crossbar",
-               width = 0.3)
-dev.off()
+save(sce, file=here(processed_dir, "sce_clustered_k50_normalized.rda"))
 
 ## Reproducibility information
 print("Reproducibility information:")
@@ -77,4 +71,5 @@ Sys.time()
 proc.time()
 options(width = 120)
 session_info()
+
 
