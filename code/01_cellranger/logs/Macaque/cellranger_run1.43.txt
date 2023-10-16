@@ -1,0 +1,199 @@
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2.x
+**** Job starts ****
+Tue Oct 10 15:29:58 EDT 2023
+**** JHPCE info ****
+User: mtotty
+Job id: 3753059
+Job name: BLA_molprofile_cellranger
+Hostname: compute-049.cm.cluster
+Task id: 43
+Loading LIBD module for cellranger/7.0.0
+Reference files, for use with the '--transcriptome' argument, can be accessed
+or downloaded into /dcs04/lieber/lcolladotor/annotationFiles_LIBD001/10x. 
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2.x
+  5) gcc/4.4.7        10) git-lfs/2.8.0                  15) cellranger/7.0.0
+
+ 
+
+Processing sample Sample43
+Sample43
+Tue Oct 10 15:29:58 EDT 2023
+error: Invalid value for '--id <ID>': must contain only letters, digits, underscores, and dashes.
+
+For more information try --help
+Moving data to new location
+Tue Oct 10 15:29:58 EDT 2023
+mv: cannot stat ‘Sample43\r’: No such file or directory
+**** Job ends ****
+Tue Oct 10 15:29:58 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2.x
+**** Job starts ****
+Tue Oct 10 15:33:28 EDT 2023
+**** JHPCE info ****
+User: mtotty
+Job id: 3753060
+Job name: BLA_molprofile_cellranger
+Hostname: compute-059.cm.cluster
+Task id: 43
+Loading LIBD module for cellranger/7.0.0
+Reference files, for use with the '--transcriptome' argument, can be accessed
+or downloaded into /dcs04/lieber/lcolladotor/annotationFiles_LIBD001/10x. 
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2.x
+  5) gcc/4.4.7        10) git-lfs/2.8.0                  15) cellranger/7.0.0
+
+ 
+
+Processing sample sample43
+sample43
+Tue Oct 10 15:33:29 EDT 2023
+error: Invalid value for '--id <ID>': must contain only letters, digits, underscores, and dashes.
+
+For more information try --help
+Moving data to new location
+Tue Oct 10 15:33:29 EDT 2023
+mv: cannot stat ‘sample43\r’: No such file or directory
+**** Job ends ****
+Tue Oct 10 15:33:29 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2.x
+**** Job starts ****
+Tue Oct 10 15:41:42 EDT 2023
+**** JHPCE info ****
+User: mtotty
+Job id: 3753065
+Job name: BLA_molprofile_cellranger
+Hostname: compute-049.cm.cluster
+Task id: 43
+Loading LIBD module for cellranger/7.0.0
+Reference files, for use with the '--transcriptome' argument, can be accessed
+or downloaded into /dcs04/lieber/lcolladotor/annotationFiles_LIBD001/10x. 
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2.x
+  5) gcc/4.4.7        10) git-lfs/2.8.0                  15) cellranger/7.0.0
+
+ 
+
+Processing sample sample43
+sample43
+Tue Oct 10 15:41:42 EDT 2023
+ERROR: Requested sample(s) not found in fastq directory. Available samples:
+VC_snRNAseq_13_Animal5_L_Frontal_Pole
+Moving data to new location
+Tue Oct 10 15:41:43 EDT 2023
+mv: cannot stat ‘sample43’: No such file or directory
+**** Job ends ****
+Tue Oct 10 15:41:43 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2.x
+**** Job starts ****
+Tue Oct 10 16:16:29 EDT 2023
+**** JHPCE info ****
+User: mtotty
+Job id: 3753083
+Job name: BLA_molprofile_cellranger
+Hostname: compute-049.cm.cluster
+Task id: 43
+Loading LIBD module for cellranger/7.0.0
+Reference files, for use with the '--transcriptome' argument, can be accessed
+or downloaded into /dcs04/lieber/lcolladotor/annotationFiles_LIBD001/10x. 
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2.x
+  5) gcc/4.4.7        10) git-lfs/2.8.0                  15) cellranger/7.0.0
+
+ 
+
+Processing sample sample8 VC_snRNAseq-7_LateralDorsalAP1AP2_-8
+sample8 VC_snRNAseq-7_LateralDorsalAP1AP2_-8
+Tue Oct 10 16:16:30 EDT 2023
+error: Found argument 'VC_snRNAseq-7_LateralDorsalAP1AP2_-8' which wasn't expected, or isn't valid in this context
+
+USAGE:
+    cellranger count [OPTIONS] --id <ID> --transcriptome <PATH>
+
+For more information try --help
+Moving data to new location
+Tue Oct 10 16:16:30 EDT 2023
+mv: cannot stat ‘sample8’: No such file or directory
+mv: cannot stat ‘VC_snRNAseq-7_LateralDorsalAP1AP2_-8’: No such file or directory
+**** Job ends ****
+Tue Oct 10 16:16:30 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2.x
+**** Job starts ****
+Thu Oct 12 19:20:06 EDT 2023
+**** JHPCE info ****
+User: mtotty
+Job id: 3753158
+Job name: BLA_molprofile_cellranger
+Hostname: compute-059.cm.cluster
+Task id: 43
+Loading LIBD module for cellranger/7.0.0
+Reference files, for use with the '--transcriptome' argument, can be accessed
+or downloaded into /dcs04/lieber/lcolladotor/annotationFiles_LIBD001/10x. 
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2.x
+  5) gcc/4.4.7        10) git-lfs/2.8.0                  15) cellranger/7.0.0
+
+ 
+
+Processing sample 
+
+Thu Oct 12 19:20:07 EDT 2023
+error: Invalid value for '--id <ID>': must contain only letters, digits, underscores, and dashes.
+
+For more information try --help
+Moving data to new location
+Thu Oct 12 19:20:07 EDT 2023
+mv: missing destination file operand after ‘/dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/crossSpecies/processed-data/01_cellranger/Macaque/’
+Try 'mv --help' for more information.
+**** Job ends ****
+Thu Oct 12 19:20:07 EDT 2023
