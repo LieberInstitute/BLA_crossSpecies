@@ -14,7 +14,6 @@ tmp <- read.delim(here("raw-data","sampleinfo",
 
 # View the subsetted data
 head(tmp)
-
 #        Sample Species Subject Sex   Region Subregion DV_axis  PI.NeuN
 #   1 3c-AMYBLA   Human  Br2327     Amygdala       BLA         PI+NeuN+
 #   2 4c-AMYBLA   Human  Br8692     Amygdala       BLA         PI+NeuN+
@@ -77,20 +76,25 @@ gtf <-
 
 gtf <- gtf[gtf$type == "gene"]
 names(gtf) <- gtf$gene_id
+gtf
 
 ## Match the genes
 match_genes <- match(rownames(sce), gtf$gene_id)
+match_genes
 stopifnot(all(!is.na(match_genes)))
 
 ## Keep only some columns from the gtf
-mcols(gtf) <- mcols(gtf)[, c("source", "type", "gene_id", "gene_version", "gene_name", "gene_type")]
+mcols(gtf) <- mcols(gtf)[, c("source", "type", "gene_id", "gene_version", "gene_name", "gene_biotype")]
+gtf
 
 ## Add the gene info to our SPE object
 rowRanges(sce) <- gtf[match_genes]
+sce
 
 # -> To avoid getting into sticky situations, let's 'uniquify' these names:
 rowData(sce)$Symbol.uniq <- scuttle::uniquifyFeatureNames(rowData(sce)$gene_id, rowData(sce)$gene_name)
 rownames(sce) <- rowData(sce)$Symbol.uniq
+sce
 
 
 # Add metadata
