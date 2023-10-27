@@ -1,10 +1,10 @@
 **** Job starts ****
-Wed Oct 25 01:41:29 PM EDT 2023
+Wed Oct 25 02:38:31 PM EDT 2023
 **** SLURM info ****
 User: mtotty
-Job id: 616727
-Job name: emptyDrops_human
-Hostname: compute-095
+Job id: 618286
+Job name: emptyDrops_baboon
+Hostname: compute-106
 Task id: 
 Loading conda_R/4.3
 
@@ -116,17 +116,127 @@ here() starts at /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpec
 Loading objects:
   sce
 class: SingleCellExperiment 
-dim: 36601 7832046 
+dim: 20842 13939066 
 metadata(1): Samples
-assays(1): countDone - saving data
+assays(1): counts
+rownames(20842): PITHD1 ACTL8 ... ENSPANG00000037790 ENSPANG00000045064
+rowData names(7): source type ... gene_biotype Symbol.uniq
+colnames(13939066): 1_AAACCCAAGAAACACT-1 1_AAACCCAAGAAACCAT-1 ...
+  7_TTTGTTGTCTTTGGCT-1 7_TTTGTTGTCTTTGTCG-1
+colData names(10): Sample Barcode ... subregion dv_axis
+reducedDimNames(0):
+mainExpName: NULL
+altExpNames(0):
+'First knee point' = 280
+knee_highest =80.0000000000001
+'Second knee point' = 280
+knee_higher =180
+'Third knee point' = 280
+knee =280
+'Fourth knee point' = 280
+knee_lower =380
+'Fifth knee point' = 280
+knee_lowest =480
+Starting emptyDrops
+Done - saving data
 QC check
-Non-empty: 5512
+Non-empty: 6489
 Saving 7 x 7 in image
-There were 17 warnings (use warnings() to see them)
+'First knee point' = 359
+knee_highest =159
+'Second knee point' = 359
+knee_higher =259
+'Third knee point' = 359
+knee =359
+'Fourth knee point' = 359
+knee_lower =459
+'Fifth knee point' = 359
+knee_lowest =559
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 6288
+Saving 7 x 7 in image
+'First knee point' = 125
+knee_highest =-75.0000000000001
+'Second knee point' = 125
+knee_higher =24.9999999999999
+'Third knee point' = 125
+knee =125
+'Fourth knee point' = 125
+knee_lower =225
+'Fifth knee point' = 125
+knee_lowest =325
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 7944
+Saving 7 x 7 in image
+'First knee point' = 151
+knee_highest =-49.0000000000001
+'Second knee point' = 151
+knee_higher =50.9999999999999
+'Third knee point' = 151
+knee =151
+'Fourth knee point' = 151
+knee_lower =251
+'Fifth knee point' = 151
+knee_lowest =351
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 6231
+Saving 7 x 7 in image
+'First knee point' = 594
+knee_highest =394
+'Second knee point' = 594
+knee_higher =494
+'Third knee point' = 594
+knee =594
+'Fourth knee point' = 594
+knee_lower =694
+'Fifth knee point' = 594
+knee_lowest =794
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 8000
+Saving 7 x 7 in image
+'First knee point' = 105
+knee_highest =-95
+'Second knee point' = 105
+knee_higher =5.00000000000004
+'Third knee point' = 105
+knee =105
+'Fourth knee point' = 105
+knee_lower =205
+'Fifth knee point' = 105
+knee_lowest =305
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 10346
+Saving 7 x 7 in image
+'First knee point' = 955
+knee_highest =755
+'Second knee point' = 955
+knee_higher =855
+'Third knee point' = 955
+knee =955
+'Fourth knee point' = 955
+knee_lower =1055
+'Fifth knee point' = 955
+knee_lowest =1155
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 13064
+Saving 7 x 7 in image
+There were 25 warnings (use warnings() to see them)
 [1] "Reproducibility information:"
-[1] "2023-10-25 13:43:04 EDT"
+[1] "2023-10-25 15:07:28 EDT"
     user   system  elapsed 
-1990.472   46.420  811.936 
+3306.770  142.267 1732.977 
 ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.1 Patched (2023-07-19 r84711)
@@ -228,4 +338,4 @@ There were 17 warnings (use warnings() to see them)
 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 **** Job ends ****
-Wed Oct 25 01:43:06 PM EDT 2023
+Wed Oct 25 03:07:32 PM EDT 2023

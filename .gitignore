@@ -14,4 +14,4 @@
 # Data directories
 /raw-data/*
 /processed-data/*
-/plots/*
+/plots/costa_rds/*

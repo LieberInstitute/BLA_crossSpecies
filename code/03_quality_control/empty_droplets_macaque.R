@@ -7,8 +7,8 @@ library("sessioninfo")
 
 
 # --------------------- Load sce ---------------------
-load(here("processed-data", "02_build_sce", "sce_human_raw.rda"), verbose = TRUE)
-sce
+load(here("processed-data", "02_build_sce", "sce_macaque_raw.rda"), verbose = TRUE)
+unique(sce$Sample)
 
 
 unique_samples <- unique(sce$Sample)
@@ -62,8 +62,8 @@ for (sample_run in unique_samples) {
     message("Done - saving data")
     Sys.time()
     
-    if (!dir.exists(here("processed-data", "03_quality_control", "Human","droplet_scores"))) dir.create(here("processed-data", "03_quality_control","Human", "droplet_scores"))
-    save(e.out, file = here("processed-data", "03_quality_control","Human", "droplet_scores", paste0("droplet_scores_", sample_run, ".Rdata")))
+    if (!dir.exists(here("processed-data", "03_quality_control", "Macaque","droplet_scores"))) dir.create(here("processed-data", "03_quality_control","Macaque", "droplet_scores"))
+    save(e.out, file = here("processed-data", "03_quality_control","Macaque", "droplet_scores", paste0("droplet_scores_", sample_run, ".Rdata")))
     
     
     # ---------------------------Droplet Plots ----------------------------
@@ -113,7 +113,7 @@ for (sample_run in unique_samples) {
     # # print(droplet_elbow_plot/droplet_scatter_plot)
     # ggsave(droplet_elbow_plot/droplet_scatter_plot, filename = here("plots","03_build_sce", "droplet_qc_png",paste0("droplet_qc_",sample,".png")))
     
-    ggsave(droplet_elbow_plot, filename = here("plots", "03_quality_control","Human", "droplet_scores", paste0("droplet_qc_", sample_run, ".png")))
+    ggsave(droplet_elbow_plot, filename = here("plots", "03_quality_control","Macaque", "droplet_scores", paste0("droplet_qc_", sample_run, ".png")))
 }
 
 ## Reproducibility information

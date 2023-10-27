@@ -1,14 +1,15 @@
 **** Job starts ****
-Wed Oct 25 11:16:19 AM EDT 2023
+Thu Oct 26 02:31:21 PM EDT 2023
 **** JHPCE info ****
 User: mtotty
 Job id: 
 Job name: 
-Hostname: compute-095
+Hostname: compute-141
 Loading conda_R/4.3
 
 Currently Loaded Modules:
-  1) JHPCE_tools/3.0   2) conda/3-23.3.1   3) conda_R/4.3
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
+  2) JHPCE_tools/3.0            4) conda_R/4.3
 
  
 
@@ -164,8 +165,43 @@ The following objects are masked from ‘package:S4Vectors’:
 4       BLA         PI+NeuN+
 5       BLA         PI+NeuN+
 6   Lateral Ventral         
-Read 10x data and create sce - 2023-10-25 11:16:41.719516
-RDone - 2023-10-25 11:45:30.847111
+                                sample_id                             Sample
+1                        Br2327-3c-AMYBLA                          3c-AMYBLA
+2                        Br8692-4c-AMYBLA                          4c-AMYBLA
+3                        Br9021-5c-AMYBLA                          5c-AMYBLA
+4                         Br8331-34ac_scp                           34ac_scp
+5                         Br5273-35ac_scp                           35ac_scp
+6 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1 VC_snRNAseq-7_LateralVentralAP1_-1
+  subject species   region subregion dv_axis
+1  Br2327   Human Amygdala       BLA        
+2  Br8692   Human Amygdala       BLA        
+3  Br9021   Human Amygdala       BLA        
+4  Br8331   Human Amygdala       BLA        
+5  Br5273   Human Amygdala       BLA        
+6    Mac2 Macaque Amygdala   Lateral Ventral
+                                sample_id                             Sample
+1                        Br2327-3c-AMYBLA                          3c-AMYBLA
+2                        Br8692-4c-AMYBLA                          4c-AMYBLA
+3                        Br9021-5c-AMYBLA                          5c-AMYBLA
+4                         Br8331-34ac_scp                           34ac_scp
+5                         Br5273-35ac_scp                           35ac_scp
+6 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1 VC_snRNAseq-7_LateralVentralAP1_-1
+  subject species   region subregion dv_axis
+1  Br2327   Human Amygdala       BLA        
+2  Br8692   Human Amygdala       BLA        
+3  Br9021   Human Amygdala       BLA        
+4  Br8331   Human Amygdala       BLA        
+5  Br5273   Human Amygdala       BLA        
+6    Mac2 Macaque Amygdala   Lateral Ventral
+                                                                                                                                                            sample_path
+1                            /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Human/3c-AMYBLA/outs/raw_feature_bc_matrix
+2                            /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Human/4c-AMYBLA/outs/raw_feature_bc_matrix
+3                            /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Human/5c-AMYBLA/outs/raw_feature_bc_matrix
+4                             /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Human/34ac_scp/outs/raw_feature_bc_matrix
+5                             /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Human/35ac_scp/outs/raw_feature_bc_matrix
+6 /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Macaque/VC_snRNAseq-7_LateralVentralAP1_-1/outs/raw_feature_bc_matrix
+Read 10x data and create sce - 2023-10-26 14:31:48.784384
+RDone - 2023-10-26 14:53:04.77694
 class: SingleCellExperiment 
 dim: 21369 70879726 
 metadata(1): Samples
@@ -179,100 +215,6 @@ colData names(2): Sample Barcode
 reducedDimNames(0):
 mainExpName: NULL
 altExpNames(0):
-GRanges object with 21369 ranges and 21 metadata columns:
-                     seqnames        ranges strand |   source     type
-                        <Rle>     <IRanges>  <Rle> | <factor> <factor>
-  ENSMMUG00000023296        1    8231-26653      - |  ensembl     gene
-  ENSMMUG00000000634        1   71582-83178      + |  ensembl     gene
-  ENSMMUG00000037875        1   81258-91679      - |  ensembl     gene
-  ENSMMUG00000000632        1 102662-117835      + |  ensembl     gene
-  ENSMMUG00000064799        1 122996-124202      - |  ensembl     gene
-                 ...      ...           ...    ... .      ...      ...
-  ENSMMUG00000065379       MT   10461-10757      + |   RefSeq     gene
-  ENSMMUG00000065387       MT   10751-12128      + |   RefSeq     gene
-  ENSMMUG00000065354       MT   12328-14139      + |   RefSeq     gene
-  ENSMMUG00000065359       MT   14140-14667      - |   RefSeq     gene
-  ENSMMUG00000065382       MT   14741-15881      + |   RefSeq     gene
-                         score     phase            gene_id gene_version
-                     <numeric> <integer>        <character>  <character>
-  ENSMMUG00000023296        NA      <NA> ENSMMUG00000023296            4
-  ENSMMUG00000000634        NA      <NA> ENSMMUG00000000634            4
-  ENSMMUG00000037875        NA      <NA> ENSMMUG00000037875            2
-  ENSMMUG00000000632        NA      <NA> ENSMMUG00000000632            4
-  ENSMMUG00000064799        NA      <NA> ENSMMUG00000064799            1
-                 ...       ...       ...                ...          ...
-  ENSMMUG00000065379        NA      <NA> ENSMMUG00000065379            1
-  ENSMMUG00000065387        NA      <NA> ENSMMUG00000065387            1
-  ENSMMUG00000065354        NA      <NA> ENSMMUG00000065354            1
-  ENSMMUG00000065359        NA      <NA> ENSMMUG00000065359            1
-  ENSMMUG00000065382        NA      <NA> ENSMMUG00000065382            1
-                     gene_source   gene_biotype transcript_id
-                     <character>    <character>   <character>
-  ENSMMUG00000023296     ensembl protein_coding          <NA>
-  ENSMMUG00000000634     ensembl protein_coding          <NA>
-  ENSMMUG00000037875     ensembl protein_coding          <NA>
-  ENSMMUG00000000632     ensembl protein_coding          <NA>
-  ENSMMUG00000064799     ensembl protein_coding          <NA>
-                 ...         ...            ...           ...
-  ENSMMUG00000065379      RefSeq protein_coding          <NA>
-  ENSMMUG00000065387      RefSeq protein_coding          <NA>
-  ENSMMUG00000065354      RefSeq protein_coding          <NA>
-  ENSMMUG00000065359      RefSeq protein_coding          <NA>
-  ENSMMUG00000065382      RefSeq protein_coding          <NA>
-                     transcript_version transcript_source transcript_biotype
-                            <character>       <character>        <character>
-  ENSMMUG00000023296               <NA>              <NA>               <NA>
-  ENSMMUG00000000634               <NA>              <NA>               <NA>
-  ENSMMUG00000037875               <NA>              <NA>               <NA>
-  ENSMMUG00000000632               <NA>              <NA>               <NA>
-  ENSMMUG00000064799               <NA>              <NA>               <NA>
-                 ...                ...               ...                ...
-  ENSMMUG00000065379               <NA>              <NA>               <NA>
-  ENSMMUG00000065387               <NA>              <NA>               <NA>
-  ENSMMUG00000065354               <NA>              <NA>               <NA>
-  ENSMMUG00000065359               <NA>              <NA>               <NA>
-  ENSMMUG00000065382               <NA>              <NA>               <NA>
-                             tag exon_number     exon_id exon_version
-                     <character> <character> <character>  <character>
-  ENSMMUG00000023296        <NA>        <NA>        <NA>         <NA>
-  ENSMMUG00000000634        <NA>        <NA>        <NA>         <NA>
-  ENSMMUG00000037875        <NA>        <NA>        <NA>         <NA>
-  ENSMMUG00000000632        <NA>        <NA>        <NA>         <NA>
-  ENSMMUG00000064799        <NA>        <NA>        <NA>         <NA>
-                 ...         ...         ...         ...          ...
-  ENSMMUG00000065379        <NA>        <NA>        <NA>         <NA>
-  ENSMMUG00000065387        <NA>        <NA>        <NA>         <NA>
-  ENSMMUG00000065354        <NA>        <NA>        <NA>         <NA>
-  ENSMMUG00000065359        <NA>        <NA>        <NA>         <NA>
-  ENSMMUG00000065382        <NA>        <NA>        <NA>         <NA>
-                      protein_id protein_version   gene_name transcript_name
-                     <character>     <character> <character>     <character>
-  ENSMMUG00000023296        <NA>            <NA>        <NA>            <NA>
-  ENSMMUG00000000634        <NA>            <NA>      ZNF692            <NA>
-  ENSMMUG00000037875        <NA>            <NA>      ZNF672            <NA>
-  ENSMMUG00000000632        <NA>            <NA>     SH3BP5L            <NA>
-  ENSMMUG00000064799        <NA>            <NA>        <NA>            <NA>
-                 ...         ...             ...         ...             ...
-  ENSMMUG00000065379        <NA>            <NA>        ND4L            <NA>
-  ENSMMUG00000065387        <NA>            <NA>         ND4            <NA>
-  ENSMMUG00000065354        <NA>            <NA>         ND5            <NA>
-  ENSMMUG00000065359        <NA>            <NA>         ND6            <NA>
-  ENSMMUG00000065382        <NA>            <NA>        CYTB            <NA>
-                     projection_parent_transcript
-                                      <character>
-  ENSMMUG00000023296                         <NA>
-  ENSMMUG00000000634                         <NA>
-  ENSMMUG00000037875                         <NA>
-  ENSMMUG00000000632                         <NA>
-  ENSMMUG00000064799                         <NA>
-                 ...                          ...
-  ENSMMUG00000065379                         <NA>
-  ENSMMUG00000065387                         <NA>
-  ENSMMUG00000065354                         <NA>
-  ENSMMUG00000065359                         <NA>
-  ENSMMUG00000065382                         <NA>
-  -------
-  seqinfo: 23 sequences from an unspecified genome; no seqlengths
 class: SingleCellExperiment 
 dim: 21369 70879726 
 metadata(1): Samples
@@ -285,6 +227,135 @@ colData names(2): Sample Barcode
 reducedDimNames(0):
 mainExpName: NULL
 altExpNames(0):
+                                               sample_id
+1                Mac2-VC_snRNAseq-7_LateralVentralAP1_-1
+2                Mac2-VC_snRNAseq-7_LateralVentralAP2_-2
+3                  Mac2-VC_snRNAseq-7_BasalDorsalAP1_-3A
+4                  Mac2-VC_snRNAseq-7_BasalDorsalAP1_-3B
+5                  Mac2-VC_snRNAseq-7_BasalVentralAP1_-4
+6                  Mac2-VC_snRNAseq-7_BasalVentralAP2_-5
+7                   Mac2-VC_snRNAseq-7_AccBasalAP1AP2_-7
+8              Mac2-VC_snRNAseq-7_LateralDorsalAP1AP2_-8
+9                         Mac4-VC_snRNAseq_9_Animal4_LV2
+10                        Mac4-VC_snRNAseq_9_Animal4_LV1
+11                         Mac4-VC_snRNAseq_9_Animal4_LD
+12                     Mac4-VC_snRNAseq_9_Animal4_L-Comb
+13                         Mac4-VC_snRNAseq_9_Animal4_BV
+14                         Mac4-VC_snRNAseq_9_Animal4_BD
+15                     Mac4-VC_snRNAseq_9_Animal4_B-Comb
+16                         Mac4-VC_snRNAseq_9_Animal4_AB
+17                         Mac3-VC_snRNAseq_8_Animal3_LV
+18                        Mac3-VC_snRNAseq_8_Animal3_LV3
+19                         Mac3-VC_snRNAseq_8_Animal3_LD
+20                        Mac3-VC_snRNAseq_8_Animal3_BV2
+21                        Mac3-VC_snRNAseq_8_Animal3_BV1
+22                         Mac3-VC_snRNAseq_8_Animal3_BD
+23                       Mac3-VC_snRNAseq_8_Animal3_AB__
+24                      Mac3-VC_snRNAseq_8_Animal3_Bd_Bv
+25                                Mac1-LIB210527RC_AB_1A
+26                                Mac1-LIB210527RC_AB_1B
+27           Mac2-VC_snRNAseq_12_Animal2_Central_Nucleus
+28           Mac3-VC_snRNAseq_12_Animal3_Central_Nucleus
+29           Mac4-VC_snRNAseq_12_Animal4_Central_Nucleus
+30 Mac5-VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_
+31               Mac5-VC_snRNAseq_12_Animal5_Basal__AP1_
+32               Mac5-VC_snRNAseq_12_Animal5_Basal__AP2_
+33             Mac5-VC_snRNAseq_12_Animal5_Lateral__AP1_
+34             Mac5-VC_snRNAseq_12_Animal5_Lateral__AP2_
+35     Mac5-VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_
+                                             Sample subject species   region
+1                VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala
+2                VC_snRNAseq-7_LateralVentralAP2_-2    Mac2 Macaque Amygdala
+3                  VC_snRNAseq-7_BasalDorsalAP1_-3A    Mac2 Macaque Amygdala
+4                  VC_snRNAseq-7_BasalDorsalAP1_-3B    Mac2 Macaque Amygdala
+5                  VC_snRNAseq-7_BasalVentralAP1_-4    Mac2 Macaque Amygdala
+6                  VC_snRNAseq-7_BasalVentralAP2_-5    Mac2 Macaque Amygdala
+7                   VC_snRNAseq-7_AccBasalAP1AP2_-7    Mac2 Macaque Amygdala
+8              VC_snRNAseq-7_LateralDorsalAP1AP2_-8    Mac2 Macaque Amygdala
+9                         VC_snRNAseq_9_Animal4_LV2    Mac4 Macaque Amygdala
+10                        VC_snRNAseq_9_Animal4_LV1    Mac4 Macaque Amygdala
+11                         VC_snRNAseq_9_Animal4_LD    Mac4 Macaque Amygdala
+12                     VC_snRNAseq_9_Animal4_L-Comb    Mac4 Macaque Amygdala
+13                         VC_snRNAseq_9_Animal4_BV    Mac4 Macaque Amygdala
+14                         VC_snRNAseq_9_Animal4_BD    Mac4 Macaque Amygdala
+15                     VC_snRNAseq_9_Animal4_B-Comb    Mac4 Macaque Amygdala
+16                         VC_snRNAseq_9_Animal4_AB    Mac4 Macaque Amygdala
+17                         VC_snRNAseq_8_Animal3_LV    Mac3 Macaque Amygdala
+18                        VC_snRNAseq_8_Animal3_LV3    Mac3 Macaque Amygdala
+19                         VC_snRNAseq_8_Animal3_LD    Mac3 Macaque Amygdala
+20                        VC_snRNAseq_8_Animal3_BV2    Mac3 Macaque Amygdala
+21                        VC_snRNAseq_8_Animal3_BV1    Mac3 Macaque Amygdala
+22                         VC_snRNAseq_8_Animal3_BD    Mac3 Macaque Amygdala
+23                       VC_snRNAseq_8_Animal3_AB__    Mac3 Macaque Amygdala
+24                      VC_snRNAseq_8_Animal3_Bd_Bv    Mac3 Macaque Amygdala
+25                                LIB210527RC_AB_1A    Mac1 Macaque Amygdala
+26                                LIB210527RC_AB_1B    Mac1 Macaque Amygdala
+27           VC_snRNAseq_12_Animal2_Central_Nucleus    Mac2 Macaque Amygdala
+28           VC_snRNAseq_12_Animal3_Central_Nucleus    Mac3 Macaque Amygdala
+29           VC_snRNAseq_12_Animal4_Central_Nucleus    Mac4 Macaque Amygdala
+30 VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_    Mac5 Macaque Amygdala
+31               VC_snRNAseq_12_Animal5_Basal__AP1_    Mac5 Macaque Amygdala
+32               VC_snRNAseq_12_Animal5_Basal__AP2_    Mac5 Macaque Amygdala
+33             VC_snRNAseq_12_Animal5_Lateral__AP1_    Mac5 Macaque Amygdala
+34             VC_snRNAseq_12_Animal5_Lateral__AP2_    Mac5 Macaque Amygdala
+35     VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_    Mac5 Macaque Amygdala
+         subregion        dv_axis
+1          Lateral        Ventral
+2          Lateral        Ventral
+3            Basal         Dorsal
+4            Basal         Dorsal
+5            Basal        Ventral
+6            Basal        Ventral
+7  Central Nucleus               
+8          Lateral         Dorsal
+9          Lateral        Ventral
+10         Lateral        Ventral
+11         Lateral         Dorsal
+12         Lateral Dorsal_Ventral
+13           Basal        Ventral
+14           Basal         Dorsal
+15           Basal Dorsal_Ventral
+16 Accessory Basal               
+17         Lateral        Ventral
+18         Lateral        Ventral
+19         Lateral         Dorsal
+20           Basal        Ventral
+21           Basal        Ventral
+22          Basal          Dorsal
+23 Accessory Basal               
+24           Basal Dorsal_Ventral
+25 Central Nucleus               
+26 Central Nucleus               
+27 Accessory Basal               
+28 Central Nucleus               
+29 Central Nucleus               
+30 Accessory Basal               
+31           Basal Dorsal_Ventral
+32           Basal Dorsal_Ventral
+33         Lateral               
+34         Lateral               
+35 Central Nucleus               
+                               Sample            Barcode
+1: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACCCA-1
+2: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACCCG-1
+3: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACTAC-1
+4: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACTCA-1
+5: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAAGTCT-1
+6: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAATGAG-1
+                                 sample_id subject species   region subregion
+1: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
+2: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
+3: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
+4: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
+5: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
+6: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
+   dv_axis
+1: Ventral
+2: Ventral
+3: Ventral
+4: Ventral
+5: Ventral
+6: Ventral
 class: SingleCellExperiment 
 dim: 21369 70879726 
 metadata(1): Samples
@@ -297,9 +368,9 @@ reducedDimNames(0):
 mainExpName: NULL
 altExpNames(0):
 [1] "Reproducibility information:"
-[1] "2023-10-25 12:21:09 EDT"
+[1] "2023-10-26 15:22:36 EDT"
     user   system  elapsed 
-3492.499  353.304 3887.132 
+2808.865   93.791 3066.714 
 ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.1 Patched (2023-07-19 r84711)
@@ -309,8 +380,8 @@ altExpNames(0):
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
- tz       America/New_York
- date     2023-10-25
+ tz       US/Eastern
+ date     2023-10-26
  pandoc   3.1.3 @ /jhpce/shared/community/core/conda_R/4.3/bin/pandoc
 
 ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -390,4 +461,4 @@ altExpNames(0):
 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 **** Job ends ****
-Wed Oct 25 12:21:14 PM EDT 2023
+Thu Oct 26 03:22:51 PM EDT 2023

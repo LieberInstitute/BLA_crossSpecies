@@ -31,6 +31,7 @@ sample_info <- data.frame(
   subregion = tmp$Subregion,
   dv_axis = tmp$DV_axis
 )
+head(sample_info)
 
 stopifnot(all(!duplicated(sample_info$sample_id)))
 
@@ -43,6 +44,7 @@ sample_info$sample_path<- file.path(
   "outs",
   "raw_feature_bc_matrix"
 )
+head(sample_info)
 
 # Subset to just amygdala macaque samples
 sample_info <- sample_info %>%
@@ -55,7 +57,7 @@ sample_info <- sample_info %>%
  
  sce <- read10xCounts(
    sample_info$sample_path,
-   sample_info$sample_name,
+   sample_info$Sample,
    type = "sparse",
    col.names = TRUE
  )
@@ -79,7 +81,7 @@ gtf <-
 
 gtf <- gtf[gtf$type == "gene"]
 names(gtf) <- gtf$gene_id
-gtf
+
 ## Match the genes
 match_genes <- match(rownames(sce), gtf$gene_id)
 stopifnot(all(!is.na(match_genes)))
@@ -102,6 +104,7 @@ sce
 
 # Drop sample path before merging metdata
 sample_info$sample_path <- NULL
+sample_info
 
 # ===== NOTE =====
 # because there are so many samples (~70M droplets), we'll need to use 
@@ -115,8 +118,8 @@ sampleInfoDT <- as.data.table(sample_info)
 
 # Ensure the 'Sample' columns are correctly formatted and aligned in both tables
 #  (this is the column we're merging on)
-colDataDT[, Sample := as.character(Sample)]
-sampleInfoDT[, Sample := as.character(Sample)]
+# colDataDT[, Sample := as.character(Sample)]
+# sampleInfoDT[, Sample := as.character(Sample)]
 
 # Optionally, if the 'Sample' names are not consistently formatted, you might want to make them consistent
 ## colDataDT[, Sample := tolower(Sample)]
@@ -143,7 +146,7 @@ for (i in seq_len(number_of_chunks)) {
 # rbind to concatenate all the chunks back together
 # (check here to make sure it looks right)
 finalResult <- rbindlist(mergedResults)
-# head(finalResult)
+ head(finalResult)
 # Sample            Barcode                               sample_id subject
 # 1: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACCCA-1 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2
 # 2: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACCCG-1 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2
