@@ -1,10 +1,10 @@
 **** Job starts ****
-Thu Oct 26 02:31:21 PM EDT 2023
+Fri Nov  3 07:05:16 PM EDT 2023
 **** JHPCE info ****
 User: mtotty
 Job id: 
 Job name: 
-Hostname: compute-141
+Hostname: compute-152
 Loading conda_R/4.3
 
 Currently Loaded Modules:
@@ -200,8 +200,8 @@ The following objects are masked from ‘package:S4Vectors’:
 4                             /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Human/34ac_scp/outs/raw_feature_bc_matrix
 5                             /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Human/35ac_scp/outs/raw_feature_bc_matrix
 6 /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Macaque/VC_snRNAseq-7_LateralVentralAP1_-1/outs/raw_feature_bc_matrix
-Read 10x data and create sce - 2023-10-26 14:31:48.784384
-RDone - 2023-10-26 14:53:04.77694
+Read 10x data and create sce - 2023-11-03 19:05:31.74646
+RDone - 2023-11-03 19:14:30.885983
 class: SingleCellExperiment 
 dim: 21369 70879726 
 metadata(1): Samples
@@ -227,150 +227,22 @@ colData names(2): Sample Barcode
 reducedDimNames(0):
 mainExpName: NULL
 altExpNames(0):
-                                               sample_id
-1                Mac2-VC_snRNAseq-7_LateralVentralAP1_-1
-2                Mac2-VC_snRNAseq-7_LateralVentralAP2_-2
-3                  Mac2-VC_snRNAseq-7_BasalDorsalAP1_-3A
-4                  Mac2-VC_snRNAseq-7_BasalDorsalAP1_-3B
-5                  Mac2-VC_snRNAseq-7_BasalVentralAP1_-4
-6                  Mac2-VC_snRNAseq-7_BasalVentralAP2_-5
-7                   Mac2-VC_snRNAseq-7_AccBasalAP1AP2_-7
-8              Mac2-VC_snRNAseq-7_LateralDorsalAP1AP2_-8
-9                         Mac4-VC_snRNAseq_9_Animal4_LV2
-10                        Mac4-VC_snRNAseq_9_Animal4_LV1
-11                         Mac4-VC_snRNAseq_9_Animal4_LD
-12                     Mac4-VC_snRNAseq_9_Animal4_L-Comb
-13                         Mac4-VC_snRNAseq_9_Animal4_BV
-14                         Mac4-VC_snRNAseq_9_Animal4_BD
-15                     Mac4-VC_snRNAseq_9_Animal4_B-Comb
-16                         Mac4-VC_snRNAseq_9_Animal4_AB
-17                         Mac3-VC_snRNAseq_8_Animal3_LV
-18                        Mac3-VC_snRNAseq_8_Animal3_LV3
-19                         Mac3-VC_snRNAseq_8_Animal3_LD
-20                        Mac3-VC_snRNAseq_8_Animal3_BV2
-21                        Mac3-VC_snRNAseq_8_Animal3_BV1
-22                         Mac3-VC_snRNAseq_8_Animal3_BD
-23                       Mac3-VC_snRNAseq_8_Animal3_AB__
-24                      Mac3-VC_snRNAseq_8_Animal3_Bd_Bv
-25                                Mac1-LIB210527RC_AB_1A
-26                                Mac1-LIB210527RC_AB_1B
-27           Mac2-VC_snRNAseq_12_Animal2_Central_Nucleus
-28           Mac3-VC_snRNAseq_12_Animal3_Central_Nucleus
-29           Mac4-VC_snRNAseq_12_Animal4_Central_Nucleus
-30 Mac5-VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_
-31               Mac5-VC_snRNAseq_12_Animal5_Basal__AP1_
-32               Mac5-VC_snRNAseq_12_Animal5_Basal__AP2_
-33             Mac5-VC_snRNAseq_12_Animal5_Lateral__AP1_
-34             Mac5-VC_snRNAseq_12_Animal5_Lateral__AP2_
-35     Mac5-VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_
-                                             Sample subject species   region
-1                VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala
-2                VC_snRNAseq-7_LateralVentralAP2_-2    Mac2 Macaque Amygdala
-3                  VC_snRNAseq-7_BasalDorsalAP1_-3A    Mac2 Macaque Amygdala
-4                  VC_snRNAseq-7_BasalDorsalAP1_-3B    Mac2 Macaque Amygdala
-5                  VC_snRNAseq-7_BasalVentralAP1_-4    Mac2 Macaque Amygdala
-6                  VC_snRNAseq-7_BasalVentralAP2_-5    Mac2 Macaque Amygdala
-7                   VC_snRNAseq-7_AccBasalAP1AP2_-7    Mac2 Macaque Amygdala
-8              VC_snRNAseq-7_LateralDorsalAP1AP2_-8    Mac2 Macaque Amygdala
-9                         VC_snRNAseq_9_Animal4_LV2    Mac4 Macaque Amygdala
-10                        VC_snRNAseq_9_Animal4_LV1    Mac4 Macaque Amygdala
-11                         VC_snRNAseq_9_Animal4_LD    Mac4 Macaque Amygdala
-12                     VC_snRNAseq_9_Animal4_L-Comb    Mac4 Macaque Amygdala
-13                         VC_snRNAseq_9_Animal4_BV    Mac4 Macaque Amygdala
-14                         VC_snRNAseq_9_Animal4_BD    Mac4 Macaque Amygdala
-15                     VC_snRNAseq_9_Animal4_B-Comb    Mac4 Macaque Amygdala
-16                         VC_snRNAseq_9_Animal4_AB    Mac4 Macaque Amygdala
-17                         VC_snRNAseq_8_Animal3_LV    Mac3 Macaque Amygdala
-18                        VC_snRNAseq_8_Animal3_LV3    Mac3 Macaque Amygdala
-19                         VC_snRNAseq_8_Animal3_LD    Mac3 Macaque Amygdala
-20                        VC_snRNAseq_8_Animal3_BV2    Mac3 Macaque Amygdala
-21                        VC_snRNAseq_8_Animal3_BV1    Mac3 Macaque Amygdala
-22                         VC_snRNAseq_8_Animal3_BD    Mac3 Macaque Amygdala
-23                       VC_snRNAseq_8_Animal3_AB__    Mac3 Macaque Amygdala
-24                      VC_snRNAseq_8_Animal3_Bd_Bv    Mac3 Macaque Amygdala
-25                                LIB210527RC_AB_1A    Mac1 Macaque Amygdala
-26                                LIB210527RC_AB_1B    Mac1 Macaque Amygdala
-27           VC_snRNAseq_12_Animal2_Central_Nucleus    Mac2 Macaque Amygdala
-28           VC_snRNAseq_12_Animal3_Central_Nucleus    Mac3 Macaque Amygdala
-29           VC_snRNAseq_12_Animal4_Central_Nucleus    Mac4 Macaque Amygdala
-30 VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_    Mac5 Macaque Amygdala
-31               VC_snRNAseq_12_Animal5_Basal__AP1_    Mac5 Macaque Amygdala
-32               VC_snRNAseq_12_Animal5_Basal__AP2_    Mac5 Macaque Amygdala
-33             VC_snRNAseq_12_Animal5_Lateral__AP1_    Mac5 Macaque Amygdala
-34             VC_snRNAseq_12_Animal5_Lateral__AP2_    Mac5 Macaque Amygdala
-35     VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_    Mac5 Macaque Amygdala
-         subregion        dv_axis
-1          Lateral        Ventral
-2          Lateral        Ventral
-3            Basal         Dorsal
-4            Basal         Dorsal
-5            Basal        Ventral
-6            Basal        Ventral
-7  Central Nucleus               
-8          Lateral         Dorsal
-9          Lateral        Ventral
-10         Lateral        Ventral
-11         Lateral         Dorsal
-12         Lateral Dorsal_Ventral
-13           Basal        Ventral
-14           Basal         Dorsal
-15           Basal Dorsal_Ventral
-16 Accessory Basal               
-17         Lateral        Ventral
-18         Lateral        Ventral
-19         Lateral         Dorsal
-20           Basal        Ventral
-21           Basal        Ventral
-22          Basal          Dorsal
-23 Accessory Basal               
-24           Basal Dorsal_Ventral
-25 Central Nucleus               
-26 Central Nucleus               
-27 Accessory Basal               
-28 Central Nucleus               
-29 Central Nucleus               
-30 Accessory Basal               
-31           Basal Dorsal_Ventral
-32           Basal Dorsal_Ventral
-33         Lateral               
-34         Lateral               
-35 Central Nucleus               
-                               Sample            Barcode
-1: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACCCA-1
-2: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACCCG-1
-3: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACTAC-1
-4: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACTCA-1
-5: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAAGTCT-1
-6: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAATGAG-1
-                                 sample_id subject species   region subregion
-1: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
-2: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
-3: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
-4: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
-5: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
-6: Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2 Macaque Amygdala   Lateral
-   dv_axis
-1: Ventral
-2: Ventral
-3: Ventral
-4: Ventral
-5: Ventral
-6: Ventral
+[1] "Sample"  "Barcode"
 class: SingleCellExperiment 
 dim: 21369 70879726 
 metadata(1): Samples
 assays(1): counts
-rownames(21369): ENSMMUG00000023296 ZNF692 ... ND6 CYTB
+rownames: NULL
 rowData names(7): source type ... gene_biotype Symbol.uniq
 colnames: NULL
-colData names(8): Sample Barcode ... subregion dv_axis
+colData names(9): sample_id Sample ... Barcode key
 reducedDimNames(0):
 mainExpName: NULL
 altExpNames(0):
 [1] "Reproducibility information:"
-[1] "2023-10-26 15:22:36 EDT"
+[1] "2023-11-03 19:30:58 EDT"
     user   system  elapsed 
-2808.865   93.791 3066.714 
+1488.029   39.695 1536.311 
 ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.1 Patched (2023-07-19 r84711)
@@ -381,7 +253,7 @@ altExpNames(0):
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       US/Eastern
- date     2023-10-26
+ date     2023-11-03
  pandoc   3.1.3 @ /jhpce/shared/community/core/conda_R/4.3/bin/pandoc
 
 ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -461,4 +333,4 @@ altExpNames(0):
 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 **** Job ends ****
-Thu Oct 26 03:22:51 PM EDT 2023
+Fri Nov  3 07:31:00 PM EDT 2023

@@ -1,10 +1,10 @@
 **** Job starts ****
-Thu Oct 26 04:59:24 PM EDT 2023
+Fri Nov  3 07:46:17 PM EDT 2023
 **** SLURM info ****
 User: mtotty
-Job id: 630788
+Job id: 718474
 Job name: emptyDrops_macaque
-Hostname: compute-148
+Hostname: compute-070
 Task id: 
 Loading conda_R/4.3
 
@@ -115,145 +115,321 @@ The following objects are masked from ‘package:matrixStats’:
 here() starts at /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies
 Loading objects:
   sce
- [1] "VC_snRNAseq-7_LateralVentralAP1_-1"              
- [2] "VC_snRNAseq-7_LateralVentralAP2_-2"              
- [3] "VC_snRNAseq-7_BasalDorsalAP1_-3A"                
- [4] "VC_snRNAseq-7_BasalDorsalAP1_-3B"                
- [5] "VC_snRNAseq-7_BasalVentralAP1_-4"                
- [6] "VC_snRNAseq-7_BasalVentralAP2_-5"                
- [7] "VC_snRNAseq-7_AccBasalAP1AP2_-7"                 
- [8] "VC_snRNAseq-7_LateralDorsalAP1AP2_-8"            
- [9] "VC_snRNAseq_9_Animal4_LV2"                       
-[10] "VC_snRNAseq_9_Animal4_LV1"                       
-[11] "VC_snRNAseq_9_Animal4_LD"                        
-[12] "VC_snRNAseq_9_Animal4_L-Comb"                    
-[13] "VC_snRNAseq_9_Animal4_BV"                        
-[14] "VC_snRNAseq_9_Animal4_BD"                        
-[15] "VC_snRNAseq_9_Animal4_B-Comb"                    
-[16] "VC_snRNAseq_9_Animal4_AB"                        
-[17] "VC_snRNAseq_8_Animal3_LV"                        
-[18] "VC_snRNAseq_8_Animal3_LV3"                       
-[19] "VC_snRNAseq_8_Animal3_LD"                        
-[20] "VC_snRNAseq_8_Animal3_BV2"                       
-[21] "VC_snRNAseq_8_Animal3_BV1"                       
-[22] "VC_snRNAseq_8_Animal3_BD"                        
-[23] "VC_snRNAseq_8_Animal3_AB__"                      
-[24] "VC_snRNAseq_8_Animal3_Bd_Bv"                     
-[25] "LIB210527RC_AB_1A"                               
-[26] "LIB210527RC_AB_1B"                               
-[27] "VC_snRNAseq_12_Animal2_Central_Nucleus"          
-[28] "VC_snRNAseq_12_Animal3_Central_Nucleus"          
-[29] "VC_snRNAseq_12_Animal4_Central_Nucleus"          
-[30] "VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_"
-[31] "VC_snRNAseq_12_Animal5_Basal__AP1_"              
-[32] "VC_snRNAseq_12_Animal5_Basal__AP2_"              
-[33] "VC_snRNAseq_12_Animal5_Lateral__AP1_"            
-[34] "VC_snRNAseq_12_Animal5_Lateral__AP2_"            
-[35] "VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_"    
-'First knee point' = 121
-knee_highest =-79.0000000000001
-'Second knee point' = 121
-knee_higher =20.9999999999999
-'Third knee point' = 121
-knee =121
-'Fourth knee point' = 121
-knee_lower =221
-'Fifth knee point' = 121
-knee_lowest =321
+Sample:VC_snRNAseq-7_LateralVentralAP1_-1VC_snRNAseq-7_LateralVentralAP2_-2VC_snRNAseq-7_BasalDorsalAP1_-3AVC_snRNAseq-7_BasalDorsalAP1_-3BVC_snRNAseq-7_BasalVentralAP1_-4VC_snRNAseq-7_BasalVentralAP2_-5VC_snRNAseq-7_AccBasalAP1AP2_-7VC_snRNAseq-7_LateralDorsalAP1AP2_-8VC_snRNAseq_9_Animal4_LV2VC_snRNAseq_9_Animal4_LV1VC_snRNAseq_9_Animal4_LDVC_snRNAseq_9_Animal4_L-CombVC_snRNAseq_9_Animal4_BVVC_snRNAseq_9_Animal4_BDVC_snRNAseq_9_Animal4_B-CombVC_snRNAseq_9_Animal4_ABVC_snRNAseq_8_Animal3_LVVC_snRNAseq_8_Animal3_LV3VC_snRNAseq_8_Animal3_LDVC_snRNAseq_8_Animal3_BV2VC_snRNAseq_8_Animal3_BV1VC_snRNAseq_8_Animal3_BDVC_snRNAseq_8_Animal3_AB__VC_snRNAseq_8_Animal3_Bd_BvLIB210527RC_AB_1ALIB210527RC_AB_1BVC_snRNAseq_12_Animal2_Central_NucleusVC_snRNAseq_12_Animal3_Central_NucleusVC_snRNAseq_12_Animal4_Central_NucleusVC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_VC_snRNAseq_12_Animal5_Basal__AP1_VC_snRNAseq_12_Animal5_Basal__AP2_VC_snRNAseq_12_Animal5_Lateral__AP1_VC_snRNAseq_12_Animal5_Lateral__AP2_VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_
+'First knee point' = 172
+knee_highest =-28.0000000000001
+'Second knee point' = 172
+knee_higher =71.9999999999999
+'Third knee point' = 172
+knee =172
+'Fourth knee point' = 172
+knee_lower =272
+'Fifth knee point' = 172
+knee_lowest =372
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 91046
+Non-empty: 3080
 Saving 7 x 7 in image
-'First knee point' = 121
-knee_highest =-79.0000000000001
-'Second knee point' = 121
-knee_higher =20.9999999999999
-'Third knee point' = 121
-knee =121
-'Fourth knee point' = 121
-knee_lower =221
-'Fifth knee point' = 121
-knee_lowest =321
+'First knee point' = 115
+knee_highest =-85
+'Second knee point' = 115
+knee_higher =15
+'Third knee point' = 115
+knee =115
+'Fourth knee point' = 115
+knee_lower =215
+'Fifth knee point' = 115
+knee_lowest =315
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 36594
+Non-empty: 4717
 Saving 7 x 7 in image
-'First knee point' = 206
-knee_highest =5.99999999999994
-'Second knee point' = 206
-knee_higher =106
-'Third knee point' = 206
-knee =206
-'Fourth knee point' = 206
-knee_lower =306
-'Fifth knee point' = 206
-knee_lowest =406
+'First knee point' = 201
+knee_highest =1.00000000000009
+'Second knee point' = 201
+knee_higher =101
+'Third knee point' = 201
+knee =201
+'Fourth knee point' = 201
+knee_lower =301
+'Fifth knee point' = 201
+knee_lowest =401
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 9227
+Non-empty: 4304
 Saving 7 x 7 in image
-'First knee point' = 213
-knee_highest =12.9999999999999
-'Second knee point' = 213
-knee_higher =113
-'Third knee point' = 213
-knee =213
-'Fourth knee point' = 213
-knee_lower =313
-'Fifth knee point' = 213
-knee_lowest =413
+'First knee point' = 200
+knee_highest =2.8421709430404e-14
+'Second knee point' = 200
+knee_higher =100
+'Third knee point' = 200
+knee =200
+'Fourth knee point' = 200
+knee_lower =300
+'Fifth knee point' = 200
+knee_lowest =400
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 4288
+Non-empty: 3961
 Saving 7 x 7 in image
-'First knee point' = 123
-knee_highest =-77
-'Second knee point' = 123
-knee_higher =23
-'Third knee point' = 123
-knee =123
-'Fourth knee point' = 123
-knee_lower =223
-'Fifth knee point' = 123
-knee_lowest =323
+'First knee point' = 151
+knee_highest =-49.0000000000001
+'Second knee point' = 151
+knee_higher =50.9999999999999
+'Third knee point' = 151
+knee =151
+'Fourth knee point' = 151
+knee_lower =251
+'Fifth knee point' = 151
+knee_lowest =351
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 1350
+Non-empty: 2207
 Saving 7 x 7 in image
-'First knee point' = 121
-knee_highest =-79.0000000000001
-'Second knee point' = 121
-knee_higher =20.9999999999999
-'Third knee point' = 121
-knee =121
-'Fourth knee point' = 121
-knee_lower =221
-'Fifth knee point' = 121
-knee_lowest =321
+'First knee point' = 137
+knee_highest =-63
+'Second knee point' = 137
+knee_higher =37
+'Third knee point' = 137
+knee =137
+'Fourth knee point' = 137
+knee_lower =237
+'Fifth knee point' = 137
+knee_lowest =337
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 882
+Non-empty: 4011
 Saving 7 x 7 in image
-'First knee point' = 120
-knee_highest =-80
-'Second knee point' = 120
-knee_higher =20
-'Third knee point' = 120
-knee =120
-'Fourth knee point' = 120
-knee_lower =220
-'Fifth knee point' = 120
-knee_lowest =320
+'First knee point' = 109
+knee_highest =-91
+'Second knee point' = 109
+knee_higher =9.00000000000004
+'Third knee point' = 109
+knee =109
+'Fourth knee point' = 109
+knee_lower =209
+'Fifth knee point' = 109
+knee_lowest =309
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 306
+Non-empty: 4376
+Saving 7 x 7 in image
+'First knee point' = 797
+knee_highest =597
+'Second knee point' = 797
+knee_higher =697
+'Third knee point' = 797
+knee =797
+'Fourth knee point' = 797
+knee_lower =897
+'Fifth knee point' = 797
+knee_lowest =997
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4744
+Saving 7 x 7 in image
+'First knee point' = 315
+knee_highest =115
+'Second knee point' = 315
+knee_higher =215
+'Third knee point' = 315
+knee =315
+'Fourth knee point' = 315
+knee_lower =415
+'Fifth knee point' = 315
+knee_lowest =515
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 3189
+Saving 7 x 7 in image
+'First knee point' = 117
+knee_highest =-83
+'Second knee point' = 117
+knee_higher =17
+'Third knee point' = 117
+knee =117
+'Fourth knee point' = 117
+knee_lower =217
+'Fifth knee point' = 117
+knee_lowest =317
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 3995
+Saving 7 x 7 in image
+'First knee point' = 135
+knee_highest =-65
+'Second knee point' = 135
+knee_higher =35
+'Third knee point' = 135
+knee =135
+'Fourth knee point' = 135
+knee_lower =235
+'Fifth knee point' = 135
+knee_lowest =335
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 6682
+Saving 7 x 7 in image
+'First knee point' = 207
+knee_highest =7.00000000000003
+'Second knee point' = 207
+knee_higher =107
+'Third knee point' = 207
+knee =207
+'Fourth knee point' = 207
+knee_lower =307
+'Fifth knee point' = 207
+knee_lowest =407
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 5200
+Saving 7 x 7 in image
+'First knee point' = 201
+knee_highest =1.00000000000009
+'Second knee point' = 201
+knee_higher =101
+'Third knee point' = 201
+knee =201
+'Fourth knee point' = 201
+knee_lower =301
+'Fifth knee point' = 201
+knee_lowest =401
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4964
+Saving 7 x 7 in image
+'First knee point' = 211
+knee_highest =11
+'Second knee point' = 211
+knee_higher =111
+'Third knee point' = 211
+knee =211
+'Fourth knee point' = 211
+knee_lower =311
+'Fifth knee point' = 211
+knee_lowest =411
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 5386
+Saving 7 x 7 in image
+'First knee point' = 229
+knee_highest =29
+'Second knee point' = 229
+knee_higher =129
+'Third knee point' = 229
+knee =229
+'Fourth knee point' = 229
+knee_lower =329
+'Fifth knee point' = 229
+knee_lowest =429
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4398
+Saving 7 x 7 in image
+'First knee point' = 209
+knee_highest =8.99999999999989
+'Second knee point' = 209
+knee_higher =109
+'Third knee point' = 209
+knee =209
+'Fourth knee point' = 209
+knee_lower =309
+'Fifth knee point' = 209
+knee_lowest =409
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4207
+Saving 7 x 7 in image
+'First knee point' = 270
+knee_highest =70.0000000000001
+'Second knee point' = 270
+knee_higher =170
+'Third knee point' = 270
+knee =270
+'Fourth knee point' = 270
+knee_lower =370
+'Fifth knee point' = 270
+knee_lowest =470
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 2610
+Saving 7 x 7 in image
+'First knee point' = 165
+knee_highest =-35
+'Second knee point' = 165
+knee_higher =65
+'Third knee point' = 165
+knee =165
+'Fourth knee point' = 165
+knee_lower =265
+'Fifth knee point' = 165
+knee_lowest =365
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 2231
+Saving 7 x 7 in image
+'First knee point' = 154
+knee_highest =-46
+'Second knee point' = 154
+knee_higher =54
+'Third knee point' = 154
+knee =154
+'Fourth knee point' = 154
+knee_lower =254
+'Fifth knee point' = 154
+knee_lowest =354
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4331
+Saving 7 x 7 in image
+'First knee point' = 758
+knee_highest =558
+'Second knee point' = 758
+knee_higher =658
+'Third knee point' = 758
+knee =758
+'Fourth knee point' = 758
+knee_lower =858
+'Fifth knee point' = 758
+knee_lowest =958
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 3936
+Saving 7 x 7 in image
+'First knee point' = 485
+knee_highest =285
+'Second knee point' = 485
+knee_higher =385
+'Third knee point' = 485
+knee =485
+'Fourth knee point' = 485
+knee_lower =585
+'Fifth knee point' = 485
+knee_lowest =685
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4167
 Saving 7 x 7 in image
 'First knee point' = 198
 knee_highest =-2.00000000000009
@@ -268,7 +444,82 @@ knee_lowest =398
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 144
+Non-empty: 2507
+Saving 7 x 7 in image
+'First knee point' = 919
+knee_highest =719
+'Second knee point' = 919
+knee_higher =819
+'Third knee point' = 919
+knee =919
+'Fourth knee point' = 919
+knee_lower =1019
+'Fifth knee point' = 919
+knee_lowest =1119
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 2879
+Saving 7 x 7 in image
+'First knee point' = 772
+knee_highest =572
+'Second knee point' = 772
+knee_higher =672
+'Third knee point' = 772
+knee =772
+'Fourth knee point' = 772
+knee_lower =872
+'Fifth knee point' = 772
+knee_lowest =972
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4140
+Saving 7 x 7 in image
+'First knee point' = 257
+knee_highest =57.0000000000001
+'Second knee point' = 257
+knee_higher =157
+'Third knee point' = 257
+knee =257
+'Fourth knee point' = 257
+knee_lower =357
+'Fifth knee point' = 257
+knee_lowest =457
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4983
+Saving 7 x 7 in image
+'First knee point' = 245
+knee_highest =45.0000000000001
+'Second knee point' = 245
+knee_higher =145
+'Third knee point' = 245
+knee =245
+'Fourth knee point' = 245
+knee_lower =345
+'Fifth knee point' = 245
+knee_lowest =445
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4608
+Saving 7 x 7 in image
+'First knee point' = 156
+knee_highest =-44
+'Second knee point' = 156
+knee_higher =56
+'Third knee point' = 156
+knee =156
+'Fourth knee point' = 156
+knee_lower =256
+'Fifth knee point' = 156
+knee_lowest =356
+Starting emptyDrops
+Done - saving data
+QC check
+Non-empty: 4108
 Saving 7 x 7 in image
 'First knee point' = 208
 knee_highest =7.99999999999997
@@ -283,37 +534,7 @@ knee_lowest =408
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 479
-Saving 7 x 7 in image
-'First knee point' = 203
-knee_highest =3.00000000000003
-'Second knee point' = 203
-knee_higher =103
-'Third knee point' = 203
-knee =203
-'Fourth knee point' = 203
-knee_lower =303
-'Fifth knee point' = 203
-knee_lowest =403
-Starting emptyDrops
-Done - saving data
-QC check
-Non-empty: 148
-Saving 7 x 7 in image
-'First knee point' = 194
-knee_highest =-6.00000000000003
-'Second knee point' = 194
-knee_higher =94
-'Third knee point' = 194
-knee =194
-'Fourth knee point' = 194
-knee_lower =294
-'Fifth knee point' = 194
-knee_lowest =394
-Starting emptyDrops
-Done - saving data
-QC check
-Non-empty: 108
+Non-empty: 5522
 Saving 7 x 7 in image
 'First knee point' = 206
 knee_highest =5.99999999999994
@@ -328,22 +549,22 @@ knee_lowest =406
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 55
+Non-empty: 4178
 Saving 7 x 7 in image
-'First knee point' = 176
-knee_highest =-23.9999999999999
-'Second knee point' = 176
-knee_higher =76.0000000000001
-'Third knee point' = 176
-knee =176
-'Fourth knee point' = 176
-knee_lower =276
-'Fifth knee point' = 176
-knee_lowest =376
+'First knee point' = 145
+knee_highest =-55
+'Second knee point' = 145
+knee_higher =45
+'Third knee point' = 145
+knee =145
+'Fourth knee point' = 145
+knee_lower =245
+'Fifth knee point' = 145
+knee_lowest =345
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 51
+Non-empty: 2386
 Saving 7 x 7 in image
 'First knee point' = 188
 knee_highest =-11.9999999999999
@@ -358,68 +579,172 @@ knee_lowest =388
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 38
+Non-empty: 2915
 Saving 7 x 7 in image
-'First knee point' = 206
-knee_highest =5.99999999999994
-'Second knee point' = 206
-knee_higher =106
-'Third knee point' = 206
-knee =206
-'Fourth knee point' = 206
-knee_lower =306
-'Fifth knee point' = 206
-knee_lowest =406
+'First knee point' = 111
+knee_highest =-89
+'Second knee point' = 111
+knee_higher =11
+'Third knee point' = 111
+knee =111
+'Fourth knee point' = 111
+knee_lower =211
+'Fifth knee point' = 111
+knee_lowest =311
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 15
+Non-empty: 3945
 Saving 7 x 7 in image
-'First knee point' = 116
-knee_highest =-84
-'Second knee point' = 116
-knee_higher =16
-'Third knee point' = 116
-knee =116
-'Fourth knee point' = 116
-knee_lower =216
-'Fifth knee point' = 116
-knee_lowest =316
+'First knee point' = 223
+knee_highest =23
+'Second knee point' = 223
+knee_higher =123
+'Third knee point' = 223
+knee =223
+'Fourth knee point' = 223
+knee_lower =323
+'Fifth knee point' = 223
+knee_lowest =423
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 33
+Non-empty: 560
 Saving 7 x 7 in image
-'First knee point' = 292
-knee_highest =92.0000000000001
-'Second knee point' = 292
-knee_higher =192
-'Third knee point' = 292
-knee =292
-'Fourth knee point' = 292
-knee_lower =392
-'Fifth knee point' = 292
-knee_lowest =492
+'First knee point' = 124
+knee_highest =-76
+'Second knee point' = 124
+knee_higher =24
+'Third knee point' = 124
+knee =124
+'Fourth knee point' = 124
+knee_lower =224
+'Fifth knee point' = 124
+knee_lowest =324
 Starting emptyDrops
 Done - saving data
 QC check
-Non-empty: 7
+Non-empty: 3250
 Saving 7 x 7 in image
-'First knee point' = 232
-knee_highest =32.0000000000001
-'Second knee point' = 232
-knee_higher =132
-'Third knee point' = 232
-knee =232
-'Fourth knee point' = 232
-knee_lower =332
-'Fifth knee point' = 232
-knee_lowest =432
+'First knee point' = 140
+knee_highest =-59.9999999999999
+'Second knee point' = 140
+knee_higher =40.0000000000001
+'Third knee point' = 140
+knee =140
+'Fourth knee point' = 140
+knee_lower =240
+'Fifth knee point' = 140
+knee_lowest =340
 Starting emptyDrops
-Error in .local(m, ...) : 
-  insufficient unique points for computing knee/inflection points
-Calls: <Anonymous> ... .empty_drops -> do.call -> <Anonymous> -> <Anonymous> -> .local
-In addition: There were 50 or more warnings (use warnings() to see the first 50)
-Execution halted
+Done - saving data
+QC check
+Non-empty: 2008
+Saving 7 x 7 in image
+There were 50 or more warnings (use warnings() to see the first 50)
+[1] "Reproducibility information:"
+[1] "2023-11-03 22:58:01 EDT"
+     user    system   elapsed 
+21151.592  1115.626 11500.907 
+─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.3.1 Patched (2023-07-19 r84711)
+ os       Rocky Linux 9.2 (Blue Onyx)
+ system   x86_64, linux-gnu
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       US/Eastern
+ date     2023-11-03
+ pandoc   3.1.3 @ /jhpce/shared/community/core/conda_R/4.3/bin/pandoc
+
+─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+ package              * version   date (UTC) lib source
+ abind                  1.4-5     2016-07-21 [2] CRAN (R 4.3.1)
+ beachmat               2.16.0    2023-04-25 [2] Bioconductor
+ Biobase              * 2.60.0    2023-04-25 [2] Bioconductor
+ BiocGenerics         * 0.46.0    2023-04-25 [2] Bioconductor
+ BiocParallel           1.34.2    2023-05-22 [2] Bioconductor
+ bitops                 1.0-7     2021-04-24 [2] CRAN (R 4.3.1)
+ cli                    3.6.1     2023-03-23 [2] CRAN (R 4.3.1)
+ codetools              0.2-19    2023-02-01 [3] CRAN (R 4.3.1)
+ colorspace             2.1-0     2023-01-23 [2] CRAN (R 4.3.1)
+ crayon                 1.5.2     2022-09-29 [2] CRAN (R 4.3.1)
+ DelayedArray           0.26.7    2023-07-28 [2] Bioconductor
+ DelayedMatrixStats     1.22.6    2023-08-28 [2] Bioconductor
+ dplyr                * 1.1.3     2023-09-03 [2] CRAN (R 4.3.1)
+ dqrng                  0.3.1     2023-08-30 [2] CRAN (R 4.3.1)
+ DropletUtils         * 1.20.0    2023-04-25 [2] Bioconductor
+ edgeR                  3.42.4    2023-05-31 [2] Bioconductor
+ fansi                  1.0.4     2023-01-22 [2] CRAN (R 4.3.1)
+ farver                 2.1.1     2022-07-06 [2] CRAN (R 4.3.1)
+ forcats              * 1.0.0     2023-01-29 [2] CRAN (R 4.3.1)
+ generics               0.1.3     2022-07-05 [2] CRAN (R 4.3.1)
+ GenomeInfoDb         * 1.36.3    2023-09-07 [2] Bioconductor
+ GenomeInfoDbData       1.2.10    2023-07-20 [2] Bioconductor
+ GenomicRanges        * 1.52.0    2023-04-25 [2] Bioconductor
+ ggplot2              * 3.4.3     2023-08-14 [2] CRAN (R 4.3.1)
+ glue                   1.6.2     2022-02-24 [2] CRAN (R 4.3.1)
+ gtable                 0.3.4     2023-08-21 [2] CRAN (R 4.3.1)
+ HDF5Array              1.28.1    2023-05-01 [2] Bioconductor
+ here                 * 1.0.1     2020-12-13 [2] CRAN (R 4.3.1)
+ hms                    1.1.3     2023-03-21 [2] CRAN (R 4.3.1)
+ IRanges              * 2.34.1    2023-06-22 [2] Bioconductor
+ lattice                0.21-8    2023-04-05 [3] CRAN (R 4.3.1)
+ lifecycle              1.0.3     2022-10-07 [2] CRAN (R 4.3.1)
+ limma                  3.56.2    2023-06-04 [2] Bioconductor
+ locfit                 1.5-9.8   2023-06-11 [2] CRAN (R 4.3.1)
+ lubridate            * 1.9.2     2023-02-10 [2] CRAN (R 4.3.1)
+ magrittr               2.0.3     2022-03-30 [2] CRAN (R 4.3.1)
+ Matrix                 1.6-1.1   2023-09-18 [3] CRAN (R 4.3.1)
+ MatrixGenerics       * 1.12.3    2023-07-30 [2] Bioconductor
+ matrixStats          * 1.0.0     2023-06-02 [2] CRAN (R 4.3.1)
+ munsell                0.5.0     2018-06-12 [2] CRAN (R 4.3.1)
+ pillar                 1.9.0     2023-03-22 [2] CRAN (R 4.3.1)
+ pkgconfig              2.0.3     2019-09-22 [2] CRAN (R 4.3.1)
+ purrr                * 1.0.2     2023-08-10 [2] CRAN (R 4.3.1)
+ R.methodsS3            1.8.2     2022-06-13 [2] CRAN (R 4.3.1)
+ R.oo                   1.25.0    2022-06-12 [2] CRAN (R 4.3.1)
+ R.utils                2.12.2    2022-11-11 [2] CRAN (R 4.3.1)
+ R6                     2.5.1     2021-08-19 [2] CRAN (R 4.3.1)
+ ragg                   1.2.5     2023-01-12 [2] CRAN (R 4.3.1)
+ Rcpp                   1.0.11    2023-07-06 [2] CRAN (R 4.3.1)
+ RCurl                  1.98-1.12 2023-03-27 [2] CRAN (R 4.3.1)
+ readr                * 2.1.4     2023-02-10 [2] CRAN (R 4.3.1)
+ rhdf5                  2.44.0    2023-04-25 [2] Bioconductor
+ rhdf5filters           1.12.1    2023-04-30 [2] Bioconductor
+ Rhdf5lib               1.22.1    2023-09-10 [2] Bioconductor
+ rlang                  1.1.1     2023-04-28 [2] CRAN (R 4.3.1)
+ rprojroot              2.0.3     2022-04-02 [2] CRAN (R 4.3.1)
+ S4Arrays               1.0.6     2023-08-30 [2] Bioconductor
+ S4Vectors            * 0.38.1    2023-05-02 [2] Bioconductor
+ scales                 1.2.1     2022-08-20 [2] CRAN (R 4.3.1)
+ scuttle              * 1.10.2    2023-08-03 [2] Bioconductor
+ sessioninfo          * 1.2.2     2021-12-06 [2] CRAN (R 4.3.1)
+ SingleCellExperiment * 1.22.0    2023-04-25 [2] Bioconductor
+ sparseMatrixStats      1.12.2    2023-07-02 [2] Bioconductor
+ stringi                1.7.12    2023-01-11 [2] CRAN (R 4.3.1)
+ stringr              * 1.5.0     2022-12-02 [2] CRAN (R 4.3.1)
+ SummarizedExperiment * 1.30.2    2023-06-06 [2] Bioconductor
+ systemfonts            1.0.4     2022-02-11 [2] CRAN (R 4.3.1)
+ textshaping            0.3.6     2021-10-13 [2] CRAN (R 4.3.1)
+ tibble               * 3.2.1     2023-03-20 [2] CRAN (R 4.3.1)
+ tidyr                * 1.3.0     2023-01-24 [2] CRAN (R 4.3.1)
+ tidyselect             1.2.0     2022-10-10 [2] CRAN (R 4.3.1)
+ tidyverse            * 2.0.0     2023-02-22 [2] CRAN (R 4.3.1)
+ timechange             0.2.0     2023-01-11 [2] CRAN (R 4.3.1)
+ tzdb                   0.4.0     2023-05-12 [2] CRAN (R 4.3.1)
+ utf8                   1.2.3     2023-01-31 [2] CRAN (R 4.3.1)
+ vctrs                  0.6.3     2023-06-14 [2] CRAN (R 4.3.1)
+ withr                  2.5.0     2022-03-03 [2] CRAN (R 4.3.1)
+ XVector                0.40.0    2023-04-25 [2] Bioconductor
+ zlibbioc               1.46.0    2023-04-25 [2] Bioconductor
+
+ [1] /users/mtotty/R/4.3
+ [2] /jhpce/shared/community/core/conda_R/4.3/R/lib64/R/site-library
+ [3] /jhpce/shared/community/core/conda_R/4.3/R/lib64/R/library
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 **** Job ends ****
-Thu Oct 26 06:11:37 PM EDT 2023
+Fri Nov  3 10:58:04 PM EDT 2023

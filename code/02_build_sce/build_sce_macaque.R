@@ -98,78 +98,42 @@ rowData(sce)$Symbol.uniq <- scuttle::uniquifyFeatureNames(rowData(sce)$gene_id, 
 rownames(sce) <- rowData(sce)$Symbol.uniq
 sce
 
+colnames(colData(sce))
 
 # ============= Merging metadata ==============
 
 
-# Drop sample path before merging metdata
-sample_info$sample_path <- NULL
-sample_info
 
-# ===== NOTE =====
-# because there are so many samples (~70M droplets), we'll need to use 
-# data.tables for more efficient memory as well as data chunking
-# to avoid erros from base R's merge() function. 
-# ===== NOTE =====
+# Create the key column for sce
+sce$key <- paste0(sce$Barcode, "_", sce$Sample)
 
-# Convert to data.tables which can more efficiently handle large data
-colDataDT <- as.data.table(colData(sce))
-sampleInfoDT <- as.data.table(sample_info)
+# Convert your data to data.table objects
+sce_colData <- as.data.table(colData(sce))
+sample_info_dt <- as.data.table(sample_info)
 
-# Ensure the 'Sample' columns are correctly formatted and aligned in both tables
-#  (this is the column we're merging on)
-# colDataDT[, Sample := as.character(Sample)]
-# sampleInfoDT[, Sample := as.character(Sample)]
+# Remove the 'sample_path' column from sample_info_dt
+sample_info_dt <- sample_info_dt[, -which(names(sample_info_dt) == "sample_path"), with = FALSE]
 
-# Optionally, if the 'Sample' names are not consistently formatted, you might want to make them consistent
-## colDataDT[, Sample := tolower(Sample)]
-## sampleInfoDT[, Sample := tolower(Sample)]
+# Identify the common columns to merge on
+common_cols <- intersect(names(sce_colData), names(sample_info_dt))
 
-# set the number of chunks to be used
-chunk_size <- 5000  # This is an arbitrary number; please adjust according to your system's capacity.
-number_of_chunks <- ceiling(nrow(colDataDT) / chunk_size)
+# Perform the merge using the [.data.table method
+new_col <- sample_info_dt[sce_colData, on = common_cols]
 
-# Process the data in chunks based on similar columns
-mergedResults <- list()
-for (i in seq_len(number_of_chunks)) {
-  start_row <- ((i - 1) * chunk_size) + 1
-  end_row <- min(nrow(colDataDT), i * chunk_size)  # Don't exceed the number of rows
-  
-  chunk <- colDataDT[start_row:end_row]
-  
-  # Merge on the 'Sample' column, which exists in both data.tables
-  merged_chunk <- merge(chunk, sampleInfoDT, by = "Sample", all.x = TRUE, allow.cartesian = TRUE)
-  
-  mergedResults[[i]] <- merged_chunk
-}
+new_col <- new_col[match(sce$key, sce_colData$key), ]
 
-# rbind to concatenate all the chunks back together
-# (check here to make sure it looks right)
-finalResult <- rbindlist(mergedResults)
- head(finalResult)
-# Sample            Barcode                               sample_id subject
-# 1: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACCCA-1 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2
-# 2: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACCCG-1 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2
-# 3: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACTAC-1 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2
-# 4: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAACTCA-1 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2
-# 5: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAAGTCT-1 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2
-# 6: VC_snRNAseq-7_LateralVentralAP1_-1 AAACCCAAGAAATGAG-1 Mac2-VC_snRNAseq-7_LateralVentralAP1_-1    Mac2
-# species   region subregion dv_axis
-# 1: Macaque Amygdala   Lateral Ventral
-# 2: Macaque Amygdala   Lateral Ventral
-# 3: Macaque Amygdala   Lateral Ventral
-# 4: Macaque Amygdala   Lateral Ventral
-# 5: Macaque Amygdala   Lateral Ventral
-# 6: Macaque Amygdala   Lateral Ventral
+# Check that the keys match
+stopifnot(identical(sce$key, new_col$key))
 
-# Convert 'finalResult' from a data.table/data.frame to a DataFrame
-finalResultDF <- DataFrame(finalResult)
+# Convert new_col to a DataFrame as required by SingleCellExperiment
+new_col_df <- DataFrame(new_col)
 
-# Reordering if needed (assuming 'cell_id' is your unique cell identifier column)
-finalResultDF <- finalResultDF[match(colData(sce)$Barcode, finalResultDF$Barcode),]
+# Update the colData
+colData(sce) <- new_col_df
 
-# Completely replace the existing colData
-colData(sce) <- finalResultDF
+# Optionally, update the row names if needed
+rownames(sce) <- rownames(new_col_df)
+
 
 ## Inspect object
 sce

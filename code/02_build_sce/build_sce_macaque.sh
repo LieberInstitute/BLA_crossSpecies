@@ -24,7 +24,7 @@ module load conda_R
 module list
 
 ## Edit with your job command
-Rscript build_sce_macaque.R
+Rscript build_sce_macaque_dt.R
 
 echo "**** Job ends ****"
 date
