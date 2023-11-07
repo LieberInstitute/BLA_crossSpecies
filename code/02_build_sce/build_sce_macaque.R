@@ -100,6 +100,9 @@ sce
 
 colnames(colData(sce))
 
+orig_colnames <- colnames(sce)
+orig_rownames <- rownames(sce)
+
 # ============= Merging metadata ==============
 
 
@@ -130,9 +133,7 @@ new_col_df <- DataFrame(new_col)
 
 # Update the colData
 colData(sce) <- new_col_df
-
-# Optionally, update the row names if needed
-rownames(sce) <- rownames(new_col_df)
+colnames(sce) <- sce$Barcode
 
 
 ## Inspect object
@@ -143,10 +144,11 @@ sce
 # assays(1): counts
 # rownames(21369): ENSMMUG00000023296 ZNF692 ... ND6 CYTB
 # rowData names(7): source type ... gene_biotype Symbol.uniq
-# colnames: NULL
-# colData names(8): Sample Barcode ... subregion dv_axis
+# colnames(70879726): AAACCCAAGAAACCCA-1 AAACCCAAGAAACCCG-1 ...
+# TTTGTTGTCTTGCTGT-1 TTTGTTGTCTTTGAGA-1
+# colData names(9): sample_id Sample ... Barcode key
 # reducedDimNames(0):
-#   mainExpName: NULL
+#     mainExpName: NULL
 # altExpNames(0):
 
 if (!dir.exists(here("processed-data", "02_build_sce"))) dir.create(here("processed-data", "02_build_sce"))
