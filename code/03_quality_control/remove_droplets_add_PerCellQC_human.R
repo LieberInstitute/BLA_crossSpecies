@@ -53,9 +53,9 @@ e.out
 #knee_lower <- map_dbl(logs, ~ parse_number(.x[grepl("knee_lower =", .x)]))
 #names(knee_lower) <- gsub("st", "s", map_chr(logs, ~str_sub(.x[grepl("Running Sample: ", .x)], " ", 2)))
 
-#knee_lower <- c(220,215,220,248,244)
-#names(knee_lower) <-c('BR2327','Br8692','Br9021','Br8337', 'Br5273')
-#knee_lower
+knee_lower <- c(220,215,220,248,244)
+names(knee_lower) <-c('BR2327','Br8692','Br9021','Br8337', 'Br5273')
+knee_lower
 
 
 

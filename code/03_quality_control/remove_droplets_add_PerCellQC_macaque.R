@@ -3,7 +3,7 @@ library("scuttle")
 library("scran")
 library("scater")
 library("scDblFinder")
-library("jaffelab")
+#library("jaffelab")
 library("batchelor")
 library("tidyverse")
 library("here")
@@ -14,37 +14,48 @@ library("dplyr")
 
 
 ## Load raw data
-load(here("processed-data","snRNA-data", "02_build_sce", "sce_raw.rda"), verbose = TRUE)
+load(here("processed-data", "02_build_sce", "sce_macaque_raw.rda"), verbose = TRUE)
+sce
+
+colnames(sce) <- sce$Barcode
+sce
 
 pd <- colData(sce) %>% as.data.frame()
 
 ## save directories
-plot_dir = here("plots", "snRNA-data", "03_qc_metrics")
-processed_dir = here("processed-data", "snRNA-data","03_qc_metrics")
+plot_dir = here("plots", "03_quality_control","Macaque","PerCellQC")
+processed_dir = here("processed-data","03_quality_control","Macaque","PerCellQC")
 
 ##get droplet score filepaths
-droplet_paths <- list.files(here(processed_dir, "droplet_scores"),
+droplet_paths <- list.files(here("processed-data","03_quality_control","Macaque","droplet_scores"),
                             full.names = TRUE
 )
 
 names(droplet_paths) <- gsub("st", "s", gsub("droplet_scores_|.Rdata", "", basename(droplet_paths)))
 
 e.out <- lapply(droplet_paths, function(x) get(load(x)))
-
-#### Compile drop empty info ####
-logs <- list.files(here("code","snRNA-data", "03_qc_metrics", "logs"), pattern = "03_qc_metrics", full.names = TRUE)
-logs <- map(logs, readLines)
+e.out
 
 # Read the log file
-log_file_path <- here('code/03_quality_control/logs/emptyDrops_macaque.txt')
+log_file_path <- here('code','03_quality_control','logs','emptyDrops_macaque.txt')
 log_text <- readLines(log_file_path, warn = FALSE)
+log_text
 
 # Find the lines with 'knee_lower' values
 knee_lower_lines <- grep('knee_lower', log_text, value = TRUE)
+knee_lower_lines
 
 # Extract the 'knee_lower' values
 knee_lower_values <- str_extract(knee_lower_lines, "(?<=knee_lower =)\\d+")
+knee_lower_values
+
 knee_lower <- as.numeric(knee_lower_values)
+#names(knee_lower) <- c('BR2327','Br8692','Br9021','Br8337', 'Br5273')
+knee_lower
+
+## This is weird. doesn't work with my logs. Easier to just merge these scripts? - MT
+#knee_lower <- map_dbl(logs, ~ parse_number(.x[grepl("knee_lower =", .x)]))
+#names(knee_lower) <- gsub("st", "s", map_chr(logs, ~str_sub(.x[grepl("Running Sample: ", .x)], " ", 2)))
 
 names(knee_lower) <- c(
   "VC_snRNAseq-7_LateralVentralAP1_-1",
@@ -83,16 +94,7 @@ names(knee_lower) <- c(
   "VC_snRNAseq_12_Animal5_Lateral__AP2",
   "VC_snRNAseq_13_Animal5_Central_Nucleus__AP3"
 )
-
-# Print the extracted values to check
-print(knee_lower)
-
-## This is weird. doesn't work with my logs. Easier to just merge these scripts? - MT
-#knee_lower <- map_dbl(logs, ~ parse_number(.x[grepl("knee_lower =", .x)]))
-#names(knee_lower) <- gsub("st", "s", map_chr(logs, ~str_sub(.x[grepl("Running Sample: ", .x)], " ", 2)))
-
-#knee_lower <- c(220,215,220,248,244)
-#names(knee_lower) <-c('BR2327','Br8692','Br9021','Br8337', 'Br5273')
+knee_lower
 
 
 
@@ -181,9 +183,13 @@ map(e.out, ~ addmargins(table(Signif = .x$FDR <= FDR_cutoff, Limited = .x$Limite
 # <NA>        0       0 1840574 1840574
 # Sum     15275    5176 1840574 1861025
 
+which(e.out$FDR <= 0.001)
 
 #### Eliminate empty droplets ####
 e.out.all <- do.call("rbind", e.out)[colnames(sce), ]
+e.out.all
+sce
+
 sce <- sce[, which(e.out.all$FDR <= 0.001)]
 
 dim(sce)
@@ -201,7 +207,7 @@ sce <- scuttle::addPerCellQC(
 
 
 # #save drops removed sce
-save(sce,file=here("processed-data","snRNA-data","03_qc_metrics","sce_drops_removed.rda"))
+save(sce,file=here(processed_dir,"sce_drops_removed.rda"))
 
 
 #### Compute QC metrics ####
