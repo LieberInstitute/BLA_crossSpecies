@@ -15,6 +15,7 @@ unique_samples <- unique(sce$Sample)
 
 for (sample_run in unique_samples) {
     sce_sample <- sce[, sce$Sample == sample_run]
+    sce_run
     
     #--------------------- Run barcodeRanks --------------------- 
     

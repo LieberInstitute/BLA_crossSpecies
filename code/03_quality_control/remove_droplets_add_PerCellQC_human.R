@@ -166,6 +166,7 @@ sce <- scuttle::addPerCellQC(
 # #save drops removed sce
 save(sce,file=here("processed-data","03_quality_control","Human","sce_drops_removed_human.rda"))
 
+load(here("processed-data","03_quality_control","Human","sce_drops_removed_human.rda"))
 
 #### Compute QC metrics ####
 location <- rowRanges(sce)
@@ -258,7 +259,7 @@ round(100 * sweep(qc_t, 1, qc_t[, 3], "/"), 1)
 
 
 #### QC plots ####
-pdf(here(plot_dir, "QC_auto.pdf"), width = 10)
+pdf(here(plot_dir, "QC_violin_plots.pdf"), width = 10)
 ## Mito rate
 plotColData(sce, x = "Sample", y = "subsets_Mito_percent", colour_by = "high_mito") +
   ggtitle("Mito Percent") #+
@@ -279,8 +280,10 @@ plotColData(sce, x = "Sample", y = "detected", colour_by = "low_genes") +
 # geom_hline(yintercept = 500)+
 #   facet_wrap(~ sce$round, scales = "free_x", nrow = 1)
 
-# Mito rate vs n detected features
+dev.off()
 
+
+pdf(here(plot_dir, "QC_scatter_plots.pdf"), width = 10, height=10)
 plotColData(sce,
             x = "detected", y = "subsets_Mito_percent",
             colour_by = "discard_auto", point_size = 2.5, point_alpha = 0.5
@@ -292,7 +295,6 @@ plotColData(sce,
             x = "sum", y = "detected",
             colour_by = "discard_auto", point_size = 2.5, point_alpha = 0.5
 )
-
 dev.off()
 
 

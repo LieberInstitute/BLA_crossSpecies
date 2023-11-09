@@ -100,8 +100,10 @@ sce
 
 colnames(colData(sce))
 
-orig_colnames <- colnames(sce)
-orig_rownames <- rownames(sce)
+if (!dir.exists(here("processed-data", "02_build_sce"))) dir.create(here("processed-data", "02_build_sce"))
+save(sce, file = here("processed-data",  "02_build_sce", "sce_macaque_raw_no_sample_info.rda"))
+
+
 
 # ============= Merging metadata ==============
 

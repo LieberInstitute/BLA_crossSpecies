@@ -14,17 +14,17 @@ library("dplyr")
 
 
 ## Load raw data
-load(here("processed-data", "02_build_sce", "sce_macaque_raw_no_sample_info.rda"), verbose = TRUE)
+load(here("processed-data", "02_build_sce", "sce_baboon_raw_no_sample_info.rda"), verbose = TRUE)
 sce
 
 pd <- colData(sce) %>% as.data.frame()
 
 ## save directories
-plot_dir = here("plots", "03_quality_control","Macaque","PerCellQC")
-processed_dir = here("processed-data","03_quality_control","Macaque","PerCellQC")
+plot_dir = here("plots", "03_quality_control","Baboon","PerCellQC")
+processed_dir = here("processed-data","03_quality_control","Baboon","PerCellQC")
 
 ##get droplet score filepaths
-droplet_paths <- list.files(here("processed-data","03_quality_control","Macaque","droplet_scores"),
+droplet_paths <- list.files(here("processed-data","03_quality_control","Baboon","droplet_scores"),
                             full.names = TRUE
 )
 
@@ -34,7 +34,7 @@ e.out <- lapply(droplet_paths, function(x) get(load(x)))
 
 
 # Read the log file
-log_file_path <- here('code','03_quality_control','logs','emptyDrops_macaque.txt')
+log_file_path <- here('code','03_quality_control','logs','emptyDrops_baboon.txt')
 log_text <- readLines(log_file_path, warn = FALSE)
 log_text
 
@@ -55,41 +55,13 @@ knee_lower
 #names(knee_lower) <- gsub("st", "s", map_chr(logs, ~str_sub(.x[grepl("Running Sample: ", .x)], " ", 2)))
 
 names(knee_lower) <- c(
-  "VC_snRNAseq-7_LateralVentralAP1_-1",
-  "VC_snRNAseq-7_LateralVentralAP2_-2",
-  "VC_snRNAseq-7_BasalDorsalAP1_-3A",
-  "VC_snRNAseq-7_BasalDorsalAP1_-3B",
-  "VC_snRNAseq-7_BasalVentralAP1_-4",
-  "VC_snRNAseq-7_BasalVentralAP2_-5",
-  "VC_snRNAseq-7_AccBasalAP1AP2_-7",
-  "VC_snRNAseq-7_LateralDorsalAP1AP2_-8",
-  "VC_snRNAseq_9_Animal4_LV2",
-  "VC_snRNAseq_9_Animal4_LV1",
-  "VC_snRNAseq_9_Animal4_LD",
-  "VC_snRNAseq_9_Animal4_L-Comb",
-  "VC_snRNAseq_9_Animal4_BV",
-  "VC_snRNAseq_9_Animal4_BD",
-  "VC_snRNAseq_9_Animal4_B-Comb",
-  "VC_snRNAseq_9_Animal4_AB",
-  "VC_snRNAseq_8_Animal3_LV",
-  "VC_snRNAseq_8_Animal3_LV3",
-  "VC_snRNAseq_8_Animal3_LD",
-  "VC_snRNAseq_8_Animal3_BV2",
-  "VC_snRNAseq_8_Animal3_BV1",
-  "VC_snRNAseq_8_Animal3_BD",
-  "VC_snRNAseq_8_Animal3_AB__",
-  "VC_snRNAseq_8_Animal3_Bd_Bv",
-  "LIB210527RC_AB_1A",
-  "LIB210527RC_AB_1B",
-  "VC_snRNAseq_12_Animal2_Central_Nucleus",
-  "VC_snRNAseq_12_Animal3_Central_Nucleus",
-  "VC_snRNAseq_12_Animal4_Central_Nucleus",
-  "VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_",
-  "VC_snRNAseq_12_Animal5_Basal__AP1_",
-  "VC_snRNAseq_12_Animal5_Basal__AP2_",
-  "VC_snRNAseq_12_Animal5_Lateral__AP1_",
-  "VC_snRNAseq_12_Animal5_Lateral__AP2_",
-  "VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_"
+    "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1",
+    "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1",
+    "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1",
+    "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1",   
+    "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1",
+    "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1",          
+    "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1"
 )
 knee_lower
 
@@ -100,16 +72,16 @@ e.out <- e.out[names(knee_lower)]
 FDR_cutoff <- 0.001
 
 drop_summary <- stack(map_int(e.out, nrow)) %>%
-  rename(total_n = values) %>%
-  left_join(stack(map_int(e.out, ~ sum(.x$FDR < FDR_cutoff, na.rm = TRUE))) %>%
-              rename(non_empty = values)) %>%
-  select(Sample = ind, total_n, non_empty) %>%
-  left_join(stack(knee_lower) %>% rename(Sample = ind, lower_cutoff = values))
+    rename(total_n = values) %>%
+    left_join(stack(map_int(e.out, ~ sum(.x$FDR < FDR_cutoff, na.rm = TRUE))) %>%
+                  rename(non_empty = values)) %>%
+    select(Sample = ind, total_n, non_empty) %>%
+    left_join(stack(knee_lower) %>% rename(Sample = ind, lower_cutoff = values))
 
 write_csv(drop_summary, file = here(processed_dir, "drop_summary.csv"))
 
 drop_summary %>%
-  arrange(non_empty)
+    arrange(non_empty)
 
 summary(drop_summary$non_empty)
 # Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -117,14 +89,14 @@ summary(drop_summary$non_empty)
 
 #make Louise-style barplot
 drop_barplot <- drop_summary %>%
-  mutate(empty = total_n - non_empty) %>%
-  select(-total_n) %>%
-  pivot_longer(!Sample, names_to = "drop_type", values_to = "n_drop") %>%
-  ggplot(aes(x = Sample, y = n_drop, fill = drop_type)) +
-  geom_col() +
-  scale_y_continuous(trans = "log10") +
-  #my_theme +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    mutate(empty = total_n - non_empty) %>%
+    select(-total_n) %>%
+    pivot_longer(!Sample, names_to = "drop_type", values_to = "n_drop") %>%
+    ggplot(aes(x = Sample, y = n_drop, fill = drop_type)) +
+    geom_col() +
+    scale_y_continuous(trans = "log10") +
+    #my_theme +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ggsave(drop_barplot, filename = here(plot_dir, "drop_barplot.png"), width = 9)
 
@@ -180,10 +152,9 @@ map(e.out, ~ addmargins(table(Signif = .x$FDR <= FDR_cutoff, Limited = .x$Limite
 # <NA>        0       0 1840574 1840574
 # Sum     15275    5176 1840574 1861025
 
-which(e.out$FDR <= 0.001)
 
 #### Eliminate empty droplets ####
-e.out.all <- do.call("rbind", e.out)[colnames(sce), ]
+#e.out.all <- do.call("rbind", e.out)[colnames(sce), ]
 e.out.all <- do.call("rbind", e.out)
 
 sce.dropped <- sce[, which(e.out.all$FDR <= 0.001)]
@@ -194,9 +165,9 @@ dim(sce.dropped)
 
 #### Compute QC metrics ####
 sce.dropped <- scuttle::addPerCellQC(
-  sce.dropped,
-  subsets = list(Mito = which(seqnames(sce) == "MT")),
-  # BPPARAM = BiocParallel::MulticoreParam(4)
+    sce.dropped,
+    subsets = list(Mito = which(seqnames(sce) == "MT")),
+    # BPPARAM = BiocParallel::MulticoreParam(4)
 )
 
 colnames(colData(sce.dropped))
@@ -314,23 +285,23 @@ table(sce$high_mito, sce$Sample)
 ## low library size
 sce$low_lib <- isOutlier(sce$sum, log = TRUE, type = "lower", batch = sce$Sample)
 table(sce$low_lib)
-# FALSE   TRUE 
-# 134514    171 
+# FALSE  TRUE 
+# 57886   476 
 
 ## low detected features
 # sce$qc.detected
 sce$low_genes <- isOutlier(sce$detected, log = TRUE, type = "lower", batch = sce$Sample)
 table(sce$low_genes)
-# FALSE   TRUE 
-# 133322   1363 
+# FALSE  TRUE 
+# 57564   798 
 
 
 
 ## All low sum are also low detected
 table(sce$low_lib, sce$low_genes)
-#        FALSE   TRUE
-# FALSE 133322   1192
-# TRUE       0    171
+# FALSE  TRUE
+# FALSE 57564   322
+# TRUE      0   476
 
 
 ## Annotate nuc to drop
@@ -347,84 +318,29 @@ write_csv(data.frame(qc_t), file = here(processed_dir, "discarded_summary.csv"))
 
 qc_t
 #                                                   FALSE   TRUE    Sum
-# LIB210527RC_AB_1A                                  4184    799   4983
-# LIB210527RC_AB_1B                                  3856    752   4608
-# VC_snRNAseq_12_Animal2_Central_Nucleus             3426    682   4108
-# VC_snRNAseq_12_Animal3_Central_Nucleus             4500   1022   5522
-# VC_snRNAseq_12_Animal4_Central_Nucleus             2128   2050   4178
-# VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_   2097    289   2386
-# VC_snRNAseq_12_Animal5_Basal__AP1_                 2575    340   2915
-# VC_snRNAseq_12_Animal5_Basal__AP2_                 3264    681   3945
-# VC_snRNAseq_12_Animal5_Lateral__AP1_                457    103    560
-# VC_snRNAseq_12_Animal5_Lateral__AP2_               2832    418   3250
-# VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_       1802    206   2008
-# VC_snRNAseq_8_Animal3_AB__                         2581    298   2879
-# VC_snRNAseq_8_Animal3_BD                           2147    360   2507
-# VC_snRNAseq_8_Animal3_Bd_Bv                        3507    633   4140
-# VC_snRNAseq_8_Animal3_BV1                          3912    255   4167
-# VC_snRNAseq_8_Animal3_BV2                          3670    266   3936
-# VC_snRNAseq_8_Animal3_LD                           3773    558   4331
-# VC_snRNAseq_8_Animal3_LV                           2343    267   2610
-# VC_snRNAseq_8_Animal3_LV3                          1788    443   2231
-# VC_snRNAseq_9_Animal4_AB                           3343    864   4207
-# VC_snRNAseq_9_Animal4_B-Comb                       3599    799   4398
-# VC_snRNAseq_9_Animal4_BD                           4073   1313   5386
-# VC_snRNAseq_9_Animal4_BV                           3563   1401   4964
-# VC_snRNAseq_9_Animal4_L-Comb                       3834   1366   5200
-# VC_snRNAseq_9_Animal4_LD                           3793   2889   6682
-# VC_snRNAseq_9_Animal4_LV1                          2133   1862   3995
-# VC_snRNAseq_9_Animal4_LV2                          2450    739   3189
-# VC_snRNAseq-7_AccBasalAP1AP2_-7                    3440    936   4376
-# VC_snRNAseq-7_BasalDorsalAP1_-3A                   3865    439   4304
-# VC_snRNAseq-7_BasalDorsalAP1_-3B                   3497    464   3961
-# VC_snRNAseq-7_BasalVentralAP1_-4                   1940    267   2207
-# VC_snRNAseq-7_BasalVentralAP2_-5                   3420    591   4011
-# VC_snRNAseq-7_LateralDorsalAP1AP2_-8               4276    468   4744
-# VC_snRNAseq-7_LateralVentralAP1_-1                 2751    329   3080
-# VC_snRNAseq-7_LateralVentralAP2_-2                 4323    394   4717
-# Sum                                              109142  25543 134685
+# FALSE  TRUE   Sum
+# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1           6389   100  6489
+# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1            6091   197  6288
+# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1            7796   148  7944
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1            6061   170  6231
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1  8000     0  8000
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1           10163   183 10346
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1 13064     0 13064
+# Sum                                                  57564   798 58362
 
 
 
 round(100 * sweep(qc_t, 1, qc_t[, 3], "/"), 1)
 
-#                                                   FALSE  TRUE   Sum
-# LIB210527RC_AB_1A                                 84.0  16.0 100.0
-# LIB210527RC_AB_1B                                 83.7  16.3 100.0
-# VC_snRNAseq_12_Animal2_Central_Nucleus            83.4  16.6 100.0
-# VC_snRNAseq_12_Animal3_Central_Nucleus            81.5  18.5 100.0
-# VC_snRNAseq_12_Animal4_Central_Nucleus            50.9  49.1 100.0
-# VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_  87.9  12.1 100.0
-# VC_snRNAseq_12_Animal5_Basal__AP1_                88.3  11.7 100.0
-# VC_snRNAseq_12_Animal5_Basal__AP2_                82.7  17.3 100.0
-# VC_snRNAseq_12_Animal5_Lateral__AP1_              81.6  18.4 100.0
-# VC_snRNAseq_12_Animal5_Lateral__AP2_              87.1  12.9 100.0
-# VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_      89.7  10.3 100.0
-# VC_snRNAseq_8_Animal3_AB__                        89.6  10.4 100.0
-# VC_snRNAseq_8_Animal3_BD                          85.6  14.4 100.0
-# VC_snRNAseq_8_Animal3_Bd_Bv                       84.7  15.3 100.0
-# VC_snRNAseq_8_Animal3_BV1                         93.9   6.1 100.0
-# VC_snRNAseq_8_Animal3_BV2                         93.2   6.8 100.0
-# VC_snRNAseq_8_Animal3_LD                          87.1  12.9 100.0
-# VC_snRNAseq_8_Animal3_LV                          89.8  10.2 100.0
-# VC_snRNAseq_8_Animal3_LV3                         80.1  19.9 100.0
-# VC_snRNAseq_9_Animal4_AB                          79.5  20.5 100.0
-# VC_snRNAseq_9_Animal4_B-Comb                      81.8  18.2 100.0
-# VC_snRNAseq_9_Animal4_BD                          75.6  24.4 100.0
-# VC_snRNAseq_9_Animal4_BV                          71.8  28.2 100.0
-# VC_snRNAseq_9_Animal4_L-Comb                      73.7  26.3 100.0
-# VC_snRNAseq_9_Animal4_LD                          56.8  43.2 100.0
-# VC_snRNAseq_9_Animal4_LV1                         53.4  46.6 100.0
-# VC_snRNAseq_9_Animal4_LV2                         76.8  23.2 100.0
-# VC_snRNAseq-7_AccBasalAP1AP2_-7                   78.6  21.4 100.0
-# VC_snRNAseq-7_BasalDorsalAP1_-3A                  89.8  10.2 100.0
-# VC_snRNAseq-7_BasalDorsalAP1_-3B                  88.3  11.7 100.0
-# VC_snRNAseq-7_BasalVentralAP1_-4                  87.9  12.1 100.0
-# VC_snRNAseq-7_BasalVentralAP2_-5                  85.3  14.7 100.0
-# VC_snRNAseq-7_LateralDorsalAP1AP2_-8              90.1   9.9 100.0
-# VC_snRNAseq-7_LateralVentralAP1_-1                89.3  10.7 100.0
-# VC_snRNAseq-7_LateralVentralAP2_-2                91.6   8.4 100.0
-# Sum                                               81.0  19.0 100.0
+# FALSE  TRUE   Sum
+# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1           98.5   1.5 100.0
+# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1            96.9   3.1 100.0
+# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1            98.1   1.9 100.0
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1            97.3   2.7 100.0
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1 100.0   0.0 100.0
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1            98.2   1.8 100.0
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1 100.0   0.0 100.0
+# Sum                                                   98.6   1.4 100.0
 
 
 
@@ -432,19 +348,19 @@ round(100 * sweep(qc_t, 1, qc_t[, 3], "/"), 1)
 pdf(height=15, width=7.5, here(plot_dir, "QC_violin_plots.pdf"))
 ## Mito rate
 plotColData(sce, x = "subsets_Mito_percent", y = "Sample", colour_by = "high_mito") +
-  ggtitle("Mito Percent") +
-  theme(axis.text.x = element_text(angle = 45))
+    ggtitle("Mito Percent") +
+    theme(axis.text.x = element_text(angle = 45))
 
 # ## low sum
 plotColData(sce, x = "sum", y = "Sample", colour_by = "low_lib") +
-  scale_y_log10() +
-  ggtitle("Total UMIs")+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    scale_y_log10() +
+    ggtitle("Total UMIs")+
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # ## low detected
 plotColData(sce, x = "detected", y = "Sample", colour_by = "low_genes") +
-  scale_y_log10() +
-  ggtitle("Detected genes")
+    scale_y_log10() +
+    ggtitle("Detected genes")
 
 dev.off()
 
@@ -479,14 +395,14 @@ set.seed(328)
 colData(sce)$doubletScore <- NA
 
 for (i in splitit(sce$Sample)) {
-  sce_temp <- sce[, i]
-  ## To speed up, run on sample-level top-HVGs - just take top 1000
-  normd <- logNormCounts(sce_temp)
-  geneVar <- modelGeneVar(normd)
-  topHVGs <- getTopHVGs(geneVar, n = 2000)
-  
-  dbl_dens <- computeDoubletDensity(normd, subset.row = topHVGs)
-  colData(sce)$doubletScore[i] <- dbl_dens
+    sce_temp <- sce[, i]
+    ## To speed up, run on sample-level top-HVGs - just take top 1000
+    normd <- logNormCounts(sce_temp)
+    geneVar <- modelGeneVar(normd)
+    topHVGs <- getTopHVGs(geneVar, n = 2000)
+    
+    dbl_dens <- computeDoubletDensity(normd, subset.row = topHVGs)
+    colData(sce)$doubletScore[i] <- dbl_dens
 }
 
 summary(sce$doubletScore)
@@ -499,16 +415,16 @@ quantile(sce$doubletScore, probs=seq(0,1,by=0.01),3)
 ## Visualize doublet scores ##
 
 dbl_df <- colData(sce) %>%
-  as.data.frame() %>%
-  dplyr::select(Sample, doubletScore)
+    as.data.frame() %>%
+    dplyr::select(Sample, doubletScore)
 
 dbl_box_plot <- dbl_df %>%
-  ggplot(aes(x =reorder(Sample, doubletScore, FUN = median) , y = doubletScore)) +
-  geom_boxplot() +
-  labs(x = "Sample") +
-  geom_hline(yintercept = 2.75, color = "red", linetype = "dashed") +
-  coord_flip() +
-  theme(text = element_text(size = 30)) 
+    ggplot(aes(x =reorder(Sample, doubletScore, FUN = median) , y = doubletScore)) +
+    geom_boxplot() +
+    labs(x = "Sample") +
+    geom_hline(yintercept = 2.75, color = "red", linetype = "dashed") +
+    coord_flip() +
+    theme(text = element_text(size = 30)) 
 
 ggsave(dbl_box_plot, filename = here(plot_dir, "doublet_scores_boxplot.png"), width=20, height=25)
 
@@ -523,13 +439,13 @@ ggsave(dbl_box_plot, filename = here(plot_dir, "doublet_scores_boxplot.png"), wi
 #ggsave(dbl_density_plot, filename = here(plot_dir, "doublet_scores_density.png"), height = 17)
 
 dbl_df %>%
-  group_by(Sample) %>%
-  summarize(
-    median = median(doubletScore),
-    q95 = quantile(doubletScore, .95),
-    drop = sum(doubletScore >= 2.75),
-    drop_percent = 100 * drop / n()
-  )
+    group_by(Sample) %>%
+    summarize(
+        median = median(doubletScore),
+        q95 = quantile(doubletScore, .95),
+        drop = sum(doubletScore >= 2.75),
+        drop_percent = 100 * drop / n()
+    )
 
 # Sample    median   q95  drop drop_percent
 # <chr>      <dbl> <dbl> <int>        <dbl>
