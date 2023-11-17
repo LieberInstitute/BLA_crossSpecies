@@ -1,4 +1,4 @@
-# srun -n 1 --mem=64G --cpus-per-task=8 --pty bash -i
+# srun -n 1 --mem=400G --cpus-per-task=8 --pty bash -i
 remotes::install_version("Matrix", version = "1.6-1")
 library(SingleCellExperiment)
 library(sessioninfo)
