@@ -1,0 +1,29 @@
+**** Job starts ****
+Fri Dec  8 10:38:23 PM EST 2023
+**** JHPCE info ****
+User: mtotty
+Job id: 
+Job name: 
+Hostname: compute-068
+Task id: 
+Loading LIBD SLURM module for cellranger/7.0.0
+Reference files, for use with the '--transcriptome' argument, can be accessed
+or downloaded into /dcs04/lieber/lcolladotor/annotationFiles_LIBD001/10x. 
+
+Currently Loaded Modules:
+  1) JHPCE_ROCKY9_DEFAULT_ENV   2) JHPCE_tools/3.0   3) cellranger/7.0.0
+
+ 
+
+awk: cmd. line:2: NR==
+awk: cmd. line:2:     ^ unexpected newline or end of string
+Processing sample 
+
+Fri Dec  8 10:38:23 PM EST 2023
+/var/spool/slurm/d/job1052480/slurm_script: line 34: cellranger: command not found
+Moving data to new location
+Fri Dec  8 10:38:23 PM EST 2023
+mv: missing destination file operand after '/dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies/processed-data/01_cellranger/Baboon_ncbi/'
+Try 'mv --help' for more information.
+**** Job ends ****
+Fri Dec  8 10:38:23 PM EST 2023
