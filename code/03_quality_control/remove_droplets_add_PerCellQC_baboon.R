@@ -14,7 +14,7 @@ library("dplyr")
 
 
 ## Load raw data
-load(here("processed-data", "02_build_sce", "sce_baboon_raw_no_sample_info.rda"), verbose = TRUE)
+load(here("processed-data", "02_build_sce", "sce_baboon_raw_ncbi.rda"), verbose = TRUE)
 sce
 
 pd <- colData(sce) %>% as.data.frame()
@@ -112,45 +112,61 @@ ggsave(drop_barplot, filename = here(plot_dir, "drop_barplot.png"), width = 9)
 ## Check empty droplet results
 map(e.out, ~ addmargins(table(Signif = .x$FDR <= FDR_cutoff, Limited = .x$Limited, useNA = "ifany")))
 
-# $`34ac_scp`
+# $SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1
 # Limited
 # Signif    FALSE    TRUE    <NA>     Sum
-# FALSE   10567       0       0   10567
-# TRUE       49    4818       0    4867
-# <NA>        0       0 1359784 1359784
-# Sum     10616    4818 1359784 1375218
+# FALSE   26809       0       0   26809
+# TRUE      103    6386       0    6489
+# <NA>        0       0 1569037 1569037
+# Sum     26912    6386 1569037 1602335
 # 
-# $`35ac_scp`
+# $SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1
 # Limited
 # Signif    FALSE    TRUE    <NA>     Sum
-# FALSE    6678       0       0    6678
-# TRUE      177    5335       0    5512
-# <NA>        0       0 1053461 1053461
-# Sum      6855    5335 1053461 1065651
+# FALSE   32904       0       0   32904
+# TRUE      124    6164       0    6288
+# <NA>        0       0 1533919 1533919
+# Sum     33028    6164 1533919 1573111
 # 
-# $`3c-AMYBLA`
+# $SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1
 # Limited
 # Signif    FALSE    TRUE    <NA>     Sum
-# FALSE   14453       0       0   14453
-# TRUE      248    4518       0    4766
-# <NA>        0       0 1721248 1721248
-# Sum     14701    4518 1721248 1740467
+# FALSE    2892       0       0    2892
+# TRUE     3844    4100       0    7944
+# <NA>        0       0 1683928 1683928
+# Sum      6736    4100 1683928 1694764
 # 
-# $`4c-AMYBLA`
+# $SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1
 # Limited
 # Signif    FALSE    TRUE    <NA>     Sum
-# FALSE   11401       0       0   11401
-# TRUE      111    4887       0    4998
-# <NA>        0       0 1773286 1773286
-# Sum     11512    4887 1773286 1789685
+# FALSE     558       0       0     558
+# TRUE       61    6170       0    6231
+# <NA>        0       0 1701216 1701216
+# Sum       619    6170 1701216 1708005
 # 
-# $`5c-AMYBLA`
+# $SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1
 # Limited
 # Signif    FALSE    TRUE    <NA>     Sum
-# FALSE   15192       0       0   15192
-# TRUE       83    5176       0    5259
-# <NA>        0       0 1840574 1840574
-# Sum     15275    5176 1840574 1861025
+# FALSE     176       0       0     176
+# TRUE      220    7780       0    8000
+# <NA>        0       0 2219738 2219738
+# Sum       396    7780 2219738 2227914
+# 
+# $SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1
+# Limited
+# Signif    FALSE    TRUE    <NA>     Sum
+# FALSE     790       0       0     790
+# TRUE      160   10186       0   10346
+# <NA>        0       0 2534554 2534554
+# Sum       950   10186 2534554 2545690
+# 
+# $SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1
+# Limited
+# Signif    FALSE    TRUE    <NA>     Sum
+# FALSE     991       0       0     991
+# TRUE      841   12223       0   13064
+# <NA>        0       0 2573192 2573192
+# Sum      1832   12223 2573192 2587247
 
 
 #### Eliminate empty droplets ####
@@ -162,11 +178,12 @@ sce.dropped <- sce[, which(e.out.all$FDR <= 0.001)]
 dim(sce.dropped)
 # [1]  21369 134685
 
+# use grep to find genes with "MT-" in name
+is.mito <- grep("MT-", rownames(sce.dropped))
 
-#### Compute QC metrics ####
 sce.dropped <- scuttle::addPerCellQC(
     sce.dropped,
-    subsets = list(Mito = which(seqnames(sce) == "MT")),
+    subsets = list(Mito = is.mito),
     # BPPARAM = BiocParallel::MulticoreParam(4)
 )
 
@@ -180,136 +197,125 @@ colnames(colData(sce.dropped))
 
 
 # #save drops removed sce
-save(sce.dropped,file=here(processed_dir,"sce_drops_removed.rda"))
+save(sce.dropped,file=here(processed_dir,"sce_drops_removed_baboon.rda"))
 
 load(here(processed_dir, "sce_drops_removed.rda"), verbose = TRUE)
 
 sce <- sce.dropped
 
 #### Check for low quality nuc ####
-## High mito
-# sce$high.mito.sample ## standard name?
-sce$high_mito <- isOutlier(sce$subsets_Mito_percent, nmads = 3, type = "higher", batch = sce$Sample)
+# Sample 4 is bimodal and so MAD does not work for it. subsetting to all other samples
+sce$high_mito <- isOutlier(sce$subsets_Mito_percent, 
+                           nmads = 3, 
+                           type = "higher", 
+                           batch = sce$Sample,
+                           subset=sce$Sample %in% c("SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1", 
+                                                    "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1", 
+                                                    "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1",
+                                                    "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1",
+                                                    "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1",
+                                                    "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"
+                                                    )
+                           )
 
 table(sce$high_mito)
-# FALSE   TRUE 
-# 109967  24718 
+
+# before subset
+# FALSE  TRUE 
+# 46564 11798 
+
+# after subset
+# FALSE  TRUE 
+# 42570 15792 
 
 table(sce$high_mito, sce$Sample)
 
-
-# LIB210527RC_AB_1A LIB210527RC_AB_1B
-# FALSE              4184              3856
-# TRUE                799               752
+# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1
+# FALSE                                        4653
+# TRUE                                         1836
 # 
-# VC_snRNAseq_12_Animal2_Central_Nucleus
-# FALSE                                   3434
-# TRUE                                     674
+# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1
+# FALSE                                       4075
+# TRUE                                        2213
 # 
-# VC_snRNAseq_12_Animal3_Central_Nucleus
-# FALSE                                   4548
-# TRUE                                     974
+# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1
+# FALSE                                       5213
+# TRUE                                        2731
 # 
-# VC_snRNAseq_12_Animal4_Central_Nucleus
-# FALSE                                   2130
-# TRUE                                    2048
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1
+# FALSE                                       2178
+# TRUE                                        4053
 # 
-# VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_
-# FALSE                                             2108
-# TRUE                                               278
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1
+# FALSE                                                 6193
+# TRUE                                                  1807
 # 
-# VC_snRNAseq_12_Animal5_Basal__AP1_ VC_snRNAseq_12_Animal5_Basal__AP2_
-# FALSE                               2575                               3280
-# TRUE                                 340                                665
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1
+# FALSE                                       9353
+# TRUE                                         993
 # 
-# VC_snRNAseq_12_Animal5_Lateral__AP1_
-# FALSE                                  470
-# TRUE                                    90
-# 
-# VC_snRNAseq_12_Animal5_Lateral__AP2_
-# FALSE                                 2855
-# TRUE                                   395
-# 
-# VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_ VC_snRNAseq_8_Animal3_AB__
-# FALSE                                         1825                       2581
-# TRUE                                           183                        298
-# 
-# VC_snRNAseq_8_Animal3_BD VC_snRNAseq_8_Animal3_Bd_Bv
-# FALSE                     2147                        3507
-# TRUE                       360                         633
-# 
-# VC_snRNAseq_8_Animal3_BV1 VC_snRNAseq_8_Animal3_BV2
-# FALSE                      3912                      3670
-# TRUE                        255                       266
-# 
-# VC_snRNAseq_8_Animal3_LD VC_snRNAseq_8_Animal3_LV
-# FALSE                     3773                     2350
-# TRUE                       558                      260
-# 
-# VC_snRNAseq_8_Animal3_LV3 VC_snRNAseq_9_Animal4_AB
-# FALSE                      1788                     3591
-# TRUE                        443                      616
-# 
-# VC_snRNAseq_9_Animal4_B-Comb VC_snRNAseq_9_Animal4_BD
-# FALSE                         3599                     4073
-# TRUE                           799                     1313
-# 
-# VC_snRNAseq_9_Animal4_BV VC_snRNAseq_9_Animal4_L-Comb
-# FALSE                     3563                         3834
-# TRUE                      1401                         1366
-# 
-# VC_snRNAseq_9_Animal4_LD VC_snRNAseq_9_Animal4_LV1
-# FALSE                     3819                      2216
-# TRUE                      2863                      1779
-# 
-# VC_snRNAseq_9_Animal4_LV2 VC_snRNAseq-7_AccBasalAP1AP2_-7
-# FALSE                      2702                            3446
-# TRUE                        487                             930
-# 
-# VC_snRNAseq-7_BasalDorsalAP1_-3A VC_snRNAseq-7_BasalDorsalAP1_-3B
-# FALSE                             3865                             3497
-# TRUE                               439                              464
-# 
-# VC_snRNAseq-7_BasalVentralAP1_-4 VC_snRNAseq-7_BasalVentralAP2_-5
-# FALSE                             1962                             3443
-# TRUE                               245                              568
-# 
-# VC_snRNAseq-7_LateralDorsalAP1AP2_-8 VC_snRNAseq-7_LateralVentralAP1_-1
-# FALSE                                 4276                               2764
-# TRUE                                   468                                316
-# 
-# VC_snRNAseq-7_LateralVentralAP2_-2
-# FALSE                               4324
-# TRUE                                 393
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1
+# FALSE                                                10905
+# TRUE                                                  2159
 
 ## low library size
-sce$low_lib <- isOutlier(sce$sum, log = TRUE, type = "lower", batch = sce$Sample)
+# samples 1 and 3 are bimodal here. subsetting to all other samples
+sce$low_lib <- isOutlier(sce$sum, 
+                         log = TRUE, 
+                         type = "lower", 
+                         batch = sce$Sample,
+                         subset=sce$Sample %in% c("SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1",
+                                                  "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1",
+                                                  "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1",
+                                                  "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1",
+                                                  "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"
+                                                  )
+                         )
 table(sce$low_lib)
+# before subset
 # FALSE  TRUE 
-# 57886   476 
+# 57863   499 
+
+# after subset
+# FALSE  TRUE 
+# 55539  2823 
 
 ## low detected features
-# sce$qc.detected
-sce$low_genes <- isOutlier(sce$detected, log = TRUE, type = "lower", batch = sce$Sample)
+# samples 1 and 3 are also bimodel here. subsettings to all others
+sce$low_genes <- isOutlier(sce$detected, 
+                           log = TRUE, 
+                           type = "lower", 
+                           batch = sce$Sample,
+                           subset=sce$Sample %in% c("SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1",
+                                                   "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1",
+                                                   "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1",
+                                                   "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1",
+                                                   "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"
+                                                   )
+                           )
 table(sce$low_genes)
+# before subset
 # FALSE  TRUE 
-# 57564   798 
+# 57494   868  
+
+# after subset
+# FALSE  TRUE 
+# 53487  4875 
 
 
 
 ## All low sum are also low detected
 table(sce$low_lib, sce$low_genes)
-# FALSE  TRUE
-# FALSE 57564   322
-# TRUE      0   476
-
+#       FALSE  TRUE
+# FALSE 53487  2052
+# TRUE      0  2823
 
 ## Annotate nuc to drop
 sce$discard_auto <- sce$high_mito | sce$low_lib | sce$low_genes
 
 table(sce$discard_auto)
-# FALSE   TRUE 
-# 109142  25543 
+# FALSE  TRUE 
+# 40131 18231 
 
 
 
@@ -317,51 +323,52 @@ qc_t <- addmargins(table(sce$Sample, sce$discard_auto))
 write_csv(data.frame(qc_t), file = here(processed_dir, "discarded_summary.csv"))
 
 qc_t
-#                                                   FALSE   TRUE    Sum
-# FALSE  TRUE   Sum
-# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1           6389   100  6489
-# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1            6091   197  6288
-# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1            7796   148  7944
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1            6061   170  6231
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1  8000     0  8000
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1           10163   183 10346
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1 13064     0 13064
-# Sum                                                  57564   798 58362
+#                                                      FALSE  TRUE   Sum
+# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1           4559  1930  6489
+# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1            3916  2372  6288
+# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1            5101  2843  7944
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1            2005  4226  6231
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1  5209  2791  8000
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1            9229  1117 10346
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1 10112  2952 13064
+# Sum                                                  40131 18231 58362
 
 
 
 round(100 * sweep(qc_t, 1, qc_t[, 3], "/"), 1)
 
-# FALSE  TRUE   Sum
-# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1           98.5   1.5 100.0
-# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1            96.9   3.1 100.0
-# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1            98.1   1.9 100.0
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1            97.3   2.7 100.0
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1 100.0   0.0 100.0
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1            98.2   1.8 100.0
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1 100.0   0.0 100.0
-# Sum                                                   98.6   1.4 100.0
-
+# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1           70.3  29.7 100.0
+# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1            62.3  37.7 100.0
+# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1            64.2  35.8 100.0
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1            32.2  67.8 100.0
+# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1  65.1  34.9 100.0
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1            89.2  10.8 100.0
+# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1  77.4  22.6 100.0
+# Sum                                                   68.8  31.2 100.0
 
 
 #### QC plots ####
-pdf(height=15, width=7.5, here(plot_dir, "QC_violin_plots.pdf"))
-## Mito rate
+
+# Mito rate
+png(here(plot_dir, "violin_mito_percent_afterSubset.png"), height=7.5, width=7.5, units="in", res=1200)
 plotColData(sce, x = "subsets_Mito_percent", y = "Sample", colour_by = "high_mito") +
     ggtitle("Mito Percent") +
     theme(axis.text.x = element_text(angle = 45))
+dev.off()
 
-# ## low sum
+# low sum
+png(here(plot_dir, "violin_sum_afterSubset.png"), height=7.5, width=7.5, units="in", res=1200)
 plotColData(sce, x = "sum", y = "Sample", colour_by = "low_lib") +
     scale_y_log10() +
     ggtitle("Total UMIs")+
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
+dev.off()
 
-# ## low detected
+# low detected
+png(here(plot_dir, "violin_detected_afterSubset.png"), height=7.5, width=7.5, units="in", res=1200)
 plotColData(sce, x = "detected", y = "Sample", colour_by = "low_genes") +
     scale_y_log10() +
     ggtitle("Detected genes")
-
 dev.off()
 
 
@@ -369,15 +376,17 @@ dev.off()
 
 
 # Mito rate vs n detected features
-pdf(height=7.5, width=7.5, here(plot_dir, "QC_scatter_plots.pdf"))
+png(here(plot_dir, "scatter_detect_vs_mit.png"), , height=7.5, width=7.5, units="in", res=1200)
 plotColData(sce,
             x = "detected", y = "subsets_Mito_percent",
             colour_by = "discard_auto", point_size = 2.5, point_alpha = 0.5
 ) + 
     ggtitle("Mito percent") +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
+dev.off()
 
 # Detected features vs total count
+png(here(plot_dir, "scatter_detect_vs_sum.png"), , height=7.5, width=7.5, units="in", res=1200)
 plotColData(sce,
             x = "sum", y = "detected",
             colour_by = "discard_auto", point_size = 2.5, point_alpha = 0.5
@@ -469,9 +478,9 @@ load(here(processed_dir, "sce_no_empty_droplets.Rdata"))
 
 sce <- sce[, !sce$discard_auto]
 dim(sce)
-# [1] 36601 21268
+# [1] 21091 40131
 
-save(sce,file=here(processed_dir,"sce_post_qc.rda"))
+save(sce,file=here(processed_dir,"sce_post_qc_baboon.rda"))
 
 
 # sgejobs::job_single('03_droplet_qc', create_shell = TRUE, queue= 'bluejay', memory = '50G', command = "Rscript 03_droplet_qc.R")
