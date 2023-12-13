@@ -66,12 +66,15 @@ message("RDone - ", Sys.time())
 dim(sce)
 # [1]    34215 13939066
 
+<<<<<<< HEAD
 sum(grepl("^LOC", rownames(sce)))
 # [1] 17049
 
 34215-17049
 # [1] 17166
 
+=======
+>>>>>>> 46be773 (added in 3 missing mito genes. rebuilt SCE and reran PerCellQC)
 # Note that the rownames are the Ensembl gene names - let's switch to the more familiar gene symbols:
 # ...but also notice that length(unique(rowData(sce)$Symbol)) != nrow(sce)
 #   - That's because some gene symbols are used multiple times.
@@ -162,6 +165,7 @@ sce
 
 
 
+<<<<<<< HEAD
 # ======== Add MT- to front of NCBI gene names =========
 library("singleCellTK")
 data("MitoGenes")
@@ -169,10 +173,22 @@ MitoGenes
 
 # drop MT- from MitoGenes gene names
 MitoGenes.names <- gsub("MT-", "", MitoGenes$human_symbol$human_mito_symbol)
+=======
+# ======== Add MT- to front of NCBI gene names =========,
+MitoGenes.names <-  c("ND1",  "ND2",  "COX1",  
+              "COX2","COX3",  "ATP8", "ATP6", 
+                "ND3",  "ND4L", 
+              "ND4", "ND5",  "ND6",  
+              "CYTB"
+)
+
+
+>>>>>>> 46be773 (added in 3 missing mito genes. rebuilt SCE and reran PerCellQC)
 
 # see if any of the mito genes are in the sce
 mt_genes_sce <- rowData(sce)[rowData(sce)$Symbol %in% MitoGenes.names, ]
 mt_genes_sce
+<<<<<<< HEAD
 # ID      Symbol            Type gene_id_ncbi Symbol.uniq
 # <character> <character>     <character>  <character> <character>
 #     ND1          ND1         ND1 Gene Expression     14444642         ND1
@@ -180,10 +196,23 @@ mt_genes_sce
 # ATP8        ATP8        ATP8 Gene Expression     14444633        ATP8
 # ATP6        ATP6        ATP6 Gene Expression     14444634        ATP6
 # ND3          ND3         ND3 Gene Expression     14444636         ND3
+=======
+# DataFrame with 13 rows and 5 columns
+# ND1          ND1         ND1 Gene Expression     14444642         ND1
+# ND2          ND2         ND2 Gene Expression     14444630         ND2
+# COX1        COX1        COX1 Gene Expression     14444631        COX1
+# COX2        COX2        COX2 Gene Expression     14444632        COX2
+# ATP8        ATP8        ATP8 Gene Expression     14444633        ATP8
+# ...          ...         ...             ...          ...         ...
+>>>>>>> 46be773 (added in 3 missing mito genes. rebuilt SCE and reran PerCellQC)
 # ND4L        ND4L        ND4L Gene Expression     14444637        ND4L
 # ND4          ND4         ND4 Gene Expression     14444638         ND4
 # ND5          ND5         ND5 Gene Expression     14444639         ND5
 # ND6          ND6         ND6 Gene Expression     14444640         ND6
+<<<<<<< HEAD
+=======
+# CYTB        CYTB        CYTB Gene Expression     14444641        CYTB
+>>>>>>> 46be773 (added in 3 missing mito genes. rebuilt SCE and reran PerCellQC)
 
 # add MT- to front of NCBI mito gene names
 rowData(sce)$Symbol.uniq <- ifelse(rowData(sce)$Symbol %in% MitoGenes.names, paste0("MT-", rowData(sce)$Symbol), rowData(sce)$Symbol)
@@ -192,6 +221,7 @@ rowData(sce)$ID <- ifelse(rowData(sce)$Symbol %in% MitoGenes.names, paste0("MT-"
 rowData(sce)$Symbol <- ifelse(rowData(sce)$Symbol %in% MitoGenes.names, paste0("MT-", rowData(sce)$Symbol), rowData(sce)$Symbol)
 
 
+<<<<<<< HEAD
 mt_genes_sce <- rowData(sce)[rowData(sce)$ID %in% MitoGenes$human_symbol$human_mito_symbol, ]
 mt_genes_sce
 # ID      Symbol            Type gene_id_ncbi Symbol.uniq
@@ -205,6 +235,11 @@ mt_genes_sce
 # ND4       MT-ND4      MT-ND4 Gene Expression     14444638      MT-ND4
 # ND5       MT-ND5      MT-ND5 Gene Expression     14444639      MT-ND5
 # ND6       MT-ND6      MT-ND6 Gene Expression     14444640      MT-ND6
+=======
+mt_genes_sce <- rowData(sce)[rowData(sce)$ID %in% MitoGenes.names, ]
+mt_genes_sce
+
+>>>>>>> 46be773 (added in 3 missing mito genes. rebuilt SCE and reran PerCellQC)
 
 rownames(sce) <- rowData(sce)$Symbol.uniq
 sce
@@ -212,7 +247,11 @@ sce
 # dim: 21091 13939066 
 # metadata(1): Samples
 # assays(1): counts
+<<<<<<< HEAD
 # rownames(21091): TMEM88B ANKRD65 ... MT-ND6 CYTB
+=======
+# rownames(21091): TMEM88B ANKRD65 ... MT-ND6 MT-CYTB
+>>>>>>> 46be773 (added in 3 missing mito genes. rebuilt SCE and reran PerCellQC)
 # rowData names(5): ID Symbol Type gene_id_ncbi Symbol.uniq
 # colnames(13939066): 1_AAACCCAAGAAACACT-1 1_AAACCCAAGAAACCAT-1 ...
 # 7_TTTGTTGTCTTTGGCT-1 7_TTTGTTGTCTTTGTCG-1

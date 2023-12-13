@@ -44,7 +44,7 @@ sce.macaque
 #     mainExpName: NULL
 # altExpNames(0):
 
-load(file=here("processed-data","03_quality_control","Baboon","PerCellQC","sce_post_qc.rda"))
+load(file=here("processed-data","03_quality_control","Baboon","PerCellQC","sce_post_qc_baboon.rda"))
 sce.baboon <- sce
 sce.baboon
 # class: SingleCellExperiment 
@@ -59,6 +59,28 @@ sce.baboon
 # reducedDimNames(0):
 #     mainExpName: NULL
 # altExpNames(0):
+
+
+which(seqnames(sce.macaque) == "MT")
+
+rownames(sce.macaque)[which(seqnames(sce.macaque) == "MT")]
+
+# use grep to get genes with "MT-" in their name in human
+mt_human <- rownames(sce.human)[grep("MT-", rownames(sce.human))]
+mt_human
+
+# drop MT- from mt_human
+mt_human <- gsub("MT-", "", mt_human)
+mt_human
+
+
+# use grep to get genes with "MT-" in their name in macaque
+mt_macaque <- rownames(sce.macaque)[grep("MT-", rownames(sce.macaque))]
+mt_macaque
+
+# use grep to get genes with "MT-" in their name in baboon
+mt_baboon <- rownames(sce.baboon)[grep("MT-", rownames(sce.baboon))]
+mt_baboon
 
 # =========== Calculate size factors ==============
 
