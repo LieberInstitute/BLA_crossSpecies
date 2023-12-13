@@ -1,0 +1,641 @@
+**** Job starts ****
+Tue Dec 12 05:36:29 PM EST 2023
+**** SLURM info ****
+User: mtotty
+Job id: 1119389
+Job name: PerCellQC_baboon
+Hostname: compute-151
+Task id: 
+Loading conda_R/4.3.x
+
+Currently Loaded Modules:
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
+  2) JHPCE_tools/3.0            4) conda_R/4.3.x
+
+ 
+
+Installing package into ‘/users/mtotty/R/4.3.x’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/src/contrib/rafalib_1.0.0.tar.gz'
+Content type 'application/x-gzip' length 11798 bytes (11 KB)
+==================================================
+downloaded 11 KB
+
+* installing *source* package ‘rafalib’ ...
+** package ‘rafalib’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rafalib)
+
+The downloaded source packages are in
+	‘/tmp/RtmpRZ4K1n/downloaded_packages’
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: ggplot2
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.3     ✔ tibble    3.2.1
+✔ purrr     1.0.2     ✔ tidyr     1.3.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ lubridate::%within%() masks IRanges::%within%()
+✖ dplyr::collapse()     masks IRanges::collapse()
+✖ dplyr::combine()      masks Biobase::combine(), BiocGenerics::combine()
+✖ dplyr::count()        masks matrixStats::count()
+✖ dplyr::desc()         masks IRanges::desc()
+✖ tidyr::expand()       masks S4Vectors::expand()
+✖ dplyr::filter()       masks stats::filter()
+✖ dplyr::first()        masks S4Vectors::first()
+✖ dplyr::lag()          masks stats::lag()
+✖ ggplot2::Position()   masks BiocGenerics::Position(), base::Position()
+✖ purrr::reduce()       masks GenomicRanges::reduce(), IRanges::reduce()
+✖ dplyr::rename()       masks S4Vectors::rename()
+✖ lubridate::second()   masks S4Vectors::second()
+✖ lubridate::second<-() masks S4Vectors::second<-()
+✖ dplyr::slice()        masks IRanges::slice()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+here() starts at /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies
+Loading required package: DelayedArray
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+The following object is masked from ‘package:S4Vectors’:
+
+    expand
+
+Loading required package: S4Arrays
+Loading required package: abind
+
+Attaching package: ‘S4Arrays’
+
+The following object is masked from ‘package:abind’:
+
+    abind
+
+The following object is masked from ‘package:base’:
+
+    rowsum
+
+Loading required package: SparseArray
+
+Attaching package: ‘DelayedArray’
+
+The following object is masked from ‘package:purrr’:
+
+    simplify
+
+The following objects are masked from ‘package:base’:
+
+    apply, scale, sweep
+
+Loading required package: rhdf5
+
+Attaching package: ‘HDF5Array’
+
+The following object is masked from ‘package:rhdf5’:
+
+    h5ls
+
+Loading objects:
+  sce
+class: SingleCellExperiment 
+dim: 21091 13939066 
+metadata(1): Samples
+assays(1): counts
+rownames(21091): TMEM88B ANKRD65 ... MT-ND6 CYTB
+rowData names(5): ID Symbol Type gene_id_ncbi Symbol.uniq
+colnames(13939066): 1_AAACCCAAGAAACACT-1 1_AAACCCAAGAAACCAT-1 ...
+  7_TTTGTTGTCTTTGGCT-1 7_TTTGTTGTCTTTGTCG-1
+colData names(10): Sample Barcode ... subregion dv_axis
+reducedDimNames(0):
+mainExpName: NULL
+altExpNames(0):
+  [1] "**** Job starts ****"                                                                                                  
+  [2] "Mon Dec 11 10:43:24 PM EST 2023"                                                                                       
+  [3] "**** SLURM info ****"                                                                                                  
+  [4] "User: mtotty"                                                                                                          
+  [5] "Job id: 1099984"                                                                                                       
+  [6] "Job name: emptyDrops_baboon"                                                                                           
+  [7] "Hostname: compute-115"                                                                                                 
+  [8] "Task id: "                                                                                                             
+  [9] "Loading conda_R/4.3.x"                                                                                                 
+ [10] ""                                                                                                                      
+ [11] "Currently Loaded Modules:"                                                                                             
+ [12] "  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1"                                                                     
+ [13] "  2) JHPCE_tools/3.0            4) conda_R/4.3.x"                                                                      
+ [14] ""                                                                                                                      
+ [15] " "                                                                                                                     
+ [16] ""                                                                                                                      
+ [17] "Loading required package: SummarizedExperiment"                                                                        
+ [18] "Loading required package: MatrixGenerics"                                                                              
+ [19] "Loading required package: matrixStats"                                                                                 
+ [20] ""                                                                                                                      
+ [21] "Attaching package: ‘MatrixGenerics’"                                                                                   
+ [22] ""                                                                                                                      
+ [23] "The following objects are masked from ‘package:matrixStats’:"                                                          
+ [24] ""                                                                                                                      
+ [25] "    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,"                                                       
+ [26] "    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,"                                                       
+ [27] "    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,"                                                       
+ [28] "    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,"                                                  
+ [29] "    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,"                                                  
+ [30] "    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,"                                                    
+ [31] "    colWeightedMeans, colWeightedMedians, colWeightedSds,"                                                             
+ [32] "    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,"                                                   
+ [33] "    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,"                                                      
+ [34] "    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,"                                                        
+ [35] "    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,"                                                    
+ [36] "    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,"                                                       
+ [37] "    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,"                                                 
+ [38] "    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,"                                                            
+ [39] "    rowWeightedSds, rowWeightedVars"                                                                                   
+ [40] ""                                                                                                                      
+ [41] "Loading required package: GenomicRanges"                                                                               
+ [42] "Loading required package: stats4"                                                                                      
+ [43] "Loading required package: BiocGenerics"                                                                                
+ [44] ""                                                                                                                      
+ [45] "Attaching package: ‘BiocGenerics’"                                                                                     
+ [46] ""                                                                                                                      
+ [47] "The following objects are masked from ‘package:stats’:"                                                                
+ [48] ""                                                                                                                      
+ [49] "    IQR, mad, sd, var, xtabs"                                                                                          
+ [50] ""                                                                                                                      
+ [51] "The following objects are masked from ‘package:base’:"                                                                 
+ [52] ""                                                                                                                      
+ [53] "    anyDuplicated, aperm, append, as.data.frame, basename, cbind,"                                                     
+ [54] "    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,"                                                
+ [55] "    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,"                                                    
+ [56] "    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,"                                                        
+ [57] "    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,"                                                   
+ [58] "    table, tapply, union, unique, unsplit, which.max, which.min"                                                       
+ [59] ""                                                                                                                      
+ [60] "Loading required package: S4Vectors"                                                                                   
+ [61] ""                                                                                                                      
+ [62] "Attaching package: ‘S4Vectors’"                                                                                        
+ [63] ""                                                                                                                      
+ [64] "The following object is masked from ‘package:utils’:"                                                                  
+ [65] ""                                                                                                                      
+ [66] "    findMatches"                                                                                                       
+ [67] ""                                                                                                                      
+ [68] "The following objects are masked from ‘package:base’:"                                                                 
+ [69] ""                                                                                                                      
+ [70] "    expand.grid, I, unname"                                                                                            
+ [71] ""                                                                                                                      
+ [72] "Loading required package: IRanges"                                                                                     
+ [73] "Loading required package: GenomeInfoDb"                                                                                
+ [74] "Loading required package: Biobase"                                                                                     
+ [75] "Welcome to Bioconductor"                                                                                               
+ [76] ""                                                                                                                      
+ [77] "    Vignettes contain introductory material; view with"                                                                
+ [78] "    'browseVignettes()'. To cite Bioconductor, see"                                                                    
+ [79] "    'citation(\"Biobase\")', and for packages 'citation(\"pkgname\")'."                                                
+ [80] ""                                                                                                                      
+ [81] ""                                                                                                                      
+ [82] "Attaching package: ‘Biobase’"                                                                                          
+ [83] ""                                                                                                                      
+ [84] "The following object is masked from ‘package:MatrixGenerics’:"                                                         
+ [85] ""                                                                                                                      
+ [86] "    rowMedians"                                                                                                        
+ [87] ""                                                                                                                      
+ [88] "The following objects are masked from ‘package:matrixStats’:"                                                          
+ [89] ""                                                                                                                      
+ [90] "    anyMissing, rowMedians"                                                                                            
+ [91] ""                                                                                                                      
+ [92] "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──"                                      
+ [93] "✔ dplyr     1.1.3     ✔ readr     2.1.4"                                                                               
+ [94] "✔ forcats   1.0.0     ✔ stringr   1.5.1"                                                                               
+ [95] "✔ ggplot2   3.4.4     ✔ tibble    3.2.1"                                                                               
+ [96] "✔ lubridate 1.9.3     ✔ tidyr     1.3.0"                                                                               
+ [97] "✔ purrr     1.0.2     "                                                                                                
+ [98] "── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──"                                      
+ [99] "✖ lubridate::%within%() masks IRanges::%within%()"                                                                     
+[100] "✖ dplyr::collapse()     masks IRanges::collapse()"                                                                     
+[101] "✖ dplyr::combine()      masks Biobase::combine(), BiocGenerics::combine()"                                             
+[102] "✖ dplyr::count()        masks matrixStats::count()"                                                                    
+[103] "✖ dplyr::desc()         masks IRanges::desc()"                                                                         
+[104] "✖ tidyr::expand()       masks S4Vectors::expand()"                                                                     
+[105] "✖ dplyr::filter()       masks stats::filter()"                                                                         
+[106] "✖ dplyr::first()        masks S4Vectors::first()"                                                                      
+[107] "✖ dplyr::lag()          masks stats::lag()"                                                                            
+[108] "✖ ggplot2::Position()   masks BiocGenerics::Position(), base::Position()"                                              
+[109] "✖ purrr::reduce()       masks GenomicRanges::reduce(), IRanges::reduce()"                                              
+[110] "✖ dplyr::rename()       masks S4Vectors::rename()"                                                                     
+[111] "✖ lubridate::second()   masks S4Vectors::second()"                                                                     
+[112] "✖ lubridate::second<-() masks S4Vectors::second<-()"                                                                   
+[113] "✖ dplyr::slice()        masks IRanges::slice()"                                                                        
+[114] "ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors"                 
+[115] "here() starts at /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies"                                   
+[116] "Loading objects:"                                                                                                      
+[117] "  sce"                                                                                                                 
+[118] "class: SingleCellExperiment "                                                                                          
+[119] "dim: 21091 13939066 "                                                                                                  
+[120] "metadata(1): Samples"                                                                                                  
+[121] "assays(1): counts"                                                                                                     
+[122] "rownames(21091): TMEM88B ANKRD65 ... MT-ND6 CYTB"                                                                      
+[123] "rowData names(5): ID Symbol Type gene_id_ncbi Symbol.uniq"                                                             
+[124] "colnames(13939066): 1_AAACCCAAGAAACACT-1 1_AAACCCAAGAAACCAT-1 ..."                                                     
+[125] "  7_TTTGTTGTCTTTGGCT-1 7_TTTGTTGTCTTTGTCG-1"                                                                           
+[126] "colData names(10): Sample Barcode ... subregion dv_axis"                                                               
+[127] "reducedDimNames(0):"                                                                                                   
+[128] "mainExpName: NULL"                                                                                                     
+[129] "altExpNames(0):"                                                                                                       
+[130] "'First knee point' = 312"                                                                                              
+[131] "knee_highest =112"                                                                                                     
+[132] "'Second knee point' = 312"                                                                                             
+[133] "knee_higher =212"                                                                                                      
+[134] "'Third knee point' = 312"                                                                                              
+[135] "knee =312"                                                                                                             
+[136] "'Fourth knee point' = 312"                                                                                             
+[137] "knee_lower =412"                                                                                                       
+[138] "'Fifth knee point' = 312"                                                                                              
+[139] "knee_lowest =512"                                                                                                      
+[140] "Starting emptyDrops"                                                                                                   
+[141] "Done - saving data"                                                                                                    
+[142] "QC check"                                                                                                              
+[143] "Non-empty: 6494"                                                                                                       
+[144] "Saving 7 x 7 in image"                                                                                                 
+[145] "'First knee point' = 400"                                                                                              
+[146] "knee_highest =200"                                                                                                     
+[147] "'Second knee point' = 400"                                                                                             
+[148] "knee_higher =300"                                                                                                      
+[149] "'Third knee point' = 400"                                                                                              
+[150] "knee =400"                                                                                                             
+[151] "'Fourth knee point' = 400"                                                                                             
+[152] "knee_lower =500"                                                                                                       
+[153] "'Fifth knee point' = 400"                                                                                              
+[154] "knee_lowest =600"                                                                                                      
+[155] "Starting emptyDrops"                                                                                                   
+[156] "Done - saving data"                                                                                                    
+[157] "QC check"                                                                                                              
+[158] "Non-empty: 6277"                                                                                                       
+[159] "Saving 7 x 7 in image"                                                                                                 
+[160] "'First knee point' = 147"                                                                                              
+[161] "knee_highest =-53"                                                                                                     
+[162] "'Second knee point' = 147"                                                                                             
+[163] "knee_higher =47"                                                                                                       
+[164] "'Third knee point' = 147"                                                                                              
+[165] "knee =147"                                                                                                             
+[166] "'Fourth knee point' = 147"                                                                                             
+[167] "knee_lower =247"                                                                                                       
+[168] "'Fifth knee point' = 147"                                                                                              
+[169] "knee_lowest =347"                                                                                                      
+[170] "Starting emptyDrops"                                                                                                   
+[171] "Done - saving data"                                                                                                    
+[172] "QC check"                                                                                                              
+[173] "Non-empty: 7723"                                                                                                       
+[174] "Saving 7 x 7 in image"                                                                                                 
+[175] "'First knee point' = 164"                                                                                              
+[176] "knee_highest =-36"                                                                                                     
+[177] "'Second knee point' = 164"                                                                                             
+[178] "knee_higher =64"                                                                                                       
+[179] "'Third knee point' = 164"                                                                                              
+[180] "knee =164"                                                                                                             
+[181] "'Fourth knee point' = 164"                                                                                             
+[182] "knee_lower =264"                                                                                                       
+[183] "'Fifth knee point' = 164"                                                                                              
+[184] "knee_lowest =364"                                                                                                      
+[185] "Starting emptyDrops"                                                                                                   
+[186] "Done - saving data"                                                                                                    
+[187] "QC check"                                                                                                              
+[188] "Non-empty: 6205"                                                                                                       
+[189] "Saving 7 x 7 in image"                                                                                                 
+[190] "'First knee point' = 113"                                                                                              
+[191] "knee_highest =-86.9999999999999"                                                                                       
+[192] "'Second knee point' = 113"                                                                                             
+[193] "knee_higher =13.0000000000001"                                                                                         
+[194] "'Third knee point' = 113"                                                                                              
+[195] "knee =113"                                                                                                             
+[196] "'Fourth knee point' = 113"                                                                                             
+[197] "knee_lower =213"                                                                                                       
+[198] "'Fifth knee point' = 113"                                                                                              
+[199] "knee_lowest =313"                                                                                                      
+[200] "Starting emptyDrops"                                                                                                   
+[201] "Done - saving data"                                                                                                    
+[202] "QC check"                                                                                                              
+[203] "Non-empty: 8953"                                                                                                       
+[204] "Saving 7 x 7 in image"                                                                                                 
+[205] "'First knee point' = 105"                                                                                              
+[206] "knee_highest =-95"                                                                                                     
+[207] "'Second knee point' = 105"                                                                                             
+[208] "knee_higher =5.00000000000004"                                                                                         
+[209] "'Third knee point' = 105"                                                                                              
+[210] "knee =105"                                                                                                             
+[211] "'Fourth knee point' = 105"                                                                                             
+[212] "knee_lower =205"                                                                                                       
+[213] "'Fifth knee point' = 105"                                                                                              
+[214] "knee_lowest =305"                                                                                                      
+[215] "Starting emptyDrops"                                                                                                   
+[216] "Done - saving data"                                                                                                    
+[217] "QC check"                                                                                                              
+[218] "Non-empty: 9664"                                                                                                       
+[219] "Saving 7 x 7 in image"                                                                                                 
+[220] "'First knee point' = 107"                                                                                              
+[221] "knee_highest =-93"                                                                                                     
+[222] "'Second knee point' = 107"                                                                                             
+[223] "knee_higher =7.00000000000001"                                                                                         
+[224] "'Third knee point' = 107"                                                                                              
+[225] "knee =107"                                                                                                             
+[226] "'Fourth knee point' = 107"                                                                                             
+[227] "knee_lower =207"                                                                                                       
+[228] "'Fifth knee point' = 107"                                                                                              
+[229] "knee_lowest =307"                                                                                                      
+[230] "Starting emptyDrops"                                                                                                   
+[231] "Done - saving data"                                                                                                    
+[232] "QC check"                                                                                                              
+[233] "Non-empty: 14028"                                                                                                      
+[234] "Saving 7 x 7 in image"                                                                                                 
+[235] "There were 37 warnings (use warnings() to see them)"                                                                   
+[236] "[1] \"Reproducibility information:\""                                                                                  
+[237] "[1] \"2023-12-11 23:27:41 EST\""                                                                                       
+[238] "    user   system  elapsed "                                                                                           
+[239] "4270.962  130.630 2652.661 "                                                                                           
+[240] "─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────"
+[241] " setting  value"                                                                                                       
+[242] " version  R version 4.3.2 Patched (2023-11-13 r85524)"                                                                 
+[243] " os       Rocky Linux 9.2 (Blue Onyx)"                                                                                 
+[244] " system   x86_64, linux-gnu"                                                                                           
+[245] " ui       X11"                                                                                                         
+[246] " language (EN)"                                                                                                        
+[247] " collate  en_US.UTF-8"                                                                                                 
+[248] " ctype    en_US.UTF-8"                                                                                                 
+[249] " tz       US/Eastern"                                                                                                  
+[250] " date     2023-12-11"                                                                                                  
+[251] " pandoc   3.1.3 @ /jhpce/shared/community/core/conda_R/4.3.x/bin/pandoc"                                               
+[252] ""                                                                                                                      
+[253] "─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────"
+[254] " package              * version   date (UTC) lib source"                                                               
+[255] " abind                  1.4-5     2016-07-21 [2] CRAN (R 4.3.2)"                                                       
+[256] " beachmat               2.18.0    2023-10-24 [2] Bioconductor"                                                         
+[257] " Biobase              * 2.62.0    2023-10-24 [2] Bioconductor"                                                         
+[258] " BiocGenerics         * 0.48.1    2023-11-01 [2] Bioconductor"                                                         
+[259] " BiocParallel           1.36.0    2023-10-24 [2] Bioconductor"                                                         
+[260] " bitops                 1.0-7     2021-04-24 [2] CRAN (R 4.3.2)"                                                       
+[261] " cli                    3.6.1     2023-03-23 [2] CRAN (R 4.3.2)"                                                       
+[262] " codetools              0.2-19    2023-02-01 [3] CRAN (R 4.3.2)"                                                       
+[263] " colorspace             2.1-0     2023-01-23 [2] CRAN (R 4.3.2)"                                                       
+[264] " crayon                 1.5.2     2022-09-29 [2] CRAN (R 4.3.2)"                                                       
+[265] " DelayedArray           0.28.0    2023-10-24 [2] Bioconductor"                                                         
+[266] " DelayedMatrixStats     1.24.0    2023-10-24 [2] Bioconductor"                                                         
+[267] " dplyr                * 1.1.3     2023-09-03 [2] CRAN (R 4.3.2)"                                                       
+[268] " dqrng                  0.3.1     2023-08-30 [2] CRAN (R 4.3.2)"                                                       
+[269] " DropletUtils         * 1.22.0    2023-10-24 [2] Bioconductor"                                                         
+[270] " edgeR                  4.0.1     2023-10-29 [2] Bioconductor"                                                         
+[271] " fansi                  1.0.5     2023-10-08 [2] CRAN (R 4.3.2)"                                                       
+[272] " farver                 2.1.1     2022-07-06 [2] CRAN (R 4.3.2)"                                                       
+[273] " forcats              * 1.0.0     2023-01-29 [2] CRAN (R 4.3.2)"                                                       
+[274] " generics               0.1.3     2022-07-05 [2] CRAN (R 4.3.2)"                                                       
+[275] " GenomeInfoDb         * 1.38.1    2023-11-08 [2] Bioconductor"                                                         
+[276] " GenomeInfoDbData       1.2.11    2023-11-15 [2] Bioconductor"                                                         
+[277] " GenomicRanges        * 1.54.1    2023-10-29 [2] Bioconductor"                                                         
+[278] " ggplot2              * 3.4.4     2023-10-12 [2] CRAN (R 4.3.2)"                                                       
+[279] " glue                   1.6.2     2022-02-24 [2] CRAN (R 4.3.2)"                                                       
+[280] " gtable                 0.3.4     2023-08-21 [2] CRAN (R 4.3.2)"                                                       
+[281] " HDF5Array              1.30.0    2023-10-24 [2] Bioconductor"                                                         
+[282] " here                 * 1.0.1     2020-12-13 [2] CRAN (R 4.3.2)"                                                       
+[283] " hms                    1.1.3     2023-03-21 [2] CRAN (R 4.3.2)"                                                       
+[284] " IRanges              * 2.36.0    2023-10-24 [2] Bioconductor"                                                         
+[285] " lattice                0.22-5    2023-10-24 [3] CRAN (R 4.3.2)"                                                       
+[286] " lifecycle              1.0.4     2023-11-07 [2] CRAN (R 4.3.2)"                                                       
+[287] " limma                  3.58.1    2023-10-31 [2] Bioconductor"                                                         
+[288] " locfit                 1.5-9.8   2023-06-11 [2] CRAN (R 4.3.2)"                                                       
+[289] " lubridate            * 1.9.3     2023-09-27 [2] CRAN (R 4.3.2)"                                                       
+[290] " magrittr               2.0.3     2022-03-30 [2] CRAN (R 4.3.2)"                                                       
+[291] " Matrix                 1.6-1     2023-08-14 [1] CRAN (R 4.3.2)"                                                       
+[292] " MatrixGenerics       * 1.14.0    2023-10-24 [2] Bioconductor"                                                         
+[293] " matrixStats          * 1.1.0     2023-11-07 [2] CRAN (R 4.3.2)"                                                       
+[294] " munsell                0.5.0     2018-06-12 [2] CRAN (R 4.3.2)"                                                       
+[295] " pillar                 1.9.0     2023-03-22 [2] CRAN (R 4.3.2)"                                                       
+[296] " pkgconfig              2.0.3     2019-09-22 [2] CRAN (R 4.3.2)"                                                       
+[297] " purrr                * 1.0.2     2023-08-10 [2] CRAN (R 4.3.2)"                                                       
+[298] " R.methodsS3            1.8.2     2022-06-13 [2] CRAN (R 4.3.2)"                                                       
+[299] " R.oo                   1.25.0    2022-06-12 [2] CRAN (R 4.3.2)"                                                       
+[300] " R.utils                2.12.2    2022-11-11 [2] CRAN (R 4.3.2)"                                                       
+[301] " R6                     2.5.1     2021-08-19 [2] CRAN (R 4.3.2)"                                                       
+[302] " ragg                   1.2.6     2023-10-10 [2] CRAN (R 4.3.2)"                                                       
+[303] " Rcpp                   1.0.11    2023-07-06 [2] CRAN (R 4.3.2)"                                                       
+[304] " RCurl                  1.98-1.13 2023-11-02 [2] CRAN (R 4.3.2)"                                                       
+[305] " readr                * 2.1.4     2023-02-10 [2] CRAN (R 4.3.2)"                                                       
+[306] " rhdf5                  2.46.0    2023-10-24 [2] Bioconductor"                                                         
+[307] " rhdf5filters           1.14.1    2023-11-06 [2] Bioconductor"                                                         
+[308] " Rhdf5lib               1.24.0    2023-10-24 [2] Bioconductor"                                                         
+[309] " rlang                  1.1.2     2023-11-04 [2] CRAN (R 4.3.2)"                                                       
+[310] " rprojroot              2.0.4     2023-11-05 [2] CRAN (R 4.3.2)"                                                       
+[311] " S4Arrays               1.2.0     2023-10-24 [2] Bioconductor"                                                         
+[312] " S4Vectors            * 0.40.1    2023-10-26 [2] Bioconductor"                                                         
+[313] " scales                 1.2.1     2022-08-20 [2] CRAN (R 4.3.2)"                                                       
+[314] " scuttle              * 1.12.0    2023-10-24 [2] Bioconductor"                                                         
+[315] " sessioninfo          * 1.2.2     2021-12-06 [2] CRAN (R 4.3.2)"                                                       
+[316] " SingleCellExperiment * 1.24.0    2023-10-24 [2] Bioconductor"                                                         
+[317] " SparseArray            1.2.2     2023-11-07 [2] Bioconductor"                                                         
+[318] " sparseMatrixStats      1.14.0    2023-10-24 [2] Bioconductor"                                                         
+[319] " statmod                1.5.0     2023-01-06 [2] CRAN (R 4.3.2)"                                                       
+[320] " stringi                1.8.1     2023-11-13 [2] CRAN (R 4.3.2)"                                                       
+[321] " stringr              * 1.5.1     2023-11-14 [2] CRAN (R 4.3.2)"                                                       
+[322] " SummarizedExperiment * 1.32.0    2023-10-24 [2] Bioconductor"                                                         
+[323] " systemfonts            1.0.5     2023-10-09 [2] CRAN (R 4.3.2)"                                                       
+[324] " textshaping            0.3.7     2023-10-09 [2] CRAN (R 4.3.2)"                                                       
+[325] " tibble               * 3.2.1     2023-03-20 [2] CRAN (R 4.3.2)"                                                       
+[326] " tidyr                * 1.3.0     2023-01-24 [2] CRAN (R 4.3.2)"                                                       
+[327] " tidyselect             1.2.0     2022-10-10 [2] CRAN (R 4.3.2)"                                                       
+[328] " tidyverse            * 2.0.0     2023-02-22 [2] CRAN (R 4.3.2)"                                                       
+[329] " timechange             0.2.0     2023-01-11 [2] CRAN (R 4.3.2)"                                                       
+[330] " tzdb                   0.4.0     2023-05-12 [2] CRAN (R 4.3.2)"                                                       
+[331] " utf8                   1.2.4     2023-10-22 [2] CRAN (R 4.3.2)"                                                       
+[332] " vctrs                  0.6.4     2023-10-12 [2] CRAN (R 4.3.2)"                                                       
+[333] " withr                  2.5.2     2023-10-30 [2] CRAN (R 4.3.2)"                                                       
+[334] " XVector                0.42.0    2023-10-24 [2] Bioconductor"                                                         
+[335] " zlibbioc               1.48.0    2023-10-24 [2] Bioconductor"                                                         
+[336] ""                                                                                                                      
+[337] " [1] /users/mtotty/R/4.3.x"                                                                                            
+[338] " [2] /jhpce/shared/community/core/conda_R/4.3.x/R/lib64/R/site-library"                                                
+[339] " [3] /jhpce/shared/community/core/conda_R/4.3.x/R/lib64/R/library"                                                     
+[340] ""                                                                                                                      
+[341] "──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
+[342] "**** Job ends ****"                                                                                                    
+[343] "Mon Dec 11 11:27:45 PM EST 2023"                                                                                       
+[1] "knee_lower =412" "knee_lower =500" "knee_lower =247" "knee_lower =264"
+[5] "knee_lower =213" "knee_lower =205" "knee_lower =207"
+[1] "412" "500" "247" "264" "213" "205" "207"
+[1] 412 500 247 264 213 205 207
+         SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1 
+                                                 412 
+          SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1 
+                                                 500 
+          SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1 
+                                                 247 
+          SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1 
+                                                 264 
+SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1 
+                                                 213 
+          SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1 
+                                                 205 
+SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1 
+                                                 207 
+Joining with `by = join_by(ind)`
+Joining with `by = join_by(Sample)`
+                                                Sample total_n non_empty
+1           SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1 1708005      6231
+2           SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1 1573111      6288
+3          SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1 1602335      6489
+4           SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1 1694764      7944
+5 SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1 2227914      8000
+6           SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1 2545690     10346
+7 SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1 2587247     13064
+  lower_cutoff
+1          264
+2          500
+3          412
+4          247
+5          213
+6          205
+7          207
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   6231    6388    7944    8337    9173   13064 
+Saving 9 x 7 in image
+$SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE   26809       0       0   26809
+  TRUE      103    6386       0    6489
+  <NA>        0       0 1569037 1569037
+  Sum     26912    6386 1569037 1602335
+
+$SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE   32904       0       0   32904
+  TRUE      124    6164       0    6288
+  <NA>        0       0 1533919 1533919
+  Sum     33028    6164 1533919 1573111
+
+$SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    2892       0       0    2892
+  TRUE     3844    4100       0    7944
+  <NA>        0       0 1683928 1683928
+  Sum      6736    4100 1683928 1694764
+
+$SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     558       0       0     558
+  TRUE       61    6170       0    6231
+  <NA>        0       0 1701216 1701216
+  Sum       619    6170 1701216 1708005
+
+$SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     176       0       0     176
+  TRUE      220    7780       0    8000
+  <NA>        0       0 2219738 2219738
+  Sum       396    7780 2219738 2227914
+
+$SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     790       0       0     790
+  TRUE      160   10186       0   10346
+  <NA>        0       0 2534554 2534554
+  Sum       950   10186 2534554 2545690
+
+$SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     991       0       0     991
+  TRUE      841   12223       0   13064
+  <NA>        0       0 2573192 2573192
+  Sum      1832   12223 2573192 2587247
+
+[1] 21091 58362
+Error in dummy[subset] : invalid subscript type 'S4'
+Calls: <Anonymous> ... perCellQCMetrics -> .local -> .per_cell_qc_metrics -> lapply -> FUN
+Execution halted
+**** Job ends ****
+Tue Dec 12 05:42:29 PM EST 2023

@@ -1,3 +1,5 @@
+install.packages("rafalib")
+
 library("SingleCellExperiment")
 library("scuttle")
 library("scran")
@@ -176,7 +178,7 @@ e.out.all <- do.call("rbind", e.out)
 sce.dropped <- sce[, which(e.out.all$FDR <= 0.001)]
 
 dim(sce.dropped)
-# [1]  21369 134685
+# [1] 21091 58362
 
 # use grep to find genes with "MT-" in name
 is.mito <- grep("MT-", rownames(sce.dropped))

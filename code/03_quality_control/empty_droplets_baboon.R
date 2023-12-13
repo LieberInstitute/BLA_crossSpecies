@@ -7,7 +7,7 @@ library("sessioninfo")
 
 
 # --------------------- Load sce ---------------------
-load(here("processed-data", "02_build_sce", "sce_baboon_raw.rda"), verbose = TRUE)
+load(here("processed-data", "02_build_sce", "sce_baboon_raw_ncbi.rda"), verbose = TRUE)
 sce
 
 
@@ -15,7 +15,6 @@ unique_samples <- unique(sce$Sample)
 
 for (sample_run in unique_samples) {
     sce_sample <- sce[, sce$Sample == sample_run]
-    sce_run
     
     #--------------------- Run barcodeRanks --------------------- 
     
@@ -64,7 +63,7 @@ for (sample_run in unique_samples) {
     Sys.time()
     
     if (!dir.exists(here("processed-data", "03_quality_control", "Baboon","droplet_scores"))) dir.create(here("processed-data", "03_quality_control","Baboon", "droplet_scores"))
-    save(e.out, file = here("processed-data", "03_quality_control","Baboon", "droplet_scores", paste0("droplet_scores_", sample_run, ".Rdata")))
+    save(e.out, file = here("processed-data", "03_quality_control","Baboon", "droplet_scores", paste0("ncbi_droplet_scores_", sample_run, ".Rdata")))
     
     
     # ---------------------------Droplet Plots ----------------------------
