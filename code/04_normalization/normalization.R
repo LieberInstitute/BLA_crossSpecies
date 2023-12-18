@@ -167,6 +167,32 @@ sce.baboon
 # sce.baboon <- sce.baboon.ortho
 
 
+# ========= Drop lowly expressed genes ==========
+
+# drops genes that don't have 1 UMI in at least 5% of cells
+num_reads <- 1
+num_cells <- 0.01*ncol(sce.human)
+keep <- which(DelayedArray::rowSums(counts(sce.human) >= num_reads ) >= num_cells)
+sce.human <- sce.human[keep,]
+dim(sce.human)
+
+
+
+num_reads <- 1
+num_cells <- 0.01*ncol(sce.macaque)
+keep <- which(DelayedArray::rowSums(counts(sce.macaque) >= num_reads ) >= num_cells)
+sce.macaque <- sce.macaque[keep,]
+dim(sce.macaque)
+
+
+num_reads <- 1
+num_cells <- 0.01*ncol(sce.baboon)
+keep <- which(DelayedArray::rowSums(counts(sce.baboon) >= num_reads ) >= num_cells)
+sce.baboon <- sce.baboon[keep,]
+dim(sce.baboon)
+
+
+
 # =========== Quick cluster, compute size factors, and normalize ==============
 
 set.seed(100)
