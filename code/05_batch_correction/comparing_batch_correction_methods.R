@@ -1,4 +1,4 @@
-# srun -n 1 --mem=64G --cpus-per-task=8 --pty bash -i
+# srun -n 1 --mem=100G --cpus-per-task=8 --pty bash -i
 library(SingleCellExperiment)
 library(sessioninfo)
 library(ggplot2)
@@ -15,49 +15,48 @@ library(SeuratData)
 plot_dir = here("plots", "05_batch_correction", "method_comparisons")
 processed_dir = here("processed-data","05_batch_correction")
 
-
 # load sce
-load(file=here("processed-data","04_normalization", "sce.human_normalized.rds"))
+sce.human <- readRDS(file=here("processed-data","04_normalization", "sce.human_normalized.rds"))
 sce.human
 # class: SingleCellExperiment 
-# dim: 36601 21268 
+# dim: 13874 21268 
 # metadata(1): Samples
-# assays(1): counts
-# rownames(36601): MIR1302-2HG FAM138A ... AC007325.4 AC007325.2
+# assays(2): counts logcounts
+# rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
 # rowData names(7): source type ... gene_type Symbol.uniq
 # colnames(21268): 1_AAACCCAAGCTAAATG-1 1_AAACCCACAGGTCCCA-1 ...
 # 5_TTTGTTGTCGGACTGC-1 5_TTTGTTGTCGTTGTTT-1
-# colData names(27): Sample Barcode ... discard_auto doubletScore
+# colData names(28): Sample Barcode ... doubletScore sizeFactor
 # reducedDimNames(0):
 #     mainExpName: NULL
 # altExpNames(0):
 
-load(file=here("processed-data", "04_normalization", "sce.macaque_normalized.rds"))
+sce.macaque <- readRDS(file=here("processed-data", "04_normalization", "sce.macaque_normalized.rds"))
 sce.macaque
 # class: SingleCellExperiment 
-# dim: 21369 109142 
+# dim: 13874 109142 
 # metadata(1): Samples
-# assays(1): counts
-# rownames(21369): ENSMMUG00000023296 ZNF692 ... ND6 CYTB
+# assays(2): counts logcounts
+# rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
 # rowData names(7): source type ... gene_biotype Symbol.uniq
 # colnames(109142): 1_AAACGAAAGCGCCGTT-1 1_AAACGAACAGCCGTTG-1 ...
 # 35_TTTGGTTGTGGCTAGA-1 35_TTTGTTGCACATGGTT-1
-# colData names(13): Sample Barcode ... discard_auto doubletScore
+# colData names(14): Sample Barcode ... doubletScore sizeFactor
 # reducedDimNames(0):
 #     mainExpName: NULL
 # altExpNames(0):
 
-load(file=here("processed-data","04_normalization", "sce.baboon_normalized.rds"))
+sce.baboon <- readRDS(file=here("processed-data","04_normalization", "sce.baboon_normalized.rds"))
 sce.baboon
 # class: SingleCellExperiment 
-# dim: 20842 57564 
+# dim: 13874 47039 
 # metadata(1): Samples
-# assays(1): counts
-# rownames(20842): PITHD1 ACTL8 ... ENSPANG00000037790 ENSPANG00000045064
-# rowData names(7): source type ... gene_biotype Symbol.uniq
-# colnames(57564): 1_AAACCCAAGACTGTTC-1 1_AAACCCAAGATCCAAA-1 ...
+# assays(2): counts logcounts
+# rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
+# rowData names(5): ID Symbol Type gene_id_ncbi Symbol.uniq
+# colnames(47039): 1_AAACCCAAGACTGTTC-1 1_AAACCCAAGATCCAAA-1 ...
 # 7_TTTGTTGTCGTGGGAA-1 7_TTTGTTGTCTTAATCC-1
-# colData names(21): Sample Barcode ... discard_auto doubletScore
+# colData names(22): Sample Barcode ... doubletScore sizeFactor
 # reducedDimNames(0):
 #     mainExpName: NULL
 # altExpNames(0):
@@ -65,30 +64,32 @@ sce.baboon
 
 # ===== Feature seleection =====
 
-dec1 <- modelGeneVar(sce.human)
-dec2 <- modelGeneVar(sce.macaque)
-dec3 <- modelGeneVar(sce.baboon)
-
-combined.dec <- combineVar(dec1, dec2, dec3)
-chosen.hvgs <- getTopHVGs(combined.dec, n=5000)
-
-# As a sanity check, let's confirm that there are indeed batch effects in the data
-
-combined <- correctExperiments(Human=sce.human, Macaque=sce.macaque, Baboon=sce.baboon, PARAM=NoCorrectParam())
-combined
-# class: SingleCellExperiment 
-# dim: 14391 187974 
-# metadata(0):
-#   assays(3): merged counts logcounts
-# rownames(14391): SAMD11 NOC2L ... EIF1AY RPS4Y2
-# rowData names(4): gene_name gene_type Symbol.uniq gene_biotype
-# colnames(187974): 1_AAACCCAAGCTAAATG-1 1_AAACCCACAGGTCCCA-1 ... 7_TTTGTTGTCGTGGGAA-1 7_TTTGTTGTCTTAATCC-1
-# colData names(15): batch Sample ... doubletScore sizeFactor
-# reducedDimNames(0):
-#   mainExpName: NULL
-# altExpNames(0):
+# drops genes that don't have 1 UMI in at least 5% of cells
+num_reads <- 1
+num_cells <- 0.01*ncol(sce.human)
+keep <- which(DelayedArray::rowSums(counts(sce.human) >= num_reads ) >= num_cells)
+sce.human <- sce.human[keep,]
+dim(sce.human)
+# [1] 11779 21268 
 
 
+num_reads <- 1
+num_cells <- 0.01*ncol(sce.macaque)
+keep <- which(DelayedArray::rowSums(counts(sce.macaque) >= num_reads ) >= num_cells)
+sce.macaque <- sce.macaque[keep,]
+dim(sce.macaque)
+# [1] 10973 47039
+
+num_reads <- 1
+num_cells <- 0.01*ncol(sce.baboon)
+keep <- which(DelayedArray::rowSums(counts(sce.baboon) >= num_reads ) >= num_cells)
+sce.baboon <- sce.baboon[keep,]
+dim(sce.baboon)
+# [1] 10973 47039
+
+
+
+# ===== Subsetting to 10k cells =====
 
 # Initialize an empty list to store subsets
 subsets <- list()
@@ -100,44 +101,108 @@ for (batch_id in unique(combined$batch)) {
     
     # Randomly sample 6000 nuclei from this batch
     set.seed(123) # for reproducibility
-    sampled_cells <- batch_cells[, sample(ncol(batch_cells), 6000)]
+    sampled_cells <- batch_cells[, sample(ncol(batch_cells), 10000)]
     
     # Add the sampled cells to the list
     subsets[[batch_id]] <- sampled_cells
 }
 
-# Combine the subsets from each batch
-combined.subset <- do.call(cbind, subsets)
-combined.subset
-# class: SingleCellExperiment 
-# dim: 14391 18000 
-# metadata(0):
-#   assays(3): merged counts logcounts
-# rownames(14391): SAMD11 NOC2L ... EIF1AY RPS4Y2
-# rowData names(4): gene_name gene_type Symbol.uniq gene_biotype
-# colnames(18000): 5_GACCCTTCATGCAGGA-1 5_GACTGATAGGGACACT-1 ... 4_CTGAATGTCTTCCTAA-1 7_CGTCCATTCCTCGCAT-1
-# colData names(15): batch Sample ... doubletScore sizeFactor
-# reducedDimNames(0):
-#   mainExpName: NULL
-# altExpNames(0):
+# randomly subset human, baboon, and macaque data to 10000 cells
 
-rm(combined)
+# human
+set.seed(123) # for reproducibility
+human.subset <- sce.human[, sample(ncol(sce.human), 10000)]
+dim(human.subset)
+# [1] 11779 10000
+
+# macaque
+set.seed(123) # for reproducibility
+macaque.subset <- sce.macaque[, sample(ncol(sce.macaque), 10000)]
+dim(macaque.subset)
+# [1] 11173 10000
+
+# baboon
+set.seed(123) # for reproducibility
+baboon.subset <- sce.baboon[, sample(ncol(sce.baboon), 10000)]
+dim(baboon.subset)
+# [1] 10973 10000
+
 
 
 # ============== PCA and TSNE before correction ==================
 
-combined.subset$Species <- combined.subset$batch
+# ===== HUMAN =====
+set.seed(54321)
+
+# calculating nullResiduals without batch
+human.subset <- scry::nullResiduals(human.subset, assay="counts", type="deviance")
+human.subset <- scater::runPCA(human.subset, ncomponents = 50,
+                      ntop = 5000,
+                      exprs_values = "binomial_deviance_residuals",
+                      scale = TRUE, name = "GLM-PCA",
+                      BSPARAM = BiocSingular::RandomParam())
+
+pdf(here(plot_dir, "PCA_human_GLM-PCA_uncorrected.pdf"))
+plotReducedDim(human.subset, dimred="GLM-PCA", colour_by="Sample", )
+dev.off()
 
 
-set.seed(111)
-combined.subset <- runPCA(combined.subset, subset_row=chosen.hvgs,
-                          BPPARAM = BiocParallel::MulticoreParam(workers=8))
+# calculating nullResiduals with batch
+human.subset <- scry::nullResiduals(human.subset, assay="counts", type="deviance", batch='Sample')
+human.subset <- scater::runPCA(human.subset, ncomponents = 50,
+                               ntop = 5000,
+                               exprs_values = "binomial_deviance_residuals",
+                               scale = TRUE, name = "GLM-PCA_wBatch",
+                               BSPARAM = BiocSingular::RandomParam())
 
-combined.subset <- runTSNE(combined.subset, dimred="PCA",
+pdf(here(plot_dir, "PCA_human_GLM-PCA_wBatch_uncorrected.pdf"))
+plotReducedDim(human.subset, dimred="GLM-PCA_wBatch", colour_by="Sample", )
+dev.off()
+
+
+# calculating UMAP
+human.subset <- runUMAP(human.subset, dimred="GLM-PCA",
                            BPPARAM = BiocParallel::MulticoreParam(workers=8))
 
-pdf(here(plot_dir, "TSNE_batch_effects.pdf"))
-plotTSNE(combined.subset, colour_by="batch")
+pdf(here(plot_dir, "UMAP_human_GLM-PCA_uncorrected.pdf"))
+plotReducedDim(human.subset, dimred="UMAP", colour_by="Sample")
+dev.off()
+
+# calculate TSNE
+human.subset <- runTSNE(human.subset, dimred="GLM-PCA",
+                           BPPARAM = BiocParallel::MulticoreParam(workers=8))
+
+pdf(here(plot_dir, "TSNE_human_GLM-PCA_uncorrected.pdf"))
+plotReducedDim(human.subset, dimred="TSNE", colour_by="Sample")
+dev.off()
+
+
+# now normal PCA and UMAP
+human.subset <- scater::runPCA(human.subset, ncomponents = 50,
+                      ntop = 5000,
+                      exprs_values = "counts",
+                      scale = TRUE, name = "PCA",
+                      BSPARAM = BiocSingular::RandomParam())
+
+pdf(here(plot_dir, "PCA_human_PCA_uncorrected.pdf"))
+plotReducedDim(human.subset, dimred="PCA", colour_by="Sample", )
+dev.off()
+
+
+# calculating UMAP
+human.subset <- runUMAP(human.subset, dimred="PCA",
+                           BPPARAM = BiocParallel::MulticoreParam(workers=8))
+
+pdf(here(plot_dir, "UMAP_human_PCA_uncorrected.pdf"))
+plotReducedDim(human.subset, dimred="UMAP", colour_by="Sample")
+dev.off()
+
+# calculate TSNE
+human.subset <- runTSNE(human.subset, dimred="PCA",
+                           BPPARAM = BiocParallel::MulticoreParam(workers=8))
+
+pdf(here(plot_dir, "TSNE_human_PCA_uncorrected.pdf"))
+plotReducedDim(human.subset, dimred="TSNE", colour_by="Sample")
 dev.off()
 
 
