@@ -1,4 +1,3 @@
-# srun -n 1 --mem=64G --cpus-per-task=20 --pty bash -i
 library(SingleCellExperiment)
 library(sessioninfo)
 library(ggplot2)
@@ -192,112 +191,10 @@ saveRDS(sce.human, file = here(processed_dir, "sce.human_normalized.rds"))
 saveRDS(sce.macaque, file = here(processed_dir, "sce.macaque_normalized.rds"))
 saveRDS(sce.baboon, file = here(processed_dir, "sce.baboon_normalized.rds"))
 
-
-# ===== Feature seleection =====
-
-dec1 <- modelGeneVar(sce.human)
-dec2 <- modelGeneVar(sce.macaque)
-dec3 <- modelGeneVar(sce.baboon)
-
-combined.dec <- combineVar(dec1, dec2, dec3)
-chosen.hvgs <- getTopHVGs(combined.dec, n=4000)
-
-# As a sanity check, let's confirm that there are indeed batch effects in the data
-
-combined <- correctExperiments(Human=sce.human, Macaque=sce.macaque, Baboon=sce.baboon, PARAM=NoCorrectParam())
-
-rm(sce.human, sce.macaque, sce.baboon)
-
-set.seed(100)
-combined <- runPCA(combined, subset_row=chosen.hvgs,
-                   #BPPARAM = BiocParallel::MulticoreParam(workers=1))
-
-combined <- runUMAP(combined, dimred="PCA",
-                    #BPPARAM = BiocParallel::MulticoreParam(workers=1)
-                    )
-
-combined <- runTSNE(combined, dimred="PCA"
-                    #BPPARAM = BiocParallel::MulticoreParam(workers=1)
-                    )
-
-pdf(here(plot_dir, "TSNE_batch_effects.pdf"))
-plotTSNE(combined, colour_by="batch")
-dev.off()
-
-
-
-# ============== Batch correction using MNN ============
-
-set.seed(101)
-# run with 20 cores
-combined <- scry::nullResiduals(combined, assay="counts", type="deviance", )
-
-combined <- runPCA(combined, ncomponents = 50,
-       ntop = 3000,
-       exprs_values = "binomial_deviance_residuals",
-       scale = TRUE, name = "GLM-PCA_approx",
-       #BPPARAM = BiocParallel::MulticoreParam(workers=20)
-       )
-
-pdf(here(plot_dir, "GLM_PCA_approx.pdf"))
-plotReducedDim(combined, dimred = "GLM-PCA_approx", colour_by = "batch")
-dev.off()
-
-
-
-# calculate UMAP and TSNE using GLM-PCA_approx
-set.seed(1234)
-combined <- runUMAP(combined,
-                    dimred = "GLM-PCA_approx",
-                    name = "UMAP",
-                    #BPPARAM = BiocParallel::MulticoreParam(workers=20)
-                    )
-
-combined <- runTSNE(combined,
-                    dimred = "GLM-PCA_approx",
-                    name = "TSNE",
-                    #BPPARAM = BiocParallel::MulticoreParam(workers=20)
-                    )
-
-
-
-# plot UMAP and TSNE with color by species
-pdf(here(plot_dir, "UMAP_uncorrected_species.pdf"))
-plotUMAP(combined, colour_by = "batch", point_alpha = 0.2)
-dev.off()
-
-pdf(here(plot_dir, "TSNE_uncorrected_species.pdf"))
-plotTSNE(combined, colour_by = "batch", point_alpha = 0.2)
-dev.off()
-
-
-# ploy UMAP and TSNE with color by library size
-pdf(here(plot_dir, "UMAP_uncorrected_lib_size.pdf"))
-plotUMAP(combined, colour_by = "sum", point_alpha = 0.2)
-dev.off()
-
-pdf(here(plot_dir, "TSNE_uncorrected_lib_size.pdf"))
-plotTSNE(combined, colour_by = "sum", point_alpha = 0.2)
-dev.off()
-
-
-# ploy UMAP and TSNE with color by doublet score
-pdf(here(plot_dir, "UMAP_uncorrected_doubletScore.pdf"))
-plotUMAP(combined, colour_by = "doubletScore", point_alpha = 0.2)
-dev.off()
-
-pdf(here(plot_dir, "TSNE_uncorrected_doubletScore.pdf"))
-plotTSNE(combined, colour_by = "doubletScore", point_alpha = 0.2)
-dev.off()
-
-combined
-
-# save combined, uncorrected sce
-save(combined,file = here(processed_dir,"sce_combined_uncorrected.rda"))
-
 ## Reproducibility information
 print("Reproducibility information:")
 Sys.time()
 proc.time()
 options(width = 120)
 session_info()
+

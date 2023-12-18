@@ -2,9 +2,9 @@
 #SBATCH --job-name=Norm_and_DimRed
 #SBATCH --output=logs/Norm_and_DimRed.txt
 #SBATCH --error=logs/Norm_and_DimRed.txt
-#SBATCH --mem=200G
+#SBATCH --mem=64G
 #SBATCH --mail-type=END
-#SBATCH --cpus-per-task=20 # specify the number of CPUs needed for the job, adjust as needed
+#SBATCH --cpus-per-task=1 # specify the number of CPUs needed for the job, adjust as needed
 
 echo "**** Job starts ****"
 date
@@ -24,7 +24,7 @@ module load conda_R
 module list
 
 ## Edit with your job command
-Rscript norm_and_dim_reduction_all_primates.R
+Rscript normalization.R
 
 echo "**** Job ends ****"
 date
