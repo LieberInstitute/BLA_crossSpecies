@@ -61,110 +61,110 @@ sce.baboon
 # altExpNames(0):
 
 
-# ====== Subset to only 1:1 orthologs ======
+# # ====== Subset to only 1:1 orthologs ======
 
-method <- "gprofiler"
+# method <- "gprofiler"
 
-baboon_orthos <- orthogene::convert_orthologs(gene_df = counts(sce.baboon),
-                                        gene_input = "rownames", 
-                                        gene_output = "rownames", 
-                                        input_species = "macaque",
-                                        output_species = "human",
-                                        non121_strategy = "drop_both_species",
-                                        method = method) 
-# =========== REPORT SUMMARY ===========
-# Total genes dropped after convert_orthologs :
-#     5,487 / 21,091 (26%)
-# Total genes remaining after convert_orthologs :
-#     15,604 / 21,091 (74%)
+# baboon_orthos <- orthogene::convert_orthologs(gene_df = counts(sce.baboon),
+#                                         gene_input = "rownames", 
+#                                         gene_output = "rownames", 
+#                                         input_species = "macaque",
+#                                         output_species = "human",
+#                                         non121_strategy = "drop_both_species",
+#                                         method = method) 
+# # =========== REPORT SUMMARY ===========
+# # Total genes dropped after convert_orthologs :
+# #     5,487 / 21,091 (26%)
+# # Total genes remaining after convert_orthologs :
+# #     15,604 / 21,091 (74%)
 
-macaque_orthos <- orthogene::convert_orthologs(gene_df = counts(sce.macaque),
-                                              gene_input = "rownames", 
-                                              gene_output = "rownames", 
-                                              input_species = "baboon",
-                                              output_species = "human",
-                                              non121_strategy = "drop_both_species",
-                                              method = method) 
-# =========== REPORT SUMMARY ===========
-# Total genes dropped after convert_orthologs :
-#     6,221 / 21,369 (29%)
-# Total genes remaining after convert_orthologs :
-#     15,148 / 21,369 (71%)
+# macaque_orthos <- orthogene::convert_orthologs(gene_df = counts(sce.macaque),
+#                                               gene_input = "rownames", 
+#                                               gene_output = "rownames", 
+#                                               input_species = "baboon",
+#                                               output_species = "human",
+#                                               non121_strategy = "drop_both_species",
+#                                               method = method) 
+# # =========== REPORT SUMMARY ===========
+# # Total genes dropped after convert_orthologs :
+# #     6,221 / 21,369 (29%)
+# # Total genes remaining after convert_orthologs :
+# #     15,148 / 21,369 (71%)
 
-nhp_orthologs <- intersect(rownames(baboon_orthos), rownames(macaque_orthos))
-length(nhp_orthologs)
-# [1] 14025
+# nhp_orthologs <- intersect(rownames(baboon_orthos), rownames(macaque_orthos))
+# length(nhp_orthologs)
+# # [1] 14025
 
-# get only orthologs that are in the human dataset
-valid.human.orthologs <- nhp_orthologs[nhp_orthologs %in% rownames(sce.human)]
-length(valid.human.orthologs)
-# [1] 13948
+# # get only orthologs that are in the human dataset
+# valid.human.orthologs <- nhp_orthologs[nhp_orthologs %in% rownames(sce.human)]
+# length(valid.human.orthologs)
+# # [1] 13948
 
-# get only orthologs that are in the macaque dataset
-valid.macaque.orthologs <- nhp_orthologs[nhp_orthologs %in% rownames(sce.macaque)]
-length(valid.macaque.orthologs)
-# [1] 13952
+# # get only orthologs that are in the macaque dataset
+# valid.macaque.orthologs <- nhp_orthologs[nhp_orthologs %in% rownames(sce.macaque)]
+# length(valid.macaque.orthologs)
+# # [1] 13952
 
-# get only orthologs that are in the baboon dataset
-valid.baboon.orthologs <- nhp_orthologs[nhp_orthologs %in% rownames(sce.baboon)]
-length(valid.baboon.orthologs)
-# [1] 13937
+# # get only orthologs that are in the baboon dataset
+# valid.baboon.orthologs <- nhp_orthologs[nhp_orthologs %in% rownames(sce.baboon)]
+# length(valid.baboon.orthologs)
+# # [1] 13937
 
-# get only orthologs common to all datasets
-human_v_mac.orthologs <- intersect(valid.human.orthologs, valid.macaque.orthologs)
-final.121.orthologs <- intersect(human_v_mac.orthologs, valid.baboon.orthologs)
-length(final.121.orthologs)
-# [1] 13874
+# # get only orthologs common to all datasets
+# human_v_mac.orthologs <- intersect(valid.human.orthologs, valid.macaque.orthologs)
+# final.121.orthologs <- intersect(human_v_mac.orthologs, valid.baboon.orthologs)
+# length(final.121.orthologs)
+# # [1] 13874
 
-# subset to only 1:1 orthologs
-sce.human.ortho <- sce.human[final.121.orthologs ,]
-sce.human.ortho
-# class: SingleCellExperiment 
-# dim: 13874 21268 
-# metadata(1): Samples
-# assays(1): counts
-# rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
-# rowData names(7): source type ... gene_type Symbol.uniq
-# colnames(21268): 1_AAACCCAAGCTAAATG-1 1_AAACCCACAGGTCCCA-1 ...
-# 5_TTTGTTGTCGGACTGC-1 5_TTTGTTGTCGTTGTTT-1
-# colData names(27): Sample Barcode ... discard_auto doubletScore
-# reducedDimNames(0):
-#     mainExpName: NULL
-# altExpNames(0):
+# # subset to only 1:1 orthologs
+# sce.human.ortho <- sce.human[final.121.orthologs ,]
+# sce.human.ortho
+# # class: SingleCellExperiment 
+# # dim: 13874 21268 
+# # metadata(1): Samples
+# # assays(1): counts
+# # rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
+# # rowData names(7): source type ... gene_type Symbol.uniq
+# # colnames(21268): 1_AAACCCAAGCTAAATG-1 1_AAACCCACAGGTCCCA-1 ...
+# # 5_TTTGTTGTCGGACTGC-1 5_TTTGTTGTCGTTGTTT-1
+# # colData names(27): Sample Barcode ... discard_auto doubletScore
+# # reducedDimNames(0):
+# #     mainExpName: NULL
+# # altExpNames(0):
 
-sce.macaque.ortho <- sce.macaque[final.121.orthologs,]
-sce.macaque.ortho
-# dim: 13874 109142 
-# metadata(1): Samples
-# assays(1): counts
-# rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
-# rowData names(7): source type ... gene_biotype Symbol.uniq
-# colnames(109142): 1_AAACGAAAGCGCCGTT-1 1_AAACGAACAGCCGTTG-1 ...
-# 35_TTTGGTTGTGGCTAGA-1 35_TTTGTTGCACATGGTT-1
-# colData names(13): Sample Barcode ... discard_auto doubletScore
-# reducedDimNames(0):
-#     mainExpName: NULL
-# altExpNames(0):
+# sce.macaque.ortho <- sce.macaque[final.121.orthologs,]
+# sce.macaque.ortho
+# # dim: 13874 109142 
+# # metadata(1): Samples
+# # assays(1): counts
+# # rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
+# # rowData names(7): source type ... gene_biotype Symbol.uniq
+# # colnames(109142): 1_AAACGAAAGCGCCGTT-1 1_AAACGAACAGCCGTTG-1 ...
+# # 35_TTTGGTTGTGGCTAGA-1 35_TTTGTTGCACATGGTT-1
+# # colData names(13): Sample Barcode ... discard_auto doubletScore
+# # reducedDimNames(0):
+# #     mainExpName: NULL
+# # altExpNames(0):
 
-sce.baboon.ortho <- sce.baboon[final.121.orthologs,]
-sce.baboon.ortho
-# class: SingleCellExperiment 
-# dim: 13874 47039 
-# metadata(1): Samples
-# assays(1): counts
-# rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
-# rowData names(5): ID Symbol Type gene_id_ncbi Symbol.uniq
-# colnames(47039): 1_AAACCCAAGACTGTTC-1 1_AAACCCAAGATCCAAA-1 ...
-# 7_TTTGTTGTCGTGGGAA-1 7_TTTGTTGTCTTAATCC-1
-# colData names(21): Sample Barcode ... discard_auto doubletScore
-# reducedDimNames(0):
-#     mainExpName: NULL
-# altExpNames(0):
+# sce.baboon.ortho <- sce.baboon[final.121.orthologs,]
+# sce.baboon.ortho
+# # class: SingleCellExperiment 
+# # dim: 13874 47039 
+# # metadata(1): Samples
+# # assays(1): counts
+# # rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
+# # rowData names(5): ID Symbol Type gene_id_ncbi Symbol.uniq
+# # colnames(47039): 1_AAACCCAAGACTGTTC-1 1_AAACCCAAGATCCAAA-1 ...
+# # 7_TTTGTTGTCGTGGGAA-1 7_TTTGTTGTCTTAATCC-1
+# # colData names(21): Sample Barcode ... discard_auto doubletScore
+# # reducedDimNames(0):
+# #     mainExpName: NULL
+# # altExpNames(0):
 
-# rename variables
-sce.human <- sce.human.ortho
-sce.macaque <- sce.macaque.ortho
-sce.baboon <- sce.baboon.ortho
+# # rename variables
+# sce.human <- sce.human.ortho
+# sce.macaque <- sce.macaque.ortho
+# sce.baboon <- sce.baboon.ortho
 
 
 # =========== Quick cluster, compute size factors, and normalize ==============
