@@ -17,7 +17,7 @@ processed_dir = here("processed-data","05_batch_correction")
 
 
 # load sce
-load(file=here("processed-data","04_norm_and_dim_reduction", "sce_human_normalized.rda"))
+load(file=here("processed-data","04_normalization", "sce.human_normalized.rds"))
 sce.human
 # class: SingleCellExperiment 
 # dim: 36601 21268 
@@ -32,7 +32,7 @@ sce.human
 #     mainExpName: NULL
 # altExpNames(0):
 
-load(file=here("processed-data","04_norm_and_dim_reduction", "sce_macaque_normalized.rda"))
+load(file=here("processed-data", "04_normalization", "sce.macaque_normalized.rds"))
 sce.macaque
 # class: SingleCellExperiment 
 # dim: 21369 109142 
@@ -47,7 +47,7 @@ sce.macaque
 #     mainExpName: NULL
 # altExpNames(0):
 
-load(file=here("processed-data","04_norm_and_dim_reduction", "sce_baboon_normalized.rda"))
+load(file=here("processed-data","04_normalization", "sce.baboon_normalized.rds"))
 sce.baboon
 # class: SingleCellExperiment 
 # dim: 20842 57564 
@@ -61,27 +61,6 @@ sce.baboon
 # reducedDimNames(0):
 #     mainExpName: NULL
 # altExpNames(0):
-
-# =========== Calculate size factors ==============
-
-human_v_mac <- intersect(rownames(sce.human), rownames(sce.macaque))
-all_common_genes <- intersect(human_v_mac, rownames(sce.baboon))
-
-sce.human <- sce.human[all_common_genes,]
-sce.macaque <- sce.macaque[all_common_genes,]
-sce.baboon <- sce.baboon[all_common_genes,]
-
-dim(sce.human)
-# [1] 20842 21268
-dim(sce.macaque)
-# [1]  14391 109142
-
-# ===== Perform multi-experiment normalization =====
-
-out <- multiBatchNorm(sces = list(sce.human, sce.macaque, sce.baboon))
-sce.human <- out[[1]]
-sce.macaque <- out[[2]]
-sce.baboon <- out[[3]]
 
 
 # ===== Feature seleection =====
