@@ -64,66 +64,66 @@ sce.baboon
 
 # ===== Feature seleection =====
 
-# drops genes that don't have 1 UMI in at least 5% of cells
-num_reads <- 1
-num_cells <- 0.01*ncol(sce.human)
-keep <- which(DelayedArray::rowSums(counts(sce.human) >= num_reads ) >= num_cells)
-sce.human <- sce.human[keep,]
-dim(sce.human)
-# [1] 11779 21268 
-
-
-num_reads <- 1
-num_cells <- 0.01*ncol(sce.macaque)
-keep <- which(DelayedArray::rowSums(counts(sce.macaque) >= num_reads ) >= num_cells)
-sce.macaque <- sce.macaque[keep,]
-dim(sce.macaque)
-# [1] 10973 47039
-
-num_reads <- 1
-num_cells <- 0.01*ncol(sce.baboon)
-keep <- which(DelayedArray::rowSums(counts(sce.baboon) >= num_reads ) >= num_cells)
-sce.baboon <- sce.baboon[keep,]
-dim(sce.baboon)
-# [1] 10973 47039
+# # drops genes that don't have 1 UMI in at least 5% of cells
+# num_reads <- 1
+# num_cells <- 0.01*ncol(sce.human)
+# keep <- which(DelayedArray::rowSums(counts(sce.human) >= num_reads ) >= num_cells)
+# sce.human <- sce.human[keep,]
+# dim(sce.human)
+# # [1] 11779 21268 
+# 
+# 
+# num_reads <- 1
+# num_cells <- 0.01*ncol(sce.macaque)
+# keep <- which(DelayedArray::rowSums(counts(sce.macaque) >= num_reads ) >= num_cells)
+# sce.macaque <- sce.macaque[keep,]
+# dim(sce.macaque)
+# # [1] 10973 47039
+# 
+# num_reads <- 1
+# num_cells <- 0.01*ncol(sce.baboon)
+# keep <- which(DelayedArray::rowSums(counts(sce.baboon) >= num_reads ) >= num_cells)
+# sce.baboon <- sce.baboon[keep,]
+# dim(sce.baboon)
+# # [1] 10973 47039
 
 
 
 # ===== Subsetting to 10k cells =====
 
-# Initialize an empty list to store subsets
-subsets <- list()
+# # Initialize an empty list to store subsets
+# subsets <- list()
+# 
+# # Loop through each batch
+# for (batch_id in unique(combined$batch)) {
+#     # Filter cells from the current batch
+#     batch_cells <- combined[, combined$batch == batch_id]
+#     
+#     # Randomly sample 6000 nuclei from this batch
+#     set.seed(123) # for reproducibility
+#     sampled_cells <- batch_cells[, sample(ncol(batch_cells), 10000)]
+#     
+#     # Add the sampled cells to the list
+#     subsets[[batch_id]] <- sampled_cells
+# }
 
-# Loop through each batch
-for (batch_id in unique(combined$batch)) {
-    # Filter cells from the current batch
-    batch_cells <- combined[, combined$batch == batch_id]
-    
-    # Randomly sample 6000 nuclei from this batch
-    set.seed(123) # for reproducibility
-    sampled_cells <- batch_cells[, sample(ncol(batch_cells), 10000)]
-    
-    # Add the sampled cells to the list
-    subsets[[batch_id]] <- sampled_cells
-}
-
-# randomly subset human, baboon, and macaque data to 10000 cells
+randomly subset human, baboon, and macaque data to 10000 cells
 
 # human
 set.seed(123) # for reproducibility
-human.subset <- sce.human[, sample(ncol(sce.human), 10000)]
+human.subset <- sce.human[, sample(ncol(sce.human), 20000)]
 dim(human.subset)
 # [1] 11779 10000
 
 # macaque
 set.seed(123) # for reproducibility
-macaque.subset <- sce.macaque[, sample(ncol(sce.macaque), 10000)]
+macaque.subset <- sce.macaque[, sample(ncol(sce.macaque), 20000)]
 dim(macaque.subset)
 # [1] 11173 10000
 
 # baboon
 set.seed(123) # for reproducibility
-baboon.subset <- sce.baboon[, sample(ncol(sce.baboon), 10000)]
+baboon.subset <- sce.baboon[, sample(ncol(sce.baboon), 20000)]
 dim(baboon.subset)
 # [1] 10973 10000
 
@@ -132,7 +132,8 @@ dim(baboon.subset)
 # ============== PCA and TSNE before correction ==================
 
 # ===== HUMAN =====
-set.seed(54321)
+set.seed(915)
+human.subset <- sce.human
 
 # calculating nullResiduals without batch
 human.subset <- scry::nullResiduals(human.subset, assay="counts", type="deviance")
@@ -180,7 +181,7 @@ dev.off()
 # now normal PCA and UMAP
 human.subset <- scater::runPCA(human.subset, ncomponents = 50,
                       ntop = 5000,
-                      exprs_values = "counts",
+                      exprs_values = "logcounts",
                       scale = TRUE, name = "PCA",
                       BSPARAM = BiocSingular::RandomParam())
 
@@ -205,8 +206,31 @@ pdf(here(plot_dir, "TSNE_human_PCA_uncorrected.pdf"))
 plotReducedDim(human.subset, dimred="TSNE", colour_by="Sample")
 dev.off()
 
+# plot TSNE and color with doublet score
+pdf(here(plot_dir, "TSNE_human_PCA_uncorrected_doublet_score.pdf"))
+plotTSNE(human.subset, colour_by="doubletScore")
+dev.off()
+
+
+
+
+# =========== Baboons =============
+
+# calculating nullResiduals without batch
+baboon.subset <- scry::nullResiduals(baboon.subset, assay="counts", type="deviance")
+baboon.subset <- scater::runPCA(baboon.subset, ncomponents = 50,
+                               ntop = 5000,
+                               exprs_values = "binomial_deviance_residuals",
+                               scale = TRUE, name = "GLM-PCA",
+                               BSPARAM = BiocSingular::RandomParam())
+
+pdf(here(plot_dir, "PCA_baboon_GLM-PCA_uncorrected.pdf"))
+plotReducedDim(baboon.subset, dimred="GLM-PCA", colour_by="Sample", )
+dev.off()
 
 # ============== MNN on Species > Samples ============
+
+
 
 
 # Run batch correction with MNN across Samples
