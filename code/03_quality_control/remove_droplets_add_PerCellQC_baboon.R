@@ -1,4 +1,4 @@
-install.packages("rafalib")
+#install.packages("rafalib")
 
 library("SingleCellExperiment")
 library("scuttle")
@@ -178,11 +178,6 @@ e.out.all <- do.call("rbind", e.out)
 sce.dropped <- sce[, which(e.out.all$FDR <= 0.001)]
 
 dim(sce.dropped)
-<<<<<<< HEAD
-# [1] 21091 58362
-=======
-# 21091 58362
->>>>>>> 46be773 (added in 3 missing mito genes. rebuilt SCE and reran PerCellQC)
 
 # use grep to find genes with "MT-" in name
 is.mito <- grep("MT-", rownames(sce.dropped))
@@ -208,188 +203,7 @@ save(sce.dropped,file=here(processed_dir,"sce_drops_removed_baboon.rda"))
 load(here(processed_dir, "sce_drops_removed_baboon.rda"), verbose = TRUE)
 
 sce <- sce.dropped
-
-#### Check for low quality nuc ####
-# Sample 4 is bimodal and so MAD does not work for it. subsetting to all other samples
-sce$high_mito <- isOutlier(sce$subsets_Mito_percent, 
-                           nmads = 3, 
-                           type = "higher", 
-                           batch = sce$Sample,
-                           subset=sce$Sample %in% c("SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1", 
-                                                    "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1", 
-                                                    "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1",
-                                                    "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1",
-                                                    "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1",
-                                                    "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"
-                                                    )
-                           )
-
-table(sce$high_mito)
-
-# before subset
-# FALSE  TRUE 
-# 46564 11798 
-
-# after subset
-# FALSE  TRUE 
-# 42570 15792 
-
-# after fixing mito genes
-# FALSE  TRUE 
-# 49373  8989 
-
-table(sce$high_mito, sce$Sample)
-
-# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1
-# FALSE                                        6234
-# TRUE                                          255
-# 
-# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1
-# FALSE                                       5940
-# TRUE                                         348
-# 
-# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1
-# FALSE                                       7433
-# TRUE                                         511
-# 
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1
-# FALSE                                       2063
-# TRUE                                        4168
-# 
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1
-# FALSE                                                 6523
-# TRUE                                                  1477
-# 
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1
-# FALSE                                       9850
-# TRUE                                         496
-# 
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1
-# FALSE                                                11330
-# TRUE                                                  1734
-
-## low library size
-# samples 1 and 3 are bimodal here. subsetting to all other samples
-sce$low_lib <- isOutlier(sce$sum, 
-                         log = TRUE, 
-                         type = "lower", 
-                         batch = sce$Sample,
-                         subset=sce$Sample %in% c("SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1",
-                                                  "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1",
-                                                  "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1",
-                                                  "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1",
-                                                  "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"
-                                                  )
-                         )
-table(sce$low_lib)
-# before subset
-# FALSE  TRUE 
-# 57863   499 
-
-# after subset
-# FALSE  TRUE 
-# 55539  2823 
-
-# after fixed genes
-# FALSE  TRUE 
-# 55539  2823 
-
-## low detected features
-# samples 1 and 3 are also bimodel here. subsettings to all others
-sce$low_genes <- isOutlier(sce$detected, 
-                           log = TRUE, 
-                           type = "lower", 
-                           batch = sce$Sample,
-                           subset=sce$Sample %in% c("SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1",
-                                                   "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1",
-                                                   "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1",
-                                                   "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1",
-                                                   "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"
-                                                   )
-                           )
-table(sce$low_genes)
-# before subset
-# FALSE  TRUE 
-# 57494   868  
-
-# after subset
-# FALSE  TRUE 
-# 53487  4875 
-
-# after fixed genes
-# FALSE  TRUE 
-# 53487  4875 
-
-
-
-## All low sum are also low detected
-table(sce$low_lib, sce$low_genes)
-#       FALSE  TRUE
-# FALSE 53487  2052
-# TRUE      0  2823
-
-## Annotate nuc to drop
-sce$discard_auto <- sce$high_mito | sce$low_lib | sce$low_genes
-
-table(sce$discard_auto)
-# FALSE  TRUE 
-# 47039 11323 
-
-
-
-qc_t <- addmargins(table(sce$Sample, sce$discard_auto))
-write_csv(data.frame(qc_t), file = here(processed_dir, "discarded_summary.csv"))
-
-qc_t
-#                                                      FALSE  TRUE   Sum
-# FALSE  TRUE   Sum
-# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1           6166   323  6489
-# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1            5802   486  6288
-# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1            7341   603  7944
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1            1922  4309  6231
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1  5596  2404  8000
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1            9763   583 10346
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1 10449  2615 13064
-# Sum                                                  47039 11323 58362
-
-
-
-round(100 * sweep(qc_t, 1, qc_t[, 3], "/"), 1)
-
-# SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1           95.0   5.0 100.0
-# SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1            92.3   7.7 100.0
-# SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1            92.4   7.6 100.0
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1            30.8  69.2 100.0
-# SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1  70.0  30.0 100.0
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1            94.4   5.6 100.0
-# SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1  80.0  20.0 100.0
-# Sum                                                   80.6  19.4 100.0
-
-
-#### QC plots ####
-
-# Mito rate
-png(here(plot_dir, "violin_mito_percent_afterSubset_fixedGenes.png"), height=7.5, width=7.5, units="in", res=1200)
-plotColData(sce, x = "subsets_Mito_percent", y = "Sample", colour_by = "high_mito") +
-    ggtitle("Mito Percent") +
-    theme(axis.text.x = element_text(angle = 45))
-dev.off()
-
-# low sum
-png(here(plot_dir, "violin_sum_afterSubset_fixedGenes.png"), height=7.5, width=7.5, units="in", res=1200)
-plotColData(sce, x = "sum", y = "Sample", colour_by = "low_lib") +
-    scale_y_log10() +
-    ggtitle("Total UMIs")+
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-dev.off()
-
-# low detected
-png(here(plot_dir, "violin_detected_afterSubset_fixedGenes.png"), height=7.5, width=7.5, units="in", res=1200)
-plotColData(sce, x = "detected", y = "Sample", colour_by = "low_genes") +
-    scale_y_log10() +
-    ggtitle("Detected genes")
-dev.off()
-
+    fdtfx
 
 
 
@@ -488,7 +302,7 @@ dbl_df %>%
 
 
 
-table(sce$discard_auto, sce$doubletScore >= 2.75)
+table(sce$discard, sce$doubletScore >= 2.75)
 #       FALSE  TRUE
 # FALSE 43715  3324
 # TRUE  10802   521
@@ -497,7 +311,7 @@ table(sce$discard_auto, sce$doubletScore >= 2.75)
 #### Save clean data as HDF5 file  ####
 load(here(processed_dir, "sce_no_empty_droplets.Rdata"))
 
-sce <- sce[, !sce$discard_auto]
+sce <- sce[, !sce$discard]
 dim(sce)
 # [1] 21091 47039
 

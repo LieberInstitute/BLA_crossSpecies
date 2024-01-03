@@ -20,8 +20,7 @@ sce
 pd <- colData(sce) %>% as.data.frame()
 
 ## save directories
-plot_dir = here("plots", "03_quality_control","Macaque","PerCellQC")
-processed_dir = here("processed-data","03_quality_control","Macaque","PerCellQC")
+ n. z
 
 ##get droplet score filepaths
 droplet_paths <- list.files(here("processed-data","03_quality_control","Macaque","droplet_scores"),
@@ -341,6 +340,22 @@ table(sce$discard_auto)
 # 109142  25543 
 
 
+# ======= Additionally exclude base on minimum thresholds ========
+
+qc.lib <- sce$sum < 600
+qc.genes <- sce$detected < 500
+
+sce$discard_minimum <- qc.lib | qc.genes 
+
+table(sce$discard_minimum)
+
+
+# combine auto and minimum discards
+sce$discard <- sce$discard_auto | sce$discard_minimum
+
+table(sce$discard)
+
+
 
 qc_t <- addmargins(table(sce$Sample, sce$discard_auto))
 write_csv(data.frame(qc_t), file = here(processed_dir, "discarded_summary.csv"))
@@ -427,6 +442,9 @@ round(100 * sweep(qc_t, 1, qc_t[, 3], "/"), 1)
 # Sum                                               81.0  19.0 100.0
 
 
+sce$low_lib <- sce$low_lib | qc.lib
+sce$low_genes <- sce$low_genes | qc.genes
+
 
 #### QC plots ####
 pdf(height=15, width=7.5, here(plot_dir, "QC_violin_plots.pdf"))
@@ -451,12 +469,11 @@ dev.off()
 
 
 
-
 # Mito rate vs n detected features
 pdf(height=7.5, width=7.5, here(plot_dir, "QC_scatter_plots.pdf"))
 plotColData(sce,
             x = "detected", y = "subsets_Mito_percent",
-            colour_by = "discard_auto", point_size = 2.5, point_alpha = 0.5
+            colour_by = "discard", point_size = 2.5, point_alpha = 0.5
 ) + 
     ggtitle("Mito percent") +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
@@ -464,7 +481,7 @@ plotColData(sce,
 # Detected features vs total count
 plotColData(sce,
             x = "sum", y = "detected",
-            colour_by = "discard_auto", point_size = 2.5, point_alpha = 0.5
+            colour_by = "discard", point_size = 2.5, point_alpha = 0.5
 ) + 
     ggtitle("Sum detected") +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
@@ -542,18 +559,18 @@ dbl_df %>%
 
 
 
-table(sce$discard_auto, sce$doubletScore >= 2.75)
+table(sce$discard, sce$doubletScore >= 2.75)
 #       FALSE  TRUE
 # FALSE 20821   447
 # TRUE   4107    27
 
 
 #### Save clean data as HDF5 file  ####
-load(here(processed_dir, "sce_no_empty_droplets.Rdata"))
+#load(here(processed_dir, "sce_no_empty_droplets.Rdata"))
 
-sce <- sce[, !sce$discard_auto]
+sce <- sce[, !sce$discard]
 dim(sce)
-# [1] 36601 21268
+# [1]  21369 107958
 
 save(sce,file=here(processed_dir,"sce_post_qc.rda"))
 
