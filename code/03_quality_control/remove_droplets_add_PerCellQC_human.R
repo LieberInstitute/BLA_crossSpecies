@@ -234,29 +234,49 @@ table(sce$discard_auto)
 
 
 
-qc_t <- addmargins(table(sce$Sample, sce$discard_auto))
+# ======= Additionally exclude base on minimum thresholds ========
+
+qc.lib <- sce$sum < 600
+qc.genes <- sce$detected < 500
+
+sce$discard_minimum <- qc.lib | qc.genes 
+
+table(sce$discard_minimum)
+
+
+# combine auto and minimum discards
+sce$discard <- sce$discard_auto | sce$discard_minimum
+
+table(sce$discard)
+# FALSE  TRUE 
+# 21212  4190 
+
+qc_t <- addmargins(table(sce$Sample, sce$discard))
 
 qc_t
-#           FALSE  TRUE   Sum
-# 34ac_scp   3962   905  4867
-# 35ac_scp   4730   782  5512
-# 3c-AMYBLA  4055   711  4766
-# 4c-AMYBLA  4052   946  4998
-# 5c-AMYBLA  4469   790  5259
-# Sum       21268  4134 25402
+#                  FALSE  TRUE   Sum
+# Br2327-3c-AMYBLA  4010   756  4766
+# Br5273-35ac_scp   4719   793  5512
+# Br8331-34ac_scp   3962   905  4867
+# Br8692-4c-AMYBLA  4052   946  4998
+# Br9021-5c-AMYBLA  4469   790  5259
+# Sum              21212  4190 25402
 
 
 
 round(100 * sweep(qc_t, 1, qc_t[, 3], "/"), 1)
-#           FALSE  TRUE   Sum
-# 34ac_scp   81.4  18.6 100.0
-# 35ac_scp   85.8  14.2 100.0
-# 3c-AMYBLA  85.1  14.9 100.0
-# 4c-AMYBLA  81.1  18.9 100.0
-# 5c-AMYBLA  85.0  15.0 100.0
-# Sum        83.7  16.3 100.0
+#                  FALSE  TRUE   Sum
+# Br2327-3c-AMYBLA  84.1  15.9 100.0
+# Br5273-35ac_scp   85.6  14.4 100.0
+# Br8331-34ac_scp   81.4  18.6 100.0
+# Br8692-4c-AMYBLA  81.1  18.9 100.0
+# Br9021-5c-AMYBLA  85.0  15.0 100.0
+# Sum               83.5  16.5 100.0
 
 
+
+sce$low_lib <- sce$low_lib | qc.lib
+sce$low_genes <- sce$low_genes | qc.genes
 
 #### QC plots ####
 pdf(here(plot_dir, "QC_violin_plots.pdf"), width = 10)
@@ -368,7 +388,7 @@ dbl_df %>%
 
 
 
-table(sce$discard_auto, sce$doubletScore >= 2.75)
+table(sce$discard, sce$doubletScore >= 2.75)
 #       FALSE  TRUE
 # FALSE 20821   447
 # TRUE   4107    27
@@ -388,7 +408,7 @@ sample_info <- pd %>%
     n_high_mito = sum(high_mito),
     n_low_sum = sum(low_lib),
     n_low_detect = sum(low_genes),
-    n_discard_auto = sum(discard_auto)
+    n_discard_auto = sum(discard)
   )
 
 write_csv(sample_info, file = here(processed_dir, "sample_info.csv"))
@@ -407,7 +427,7 @@ write_csv(sample_info, file = here(processed_dir, "sample_info.csv"))
 #### Save clean data as HDF5 file  ####
 load(here(processed_dir, "sce_no_empty_droplets.Rdata"))
 
-sce <- sce[, !sce$discard_auto]
+sce <- sce[, !sce$discard]
 dim(sce)
 # [1] 36601 21268
 
