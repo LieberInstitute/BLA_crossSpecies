@@ -26,11 +26,14 @@ seurat.int
 # 1 other assay present: originalexp
 # 2 dimensional reductions calculated: pca, tsne
 
+<<<<<<< HEAD
 # change default assay to counts
 DefaultAssay(seurat.int)
 DefaultAssay(seurat.int) <- "originalexp"
 DefaultAssay(seurat.int)
 
+=======
+>>>>>>> e16efbd (initial batch correction)
 
 # ============ Run UMAP and plot initial Louvain clusters ============
 # intial clustering was done during batch correction using Seurat's
@@ -38,7 +41,11 @@ DefaultAssay(seurat.int)
 # algorithm (algorithm=2) as well as the Leiden algorithm (algorithm=3). 
 
 # split the dataset into a list of seurat objects by species
+<<<<<<< HEAD
 seurat.list <- SplitObject(seurat.int, split.by = "species")
+=======
+seurat.list <- SplitObject(combined.seurat, split.by = "Species")
+>>>>>>> e16efbd (initial batch correction)
 
 # normalize and identify variable features for each dataset independently
 seurat.list<- lapply(X = seurat.list, FUN = function(x) {
@@ -58,7 +65,11 @@ seurat.list <- lapply(X = seurat.list, FUN = function(x) {
 seurat.anchors <- FindIntegrationAnchors(object.list = seurat.list, anchor.features = features, reduction = "rpca")
 
 # save integrated seurat object
+<<<<<<< HEAD
 save(seurat.anchors, file = here(processed_dir, "seurat.anchors_species.rda"))
+=======
+save(seurat.anchors, file = here(processed_dir, "seurat.anchors.rda"))
+>>>>>>> e16efbd (initial batch correction)
 
 # integrate the datasets
 seurat.int <- IntegrateData(anchorset = seurat.anchors)
