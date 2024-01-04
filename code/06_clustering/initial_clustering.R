@@ -8,6 +8,7 @@ library(here)
 library(batchelor)
 library(harmony)
 library(Seurat)
+library(dplyr)
 
 
 ## save directories
@@ -34,7 +35,7 @@ seurat.int
 seurat.int <- RunUMAP(seurat.int, reduction = "pca", dims = 1:30)
 
 pdf(here(plot_dir, "UMAP_species_integrated.pdf"))
-DimPlot(seurat.int, reduction = "umap", group.by = "Species")
+DimPlot(seurat.int, reduction = "umap", group.by = "species")
 dev.off()
 
 pdf(here(plot_dir, "UMAP_clusters_integrated.pdf"))
@@ -67,7 +68,7 @@ save(seurat.int, file = here(processed_dir, "seurat_integrated_new_clusters.rda"
 seurat_obj <- seurat.int
 # Calculate count of each species within each cluster
 species_counts <- seurat_obj@meta.data %>%
-    group_by(cluster = Idents(seurat_obj), Species) %>%
+    group_by(cluster = Idents(seurat_obj), species) %>%
     summarise(Count = n(), .groups = 'drop')
 
 # Calculate total count for each cluster
@@ -82,17 +83,17 @@ species_percentages <- species_counts %>%
 
 # Generate bar plots for each cluster
 pdf(here(plot_dir, "species_percentages.pdf"))
-ggplot(species_percentages, aes(x = Species, y = Percentage, fill = Species)) +
+ggplot(species_percentages, aes(x = species, y = Percentage, fill = species)) +
     geom_bar(stat = "identity", position = position_dodge()) +
     facet_wrap(~ cluster) +
     theme_minimal() +
-    labs(x = "Species", y = "Percentage", title = "Species Composition in Each Cluster")
+    labs(x = "species", y = "Percentage", title = "Species Composition in Each Cluster")
 dev.off()
 
 
 # Calculate count of each species within each cluster
 species_counts <- seurat_obj@meta.data %>%
-    group_by(cluster = Idents(seurat_obj), Species) %>%
+    group_by(cluster = Idents(seurat_obj), species) %>%
     summarise(Count = n(), .groups = 'drop')
 
 # Calculate total count for each cluster
@@ -107,7 +108,7 @@ species_percentages <- species_counts %>%
 
 # Generate a stacked bar plot with percentages
 pdf(here(plot_dir, "species_percentages_stacked.pdf"), width = 10, height = 3)
-ggplot(species_percentages, aes(x = cluster, y = Percentage, fill = Species)) +
+ggplot(species_percentages, aes(x = cluster, y = Percentage, fill = species)) +
     geom_bar(stat = "identity", position = "fill") +
     theme_minimal() +
     labs(x = "Cluster", y = "Percentage", title = "Species Composition in Each Cluster (Stacked Bars)")
@@ -122,10 +123,10 @@ save(seurat.int, file = here(processed_dir, "seurat_integrated_new_clusters.rda"
 features <- c("SNAP25","GFAP","MOBP", "SLC17A7", "GAD2", "FOXP2", "SST", "VIP",'PVALB',"LAMP5")
 
 # SplitDotPlotGG has been replaced with the `split.by` parameter for DotPlot
-pdf(here(plot_dir, "DotPlot_genes.pdf"), width = 10, height = 7.5))
+pdf(here(plot_dir, "DotPlot_genes.pdf"), width = 10, height = 7.5)
 DotPlot(seurat.int, features = features) + RotatedAxis()
 dev.off()
 
-pdf(here(plot_dir, "FeaturePlot_genes.pdf"), width = 20, height = 20))
+pdf(here(plot_dir, "FeaturePlot_genes.pdf"), width = 20, height = 20)
 FeaturePlot(seurat.int, features = features)
 dev.off()

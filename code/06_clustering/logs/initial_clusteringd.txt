@@ -1,0 +1,142 @@
+Loading conda_R/4.3.x
+
+Currently Loaded Modules:
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
+  2) JHPCE_tools/3.0            4) conda_R/4.3.x
+
+ 
+
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: scuttle
+here() starts at /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies
+Loading required package: Rcpp
+Attaching SeuratObject
+‘SeuratObject’ was built with package ‘Matrix’ 1.6.3 but the current
+version is 1.6.4; it is recomended that you reinstall ‘SeuratObject’ as
+the ABI for ‘Matrix’ may have changed
+Seurat v4 was just loaded with SeuratObject v5; disabling v5 assays and
+validation routines, and ensuring assays work in strict v3/v4
+compatibility mode
+
+Attaching package: ‘Seurat’
+
+The following object is masked from ‘package:SummarizedExperiment’:
+
+    Assays
+
+Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
+To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
+This message will be shown once per session
+22:43:32 UMAP embedding parameters a = 0.9922 b = 1.112
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+22:43:32 Read 177346 rows and found 30 numeric columns
+22:43:32 Using Annoy for neighbor search, n_neighbors = 30
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+22:43:32 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+22:44:04 Writing NN index file to temp file /tmp/RtmpXZBaYF/file272bacc123c18
+22:44:04 Searching Annoy index using 1 thread, search_k = 3000
+22:45:53 Annoy recall = 100%
+22:45:55 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+22:46:10 Initializing from normalized Laplacian + noise (using irlba)
+22:48:21 Commencing optimization for 200 epochs, with 9104816 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+22:51:34 Optimization finished
+Error in `object[[group.by]]`:
+! ‘Species’ not found in this Seurat object
+ Did you mean "species"?
+Backtrace:
+     ▆
+  1. └─Seurat::DimPlot(seurat.int, reduction = "umap", group.by = "Species")
+  2.   ├─base::cbind(data, object[[group.by]][cells, , drop = FALSE])
+  3.   │ └─base::cbind(deparse.level, ...)
+  4.   │   └─base::data.frame(..., check.names = FALSE)
+  5.   ├─object[[group.by]]
+  6.   └─SeuratObject:::`[[.Seurat`(object, group.by)
+  7.     └─base::tryCatch(...)
+  8.       └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+  9.         └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 10.           └─value[[3L]](cond)
+ 11.             └─rlang::abort(...)
+Execution halted

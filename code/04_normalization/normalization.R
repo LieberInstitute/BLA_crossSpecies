@@ -170,26 +170,26 @@ sce.baboon
 # ========= Drop lowly expressed genes ==========
 
 # drops genes that don't have 1 UMI in at least 5% of cells
-num_reads <- 1
-num_cells <- 0.01*ncol(sce.human)
-keep <- which(DelayedArray::rowSums(counts(sce.human) >= num_reads ) >= num_cells)
-sce.human <- sce.human[keep,]
-dim(sce.human)
+# num_reads <- 1
+# num_cells <- 0.01*ncol(sce.human)
+# keep <- which(DelayedArray::rowSums(counts(sce.human) >= num_reads ) >= num_cells)
+# sce.human <- sce.human[keep,]
+# dim(sce.human)
 
 
 
-num_reads <- 1
-num_cells <- 0.01*ncol(sce.macaque)
-keep <- which(DelayedArray::rowSums(counts(sce.macaque) >= num_reads ) >= num_cells)
-sce.macaque <- sce.macaque[keep,]
-dim(sce.macaque)
+# num_reads <- 1
+# num_cells <- 0.01*ncol(sce.macaque)
+# keep <- which(DelayedArray::rowSums(counts(sce.macaque) >= num_reads ) >= num_cells)
+# sce.macaque <- sce.macaque[keep,]
+# dim(sce.macaque)
 
 
-num_reads <- 1
-num_cells <- 0.01*ncol(sce.baboon)
-keep <- which(DelayedArray::rowSums(counts(sce.baboon) >= num_reads ) >= num_cells)
-sce.baboon <- sce.baboon[keep,]
-dim(sce.baboon)
+# num_reads <- 1
+# num_cells <- 0.01*ncol(sce.baboon)
+# keep <- which(DelayedArray::rowSums(counts(sce.baboon) >= num_reads ) >= num_cells)
+# sce.baboon <- sce.baboon[keep,]
+# dim(sce.baboon)
 
 
 
@@ -198,18 +198,18 @@ dim(sce.baboon)
 set.seed(100)
 
 # normalize human data
-clust.human <- quickCluster(sce.human)
-sce.human <- computeSumFactors(sce.human, cluster=clust.human, min.mean=0.1)
+#clust.human <- quickCluster(sce.human)
+#sce.human <- computeSumFactors(sce.human, cluster=clust.human, min.mean=0.1)
 sce.human <- logNormCounts(sce.human)
 
 # normalize macaque data
-clust.macaque <- quickCluster(sce.macaque)
-sce.macaque <- computeSumFactors(sce.macaque, cluster=clust.macaque, min.mean=0.1)
+#clust.macaque <- quickCluster(sce.macaque)
+#sce.macaque <- computeSumFactors(sce.macaque, cluster=clust.macaque, min.mean=0.1)
 sce.macaque <- logNormCounts(sce.macaque)
 
 # normalize baboon data
-clust.baboon <- quickCluster(sce.baboon)
-sce.baboon <- computeSumFactors(sce.baboon, cluster=clust.baboon, min.mean=0.1)
+#clust.baboon <- quickCluster(sce.baboon)
+#sce.baboon <- computeSumFactors(sce.baboon, cluster=clust.baboon, min.mean=0.1)
 sce.baboon <- logNormCounts(sce.baboon)
 
 # save sce objects
