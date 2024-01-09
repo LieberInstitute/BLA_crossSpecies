@@ -1,10 +1,10 @@
 **** Job starts ****
-Wed Jan  3 01:48:04 PM EST 2024
+Sat Jan  6 10:03:39 AM EST 2024
 **** SLURM info ****
 User: mtotty
-Job id: 1390083
+Job id: 1461048
 Job name: batch_correction_seurat_species
-Hostname: compute-113
+Hostname: compute-127
 Task id: 
 Loading conda_R/4.3.x
 
@@ -146,7 +146,7 @@ The following objects are masked from ‘package:base’:
     intersect, setdiff, setequal, union
 
 An object of class Seurat 
-15874 features across 177346 samples within 2 assays 
+15874 features across 176107 samples within 2 assays 
 Active assay: integrated (2000 features, 2000 variable features)
  2 layers present: data, scale.data
  1 other assay present: originalexp
@@ -199,17 +199,17 @@ Projecting new data onto SVD
 Projecting new data onto SVD
 Finding neighborhoods
 Finding anchors
-	Found 5371 anchors
+	Found 5412 anchors
 Projecting new data onto SVD
 Projecting new data onto SVD
 Finding neighborhoods
 Finding anchors
-	Found 5622 anchors
+	Found 5606 anchors
 Projecting new data onto SVD
 Projecting new data onto SVD
 Finding neighborhoods
 Finding anchors
-	Found 11480 anchors
+	Found 11634 anchors
 Merging dataset 1 into 3
 Extracting anchors for merged samples
 Finding integration vectors
@@ -229,43 +229,43 @@ Integrating data
 Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
 To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
 This message will be shown once per session
-14:47:24 UMAP embedding parameters a = 0.9922 b = 1.112
+10:29:06 UMAP embedding parameters a = 0.9922 b = 1.112
 Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
 Also defined by ‘spam’
-14:47:25 Read 177346 rows and found 30 numeric columns
-14:47:25 Using Annoy for neighbor search, n_neighbors = 30
+10:29:06 Read 176107 rows and found 30 numeric columns
+10:29:06 Using Annoy for neighbor search, n_neighbors = 30
 Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
 Also defined by ‘spam’
-14:47:25 Building Annoy index with metric = cosine, n_trees = 50
+10:29:06 Building Annoy index with metric = cosine, n_trees = 50
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-14:47:53 Writing NN index file to temp file /tmp/RtmpCVfqfU/file5d37d7e9c4ba1
-14:47:53 Searching Annoy index using 1 thread, search_k = 3000
-14:49:37 Annoy recall = 100%
-14:49:41 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-14:49:57 Initializing from normalized Laplacian + noise (using irlba)
-14:51:24 Commencing optimization for 200 epochs, with 8221684 positive edges
+10:29:18 Writing NN index file to temp file /tmp/RtmpFid0Oc/file3d468a6750f6aa
+10:29:18 Searching Annoy index using 1 thread, search_k = 3000
+10:30:22 Annoy recall = 100%
+10:30:24 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+10:30:30 Initializing from normalized Laplacian + noise (using irlba)
+10:31:05 Commencing optimization for 200 epochs, with 8160206 positive edges
 Using method 'umap'
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-14:54:21 Optimization finished
+10:32:25 Optimization finished
 Computing nearest neighbor graph
 Computing SNN
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
-Number of nodes: 177346
-Number of edges: 6014254
+Number of nodes: 176107
+Number of edges: 5954106
 
 Running Louvain algorithm...
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-Maximum modularity in 10 random starts: 0.9523
-Number of communities: 38
-Elapsed time: 97 seconds
-3 singletons identified. 35 final clusters.
+Maximum modularity in 10 random starts: 0.9518
+Number of communities: 35
+Elapsed time: 90 seconds
+1 singletons identified. 34 final clusters.
 Rasterizing points since number of points exceeds 100,000.
 To disable this behavior set `raster=FALSE`
 null device 
@@ -279,4 +279,4 @@ null device
 null device 
           1 
 **** Job ends ****
-Wed Jan  3 03:17:25 PM EST 2024
+Sat Jan  6 10:45:35 AM EST 2024
