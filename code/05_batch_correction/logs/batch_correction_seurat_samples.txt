@@ -1,10 +1,10 @@
 **** Job starts ****
-Fri Jan  5 11:56:04 PM EST 2024
+Wed Jan 10 12:10:37 PM EST 2024
 **** SLURM info ****
 User: mtotty
-Job id: 1397708
+Job id: 1501916
 Job name: batch_correction_seurat_samples
-Hostname: compute-116
+Hostname: compute-063
 Task id: 
 Loading conda_R/4.3.x
 
@@ -348,32 +348,32 @@ Running Louvain algorithm...
 **************************************************|
 Maximum modularity in 10 random starts: 0.9307
 Number of communities: 93
-Elapsed time: 74 seconds
+Elapsed time: 100 seconds
 Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
 To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
 This message will be shown once per session
-00:15:57 UMAP embedding parameters a = 0.9922 b = 1.112
+12:52:31 UMAP embedding parameters a = 0.9922 b = 1.112
 Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
 Also defined by ‘spam’
-00:15:57 Read 176107 rows and found 30 numeric columns
-00:15:57 Using Annoy for neighbor search, n_neighbors = 30
+12:52:32 Read 176107 rows and found 30 numeric columns
+12:52:32 Using Annoy for neighbor search, n_neighbors = 30
 Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
 Also defined by ‘spam’
-00:15:57 Building Annoy index with metric = cosine, n_trees = 50
+12:52:32 Building Annoy index with metric = cosine, n_trees = 50
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-00:16:19 Writing NN index file to temp file /tmp/Rtmp7SBiZX/file32549448b93298
-00:16:19 Searching Annoy index using 1 thread, search_k = 3000
-00:18:02 Annoy recall = 100%
-00:18:03 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-00:18:12 Initializing from normalized Laplacian + noise (using irlba)
-00:19:07 Commencing optimization for 200 epochs, with 8031974 positive edges
+12:53:07 Writing NN index file to temp file /tmp/Rtmp0q4qNT/file1d3c37b7d8cf
+12:53:07 Searching Annoy index using 1 thread, search_k = 3000
+12:54:38 Annoy recall = 100%
+12:54:39 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+12:54:48 Initializing from normalized Laplacian + noise (using irlba)
+12:56:01 Commencing optimization for 200 epochs, with 8031974 positive edges
 Using method 'umap'
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-00:21:28 Optimization finished
+12:58:38 Optimization finished
 Rasterizing points since number of points exceeds 100,000.
 To disable this behavior set `raster=FALSE`
 null device 
@@ -6722,28 +6722,28 @@ Finding integration vector weights
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
 Integrating data
-03:45:36 UMAP embedding parameters a = 0.9922 b = 1.112
+17:51:25 UMAP embedding parameters a = 0.9922 b = 1.112
 Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
 Also defined by ‘spam’
-03:45:36 Read 176107 rows and found 30 numeric columns
-03:45:36 Using Annoy for neighbor search, n_neighbors = 30
+17:51:25 Read 176107 rows and found 30 numeric columns
+17:51:25 Using Annoy for neighbor search, n_neighbors = 30
 Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
 Also defined by ‘spam’
-03:45:36 Building Annoy index with metric = cosine, n_trees = 50
+17:51:25 Building Annoy index with metric = cosine, n_trees = 50
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-03:45:56 Writing NN index file to temp file /tmp/Rtmp7SBiZX/file32549463eed478
-03:45:56 Searching Annoy index using 1 thread, search_k = 3000
-03:47:25 Annoy recall = 100%
-03:47:27 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-03:47:35 Initializing from normalized Laplacian + noise (using irlba)
-03:49:23 Commencing optimization for 200 epochs, with 9041528 positive edges
+17:52:15 Writing NN index file to temp file /tmp/Rtmp0q4qNT/file1d3c79d8096b
+17:52:15 Searching Annoy index using 1 thread, search_k = 3000
+17:54:32 Annoy recall = 100%
+17:54:38 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+17:54:50 Initializing from normalized Laplacian + noise (using irlba)
+17:57:14 Commencing optimization for 200 epochs, with 9041528 positive edges
 Using method 'umap'
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-03:51:48 Optimization finished
+18:00:48 Optimization finished
 Computing nearest neighbor graph
 Computing SNN
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
@@ -6757,7 +6757,7 @@ Running Louvain algorithm...
 **************************************************|
 Maximum modularity in 10 random starts: 0.9551
 Number of communities: 38
-Elapsed time: 110 seconds
+Elapsed time: 195 seconds
 3 singletons identified. 35 final clusters.
 Rasterizing points since number of points exceeds 100,000.
 To disable this behavior set `raster=FALSE`
@@ -6771,4 +6771,4 @@ Error in load(seurat.int, file = here(processed_dir, "seurat_integrated.rda")) :
   invalid 'envir' argument
 Execution halted
 **** Job ends ****
-Sat Jan  6 04:13:26 AM EST 2024
+Wed Jan 10 06:33:26 PM EST 2024

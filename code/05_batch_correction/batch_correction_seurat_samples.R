@@ -215,8 +215,6 @@ rm(sce.human)
 rm(sce.baboon)
 rm(sce.macaque)
 
-# ========= Conver to Seurat v4 ==========
-
 combined$species <- combined$batch
 
 # rename $species. 1 = human, 2 = baboon, 3 = macaque
@@ -225,6 +223,13 @@ combined$species[combined$species == 2] <- "baboon"
 combined$species[combined$species == 3] <- "macaque"
 unique(combined$species)
 # [1] "human"   "baboon"  "macaque"
+
+
+# save combined sce
+save(combined, file = here(processed_dir, "sce_combined.rda"))
+
+
+# ========= Conver to Seurat v4 ==========
 
 combined.seurat <- as.Seurat(combined, counts="counts", data="logcounts")
 combined.seurat
