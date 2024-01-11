@@ -11,13 +11,13 @@ library(Seurat)
 library(dplyr)
 library(patchwork)
 library(ggpubr)
+library(RColorBrewer)
 
 ## save directories
 plot_dir = here("plots", "07_annotation", "cluster_check")
 processed_dir = here("processed-data","07_annotation", "cluster_check")
 
 # load sce
-# save combined, uncorrected sce
 load(here("processed-data","06_clustering", "seurat_integrated_final.rda"))
 seurat.int
 
@@ -42,6 +42,10 @@ sce
 # altExpNames(0):
 
 
+# load metadata to re-marge
+
+
+
 unique(colnames(colData(sce)))
 # [1] "orig.ident"             "nCount_originalexp"     "nFeature_originalexp"  
 # [4] "batch"                  "Sample"                 "Barcode"               
@@ -52,6 +56,156 @@ unique(colnames(colData(sce)))
 # [19] "species"                "originalexp_snn_res.2"  "seurat_clusters"       
 # [22] "integrated_snn_res.0.5" "ident"   
 
+# ========= Add metadata =========
+
+# load metadata csv
+metadata <- read.csv(here("raw-data","sampleinfo", "master_sampleinfo_2023-10-09.csv"))
+
+# drop samples with Region == DLPFC
+metadata <- metadata[metadata$Region == "Amygdala",]
+
+unique(sce$Sample)
+# [1] "Br2327-3c-AMYBLA"                                    
+# [2] "Br8692-4c-AMYBLA"                                    
+# [3] "Br9021-5c-AMYBLA"                                    
+# [4] "Br8331-34ac_scp"                                     
+# [5] "Br5273-35ac_scp"                                     
+# [6] "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"         
+# [7] "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1"          
+# [8] "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1"          
+# [9] "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1"          
+# [10] "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1"
+# [11] "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1"          
+# [12] "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1"
+# [13] "VC_snRNAseq-7_LateralVentralAP1_-1"                  
+# [14] "VC_snRNAseq-7_LateralVentralAP2_-2"                  
+# [15] "VC_snRNAseq-7_BasalDorsalAP1_-3A"                    
+# [16] "VC_snRNAseq-7_BasalDorsalAP1_-3B"                    
+# [17] "VC_snRNAseq-7_BasalVentralAP1_-4"                    
+# [18] "VC_snRNAseq-7_BasalVentralAP2_-5"                    
+# [19] "VC_snRNAseq-7_AccBasalAP1AP2_-7"                     
+# [20] "VC_snRNAseq-7_LateralDorsalAP1AP2_-8"                
+# [21] "VC_snRNAseq_9_Animal4_LV2"                           
+# [22] "VC_snRNAseq_9_Animal4_LV1"                           
+# [23] "VC_snRNAseq_9_Animal4_LD"                            
+# [24] "VC_snRNAseq_9_Animal4_L-Comb"                        
+# [25] "VC_snRNAseq_9_Animal4_BV"                            
+# [26] "VC_snRNAseq_9_Animal4_BD"                            
+# [27] "VC_snRNAseq_9_Animal4_B-Comb"                        
+# [28] "VC_snRNAseq_9_Animal4_AB"                            
+# [29] "VC_snRNAseq_8_Animal3_LV"                            
+# [30] "VC_snRNAseq_8_Animal3_LV3"                           
+# [31] "VC_snRNAseq_8_Animal3_LD"                            
+# [32] "VC_snRNAseq_8_Animal3_BV2"                           
+# [33] "VC_snRNAseq_8_Animal3_BV1"                           
+# [34] "VC_snRNAseq_8_Animal3_BD"                            
+# [35] "VC_snRNAseq_8_Animal3_AB__"                          
+# [36] "VC_snRNAseq_8_Animal3_Bd_Bv"                         
+# [37] "LIB210527RC_AB_1A"                                   
+# [38] "LIB210527RC_AB_1B"                                   
+# [39] "VC_snRNAseq_12_Animal2_Central_Nucleus"              
+# [40] "VC_snRNAseq_12_Animal3_Central_Nucleus"              
+# [41] "VC_snRNAseq_12_Animal4_Central_Nucleus"              
+# [42] "VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_"    
+# [43] "VC_snRNAseq_12_Animal5_Basal__AP1_"                  
+# [44] "VC_snRNAseq_12_Animal5_Basal__AP2_"                  
+# [45] "VC_snRNAseq_12_Animal5_Lateral__AP1_"                
+# [46] "VC_snRNAseq_12_Animal5_Lateral__AP2_"                
+# [47] "VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_" 
+
+unique(metadata$Sample)
+# [1] "3c-AMYBLA"                                           
+# [2] "4c-AMYBLA"                                           
+# [3] "5c-AMYBLA"                                           
+# [4] "34ac_scp"                                            
+# [5] "35ac_scp"                                            
+# [6] "VC_snRNAseq-7_LateralVentralAP1_-1"                  
+# [7] "VC_snRNAseq-7_LateralVentralAP2_-2"                  
+# [8] "VC_snRNAseq-7_BasalDorsalAP1_-3A"                    
+# [9] "VC_snRNAseq-7_BasalDorsalAP1_-3B"                    
+# [10] "VC_snRNAseq-7_BasalVentralAP1_-4"                    
+# [11] "VC_snRNAseq-7_BasalVentralAP2_-5"                    
+# [12] "VC_snRNAseq-7_AccBasalAP1AP2_-7"                     
+# [13] "VC_snRNAseq-7_LateralDorsalAP1AP2_-8"                
+# [14] "VC_snRNAseq_9_Animal4_LV2"                           
+# [15] "VC_snRNAseq_9_Animal4_LV1"                           
+# [16] "VC_snRNAseq_9_Animal4_LD"                            
+# [17] "VC_snRNAseq_9_Animal4_L-Comb"                        
+# [18] "VC_snRNAseq_9_Animal4_BV"                            
+# [19] "VC_snRNAseq_9_Animal4_BD"                            
+# [20] "VC_snRNAseq_9_Animal4_B-Comb"                        
+# [21] "VC_snRNAseq_9_Animal4_AB"                            
+# [22] "VC_snRNAseq_8_Animal3_LV"                            
+# [23] "VC_snRNAseq_8_Animal3_LV3"                           
+# [24] "VC_snRNAseq_8_Animal3_LD"                            
+# [25] "VC_snRNAseq_8_Animal3_BV2"                           
+# [26] "VC_snRNAseq_8_Animal3_BV1"                           
+# [27] "VC_snRNAseq_8_Animal3_BD"                            
+# [28] "VC_snRNAseq_8_Animal3_AB__"                          
+# [29] "VC_snRNAseq_8_Animal3_Bd_Bv"                         
+# [30] "LIB210527RC_AB_1A"                                   
+# [31] "LIB210527RC_AB_1B"                                   
+# [32] "VC_snRNAseq_12_Animal2_Central_Nucleus"              
+# [33] "VC_snRNAseq_12_Animal3_Central_Nucleus"              
+# [34] "VC_snRNAseq_12_Animal4_Central_Nucleus"              
+# [35] "VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_"    
+# [36] "VC_snRNAseq_12_Animal5_Basal__AP1_"                  
+# [37] "VC_snRNAseq_12_Animal5_Basal__AP2_"                  
+# [38] "VC_snRNAseq_12_Animal5_Lateral__AP1_"                
+# [39] "VC_snRNAseq_12_Animal5_Lateral__AP2_"                
+# [40] "VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_"        
+# [41] "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"         
+# [42] "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1"          
+# [43] "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1"          
+# [44] "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1"          
+# [45] "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1"
+# [46] "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1"          
+# [47] "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1"
+
+
+# from the metadata, add the "Subregion" and "DV_axis" column to the "sce" sce. Match based on Sample
+
+library("data.table")
+sample_info <- metadata
+
+
+# Create the key column for sce
+sce$key <- paste0(sce$Barcode, "_", sce$Sample)
+
+# Convert your data to data.table objects
+sce_colData <- as.data.table(colData(sce))
+sample_info_dt <- as.data.table(sample_info)
+
+# Identify the common columns to merge on
+common_cols <- intersect(names(sce_colData), names(sample_info_dt))
+
+# Perform the merge using the [.data.table method
+new_col <- sample_info_dt[sce_colData, on = common_cols]
+
+new_col <- new_col[match(sce$key, sce_colData$key), ]
+
+# Check that the keys match
+stopifnot(identical(sce$key, new_col$key))
+
+# Convert new_col to a DataFrame as required by SingleCellExperiment
+new_col_df <- DataFrame(new_col)
+
+# Update the colData
+colData(sce) <- new_col_df
+colnames(sce) <- sce$Barcode
+
+unique(colnames(colData(sce)))
+# [1] "Sample_num"            "Sample"                "Species"              
+# [4] "Subject"               "Sex"                   "Region"               
+# [7] "Subregion"             "DV_axis"               "PI.NeuN"              
+# [10] "batch"                 "Barcode"               "sum"                  
+# [13] "detected"              "subsets_Mito_sum"      "subsets_Mito_detected"
+# [16] "subsets_Mito_percent"  "total"                 "high_mito"            
+# [19] "low_lib"               "low_genes"             "discard_auto"         
+# [22] "doubletScore"          "sizeFactor"            "species"              
+# [25] "key"   
+
+unique(sce$Subregion)
 
 
 
@@ -149,28 +303,131 @@ sce_macaque <- sce[,which(colData(sce)$species == "macaque")]
 sce_baboon <- sce[,which(colData(sce)$species == "baboon")]
 sce_human <- sce[,which(colData(sce)$species == "human")]
 
-pdf(here(plot_dir, "UMAP_across_species.pdf"), width=30, height=10)
+dim(sce)
+# [1]  13874 177346
 
-p1 <- plotReducedDim(sce, dimred = "UMAP", colour_by = "broad_celltype") +
+dim(sce_macaque)
+# [1]  13874 109071
+
+dim(sce_baboon)
+# [1] 13874 47007
+
+dim(sce_human)
+# [1] 13874 21268
+
+pdf(here(plot_dir, "UMAP_across_species.pdf"), width=12, height=4)
+
+p1 <- plotReducedDim(sce, dimred = "UMAP", colour_by = "broad_celltype", point_size=0.1) +
     theme_void() +
-    theme(legend.position="none",
-          plot.title = element_text("All Species"))
+    ggtitle("All nuclei (n = 177,346)")  +
+    theme(legend.position="none") 
 
-p2 <- plotReducedDim(sce_macaque, dimred = "UMAP", colour_by = "broad_celltype") +
+p2 <- plotReducedDim(sce_macaque, dimred = "UMAP", colour_by = "broad_celltype", point_size=0.1) +
     theme_void() +
-    theme(legend.position="none",
-          plot.title = element_text("Macaque"))
+    ggtitle("Macaque (n = 109,071)")  +
+    theme(legend.position="none") 
 
-p3 <- plotReducedDim(sce_baboon, dimred = "UMAP", colour_by = "broad_celltype") +
+p3 <- plotReducedDim(sce_baboon, dimred = "UMAP", colour_by = "broad_celltype", point_size=0.1) +
     theme_void() +
-    theme(legend.position="none",
-          plot.title = element_text("Baboon"))
+    ggtitle("Baboon (n = 47,007)") +
+    theme(legend.position="none") 
 
-p4 <- plotReducedDim(sce_human, dimred = "UMAP", colour_by = "broad_celltype") +
+p4 <- plotReducedDim(sce_human, dimred = "UMAP", colour_by = "broad_celltype", point_size=0.1) +
     theme_void() +
-    theme(legend.position="none",
-          plot.title = element_text("Human"))
+    ggtitle("Human (n = 21,268)")  +
+    theme(legend.position="none") 
 
 
-print((p1 | p2 | p3 | p4))
+ggarrange(p1, p2, p3, p4, ncol=4, nrow=1, common.legend = TRUE, legend="bottom")
 dev.off()
+
+
+
+# ======== Comparing macaque, baboon, and human cells across $ident =========
+
+
+# Define the number of colors you want
+nb.cols <- length(unique(sce$ident))
+mycolors <- colorRampPalette(brewer.pal(8, "Set1"))(nb.cols)
+
+# plot UMAP with idents
+pdf(here(plot_dir, "UMAP_across_species_idents.pdf"), width=12, height=4)
+
+p1 <- plotReducedDim(sce, dimred = "UMAP", colour_by = "ident", point_size=0.1) +
+    scale_fill_manual(values = mycolors) +
+    theme_void() +
+    ggtitle("All nuclei (n = 177,346)")  +
+    theme(legend.position="none")
+
+p2 <- plotReducedDim(sce_macaque, dimred = "UMAP", colour_by = "ident", point_size=0.1) +
+    scale_fill_manual(values = mycolors) +
+    theme_void() +
+    ggtitle("Macaque (n = 109,071)")  +
+    theme(legend.position="none")
+
+p3 <- plotReducedDim(sce_baboon, dimred = "UMAP", colour_by = "ident", point_size=0.1) +
+    scale_fill_manual(values = mycolors) +
+    theme_void() +
+    ggtitle("Baboon (n = 47,007)") +
+    theme(legend.position="none")
+
+p4 <- plotReducedDim(sce_human, dimred = "UMAP", colour_by = "ident", point_size=0.1) +
+    scale_fill_manual(values = mycolors) +
+    theme_void() +
+    ggtitle("Human (n = 21,268)")  +
+    theme(legend.position="none")
+
+
+ggarrange(p1, p2, p3, p4, ncol=4, nrow=1)
+dev.off()
+
+
+
+
+# ========= Plotting UMAPs with subregions =========
+
+unique(sce_baboon$Subregion)
+# [1] "Basal"   "Lateral"
+
+unique(sce_macaque$Subregion)
+# [1] "Lateral"         "Basal"           "Central Nucleus" "Accessory Basal"
+
+# set colors so that they are consistent across species
+mycolors <- c("Basal" = "#E41A1C", "Lateral" = "#377EB8", "Central Nucleus" = "#4DAF4A", "Accessory Basal" = "#984EA3", "NA" = "black")
+
+# plot UMAP with idents
+pdf(here(plot_dir, "UMAP_across_species_subregions.pdf"), width=12, height=4)
+
+p1 <- plotReducedDim(sce, dimred = "UMAP", colour_by = "Subregion", point_size=0.1) +
+    scale_color_manual(values = mycolors) +
+    theme_void() +
+    ggtitle("All nuclei (n = 177,346)")  +
+    theme(legend.position="none")
+
+p2 <- plotReducedDim(sce_macaque, dimred = "UMAP", colour_by = "Subregion", point_size=0.1) +
+    scale_color_manual(values = mycolors) +
+    theme_void() +
+    ggtitle("Macaque (n = 109,071)")  +
+    theme(legend.position="none")
+
+p3 <- plotReducedDim(sce_baboon, dimred = "UMAP", colour_by = "Subregion", point_size=0.1) +
+    scale_color_manual(values = mycolors) +
+    theme_void() +
+    ggtitle("Baboon (n = 47,007)") +
+    theme(legend.position="none")
+
+p4 <- plotReducedDim(sce_human, dimred = "UMAP", colour_by = "Subregion", point_size=0.1) +
+    scale_color_manual(values = mycolors) +
+    theme_void() +
+    ggtitle("Human (n = 21,268)")  +
+    theme(legend.position="none")
+
+
+ggarrange(p1, p2, p3, p4, ncol=4, nrow=1, common.legend = TRUE, legend="bottom")
+dev.off()
+
+
+# ============ Annotating fine cell types ============
+
+
+
