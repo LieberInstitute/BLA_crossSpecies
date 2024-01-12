@@ -207,6 +207,7 @@ unique(colnames(colData(sce)))
 
 unique(sce$Subregion)
 
+# save sce
 
 
 # ========= Checking for clusters of doublets ========
@@ -295,6 +296,8 @@ pdf(here(plot_dir, "UMAP_broad_celltype_labels.pdf"))
 plotReducedDim(sce, dimred = "UMAP", colour_by = "broad_celltype")
 dev.off()
 
+# save broad annotations
+saveRDS(sce, here("processed-data", "07_annotation", "sce_broad_annotations.rds"))
 
 # ========== Comparing macaque, baboon, and human cells ========
 
