@@ -19,6 +19,44 @@ library(bluster)
 plot_dir = here("plots", "07_annotation", "cluster_check")
 processed_dir = here("processed-data","07_annotation", "cluster_check")
 
+sce <- readRDS(here("processed-data", "07_annotation", "sce_inhib_subclustering.rds"))
+colnames(colData(sce))
+sce.inhib <- sce
+
+
+methods <- c("louvain", "leiden", "walktrap")
+
+ks <- c(15, 20, 25, 30, 35 , 40, 45, 50, 60)
+
+for (i in 1:length(methods)) {
+    
+    # get method name
+    method <- methods[i]
+    
+    plots <- list()
+    for (j in 1:length(ks)) {
+        cluster <-  paste0("k.", ks[j], "_cluster.fun.", method)
+        print(cluster)
+        plots[[j]] <- plotReducedDim(sce.inhib, dimred="UMAP", colour_by = cluster, point_size=0.1) +
+            ggtitle(cluster) +
+            theme(legend.position="none")
+    }
+    
+    pdf(here(plot_dir, paste0(methods[i], "_subclustering.pdf")), width = 20, height = 20)
+    print((plots[[1]] + plots[[2]] + plots[[3]]) / (plots[[4]] + plots[[5]] + plots[[6]]) / (plots[[7]] + plots[[8]] + plots[[9]]))
+    dev.off()
+    
+
+}
+
+
+
+pdf(here(plot_dir, "leiden_subclustering.pdf"), width = 20, height = 20)
+plotReducedDim(sce.inhib, dimred="UMAP", colour_by = "k.60_cluster.fun.louvain", point_size=0.1)
+dev.off()
+
+
+
 # save sce
 sce <- readRDS(here("processed-data", "07_annotation", "sce_broad_annotations.rds"))
 sce

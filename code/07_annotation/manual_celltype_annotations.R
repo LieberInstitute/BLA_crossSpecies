@@ -56,6 +56,9 @@ unique(colnames(colData(sce)))
 # [19] "species"                "originalexp_snn_res.2"  "seurat_clusters"       
 # [22] "integrated_snn_res.0.5" "ident"   
 
+# drop any duplicate coldata
+sce <- sce[,!duplicated(colnames(colData(sce)))]
+
 # ========= Add metadata =========
 
 # load metadata csv
@@ -292,8 +295,16 @@ colData(sce)$broad_celltype[which(colData(sce)$ident %in% inhib)] <- "Inhibitory
 colData(sce)$broad_celltype[which(colData(sce)$ident %in% non_neuronal)] <- "Non-neuronal"
 
 # plot UMAP with broad cell types
-pdf(here(plot_dir, "UMAP_broad_celltype_labels.pdf"))
+pdf(here(plot_dir, "NEW_UMAP_broad_celltype_labels.pdf"))
 plotReducedDim(sce, dimred = "UMAP", colour_by = "broad_celltype")
+dev.off()
+
+# subset to inhib
+sce.inhib <- sce[, sce$broad_celltype == "Inhibitory"]
+
+# plot UMAP with broad cell types
+pdf(here(plot_dir, "NEW_UMAP_inhibitory_labels.pdf"))
+plotReducedDim(sce.inhib, dimred = "UMAP", colour_by = "ident")
 dev.off()
 
 # save broad annotations
