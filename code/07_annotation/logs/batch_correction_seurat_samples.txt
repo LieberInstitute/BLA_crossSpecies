@@ -1,0 +1,694 @@
+**** Job starts ****
+Tue Jan 16 05:01:23 PM EST 2024
+**** SLURM info ****
+User: mtotty
+Job id: 1606092
+Job name: batch_correction_seurat_samples
+Hostname: compute-116
+Task id: 
+Loading conda_R/4.3.x
+
+Currently Loaded Modules:
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
+  2) JHPCE_tools/3.0            4) conda_R/4.3.x
+
+ 
+
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: scuttle
+here() starts at /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies
+Loading required package: Rcpp
+Attaching SeuratObject
+‘SeuratObject’ was built with package ‘Matrix’ 1.6.3 but the current
+version is 1.6.4; it is recomended that you reinstall ‘SeuratObject’ as
+the ABI for ‘Matrix’ may have changed
+Seurat v4 was just loaded with SeuratObject v5; disabling v5 assays and
+validation routines, and ensuring assays work in strict v3/v4
+compatibility mode
+
+Attaching package: ‘Seurat’
+
+The following object is masked from ‘package:SummarizedExperiment’:
+
+    Assays
+
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Centering and scaling data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%
+PC_ 1 
+Positive:  CLDN11, ELK3, ACSS3, SDF2L1, SLC22A18, ULBP3, RNF32, PITRM1, NCAPD3, TUBG1 
+	   SLC47A2, ZBED1, RMDN1, ATP5ME, PLEK, SLC24A5, MCMDC2, KLHL28, SGCG, CRYL1 
+	   PSMB4, ATP6V0D1, ZNF552, RHBDL2, OSER1, NKIRAS1, SEL1L2, PRPF18, FMO5, PRKX 
+Negative:  LINGO2, PTPRD, LRRC4C, LRRTM4, NAV3, TAFA2, ASIC2, FLRT2, BASP1, FGF12 
+	   FOXP1, HIVEP3, B3GALT1, ADGRL2, GFOD1, SNTG1, PRICKLE1, BSN, ENOX1, TENM2 
+	   DAB1, CNTN1, KCNMB2, ANK3, RORA, UBE2D2, TSHZ2, UMAD1, GARNL3, OPCML 
+PC_ 2 
+Positive:  B3GALT1, F13A1, LGALS14, DAG1, ROBO2, SOCS5, PPARGC1A, MEMO1, CNGA3, TSPYL5 
+	   BLM, ROR1, THTPA, VSIG1, PATE2, BLOC1S2, RGP1, SLC9B1, LRMDA, CDH12 
+	   PLGRKT, ADAM18, SGCZ, CCDC178, ZSCAN12, SAMD5, PDE10A, FANCC, GUCY1A1, PLPPR1 
+Negative:  UPP2, GDAP1, TIAM2, CDR2, ANKRD7, ZNF483, RFLNA, NRG1, LSAMP, NEXMIF 
+	   CCDC3, TMEM232, HIVEP2, MRPL41, ZNF235, RABGEF1, MYEF2, SAMD3, ST8SIA3, WIPF3 
+	   RNF175, MYO6, DLGAP1, ARMCX4, HMGB1, SERP1, SYCP2L, TSPYL1, DYNLL1, CREG2 
+PC_ 3 
+Positive:  GULP1, CPNE4, ZNF536, KCNH5, TRHDE, BMPER, OLFM3, NTNG1, COBLL1, ALCAM 
+	   GRM3, SATB1, TMTC2, RORB, SASH1, ANTXR2, MEF2C, SAMD5, KCNH1, RIMS2 
+	   RGS6, SLC38A11, HTR2C, PDE4B, LHFPL6, NCALD, EPHA3, CNTNAP2, CNTN6, NRXN3 
+Negative:  CACNA1E, CALN1, NTM, COL25A1, ROBO1, DGKG, CCBE1, SLIT3, MEIS2, SLC24A3 
+	   SEZ6L, CACNB2, PALMD, MOXD1, CDH13, RPS6KA2, CDH4, ARHGAP6, MEGF11, SFMBT2 
+	   GRIK4, TENM3, PLXDC2, AGBL1, SYN3, ITGB8, TMEM132D, GRK3, LAMA3, PPARGC1A 
+PC_ 4 
+Positive:  ANO3, PDZD2, SLC4A4, TAFA1, RFX3, TRPM3, CNTN5, NKAIN3, GUCY1A1, AGBL1 
+	   DACH1, PARD3, ZFPM2, GRM1, CDH9, ST6GALNAC5, LDB2, DPY19L3, FSTL4, USP25 
+	   PRR16, KCTD16, DOK5, ATRNL1, ANKFN1, SLC7A14, MPP7, PTPRZ1, GALNT13, LAMA3 
+Negative:  HS3ST4, DPP10, MYRIP, ASTN2, FSTL5, IGSF21, GRIK3, CADPS2, SEMA3E, SATB2 
+	   TMEM163, GRM8, GRIN3A, ZNF804B, ZNF385B, KAZN, TENM3, DCC, HDAC9, GALNT14 
+	   KIAA1217, GAB2, SCML4, CACNA1G, ELAVL2, SDK1, PRKCB, TLL1, ANO4, PREX2 
+PC_ 5 
+Positive:  USP9Y, CCDC3, ERBB4, MYO5C, COBLL1, NXPH1, CAMK2G, SPON2, EPHA3, ZNF483 
+	   KCNH5, NRP2, VAV3, DDX3Y, KMT5B, WTIP, GSG1L, DMXL2, CUX2, MGAT5B 
+	   AMZ2, ZBTB7C, HS6ST3, PTGDS, APOE, MYEF2, HMGB1, SECISBP2L, USP22, LSAMP 
+Negative:  SLC8A1, ROBO2, PEX5L, GRIP1, P2RY14, POLQ, CNTN1, KCNT2, KCNN2, TMC2 
+	   C1QL3, RXFP2, BRINP1, EML6, ETV1, SOX5, DMD, DAG1, LRP1B, CCDC65 
+	   CDH9, DPP10, RYR3, SV2B, PLCB1, OPCML, OXR1, CDH8, ANK3, FGF12 
+Computing nearest neighbor graph
+Computing SNN
+Warning: The following arguments are not used: cluster.name
+Warning: The following arguments are not used: cluster.name
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 78982
+Number of edges: 2747206
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Maximum modularity in 10 random starts: 0.9106
+Number of communities: 75
+Elapsed time: 27 seconds
+Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
+To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
+This message will be shown once per session
+17:10:22 UMAP embedding parameters a = 0.9922 b = 1.112
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+17:10:22 Read 78982 rows and found 30 numeric columns
+17:10:22 Using Annoy for neighbor search, n_neighbors = 30
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+17:10:22 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+17:10:39 Writing NN index file to temp file /tmp/RtmphgWWqb/file2e1e45e715d3d
+17:10:39 Searching Annoy index using 1 thread, search_k = 3000
+17:11:17 Annoy recall = 100%
+17:11:19 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+17:11:25 Initializing from normalized Laplacian + noise (using irlba)
+17:11:38 Commencing optimization for 200 epochs, with 3310372 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+17:12:37 Optimization finished
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Scaling features for provided objects
+Computing within dataset neighborhoods
+Finding all pairwise anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 3380 anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 3689 anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 12839 anchors
+Merging dataset 3 into 2
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Merging dataset 1 into 2 3
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+17:59:25 UMAP embedding parameters a = 0.9922 b = 1.112
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+17:59:25 Read 78982 rows and found 30 numeric columns
+17:59:25 Using Annoy for neighbor search, n_neighbors = 30
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+17:59:25 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+17:59:41 Writing NN index file to temp file /tmp/RtmphgWWqb/file2e1e451de93b8
+17:59:41 Searching Annoy index using 1 thread, search_k = 3000
+18:00:39 Annoy recall = 100%
+18:00:41 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+18:00:47 Initializing from normalized Laplacian + noise (using irlba)
+18:01:26 Commencing optimization for 200 epochs, with 3457154 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:02:36 Optimization finished
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 78982
+Number of edges: 2756080
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Maximum modularity in 10 random starts: 0.9159
+Number of communities: 24
+Elapsed time: 41 seconds
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Centering and scaling data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%
+PC_ 1 
+Positive:  MCMDC2, ELK3, CLDN11, NCAPD3, CTNNA3, SDF2L1, ACSS3, SLC22A18, FMO5, ULBP3 
+	   SGCG, RNF32, ZFHX2, THTPA, KLHL28, EPHB4, MEIS2, PLEK, SLC24A5, SEL1L2 
+	   MCM10, RMDN1, FANCC, ZBED1, CPQ, B3GNT5, PSMB4, HACD4, TCN2, PLP1 
+Negative:  GRIP1, RORA, ARL4C, FLRT2, NEXMIF, GFOD1, GARNL3, LINGO2, BASP1, UMAD1 
+	   HIVEP2, CFAP161, RBMS3, CCK, FGF12, KAZN, DAB1, SLC6A1, GDAP1, HIVEP3 
+	   CDR2, JAK1, PURA, ARMCX4, TRMT11, TCF4, NAP1L3, TAFA2, CAMK2N2, NAV3 
+PC_ 2 
+Positive:  TCF4, ZNF536, ZEB2, MYRIP, KCNC2, GRIK1, UBASH3B, METAP1D, FBXL7, MPPED1 
+	   CDH13, XKR4, ROR1, GRIN3A, EGFR, QKI, ZMAT4, GRIA4, MCC, ZPBP 
+	   ZBTB16, NXPH1, SLC6A1, CNTNAP4, ALK, SRRM4, FRMD5, PSMD12, BMP6, OSBPL3 
+Negative:  MEIS2, DPYD, ANO3, EPHB1, KCNIP4, RYR2, CELF2, ATP2B4, SLIT3, LDB2 
+	   PPP3CA, PTK2B, KCND2, SLC4A4, CACNA2D3, AHI1, LMO7, FOXP2, CNKSR2, KCNN3 
+	   ANKFN1, NRG1, CHN1, PDE1A, DGKH, LDLRAD4, CALN1, ATP8A1, RYR3, TENM1 
+PC_ 3 
+Positive:  B3GALT1, LINGO2, PPARGC1A, RGP1, VSIG1, TENM2, EEF1AKMT1, PATE2, LRRC4C, CNGA3 
+	   PDE10A, BLOC1S2, SAMD5, P2RY14, ENOX1, ZNF804B, FLRT2, TSPYL5, NAV3, TAFA2 
+	   GRIP1, KCNA3, LRRTM4, FGF12, GPR82, COL10A1, FOXP1, ASIC2, CELF2, CNTN1 
+Negative:  LSAMP, SLC22A18, HMGB1, RMDN1, ZNF483, RNF32, CLDN11, PTPRJ, KLHL28, PSMD12 
+	   FMO5, SECISBP2L, SLC24A5, DLGAP1, MYEF2, USP22, PITRM1, MCMDC2, ACSS3, ELK3 
+	   FBN1, RHBDL2, MTCP1, PHF11, SGCG, ATP5ME, MOSMO, ZNF552, NCAPD3, PRPF18 
+PC_ 4 
+Positive:  ADARB2, COBL, CACNA2D1, DOCK10, KCNQ5, PHACTR1, PRR16, KIT, KCNT2, GALNT18 
+	   SV2C, IGSF11, ZBTB16, NFIX, SHISA9, SGK1, RGS12, LAMP5, BMP6, MAPK4 
+	   PID1, FBXL7, PRKCB, EYA4, EGFR, JAM2, AP1S2, CXCL14, GABRB2, GRIN2A 
+Negative:  SOX6, KIAA1217, CUX2, RASGRF2, TMEM132C, GPC6, LHX6, OXR1, DTNA, GRIK3 
+	   LPAR1, TMCC3, MYO5B, LRP8, SFMBT2, EML6, CDH12, PACRG, KLF12, PRKCQ 
+	   SATB1, NXPH1, FARP1, KCNK10, NEGR1, PPARGC1A, ELAVL2, RNF152, LHFPL3, DLGAP2 
+PC_ 5 
+Positive:  NXPH1, EYA4, BCL11B, PDZD2, MTUS2, TOX2, ALK, KCNAB1, TOX, SV2C 
+	   SLC8A1, LAMP5, PTPRM, DPP10, GRIA3, TMEM132D, MPPED1, ELMO1, SGCZ, NYAP2 
+	   PTPRT, CAMK1D, EPHA6, GAD2, MYO16, KCTD16, TRPS1, UNC5C, FBXL7, UNC5D 
+Negative:  CALB2, NPAS3, PLPP4, SYNPR, CNR1, PDE4B, CNTN6, GRID2, ADRA1B, ADARB2 
+	   ASIC2, CDH18, ZNF804A, DSCAM, VIP, CHST15, KCNT2, SEMA5A, OXR1, VWC2L 
+	   GALNTL6, PDE3A, RGS12, LRP1B, PRR16, ROBO1, FAT4, ARHGAP28, PLS3, TRPC4 
+Computing nearest neighbor graph
+Computing SNN
+Warning: The following arguments are not used: cluster.name
+Warning: The following arguments are not used: cluster.name
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 32698
+Number of edges: 1117918
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Maximum modularity in 10 random starts: 0.9164
+Number of communities: 61
+Elapsed time: 8 seconds
+18:22:19 UMAP embedding parameters a = 0.9922 b = 1.112
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+18:22:19 Read 32698 rows and found 30 numeric columns
+18:22:19 Using Annoy for neighbor search, n_neighbors = 30
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+18:22:19 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:22:25 Writing NN index file to temp file /tmp/RtmphgWWqb/file2e1e457cc34e4
+18:22:25 Searching Annoy index using 1 thread, search_k = 3000
+18:22:42 Annoy recall = 100%
+18:22:44 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+18:22:48 Initializing from normalized Laplacian + noise (using irlba)
+18:22:53 Commencing optimization for 200 epochs, with 1340326 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:23:24 Optimization finished
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Scaling features for provided objects
+Computing within dataset neighborhoods
+Finding all pairwise anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 3282 anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 4277 anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 8368 anchors
+Merging dataset 2 into 3
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Merging dataset 1 into 3 2
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+18:42:03 UMAP embedding parameters a = 0.9922 b = 1.112
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+18:42:03 Read 32698 rows and found 30 numeric columns
+18:42:03 Using Annoy for neighbor search, n_neighbors = 30
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+18:42:03 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:42:11 Writing NN index file to temp file /tmp/RtmphgWWqb/file2e1e4526699998
+18:42:11 Searching Annoy index using 1 thread, search_k = 3000
+18:42:32 Annoy recall = 100%
+18:42:35 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+18:42:39 Initializing from normalized Laplacian + noise (using irlba)
+18:42:44 Commencing optimization for 200 epochs, with 1423214 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:43:15 Optimization finished
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 32698
+Number of edges: 1252679
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Maximum modularity in 10 random starts: 0.9481
+Number of communities: 21
+Elapsed time: 10 seconds
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Centering and scaling data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%
+PC_ 1 
+Positive:  SOX5, GPM6A, CTNNA2, NEBL, NTRK2, GLIS3, NRG3, PREX2, ADGRV1, PTPRZ1 
+	   CRB1, PTPRG, LRP1B, SLC1A2, NFIB, PRKG1, FARP1, GABRB1, BMPR1B, SORBS1 
+	   OPHN1, PDZRN4, TRPS1, NAV2, WWC1, NKAIN3, NRCAM, DTNA, ADCY2, GRAMD2B 
+Negative:  NKAIN2, RNF220, PLP1, ST18, ARHGAP22, QDPR, RASGRP3, ZNF536, PEX5L, SH3GL3 
+	   PIGH, CLDN11, RAPGEF5, SH3TC2, ST6GALNAC3, ANLN, ENPP2, MAN2A1, KCNJ2, DEPTOR 
+	   ANK3, N6AMT1, TTLL7, TMEFF2, SLC5A11, OPALIN, SLAIN1, DPYSL5, LPAR1, PLCL1 
+PC_ 2 
+Positive:  LHFPL3, TNR, PCDH15, CA10, NXPH1, MMP16, DSCAM, KCND2, CSMD1, PTPRT 
+	   NTNG1, SEZ6L, SLC35F1, SULF2, GRID2, KHDRBS3, NLGN1, HS6ST3, SGCZ, BRINP3 
+	   OPCML, XKR4, NOVA1, ASIC2, GRIK2, NLGN4X, MEGF11, GRIK1, ROBO1, PTPRZ1 
+Negative:  SORL1, DOCK8, INPP5D, ARHGAP15, FAM149A, ABR, DOCK2, PLXDC2, RBM47, PTPRC 
+	   MAN1A1, MERTK, ENTPD1, ST6GALNAC3, VAV3, FYB1, SFMBT2, PALD1, IPCEF1, NFATC2 
+	   PLCG2, SLCO2B1, AOAH, LYN, CSF1R, CFAP54, ADAM28, TGFBR2, IKZF1, PIK3R5 
+PC_ 3 
+Positive:  RNF220, NKAIN2, SH3GL3, ST18, ENPP2, ZNF536, FGFR2, PEX5L, TTLL7, QDPR 
+	   DLC1, PLP1, PIGH, ANK2, COL4A5, TMTC1, ANLN, PARD3B, CLDN11, ITGA2 
+	   SLCO3A1, RAPGEF5, PLCL1, SLAIN1, KCNJ2, KIF6, DPYSL5, LPAR1, PRUNE2, N6AMT1 
+Negative:  SLC8A1, KCNQ3, CHST11, ASTN2, ENTPD1, INPP5D, DIAPH2, CACNA1A, FOXN3, NAV3 
+	   DOCK2, ST6GAL1, ABR, ABCC4, FMNL3, DOCK8, VAV3, KLF12, IPCEF1, LRCH1 
+	   CASK, FAM149A, PDE3B, FYB1, P2RY12, SIPA1L2, CYFIP1, LDLRAD4, PLD5, PLXDC2 
+PC_ 4 
+Positive:  KAZN, ZBBX, ADGB, TTC6, CSMD3, CFAP54, SPAG17, CFAP73, CFAP299, DNAAF1 
+	   DPP6, TTC29, SPAG8, CCDC170, TOGARAM2, CFAP52, KIAA2012, CFAP157, DAW1, KCNMB2 
+	   ROPN1L, DOC2A, NEK5, DCDC2, SPATA17, VWA5B1, SPATA18, SEMA5A, SLC9C2, SMOC1 
+Negative:  ETNPPL, ALDH1A1, RGS20, GLI3, SLC1A2, ADGRV1, SLC25A18, SLC4A4, GPC5, ACSBG1 
+	   FGD6, AKR1B1, RORB, MYBPC1, BMPR1B, CARMIL1, UNC5D, CPE, SORCS2, ST6GALNAC5 
+	   PRKG1, ZNRF3, KBTBD12, CLDN10, NKAIN3, ABLIM1, SPARCL1, ARHGEF4, LGI4, PREX2 
+PC_ 5 
+Positive:  TTC6, SLC9C2, DOC2A, DNAAF1, CCDC170, SPATA18, DPYSL3, CD36, PTPRQ, RASSF9 
+	   STK33, HPSE2, MGST1, ABCC9, KCNMB2, DPP10, HSPB8, CFAP58, ADCY2, CFAP299 
+	   DNAH3, AGBL1, CUBN, ARL4C, BASP1, CRB1, MAPK10, CFAP65, DCDC2, ANKFN1 
+Negative:  KL, OTX2, SULF1, SLC5A5, SLC22A8, HTR2C, NHSL2, SLC38A11, MAP3K15, OTOF 
+	   IGFBP7, TRPV4, TTR, PCP4, ADTRP, SLC24A4, GULP1, PAQR5, SLCO1B3, SLC13A4 
+	   F5, RIBC2, RNF152, SLC39A12, MYRFL, VEPH1, MYO1B, PIP5K1B, OCA2, CEMIP 
+Computing nearest neighbor graph
+Computing SNN
+Warning: The following arguments are not used: cluster.name
+Warning: The following arguments are not used: cluster.name
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 64238
+Number of edges: 2265698
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Maximum modularity in 10 random starts: 0.8900
+Number of communities: 57
+Elapsed time: 28 seconds
+18:54:54 UMAP embedding parameters a = 0.9922 b = 1.112
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+18:54:54 Read 64238 rows and found 30 numeric columns
+18:54:54 Using Annoy for neighbor search, n_neighbors = 30
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+18:54:54 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:55:07 Writing NN index file to temp file /tmp/RtmphgWWqb/file2e1e4548d206eb
+18:55:07 Searching Annoy index using 1 thread, search_k = 3000
+18:55:51 Annoy recall = 100%
+18:55:54 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+18:56:00 Initializing from normalized Laplacian + noise (using irlba)
+18:57:06 Commencing optimization for 200 epochs, with 2910718 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:58:14 Optimization finished
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Scaling features for provided objects
+Computing within dataset neighborhoods
+Finding all pairwise anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 357 anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 637 anchors
+Projecting new data onto SVD
+Projecting new data onto SVD
+Finding neighborhoods
+Finding anchors
+	Found 575 anchors
+Merging dataset 1 into 3
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Merging dataset 2 into 3 1
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+19:21:21 UMAP embedding parameters a = 0.9922 b = 1.112
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+19:21:21 Read 64238 rows and found 30 numeric columns
+19:21:21 Using Annoy for neighbor search, n_neighbors = 30
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+19:21:21 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+19:21:35 Writing NN index file to temp file /tmp/RtmphgWWqb/file2e1e451c3769d1
+19:21:35 Searching Annoy index using 1 thread, search_k = 3000
+19:22:29 Annoy recall = 100%
+19:22:31 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+19:22:37 Initializing from normalized Laplacian + noise (using irlba)
+19:23:04 Commencing optimization for 200 epochs, with 2991048 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+19:24:14 Optimization finished
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 64238
+Number of edges: 2212399
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Maximum modularity in 10 random starts: 0.9381
+Number of communities: 26
+Elapsed time: 30 seconds
+1 singletons identified. 25 final clusters.
+There were 15 warnings (use warnings() to see them)
+**** Job ends ****
+Tue Jan 16 07:30:25 PM EST 2024

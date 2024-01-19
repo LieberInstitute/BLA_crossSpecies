@@ -1,0 +1,184 @@
+**** Job starts ****
+Fri Jan 12 05:10:27 PM EST 2024
+**** SLURM info ****
+User: mtotty
+Job id: 1555346
+Job name: walkrap_subclustering
+Hostname: compute-152
+Task id: 
+Loading conda_R/4.3.x
+
+Currently Loaded Modules:
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
+  2) JHPCE_tools/3.0            4) conda_R/4.3.x
+
+ 
+
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: scuttle
+here() starts at /dcs04/lieber/marmaypag/BLA_crossSpecies_LIBD1070/BLA_crossSpecies
+Loading required package: Rcpp
+Attaching SeuratObject
+‘SeuratObject’ was built with package ‘Matrix’ 1.6.3 but the current
+version is 1.6.4; it is recomended that you reinstall ‘SeuratObject’ as
+the ABI for ‘Matrix’ may have changed
+Seurat v4 was just loaded with SeuratObject v5; disabling v5 assays and
+validation routines, and ensuring assays work in strict v3/v4
+compatibility mode
+
+Attaching package: ‘Seurat’
+
+The following object is masked from ‘package:SummarizedExperiment’:
+
+    Assays
+
+
+Attaching package: ‘dplyr’
+
+The following object is masked from ‘package:Biobase’:
+
+    combine
+
+The following objects are masked from ‘package:GenomicRanges’:
+
+    intersect, setdiff, union
+
+The following object is masked from ‘package:GenomeInfoDb’:
+
+    intersect
+
+The following objects are masked from ‘package:IRanges’:
+
+    collapse, desc, intersect, setdiff, slice, union
+
+The following objects are masked from ‘package:S4Vectors’:
+
+    first, intersect, rename, setdiff, setequal, union
+
+The following objects are masked from ‘package:BiocGenerics’:
+
+    combine, intersect, setdiff, union
+
+The following object is masked from ‘package:matrixStats’:
+
+    count
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+class: SingleCellExperiment 
+dim: 13874 177346 
+metadata(0):
+assays(2): counts logcounts
+rownames(13874): ANKRD65 AURKAIP1 ... R3HDM4 KISS1R
+rowData names(0):
+colnames(177346): AAACCCAAGCTAAATG-1 AAACCCACAGGTCCCA-1 ...
+  TTTGGTTGTGGCTAGA-1 TTTGTTGCACATGGTT-1
+colData names(33): Sample_num Sample ... key broad_celltype
+reducedDimNames(2): PCA UMAP
+mainExpName: originalexp
+altExpNames(0):
+ [1] "Sample_num"             "Sample"                 "Species"               
+ [4] "Subject"                "Sex"                    "Region"                
+ [7] "Subregion"              "DV_axis"                "PI.NeuN"               
+[10] "orig.ident"             "nCount_originalexp"     "nFeature_originalexp"  
+[13] "batch"                  "Barcode"                "sum"                   
+[16] "detected"               "subsets_Mito_sum"       "subsets_Mito_detected" 
+[19] "subsets_Mito_percent"   "total"                  "high_mito"             
+[22] "low_lib"                "low_genes"              "discard_auto"          
+[25] "doubletScore"           "sizeFactor"             "species"               
+[28] "originalexp_snn_res.2"  "seurat_clusters"        "integrated_snn_res.0.5"
+[31] "ident"                  "key"                    "broad_celltype"        
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+Found more than one class "dist" in cache; using the first, from namespace 'BiocGenerics'
+Also defined by ‘spam’
+**** Job ends ****
+Sat Jan 13 08:22:22 PM EST 2024

@@ -1,0 +1,19 @@
+**** Job starts ****
+Fri Jan 12 04:56:28 PM EST 2024
+**** SLURM info ****
+User: mtotty
+Job id: 1554733
+Job name: walkrap_subclustering
+Hostname: compute-053
+Task id: 
+Loading conda_R/4.3.x
+
+Currently Loaded Modules:
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
+  2) JHPCE_tools/3.0            4) conda_R/4.3.x
+
+ 
+
+/var/spool/slurm/d/job1554733/slurm_script: line 27:  9392 Illegal instruction     (core dumped) Rscript walkrap_subclustering.R
+**** Job ends ****
+Fri Jan 12 04:56:39 PM EST 2024
