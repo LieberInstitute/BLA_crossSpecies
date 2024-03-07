@@ -65,13 +65,17 @@ dds
 #     colnames: NULL
 # colData names(66): orig.ident nCount_originalexp ... Sample ncells
 
+vsd <- vst(dds, blind=FALSE)
+counts(dds) <- counts(vsd)
+
+
 dds <- DESeq(dds)
 
 res <- results(dds, contrast=c("Subregion", "Lateral", "Basal"))
 res <- lfcShrink(dds,
                  contrast = c("Subregion", "Lateral", "Basal"), res=res, type = 'normal')
 
-pdf(here(plot_dir, "Volcano_Lateral_vs_Basal_pseudo.pdf"), width = 7, height = 8)
+pdf(here(plot_dir, "Volcano_Lateral_vs_Basal_pseudo_VSDnormalizated.pdf"), width = 7, height = 8)
 EnhancedVolcano(res,
                 lab = rownames(res),
                 x = 'log2FoldChange',
@@ -225,4 +229,7 @@ p4 <- plotReducedDim(sce.temp, dimred = "UMAP", colour_by = "COL25A1", point_siz
 dev.off()
 
 
+# ====== Box plot per samples ======
 
+summary <- summarizeAssayByGroup(logcounts(sce.excit),ids = colData(sce.excit)[,c("Subregion_DE", "species","Subject")], subset.row=features)
+summary
