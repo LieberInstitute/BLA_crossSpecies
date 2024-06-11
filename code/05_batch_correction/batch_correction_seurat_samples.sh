@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=batch_correction_seurat_samples
-#SBATCH --output=logs/batch_correction_seurat_samples.txt
-#SBATCH --error=logs/batch_correction_seurat_samples.txt
+#SBATCH --output=logs/batch_correction_seurat_samples_noCeA.txt
+#SBATCH --error=logs/batch_correction_seurat_samples_noCeA.txt
 #SBATCH --mem=400G
 #SBATCH --mail-type=END
 #SBATCH --cpus-per-task=1 # specify the number of CPUs needed for the job, adjust as needed

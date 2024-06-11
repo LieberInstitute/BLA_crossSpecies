@@ -13,7 +13,7 @@ library(Seurat)
 
 
 ## save directories
-plot_dir = here("plots", "05_batch_correction", "seurat_v4")
+plot_dir = here("plots", "05_batch_correction", "seurat_v4", "without_CeA")
 processed_dir = here("processed-data","05_batch_correction")
 
 # Enable parallelization
@@ -226,8 +226,173 @@ unique(combined$species)
 # [1] "human"   "baboon"  "macaque"
 
 
-# save combined sce
+
+# Read in the CSV file as a data frame
+tmp <- read.delim(here("raw-data","sampleinfo",
+                       "master_sampleinfo_2023-10-09.csv"),
+                  header = T,sep=',')
+
+# View the subsetted data
+head(tmp)
+
+
+sce <- combined
+rm(combined)
+
+
+#        Sample Species Subject Sex   Region Subregion DV_axis  PI.NeuN
+#   1 3c-AMYBLA   Human  Br2327     Amygdala       BLA         PI+NeuN+
+#   2 4c-AMYBLA   Human  Br8692     Amygdala       BLA         PI+NeuN+
+#   3 5c-AMYBLA   Human  Br9021     Amygdala       BLA         PI+NeuN+
+#   4  34ac_scp   Human  Br8331     Amygdala       BLA         PI+NeuN+
+#   5  35ac_scp   Human  Br5273     Amygdala       BLA         PI+NeuN+
+#   6   Sample1 Macaque    Mac2     Amygdala   Lateral Ventral         
+
+# get only amygdala region
+metadata <- tmp[tmp$Region == "Amygdala",]
+
+unique(sce$Sample)
+# [1] "Br2327-3c-AMYBLA"                                    
+# [2] "Br8692-4c-AMYBLA"                                    
+# [3] "Br9021-5c-AMYBLA"                                    
+# [4] "Br8331-34ac_scp"                                     
+# [5] "Br5273-35ac_scp"                                     
+# [6] "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"         
+# [7] "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1"          
+# [8] "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1"          
+# [9] "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1"          
+# [10] "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1"
+# [11] "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1"          
+# [12] "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1"
+# [13] "VC_snRNAseq-7_LateralVentralAP1_-1"                  
+# [14] "VC_snRNAseq-7_LateralVentralAP2_-2"                  
+# [15] "VC_snRNAseq-7_BasalDorsalAP1_-3A"                    
+# [16] "VC_snRNAseq-7_BasalDorsalAP1_-3B"                    
+# [17] "VC_snRNAseq-7_BasalVentralAP1_-4"                    
+# [18] "VC_snRNAseq-7_BasalVentralAP2_-5"                    
+# [19] "VC_snRNAseq-7_AccBasalAP1AP2_-7"                     
+# [20] "VC_snRNAseq-7_LateralDorsalAP1AP2_-8"                
+# [21] "VC_snRNAseq_9_Animal4_LV2"                           
+# [22] "VC_snRNAseq_9_Animal4_LV1"                           
+# [23] "VC_snRNAseq_9_Animal4_LD"                            
+# [24] "VC_snRNAseq_9_Animal4_L-Comb"                        
+# [25] "VC_snRNAseq_9_Animal4_BV"                            
+# [26] "VC_snRNAseq_9_Animal4_BD"                            
+# [27] "VC_snRNAseq_9_Animal4_B-Comb"                        
+# [28] "VC_snRNAseq_9_Animal4_AB"                            
+# [29] "VC_snRNAseq_8_Animal3_LV"                            
+# [30] "VC_snRNAseq_8_Animal3_LV3"                           
+# [31] "VC_snRNAseq_8_Animal3_LD"                            
+# [32] "VC_snRNAseq_8_Animal3_BV2"                           
+# [33] "VC_snRNAseq_8_Animal3_BV1"                           
+# [34] "VC_snRNAseq_8_Animal3_BD"                            
+# [35] "VC_snRNAseq_8_Animal3_AB__"                          
+# [36] "VC_snRNAseq_8_Animal3_Bd_Bv"                         
+# [37] "LIB210527RC_AB_1A"                                   
+# [38] "LIB210527RC_AB_1B"                                   
+# [39] "VC_snRNAseq_12_Animal2_Central_Nucleus"              
+# [40] "VC_snRNAseq_12_Animal3_Central_Nucleus"              
+# [41] "VC_snRNAseq_12_Animal4_Central_Nucleus"              
+# [42] "VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_"    
+# [43] "VC_snRNAseq_12_Animal5_Basal__AP1_"                  
+# [44] "VC_snRNAseq_12_Animal5_Basal__AP2_"                  
+# [45] "VC_snRNAseq_12_Animal5_Lateral__AP1_"                
+# [46] "VC_snRNAseq_12_Animal5_Lateral__AP2_"                
+# [47] "VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_" 
+
+unique(metadata$Sample)
+# [1] "3c-AMYBLA"                                           
+# [2] "4c-AMYBLA"                                           
+# [3] "5c-AMYBLA"                                           
+# [4] "34ac_scp"                                            
+# [5] "35ac_scp"                                            
+# [6] "VC_snRNAseq-7_LateralVentralAP1_-1"                  
+# [7] "VC_snRNAseq-7_LateralVentralAP2_-2"                  
+# [8] "VC_snRNAseq-7_BasalDorsalAP1_-3A"                    
+# [9] "VC_snRNAseq-7_BasalDorsalAP1_-3B"                    
+# [10] "VC_snRNAseq-7_BasalVentralAP1_-4"                    
+# [11] "VC_snRNAseq-7_BasalVentralAP2_-5"                    
+# [12] "VC_snRNAseq-7_AccBasalAP1AP2_-7"                     
+# [13] "VC_snRNAseq-7_LateralDorsalAP1AP2_-8"                
+# [14] "VC_snRNAseq_9_Animal4_LV2"                           
+# [15] "VC_snRNAseq_9_Animal4_LV1"                           
+# [16] "VC_snRNAseq_9_Animal4_LD"                            
+# [17] "VC_snRNAseq_9_Animal4_L-Comb"                        
+# [18] "VC_snRNAseq_9_Animal4_BV"                            
+# [19] "VC_snRNAseq_9_Animal4_BD"                            
+# [20] "VC_snRNAseq_9_Animal4_B-Comb"                        
+# [21] "VC_snRNAseq_9_Animal4_AB"                            
+# [22] "VC_snRNAseq_8_Animal3_LV"                            
+# [23] "VC_snRNAseq_8_Animal3_LV3"                           
+# [24] "VC_snRNAseq_8_Animal3_LD"                            
+# [25] "VC_snRNAseq_8_Animal3_BV2"                           
+# [26] "VC_snRNAseq_8_Animal3_BV1"                           
+# [27] "VC_snRNAseq_8_Animal3_BD"                            
+# [28] "VC_snRNAseq_8_Animal3_AB__"                          
+# [29] "VC_snRNAseq_8_Animal3_Bd_Bv"                         
+# [30] "LIB210527RC_AB_1A"                                   
+# [31] "LIB210527RC_AB_1B"                                   
+# [32] "VC_snRNAseq_12_Animal2_Central_Nucleus"              
+# [33] "VC_snRNAseq_12_Animal3_Central_Nucleus"              
+# [34] "VC_snRNAseq_12_Animal4_Central_Nucleus"              
+# [35] "VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_"    
+# [36] "VC_snRNAseq_12_Animal5_Basal__AP1_"                  
+# [37] "VC_snRNAseq_12_Animal5_Basal__AP2_"                  
+# [38] "VC_snRNAseq_12_Animal5_Lateral__AP1_"                
+# [39] "VC_snRNAseq_12_Animal5_Lateral__AP2_"                
+# [40] "VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_"        
+# [41] "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"         
+# [42] "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1"          
+# [43] "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1"          
+# [44] "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1"          
+# [45] "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1"
+# [46] "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1"          
+# [47] "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1"
+
+
+# from the metadata, add the "Subregion" and "DV_axis" column to the "sce" sce. Match based on Sample
+
+library("data.table")
+sample_info <- metadata
+
+
+# Create the key column for sce
+sce$key <- paste0(sce$Barcode, "_", sce$Sample)
+
+# Convert your data to data.table objects
+sce_colData <- as.data.table(colData(sce))
+sample_info_dt <- as.data.table(sample_info)
+
+# Identify the common columns to merge on
+common_cols <- intersect(names(sce_colData), names(sample_info_dt))
+
+# Perform the merge using the [.data.table method
+new_col <- sample_info_dt[sce_colData, on = common_cols]
+
+new_col <- new_col[match(sce$key, sce_colData$key), ]
+
+# Check that the keys match
+stopifnot(identical(sce$key, new_col$key))
+
+# Convert new_col to a DataFrame as required by SingleCellExperiment
+new_col_df <- DataFrame(new_col)
+
+# Update the colData
+colData(sce) <- new_col_df
+colnames(sce) <- sce$Barcode
+
+unique(colnames(colData(sce)))
+
+combined <- sce
+rm(sce)
 save(combined, file = here(processed_dir, "sce_combined.rda"))
+
+
+# drop Central Nucleus samples
+combined <- combined[, !grepl("Central Nucleus", colnames(combined))]
+
+
+
 
 
 # ========= Conver to Seurat v4 ==========
@@ -284,7 +449,7 @@ seurat.list <- lapply(X = seurat.list, FUN = function(x) {
 seurat.anchors <- FindIntegrationAnchors(object.list = seurat.list, anchor.features = features, reduction = "rpca")
 
 # save integrated seurat object
-save(seurat.anchors, file = here(processed_dir, "seurat.anchors.rda"))
+save(seurat.anchors, file = here(processed_dir, "seurat.anchors_noCeA.rda"))
 
 # integrate the datasets
 seurat.int <- IntegrateData(anchorset = seurat.anchors)
@@ -309,7 +474,7 @@ dev.off()
 
 
 # save integrated seurat object
-save(seurat.int, file = here(processed_dir, "seurat_integrated.rda"))
+save(seurat.int, file = here(processed_dir, "seurat_integrated_noCeA.rda"))
 
 
 # ======= high quality plotting =======

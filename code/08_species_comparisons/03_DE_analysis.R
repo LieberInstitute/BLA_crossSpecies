@@ -17,6 +17,7 @@ sce.inhib <- readRDS(here(processed_dir, "sce.inhib.final.rds"))
 sce.excit <- readRDS(here(processed_dir, "sce.excit.integrated.annotated.rds"))
 
 
+plotReducedDim(sce.excit, dimred="UMAP", colour_by="DV_axis")
 
 
 

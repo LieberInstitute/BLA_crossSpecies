@@ -8,10 +8,10 @@
 *.rda
 *.Rdata
 *.rds
-*.csv
+*.h5ad
+
 
 
 # Data directories
 /raw-data/*
-/processed-data/*
 /plots/costa_rds/*
