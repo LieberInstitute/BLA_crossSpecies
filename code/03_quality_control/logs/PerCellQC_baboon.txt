@@ -1,41 +1,19 @@
 **** Job starts ****
-Tue Dec 12 05:36:29 PM EST 2023
+Tue Jun 18 01:35:22 PM EDT 2024
 **** SLURM info ****
 User: mtotty
-Job id: 1119389
+Job id: 7632896
 Job name: PerCellQC_baboon
-Hostname: compute-151
+Hostname: compute-144
 Task id: 
-Loading conda_R/4.3.x
+Loading conda_R/4.4
 
 Currently Loaded Modules:
-  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
-  2) JHPCE_tools/3.0            4) conda_R/4.3.x
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-24.3.0
+  2) JHPCE_tools/3.0            4) conda_R/4.4
 
  
 
-Installing package into ‘/users/mtotty/R/4.3.x’
-(as ‘lib’ is unspecified)
-trying URL 'https://cran.rstudio.com/src/contrib/rafalib_1.0.0.tar.gz'
-Content type 'application/x-gzip' length 11798 bytes (11 KB)
-==================================================
-downloaded 11 KB
-
-* installing *source* package ‘rafalib’ ...
-** package ‘rafalib’ successfully unpacked and MD5 sums checked
-** using staged installation
-** R
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
-* DONE (rafalib)
-
-The downloaded source packages are in
-	‘/tmp/RtmpRZ4K1n/downloaded_packages’
 Loading required package: SummarizedExperiment
 Loading required package: MatrixGenerics
 Loading required package: matrixStats
@@ -76,8 +54,8 @@ The following objects are masked from ‘package:base’:
     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
-    table, tapply, union, unique, unsplit, which.max, which.min
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
+    tapply, union, unique, unsplit, which.max, which.min
 
 Loading required package: S4Vectors
 
@@ -113,10 +91,10 @@ The following objects are masked from ‘package:matrixStats’:
 
 Loading required package: ggplot2
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ✔ lubridate 1.9.3     ✔ tibble    3.2.1
-✔ purrr     1.0.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     ✔ tidyr     1.3.1
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ lubridate::%within%() masks IRanges::%within%()
 ✖ dplyr::collapse()     masks IRanges::collapse()
@@ -187,7 +165,7 @@ class: SingleCellExperiment
 dim: 21091 13939066 
 metadata(1): Samples
 assays(1): counts
-rownames(21091): TMEM88B ANKRD65 ... MT-ND6 CYTB
+rownames(21091): TMEM88B ANKRD65 ... MT-ND6 MT-CYTB
 rowData names(5): ID Symbol Type gene_id_ncbi Symbol.uniq
 colnames(13939066): 1_AAACCCAAGAAACACT-1 1_AAACCCAAGAAACCAT-1 ...
   7_TTTGTTGTCTTTGGCT-1 7_TTTGTTGTCTTTGTCG-1
@@ -634,8 +612,86 @@ Signif    FALSE    TRUE    <NA>     Sum
   Sum      1832   12223 2573192 2587247
 
 [1] 21091 58362
-Error in dummy[subset] : invalid subscript type 'S4'
-Calls: <Anonymous> ... perCellQCMetrics -> .local -> .per_cell_qc_metrics -> lapply -> FUN
+ [1] "Sample"                "Barcode"               "key"                  
+ [4] "sample_id"             "sample_name"           "subject"              
+ [7] "species"               "region"                "subregion"            
+[10] "dv_axis"               "sum"                   "detected"             
+[13] "subsets_Mito_sum"      "subsets_Mito_detected" "subsets_Mito_percent" 
+[16] "total"                
+Loading objects:
+  sce.dropped
+
+FALSE  TRUE 
+49373  8989 
+
+FALSE  TRUE 
+57863   499 
+
+FALSE  TRUE 
+57494   868 
+
+FALSE  TRUE 
+48847  9515 
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+null device 
+          1 
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+null device 
+          1 
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0400  0.2000  0.7542  0.6480 21.1025 
+        0%         1%         2%         3%         4%         5%         6% 
+ 0.0000000  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000 
+        7%         8%         9%        10%        11%        12%        13% 
+ 0.0000000  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000 
+       14%        15%        16%        17%        18%        19%        20% 
+ 0.0125760  0.0158880  0.0160000  0.0200000  0.0200000  0.0200000  0.0249240 
+       21%        22%        23%        24%        25%        26%        27% 
+ 0.0317760  0.0320000  0.0400000  0.0400000  0.0400000  0.0476640  0.0503040 
+       28%        29%        30%        31%        32%        33%        34% 
+ 0.0600000  0.0600000  0.0635520  0.0648900  0.0794400  0.0800000  0.0800000 
+       35%        36%        37%        38%        39%        40%        41% 
+ 0.0953280  0.1000000  0.1000000  0.1112160  0.1168020  0.1200000  0.1271040 
+       42%        43%        44%        45%        46%        47%        48% 
+ 0.1383360  0.1427580  0.1509120  0.1600000  0.1634880  0.1760000  0.1816920 
+       49%        50%        51%        52%        53%        54%        55% 
+ 0.1946700  0.2000000  0.2137920  0.2224320  0.2383200  0.2400000  0.2595600 
+       56%        57%        58%        59%        60%        61%        62% 
+ 0.2700960  0.2800000  0.2984940  0.3040000  0.3200000  0.3374280  0.3520000 
+       63%        64%        65%        66%        67%        68%        69% 
+ 0.3654240  0.3840000  0.4000000  0.4200000  0.4401392  0.4607520  0.4800000 
+       70%        71%        72%        73%        74%        75%        76% 
+ 0.5061420  0.5320980  0.5600000  0.5840100  0.6196320  0.6480240  0.6831840 
+       77%        78%        79%        80%        81%        82%        83% 
+ 0.7200000  0.7601820  0.8046360  0.8474160  0.8960000  0.9475117  1.0122840 
+       84%        85%        86%        87%        88%        89%        90% 
+ 1.0800000  1.1569920  1.2400000  1.3458960  1.4649722  1.6000000  1.7600000 
+       91%        92%        93%        94%        95%        96%        97% 
+ 1.9618560  2.2240000  2.5878211  2.9800000  3.5267460  4.2430536  5.3550047 
+       98%        99%       100% 
+ 6.9400000  9.4559496 21.1025280 
+# A tibble: 7 × 5
+  Sample                                         median   q95  drop drop_percent
+  <chr>                                           <dbl> <dbl> <int>        <dbl>
+1 SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1     0.389  2.44   275         4.24
+2 SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1      0.365  2.00   210         3.34
+3 SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1      0.159  3.50   467         5.88
+4 SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1      0.411  4.01   507         8.14
+5 SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI…  0.16   3.26   620         7.75
+6 SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1      0.16   3.88   607         5.87
+7 SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI…  0.1    4.94  1159         8.87
+Error in base::table(...) : all arguments must have the same length
+Calls: table ... standardGeneric -> eval -> eval -> eval -> table -> <Anonymous>
 Execution halted
 **** Job ends ****
-Tue Dec 12 05:42:29 PM EST 2023
+Tue Jun 18 01:44:07 PM EDT 2024

@@ -20,7 +20,9 @@ sce
 pd <- colData(sce) %>% as.data.frame()
 
 ## save directories
- n. z
+## save directories
+plot_dir = here("plots", "03_quality_control","Macaque","PerCellQC")
+processed_dir = here("processed-data","03_quality_control","Macaque","PerCellQC")
 
 ##get droplet score filepaths
 droplet_paths <- list.files(here("processed-data","03_quality_control","Macaque","droplet_scores"),
@@ -447,23 +449,28 @@ sce$low_genes <- sce$low_genes | qc.genes
 
 
 #### QC plots ####
-pdf(height=15, width=7.5, here(plot_dir, "QC_violin_plots.pdf"))
-## Mito rate
-plotColData(sce, x = "subsets_Mito_percent", y = "Sample", colour_by = "high_mito") +
-  ggtitle("Mito Percent") +
-  theme(axis.text.x = element_text(angle = 45))
+#### QC plots ####
+png(here(plot_dir, "Violin_Subsets_mito.png"), width=1, height=14, units="in", res=300)
+plotColData(sce, x = "Sample", y = "subsets_Mito_percent", colour_by = "high_mito") +
+  ggtitle("Mito Percent")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
+dev.off()
 
-# ## low sum
-plotColData(sce, x = "sum", y = "Sample", colour_by = "low_lib") +
+png(here(plot_dir, "Violin_sum_genes.png"), width=10, height=14, units="in", res=300)
+plotColData(sce, x = "Sample", y = "sum", colour_by = "low_lib") +
   scale_y_log10() +
-  ggtitle("Total UMIs")+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  ggtitle("Total UMIs")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
+dev.off()
 
-# ## low detected
-plotColData(sce, x = "detected", y = "Sample", colour_by = "low_genes") +
+png(here(plot_dir, "Violin_detected_genes.png"), width=10, height=14, units="in", res=300)
+plotColData(sce, x = "Sample", y = "detected", colour_by = "low_genes") +
   scale_y_log10() +
-  ggtitle("Detected genes")
-
+  ggtitle("Detected genes")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
 dev.off()
 
 

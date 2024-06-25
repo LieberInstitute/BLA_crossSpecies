@@ -203,8 +203,60 @@ save(sce.dropped,file=here(processed_dir,"sce_drops_removed_baboon.rda"))
 load(here(processed_dir, "sce_drops_removed_baboon.rda"), verbose = TRUE)
 
 sce <- sce.dropped
-    fdtfx
 
+# Sample 4 is bimodal and so MAD does not work for it. subsetting to all other samples
+sce$high_mito <- isOutlier(sce$subsets_Mito_percent, 
+                           nmads = 3, 
+                           type = "higher", 
+                           batch = sce$Sample,
+                           subset=sce$Sample %in% c("SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1", 
+                                                    "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1", 
+                                                    "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1",
+                                                    "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1",
+                                                    "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1",
+                                                    "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1"
+                                                    )
+                           )
+table(sce$high_mito)
+
+sce$low_lib <- isOutlier(sce$sum, log = TRUE, type = "lower", batch = sce$Sample)
+table(sce$low_lib)
+
+sce$low_genes <- isOutlier(sce$detected, log = TRUE, type = "lower", batch = sce$Sample)
+table(sce$low_genes)
+
+sce$discard_auto <- sce$high_mito | sce$low_lib | sce$low_genes
+table(sce$discard_auto)
+
+qc_t <- addmargins(table(sce$Sample, sce$discard_auto))
+write_csv(data.frame(qc_t), file = here(processed_dir, "discarded_summary.csv"))
+
+
+
+
+#### QC plots ####
+png(here(plot_dir, "Violin_Subsets_mito.png"), width=7.5, height=5, units="in", res=300)
+plotColData(sce, x = "Sample", y = "subsets_Mito_percent", colour_by = "high_mito") +
+  ggtitle("Mito Percent")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
+dev.off()
+
+png(here(plot_dir, "Violin_sum_genes.png"), width=7.5, height=5, units="in", res=300)
+plotColData(sce, x = "Sample", y = "sum", colour_by = "low_lib") +
+  scale_y_log10() +
+  ggtitle("Total UMIs")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
+dev.off()
+
+png(here(plot_dir, "Violin_detected_genes.png"), width=7.5, height=5, units="in", res=300)
+plotColData(sce, x = "Sample", y = "detected", colour_by = "low_genes") +
+  scale_y_log10() +
+  ggtitle("Detected genes")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
+dev.off()
 
 
 

@@ -279,27 +279,27 @@ sce$low_lib <- sce$low_lib | qc.lib
 sce$low_genes <- sce$low_genes | qc.genes
 
 #### QC plots ####
-pdf(here(plot_dir, "QC_violin_plots.pdf"), width = 10)
-## Mito rate
+png(here(plot_dir, "Violin_Subsets_mito.png"), width=5, height=4, units="in", res=300)
 plotColData(sce, x = "Sample", y = "subsets_Mito_percent", colour_by = "high_mito") +
-  ggtitle("Mito Percent") #+
-#   facet_wrap(~ sce$round, scales = "free_x", nrow = 1)
+  ggtitle("Mito Percent")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
+dev.off()
 
-# ## low sum
+png(here(plot_dir, "Violin_sum_genes.png"), width=5, height=4, units="in", res=300)
 plotColData(sce, x = "Sample", y = "sum", colour_by = "low_lib") +
   scale_y_log10() +
-  ggtitle("Total UMIs") #+
-#  facet_wrap(~ sce$round, scales = "free_x", nrow = 1)
-# +
-#   geom_hline(yintercept = 1000) ## hline doesn't work w/ facet_wrap?
+  ggtitle("Total UMIs")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
+dev.off()
 
-# ## low detected
+png(here(plot_dir, "Violin_detected_genes.png"), width=5, height=4, units="in", res=300)
 plotColData(sce, x = "Sample", y = "detected", colour_by = "low_genes") +
   scale_y_log10() +
-  ggtitle("Detected genes") #+
-# geom_hline(yintercept = 500)+
-#   facet_wrap(~ sce$round, scales = "free_x", nrow = 1)
-
+  ggtitle("Detected genes")  +
+    scale_colour_manual(values = c("grey", "red")) +
+      coord_flip()
 dev.off()
 
 

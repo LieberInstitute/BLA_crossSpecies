@@ -8,7 +8,7 @@ library(here)
 library(batchelor)
 library(harmony)
 library(Seurat)
-library(dplyr)x
+library(dplyr)
 
 
 ## save directories
@@ -17,7 +17,7 @@ processed_dir = here("processed-data","06_clustering")
 
 # load sce
 # save combined, uncorrected sce
-load(here("processed-data","05_batch_correction", "seurat_integrated_species.rda"))
+load(here("processed-data","05_batch_correction", "seurat_integrated.rda"))
 seurat.int
 # An object of class Seurat 
 # 16391 features across 187856 samples within 2 assays 
@@ -47,10 +47,6 @@ dev.off()
 seurat.int <- FindNeighbors(seurat.int, reduction = "pca", dims = 1:30)
 seurat.int <- FindClusters(seurat.int, resolution = 0.5, algorithm = 2)
 seurat.int
-
-pdf(here(plot_dir, "UMAP_clusters_integrated_new_louvain.pdf"))
-DimPlot(seurat.int, reduction = "umap")
-dev.off()
 
 # ========= Leiden algorithm =========
 seurat.int <- FindClusters(seurat.int, resolution = 0.5, algorithm = 3)

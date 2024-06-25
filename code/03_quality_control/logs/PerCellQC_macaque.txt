@@ -1,16 +1,16 @@
 **** Job starts ****
-Mon Nov  6 03:58:09 PM EST 2023
+Fri Jun 14 04:28:01 PM EDT 2024
 **** SLURM info ****
 User: mtotty
-Job id: 723348
+Job id: 7588558
 Job name: PerCellQC_macaque
-Hostname: compute-114
+Hostname: compute-054
 Task id: 
-Loading conda_R/4.3
+Loading conda_R/4.4
 
 Currently Loaded Modules:
-  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
-  2) JHPCE_tools/3.0            4) conda_R/4.3
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-24.3.0
+  2) JHPCE_tools/3.0            4) conda_R/4.4
 
  
 
@@ -54,8 +54,8 @@ The following objects are masked from ‘package:base’:
     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
-    table, tapply, union, unique, unsplit, which.max, which.min
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
+    tapply, union, unique, unsplit, which.max, which.min
 
 Loading required package: S4Vectors
 
@@ -91,10 +91,10 @@ The following objects are masked from ‘package:matrixStats’:
 
 Loading required package: ggplot2
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ lubridate 1.9.2     ✔ tibble    3.2.1
-✔ purrr     1.0.2     ✔ tidyr     1.3.0
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.3     ✔ tibble    3.2.1
+✔ purrr     1.0.2     ✔ tidyr     1.3.1
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ lubridate::%within%() masks IRanges::%within%()
 ✖ dplyr::collapse()     masks IRanges::collapse()
@@ -139,6 +139,7 @@ The following object is masked from ‘package:base’:
 
     rowsum
 
+Loading required package: SparseArray
 
 Attaching package: ‘DelayedArray’
 
@@ -160,589 +161,168 @@ The following object is masked from ‘package:rhdf5’:
 
 Loading objects:
   sce
+[1] "Reproducibility information:"
+[1] "2024-06-14 16:29:58 EDT"
+    user   system  elapsed 
+1797.335   71.817 1894.341 
+─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.4.0 Patched (2024-05-22 r86590)
+ os       Rocky Linux 9.2 (Blue Onyx)
+ system   x86_64, linux-gnu
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       US/Eastern
+ date     2024-06-14
+ pandoc   3.1.13 @ /jhpce/shared/community/core/conda_R/4.4/bin/pandoc
+
+─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+ package              * version     date (UTC) lib source
+ abind                * 1.4-5       2016-07-21 [2] CRAN (R 4.4.0)
+ batchelor            * 1.20.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ beachmat               2.20.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ beeswarm               0.4.0       2021-06-01 [2] CRAN (R 4.4.0)
+ Biobase              * 2.64.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocGenerics         * 0.50.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocIO                 1.14.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocNeighbors          1.22.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocParallel           1.38.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocSingular           1.20.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ Biostrings             2.72.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ bit                    4.0.5       2022-11-15 [2] CRAN (R 4.4.0)
+ bit64                  4.0.5       2020-08-30 [2] CRAN (R 4.4.0)
+ bitops                 1.0-7       2021-04-24 [2] CRAN (R 4.4.0)
+ bluster                1.14.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ cli                    3.6.2       2023-12-11 [2] CRAN (R 4.4.0)
+ cluster                2.1.6       2023-12-01 [3] CRAN (R 4.4.0)
+ codetools              0.2-20      2024-03-31 [3] CRAN (R 4.4.0)
+ colorspace             2.1-0       2023-01-23 [2] CRAN (R 4.4.0)
+ cowplot                1.1.3       2024-01-22 [2] CRAN (R 4.4.0)
+ crayon                 1.5.2       2022-09-29 [2] CRAN (R 4.4.0)
+ curl                   5.2.1       2024-03-01 [2] CRAN (R 4.4.0)
+ data.table             1.15.4      2024-03-30 [2] CRAN (R 4.4.0)
+ DelayedArray         * 0.30.1      2024-05-07 [2] Bioconductor 3.19 (R 4.4.0)
+ DelayedMatrixStats     1.26.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ dplyr                * 1.1.4       2023-11-17 [2] CRAN (R 4.4.0)
+ dqrng                  0.4.0       2024-05-15 [2] CRAN (R 4.4.0)
+ edgeR                  4.2.0       2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ fansi                  1.0.6       2023-12-08 [2] CRAN (R 4.4.0)
+ farver                 2.1.2       2024-05-13 [2] CRAN (R 4.4.0)
+ forcats              * 1.0.0       2023-01-29 [2] CRAN (R 4.4.0)
+ generics               0.1.3       2022-07-05 [2] CRAN (R 4.4.0)
+ GenomeInfoDb         * 1.40.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ GenomeInfoDbData       1.2.12      2024-05-23 [2] Bioconductor
+ GenomicAlignments      1.40.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ GenomicRanges        * 1.56.0      2024-05-01 [2] Bioconductor 3.19 (R 4.4.0)
+ ggbeeswarm             0.7.2       2023-04-29 [2] CRAN (R 4.4.0)
+ ggplot2              * 3.5.1       2024-04-23 [2] CRAN (R 4.4.0)
+ ggrepel                0.9.5       2024-01-10 [2] CRAN (R 4.4.0)
+ glue                   1.7.0       2024-01-09 [2] CRAN (R 4.4.0)
+ gridExtra              2.3         2017-09-09 [2] CRAN (R 4.4.0)
+ gtable                 0.3.5       2024-04-22 [2] CRAN (R 4.4.0)
+ HDF5Array            * 1.32.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ here                 * 1.0.1       2020-12-13 [2] CRAN (R 4.4.0)
+ hms                    1.1.3       2023-03-21 [2] CRAN (R 4.4.0)
+ httr                   1.4.7       2023-08-15 [2] CRAN (R 4.4.0)
+ igraph                 2.0.3       2024-03-13 [2] CRAN (R 4.4.0)
+ IRanges              * 2.38.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ irlba                  2.3.5.1     2022-10-03 [2] CRAN (R 4.4.0)
+ jsonlite               1.8.8       2023-12-04 [2] CRAN (R 4.4.0)
+ labeling               0.4.3       2023-08-29 [2] CRAN (R 4.4.0)
+ lattice                0.22-6      2024-03-20 [3] CRAN (R 4.4.0)
+ lifecycle              1.0.4       2023-11-07 [2] CRAN (R 4.4.0)
+ limma                  3.60.2      2024-05-19 [2] Bioconductor 3.19 (R 4.4.0)
+ locfit                 1.5-9.9     2024-03-01 [2] CRAN (R 4.4.0)
+ lubridate            * 1.9.3       2023-09-27 [2] CRAN (R 4.4.0)
+ magrittr               2.0.3       2022-03-30 [2] CRAN (R 4.4.0)
+ MASS                   7.3-60.2    2024-04-26 [3] CRAN (R 4.4.0)
+ Matrix               * 1.7-0       2024-04-26 [3] CRAN (R 4.4.0)
+ MatrixGenerics       * 1.16.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ matrixStats          * 1.3.0       2024-04-11 [2] CRAN (R 4.4.0)
+ metapod                1.12.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ munsell                0.5.1       2024-04-01 [2] CRAN (R 4.4.0)
+ pillar                 1.9.0       2023-03-22 [2] CRAN (R 4.4.0)
+ pkgconfig              2.0.3       2019-09-22 [2] CRAN (R 4.4.0)
+ purrr                * 1.0.2       2023-08-10 [2] CRAN (R 4.4.0)
+ R6                     2.5.1       2021-08-19 [2] CRAN (R 4.4.0)
+ rafalib              * 1.0.0       2015-08-09 [1] CRAN (R 4.4.0)
+ ragg                   1.3.2       2024-05-15 [2] CRAN (R 4.4.0)
+ RColorBrewer           1.1-3       2022-04-03 [2] CRAN (R 4.4.0)
+ Rcpp                   1.0.12      2024-01-09 [2] CRAN (R 4.4.0)
+ RCurl                  1.98-1.14   2024-01-09 [2] CRAN (R 4.4.0)
+ readr                * 2.1.5       2024-01-10 [2] CRAN (R 4.4.0)
+ ResidualMatrix         1.14.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ restfulr               0.0.15      2022-06-16 [2] CRAN (R 4.4.0)
+ rhdf5                * 2.48.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ rhdf5filters           1.16.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ Rhdf5lib               1.26.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ rjson                  0.2.21      2022-01-09 [2] CRAN (R 4.4.0)
+ rlang                  1.1.3       2024-01-10 [2] CRAN (R 4.4.0)
+ rprojroot              2.0.4       2023-11-05 [2] CRAN (R 4.4.0)
+ Rsamtools              2.20.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ rsvd                   1.0.5       2021-04-16 [2] CRAN (R 4.4.0)
+ rtracklayer            1.64.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ S4Arrays             * 1.4.1       2024-05-20 [2] Bioconductor 3.19 (R 4.4.0)
+ S4Vectors            * 0.42.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ ScaledMatrix           1.12.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ scales                 1.3.0       2023-11-28 [2] CRAN (R 4.4.0)
+ scater               * 1.32.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ scDblFinder          * 1.18.0      2024-04-30 [1] Bioconductor 3.19 (R 4.4.0)
+ scran                * 1.32.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ scuttle              * 1.14.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ sessioninfo          * 1.2.2       2021-12-06 [2] CRAN (R 4.4.0)
+ SingleCellExperiment * 1.26.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ SparseArray          * 1.4.5       2024-05-20 [2] Bioconductor 3.19 (R 4.4.0)
+ sparseMatrixStats      1.16.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ statmod                1.5.0       2023-01-06 [2] CRAN (R 4.4.0)
+ stringi                1.8.4       2024-05-06 [2] CRAN (R 4.4.0)
+ stringr              * 1.5.1       2023-11-14 [2] CRAN (R 4.4.0)
+ SummarizedExperiment * 1.34.0      2024-05-01 [2] Bioconductor 3.19 (R 4.4.0)
+ systemfonts            1.1.0       2024-05-15 [2] CRAN (R 4.4.0)
+ textshaping            0.3.7       2023-10-09 [2] CRAN (R 4.4.0)
+ tibble               * 3.2.1       2023-03-20 [2] CRAN (R 4.4.0)
+ tidyr                * 1.3.1       2024-01-24 [2] CRAN (R 4.4.0)
+ tidyselect             1.2.1       2024-03-11 [2] CRAN (R 4.4.0)
+ tidyverse            * 2.0.0       2023-02-22 [2] CRAN (R 4.4.0)
+ timechange             0.3.0       2024-01-18 [2] CRAN (R 4.4.0)
+ tzdb                   0.4.0       2023-05-12 [2] CRAN (R 4.4.0)
+ UCSC.utils             1.0.0       2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ utf8                   1.2.4       2023-10-22 [2] CRAN (R 4.4.0)
+ vctrs                  0.6.5       2023-12-01 [2] CRAN (R 4.4.0)
+ vipor                  0.4.7       2023-12-18 [2] CRAN (R 4.4.0)
+ viridis                0.6.5       2024-01-29 [2] CRAN (R 4.4.0)
+ viridisLite            0.4.2       2023-05-02 [2] CRAN (R 4.4.0)
+ vroom                  1.6.5       2023-12-05 [2] CRAN (R 4.4.0)
+ withr                  3.0.0       2024-01-16 [2] CRAN (R 4.4.0)
+ xgboost                1.7.7.1     2024-01-25 [2] CRAN (R 4.4.0)
+ XML                    3.99-0.16.1 2024-01-22 [2] CRAN (R 4.4.0)
+ XVector                0.44.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ yaml                   2.3.8       2023-12-11 [2] CRAN (R 4.4.0)
+ zlibbioc               1.50.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+
+ [1] /users/mtotty/R/4.4
+ [2] /jhpce/shared/community/core/conda_R/4.4/R/lib64/R/site-library
+ [3] /jhpce/shared/community/core/conda_R/4.4/R/lib64/R/library
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Error: unexpected ')' in "()"
+Execution halted
+**** Job ends ****
+Fri Jun 14 04:30:01 PM EDT 2024
 class: SingleCellExperiment 
 dim: 21369 70879726 
 metadata(1): Samples
 assays(1): counts
-rownames: NULL
+rownames(21369): ENSMMUG00000023296 ZNF692 ... ND6 CYTB
 rowData names(7): source type ... gene_biotype Symbol.uniq
-colnames: NULL
-colData names(9): sample_id Sample ... Barcode key
+colnames(70879726): 1_AAACCCAAGAAACCCA-1 1_AAACCCAAGAAACCCG-1 ...
+  35_TTTGTTGTCTTGCTGT-1 35_TTTGTTGTCTTTGAGA-1
+colData names(2): Sample Barcode
 reducedDimNames(0):
 mainExpName: NULL
 altExpNames(0):
-class: SingleCellExperiment 
-dim: 21369 70879726 
-metadata(1): Samples
-assays(1): counts
-rownames: NULL
-rowData names(7): source type ... gene_biotype Symbol.uniq
-colnames(70879726): AAACCCAAGAAACCCA-1 AAACCCAAGAAACCCG-1 ...
-  TTTGTTGTCTTGCTGT-1 TTTGTTGTCTTTGAGA-1
-colData names(9): sample_id Sample ... Barcode key
-reducedDimNames(0):
-mainExpName: NULL
-altExpNames(0):
-$LIB210527RC_AB_1A
-DataFrame with 1753773 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         2        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         0        NA        NA        NA        NA
-AAACCCAAGAAATCCA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGCAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGCT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGTCG-1         1        NA        NA        NA        NA
-
-$LIB210527RC_AB_1B
-DataFrame with 1587114 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAACCGCA-1         1        NA        NA        NA        NA
-AAACCCAAGAACTGAT-1         0        NA        NA        NA        NA
-AAACCCAAGAACTTCC-1         1        NA        NA        NA        NA
-AAACCCAAGAAGCCAC-1         2        NA        NA        NA        NA
-AAACCCAAGAAGCGCT-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCTAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1       110        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_12_Animal2_Central_Nucleus
-DataFrame with 2826205 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCTAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCTTC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_12_Animal3_Central_Nucleus
-DataFrame with 3035809 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         4        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTGTCAC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGTTAC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCAGT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGGCT-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_12_Animal4_Central_Nucleus
-DataFrame with 1863180 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAAGTCT-1         1        NA        NA        NA        NA
-AAACCCAAGAAATAGG-1         0        NA        NA        NA        NA
-AAACCCAAGAAATCCA-1         1        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCGAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCTAG-1         3        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_
-DataFrame with 1887348 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCTAG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCTTC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         1        NA        NA        NA        NA
-
-$VC_snRNAseq_12_Animal5_Basal__AP1_
-DataFrame with 1833589 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTGC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGCGC-1       232        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGCT-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_12_Animal5_Basal__AP2_
-DataFrame with 2454171 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         2        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1       125        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTGGAAC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCAGT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         1        NA        NA        NA        NA
-
-$VC_snRNAseq_12_Animal5_Lateral__AP1_
-DataFrame with 2354022 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_12_Animal5_Lateral__AP2_
-DataFrame with 2336491 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         2        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAAGACA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTGTAAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGTGCC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCGAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCTAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-
-$VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_
-DataFrame with 2032297 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1       159        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTAACAG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTCACAT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGCTCA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGCTGT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_8_Animal3_AB__
-DataFrame with 1565479 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAATGCC-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCCAA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCGAT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGTCG-1         1        NA        NA        NA        NA
-
-$VC_snRNAseq_8_Animal3_Bd_Bv
-DataFrame with 1717938 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         0        NA        NA        NA        NA
-AAACCCAAGAAAGAAC-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCCAA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_8_Animal3_BD
-DataFrame with 1576543 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAAGGAT-1         1        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCGAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCTAG-1        80        NA        NA        NA        NA
-TTTGTTGTCTTTCTTC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_8_Animal3_BV1
-DataFrame with 1324625 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTGTTAC-1        79        NA        NA        NA        NA
-TTTGTTGTCTTTCAGT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCCAA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCTAG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_8_Animal3_BV2
-DataFrame with 1905112 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         2        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAAGAAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAAGACA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1       103        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_8_Animal3_LD
-DataFrame with 1671416 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCCA-1         4        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         0        NA        NA        NA        NA
-AAACCCAAGAAAGACA-1         0        NA        NA        NA        NA
-AAACCCAAGAAAGCGA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCTAG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_8_Animal3_LV
-DataFrame with 1567950 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         0        NA        NA        NA        NA
-AAACCCAAGAAAGAAC-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCCGG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCGAT-1       126        NA        NA        NA        NA
-TTTGTTGTCTTTCTAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCTTC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-
-$VC_snRNAseq_8_Animal3_LV3
-DataFrame with 1520756 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         0        NA        NA        NA        NA
-AAACCCAAGAAATGAG-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_9_Animal4_AB
-DataFrame with 1637387 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         1        NA        NA        NA        NA
-
-$`VC_snRNAseq_9_Animal4_B-Comb`
-DataFrame with 1879800 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCTG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         1        NA        NA        NA        NA
-
-$VC_snRNAseq_9_Animal4_BD
-DataFrame with 1782737 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCAT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAAGTCT-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCTAG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         1        NA        NA        NA        NA
-
-$VC_snRNAseq_9_Animal4_BV
-DataFrame with 1971371 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCCA-1         4        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTGC-1         4        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCTAG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         1        NA        NA        NA        NA
-
-$`VC_snRNAseq_9_Animal4_L-Comb`
-DataFrame with 1805079 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTGC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGATC-1         2        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         0        NA        NA        NA        NA
-
-$VC_snRNAseq_9_Animal4_LD
-DataFrame with 1832263 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         1        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCCGG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCTAG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         1        NA        NA        NA        NA
-
-$VC_snRNAseq_9_Animal4_LV1
-DataFrame with 1555511 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         4        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTGTGCC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCAGT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCGAC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1       128        NA        NA        NA        NA
-
-$VC_snRNAseq_9_Animal4_LV2
-DataFrame with 1910935 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         1        NA        NA        NA        NA
-AAACCCAAGAAAGCGA-1         0        NA        NA        NA        NA
-AAACCCAAGAAATGCC-1         1        NA        NA        NA        NA
-AAACCCAAGAAATTCG-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCTAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCGC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGCT-1         0        NA        NA        NA        NA
-
-$`VC_snRNAseq-7_AccBasalAP1AP2_-7`
-DataFrame with 2477121 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1       110        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTGCTAGG-1         0        NA        NA        NA        NA
-TTTGTTGTCTGCTCTG-1         0        NA        NA        NA        NA
-TTTGTTGTCTGGGCAC-1         0        NA        NA        NA        NA
-TTTGTTGTCTGTGCTC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTCTAAC-1         0        NA        NA        NA        NA
-
-$`VC_snRNAseq-7_BasalDorsalAP1_-3A`
-DataFrame with 2628892 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         1        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         1        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTCGGTC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTCTCTT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGAAAC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGGAAT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-
-$`VC_snRNAseq-7_BasalDorsalAP1_-3B`
-DataFrame with 2490992 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         2        NA        NA        NA        NA
-AAACCCAAGAAACGAA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTGT-1         1        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTGCGC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGGCT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGTCG-1         0        NA        NA        NA        NA
-
-$`VC_snRNAseq-7_BasalVentralAP1_-4`
-DataFrame with 2130313 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAAGTCT-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTACGTT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTAGTAG-1         0        NA        NA        NA        NA
-TTTGTTGTCTTCCAGT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTCTGGC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCAGT-1         0        NA        NA        NA        NA
-
-$`VC_snRNAseq-7_BasalVentralAP2_-5`
-DataFrame with 2890371 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTCTTCC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGAAGT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGGGAC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTCTTC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-
-$`VC_snRNAseq-7_LateralDorsalAP1AP2_-8`
-DataFrame with 1696463 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1       111        NA        NA        NA        NA
-AAACCCAAGAAACCCA-1         2        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         2        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         1        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCGAT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCTTC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         0        NA        NA        NA        NA
-
-$`VC_snRNAseq-7_LateralVentralAP1_-1`
-DataFrame with 2477368 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAAGTCT-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTGTAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTGTTAC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGCTG-1         0        NA        NA        NA        NA
-
-$`VC_snRNAseq-7_LateralVentralAP2_-2`
-DataFrame with 2899305 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACACT-1         0        NA        NA        NA        NA
-AAACCCAAGAAACCAT-1         1        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         0        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTTCAGT-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTCTTC-1         0        NA        NA        NA        NA
-TTTGTTGTCTTTGATC-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGCAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGGCT-1         1        NA        NA        NA        NA
-
   [1] "**** Job starts ****"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
   [2] "Fri Nov  3 07:46:17 PM EDT 2023"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
   [3] "**** SLURM info ****"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
@@ -1509,76 +1089,76 @@ TTTGTTGTCTTTGGCT-1         1        NA        NA        NA        NA
  [1]  272  215  301  300  251  237  209  897  415  217  235  307  301  311  329
 [16]  309  370  265  254  858  585  298 1019  872  357  345  256  308  306  245
 [31]  288  211  323  224  240
-             VC_snRNAseq-7_LateralVentralAP1_-1 
-                                            272 
-             VC_snRNAseq-7_LateralVentralAP2_-2 
-                                            215 
-               VC_snRNAseq-7_BasalDorsalAP1_-3A 
-                                            301 
-               VC_snRNAseq-7_BasalDorsalAP1_-3B 
-                                            300 
-               VC_snRNAseq-7_BasalVentralAP1_-4 
-                                            251 
-               VC_snRNAseq-7_BasalVentralAP2_-5 
-                                            237 
-                VC_snRNAseq-7_AccBasalAP1AP2_-7 
-                                            209 
-           VC_snRNAseq-7_LateralDorsalAP1AP2_-8 
-                                            897 
-                      VC_snRNAseq_9_Animal4_LV2 
-                                            415 
-                      VC_snRNAseq_9_Animal4_LV1 
-                                            217 
-                       VC_snRNAseq_9_Animal4_LD 
-                                            235 
-                   VC_snRNAseq_9_Animal4_L-Comb 
-                                            307 
-                       VC_snRNAseq_9_Animal4_BV 
-                                            301 
-                       VC_snRNAseq_9_Animal4_BD 
-                                            311 
-                   VC_snRNAseq_9_Animal4_B-Comb 
-                                            329 
-                       VC_snRNAseq_9_Animal4_AB 
-                                            309 
-                       VC_snRNAseq_8_Animal3_LV 
-                                            370 
-                      VC_snRNAseq_8_Animal3_LV3 
-                                            265 
-                       VC_snRNAseq_8_Animal3_LD 
-                                            254 
-                      VC_snRNAseq_8_Animal3_BV2 
-                                            858 
-                      VC_snRNAseq_8_Animal3_BV1 
-                                            585 
-                       VC_snRNAseq_8_Animal3_BD 
-                                            298 
-                       VC_snRNAseq_8_Animal3_AB 
-                                           1019 
-                    VC_snRNAseq_8_Animal3_Bd_Bv 
-                                            872 
-                              LIB210527RC_AB_1A 
-                                            357 
-                              LIB210527RC_AB_1B 
-                                            345 
-         VC_snRNAseq_12_Animal2_Central_Nucleus 
-                                            256 
-         VC_snRNAseq_12_Animal3_Central_Nucleus 
-                                            308 
-         VC_snRNAseq_12_Animal4_Central_Nucleus 
-                                            306 
-VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3 
-                                            245 
-              VC_snRNAseq_12_Animal5_Basal__AP1 
-                                            288 
-              VC_snRNAseq_12_Animal5_Basal__AP2 
-                                            211 
-            VC_snRNAseq_12_Animal5_Lateral__AP1 
-                                            323 
-            VC_snRNAseq_12_Animal5_Lateral__AP2 
-                                            224 
-    VC_snRNAseq_13_Animal5_Central_Nucleus__AP3 
-                                            240 
+              VC_snRNAseq-7_LateralVentralAP1_-1 
+                                             272 
+              VC_snRNAseq-7_LateralVentralAP2_-2 
+                                             215 
+                VC_snRNAseq-7_BasalDorsalAP1_-3A 
+                                             301 
+                VC_snRNAseq-7_BasalDorsalAP1_-3B 
+                                             300 
+                VC_snRNAseq-7_BasalVentralAP1_-4 
+                                             251 
+                VC_snRNAseq-7_BasalVentralAP2_-5 
+                                             237 
+                 VC_snRNAseq-7_AccBasalAP1AP2_-7 
+                                             209 
+            VC_snRNAseq-7_LateralDorsalAP1AP2_-8 
+                                             897 
+                       VC_snRNAseq_9_Animal4_LV2 
+                                             415 
+                       VC_snRNAseq_9_Animal4_LV1 
+                                             217 
+                        VC_snRNAseq_9_Animal4_LD 
+                                             235 
+                    VC_snRNAseq_9_Animal4_L-Comb 
+                                             307 
+                        VC_snRNAseq_9_Animal4_BV 
+                                             301 
+                        VC_snRNAseq_9_Animal4_BD 
+                                             311 
+                    VC_snRNAseq_9_Animal4_B-Comb 
+                                             329 
+                        VC_snRNAseq_9_Animal4_AB 
+                                             309 
+                        VC_snRNAseq_8_Animal3_LV 
+                                             370 
+                       VC_snRNAseq_8_Animal3_LV3 
+                                             265 
+                        VC_snRNAseq_8_Animal3_LD 
+                                             254 
+                       VC_snRNAseq_8_Animal3_BV2 
+                                             858 
+                       VC_snRNAseq_8_Animal3_BV1 
+                                             585 
+                        VC_snRNAseq_8_Animal3_BD 
+                                             298 
+                      VC_snRNAseq_8_Animal3_AB__ 
+                                            1019 
+                     VC_snRNAseq_8_Animal3_Bd_Bv 
+                                             872 
+                               LIB210527RC_AB_1A 
+                                             357 
+                               LIB210527RC_AB_1B 
+                                             345 
+          VC_snRNAseq_12_Animal2_Central_Nucleus 
+                                             256 
+          VC_snRNAseq_12_Animal3_Central_Nucleus 
+                                             308 
+          VC_snRNAseq_12_Animal4_Central_Nucleus 
+                                             306 
+VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_ 
+                                             245 
+              VC_snRNAseq_12_Animal5_Basal__AP1_ 
+                                             288 
+              VC_snRNAseq_12_Animal5_Basal__AP2_ 
+                                             211 
+            VC_snRNAseq_12_Animal5_Lateral__AP1_ 
+                                             323 
+            VC_snRNAseq_12_Animal5_Lateral__AP2_ 
+                                             224 
+    VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_ 
+                                             240 
 Joining with `by = join_by(ind)`
 Joining with `by = join_by(Sample)`
                                              Sample total_n non_empty
@@ -1618,20 +1198,20 @@ Joining with `by = join_by(Sample)`
 34           VC_snRNAseq_12_Animal3_Central_Nucleus 3035809      5522
 35                         VC_snRNAseq_9_Animal4_LD 1832263      6682
    lower_cutoff
-1            NA
-2            NA
+1           323
+2           240
 3           251
 4           265
-5            NA
+5           245
 6           298
 7           370
-8            NA
-9            NA
+8          1019
+9           288
 10          272
 11          415
-12           NA
+12          224
 13          858
-14           NA
+14          211
 15          300
 16          217
 17          237
@@ -1656,8 +1236,198 @@ Joining with `by = join_by(Sample)`
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
     560    2998    4108    3848    4503    6682 
 Saving 9 x 7 in image
-Warning message:
-Removed 7 rows containing missing values (`position_stack()`). 
+$`VC_snRNAseq-7_LateralVentralAP1_-1`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     376       0       0     376
+  TRUE       14    3066       0    3080
+  <NA>        0       0 2473912 2473912
+  Sum       390    3066 2473912 2477368
+
+$`VC_snRNAseq-7_LateralVentralAP2_-2`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    1989       0       0    1989
+  TRUE       87    4630       0    4717
+  <NA>        0       0 2892599 2892599
+  Sum      2076    4630 2892599 2899305
+
+$`VC_snRNAseq-7_BasalDorsalAP1_-3A`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     511       0       0     511
+  TRUE       45    4259       0    4304
+  <NA>        0       0 2624077 2624077
+  Sum       556    4259 2624077 2628892
+
+$`VC_snRNAseq-7_BasalDorsalAP1_-3B`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     510       0       0     510
+  TRUE       51    3910       0    3961
+  <NA>        0       0 2486521 2486521
+  Sum       561    3910 2486521 2490992
+
+$`VC_snRNAseq-7_BasalVentralAP1_-4`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     332       0       0     332
+  TRUE       31    2176       0    2207
+  <NA>        0       0 2127774 2127774
+  Sum       363    2176 2127774 2130313
+
+$`VC_snRNAseq-7_BasalVentralAP2_-5`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    4355       0       0    4355
+  TRUE      131    3880       0    4011
+  <NA>        0       0 2882005 2882005
+  Sum      4486    3880 2882005 2890371
+
+$`VC_snRNAseq-7_AccBasalAP1AP2_-7`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     785       0       0     785
+  TRUE       45    4331       0    4376
+  <NA>        0       0 2471960 2471960
+  Sum       830    4331 2471960 2477121
+
+$`VC_snRNAseq-7_LateralDorsalAP1AP2_-8`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE       9       0       0       9
+  TRUE        7    4737       0    4744
+  <NA>        0       0 1691710 1691710
+  Sum        16    4737 1691710 1696463
+
+$VC_snRNAseq_9_Animal4_LV2
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     150       0       0     150
+  TRUE       10    3179       0    3189
+  <NA>        0       0 1907596 1907596
+  Sum       160    3179 1907596 1910935
+
+$VC_snRNAseq_9_Animal4_LV1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    1493       0       0    1493
+  TRUE       89    3906       0    3995
+  <NA>        0       0 1550023 1550023
+  Sum      1582    3906 1550023 1555511
+
+$VC_snRNAseq_9_Animal4_LD
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE   13291       0       0   13291
+  TRUE     2382    4300       0    6682
+  <NA>        0       0 1812290 1812290
+  Sum     15673    4300 1812290 1832263
+
+$`VC_snRNAseq_9_Animal4_L-Comb`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    5052       0       0    5052
+  TRUE      236    4964       0    5200
+  <NA>        0       0 1794827 1794827
+  Sum      5288    4964 1794827 1805079
+
+$VC_snRNAseq_9_Animal4_BV
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    4982       0       0    4982
+  TRUE      174    4790       0    4964
+  <NA>        0       0 1961425 1961425
+  Sum      5156    4790 1961425 1971371
+
+$VC_snRNAseq_9_Animal4_BD
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    9788       0       0    9788
+  TRUE      200    5186       0    5386
+  <NA>        0       0 1767563 1767563
+  Sum      9988    5186 1767563 1782737
+
+$`VC_snRNAseq_9_Animal4_B-Comb`
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    7500       0       0    7500
+  TRUE      100    4298       0    4398
+  <NA>        0       0 1867902 1867902
+  Sum      7600    4298 1867902 1879800
+
+$VC_snRNAseq_9_Animal4_AB
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    5685       0       0    5685
+  TRUE      974    3233       0    4207
+  <NA>        0       0 1627495 1627495
+  Sum      6659    3233 1627495 1637387
+
+$VC_snRNAseq_8_Animal3_LV
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     132       0       0     132
+  TRUE        3    2607       0    2610
+  <NA>        0       0 1565208 1565208
+  Sum       135    2607 1565208 1567950
+
+$VC_snRNAseq_8_Animal3_LV3
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     406       0       0     406
+  TRUE       25    2206       0    2231
+  <NA>        0       0 1518119 1518119
+  Sum       431    2206 1518119 1520756
+
+$VC_snRNAseq_8_Animal3_LD
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE    3740       0       0    3740
+  TRUE      725    3606       0    4331
+  <NA>        0       0 1663345 1663345
+  Sum      4465    3606 1663345 1671416
+
+$VC_snRNAseq_8_Animal3_BV2
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     460       0       0     460
+  TRUE      434    3502       0    3936
+  <NA>        0       0 1900716 1900716
+  Sum       894    3502 1900716 1905112
+
+$VC_snRNAseq_8_Animal3_BV1
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     483       0       0     483
+  TRUE      331    3836       0    4167
+  <NA>        0       0 1319975 1319975
+  Sum       814    3836 1319975 1324625
+
+$VC_snRNAseq_8_Animal3_BD
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE     283       0       0     283
+  TRUE       46    2461       0    2507
+  <NA>        0       0 1573753 1573753
+  Sum       329    2461 1573753 1576543
+
+$VC_snRNAseq_8_Animal3_AB__
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE      19       0       0      19
+  TRUE        3    2876       0    2879
+  <NA>        0       0 1562581 1562581
+  Sum        22    2876 1562581 1565479
+
+$VC_snRNAseq_8_Animal3_Bd_Bv
+       Limited
+Signif    FALSE    TRUE    <NA>     Sum
+  FALSE      50       0       0      50
+  TRUE       44    4096       0    4140
+  <NA>        0       0 1713748 1713748
+  Sum        94    4096 1713748 1717938
+
 $LIB210527RC_AB_1A
        Limited
 Signif    FALSE    TRUE    <NA>     Sum
@@ -1746,403 +1516,405 @@ Signif    FALSE    TRUE    <NA>     Sum
   <NA>        0       0 2027944 2027944
   Sum      2356    1997 2027944 2032297
 
-$VC_snRNAseq_8_Animal3_AB__
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE      19       0       0      19
-  TRUE        3    2876       0    2879
-  <NA>        0       0 1562581 1562581
-  Sum        22    2876 1562581 1565479
-
-$VC_snRNAseq_8_Animal3_Bd_Bv
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE      50       0       0      50
-  TRUE       44    4096       0    4140
-  <NA>        0       0 1713748 1713748
-  Sum        94    4096 1713748 1717938
-
-$VC_snRNAseq_8_Animal3_BD
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     283       0       0     283
-  TRUE       46    2461       0    2507
-  <NA>        0       0 1573753 1573753
-  Sum       329    2461 1573753 1576543
-
-$VC_snRNAseq_8_Animal3_BV1
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     483       0       0     483
-  TRUE      331    3836       0    4167
-  <NA>        0       0 1319975 1319975
-  Sum       814    3836 1319975 1324625
-
-$VC_snRNAseq_8_Animal3_BV2
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     460       0       0     460
-  TRUE      434    3502       0    3936
-  <NA>        0       0 1900716 1900716
-  Sum       894    3502 1900716 1905112
-
-$VC_snRNAseq_8_Animal3_LD
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    3740       0       0    3740
-  TRUE      725    3606       0    4331
-  <NA>        0       0 1663345 1663345
-  Sum      4465    3606 1663345 1671416
-
-$VC_snRNAseq_8_Animal3_LV
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     132       0       0     132
-  TRUE        3    2607       0    2610
-  <NA>        0       0 1565208 1565208
-  Sum       135    2607 1565208 1567950
-
-$VC_snRNAseq_8_Animal3_LV3
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     406       0       0     406
-  TRUE       25    2206       0    2231
-  <NA>        0       0 1518119 1518119
-  Sum       431    2206 1518119 1520756
-
-$VC_snRNAseq_9_Animal4_AB
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    5685       0       0    5685
-  TRUE      974    3233       0    4207
-  <NA>        0       0 1627495 1627495
-  Sum      6659    3233 1627495 1637387
-
-$`VC_snRNAseq_9_Animal4_B-Comb`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    7500       0       0    7500
-  TRUE      100    4298       0    4398
-  <NA>        0       0 1867902 1867902
-  Sum      7600    4298 1867902 1879800
-
-$VC_snRNAseq_9_Animal4_BD
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    9788       0       0    9788
-  TRUE      200    5186       0    5386
-  <NA>        0       0 1767563 1767563
-  Sum      9988    5186 1767563 1782737
-
-$VC_snRNAseq_9_Animal4_BV
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    4982       0       0    4982
-  TRUE      174    4790       0    4964
-  <NA>        0       0 1961425 1961425
-  Sum      5156    4790 1961425 1971371
-
-$`VC_snRNAseq_9_Animal4_L-Comb`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    5052       0       0    5052
-  TRUE      236    4964       0    5200
-  <NA>        0       0 1794827 1794827
-  Sum      5288    4964 1794827 1805079
-
-$VC_snRNAseq_9_Animal4_LD
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE   13291       0       0   13291
-  TRUE     2382    4300       0    6682
-  <NA>        0       0 1812290 1812290
-  Sum     15673    4300 1812290 1832263
-
-$VC_snRNAseq_9_Animal4_LV1
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    1493       0       0    1493
-  TRUE       89    3906       0    3995
-  <NA>        0       0 1550023 1550023
-  Sum      1582    3906 1550023 1555511
-
-$VC_snRNAseq_9_Animal4_LV2
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     150       0       0     150
-  TRUE       10    3179       0    3189
-  <NA>        0       0 1907596 1907596
-  Sum       160    3179 1907596 1910935
-
-$`VC_snRNAseq-7_AccBasalAP1AP2_-7`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     785       0       0     785
-  TRUE       45    4331       0    4376
-  <NA>        0       0 2471960 2471960
-  Sum       830    4331 2471960 2477121
-
-$`VC_snRNAseq-7_BasalDorsalAP1_-3A`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     511       0       0     511
-  TRUE       45    4259       0    4304
-  <NA>        0       0 2624077 2624077
-  Sum       556    4259 2624077 2628892
-
-$`VC_snRNAseq-7_BasalDorsalAP1_-3B`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     510       0       0     510
-  TRUE       51    3910       0    3961
-  <NA>        0       0 2486521 2486521
-  Sum       561    3910 2486521 2490992
-
-$`VC_snRNAseq-7_BasalVentralAP1_-4`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     332       0       0     332
-  TRUE       31    2176       0    2207
-  <NA>        0       0 2127774 2127774
-  Sum       363    2176 2127774 2130313
-
-$`VC_snRNAseq-7_BasalVentralAP2_-5`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    4355       0       0    4355
-  TRUE      131    3880       0    4011
-  <NA>        0       0 2882005 2882005
-  Sum      4486    3880 2882005 2890371
-
-$`VC_snRNAseq-7_LateralDorsalAP1AP2_-8`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE       9       0       0       9
-  TRUE        7    4737       0    4744
-  <NA>        0       0 1691710 1691710
-  Sum        16    4737 1691710 1696463
-
-$`VC_snRNAseq-7_LateralVentralAP1_-1`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE     376       0       0     376
-  TRUE       14    3066       0    3080
-  <NA>        0       0 2473912 2473912
-  Sum       390    3066 2473912 2477368
-
-$`VC_snRNAseq-7_LateralVentralAP2_-2`
-       Limited
-Signif    FALSE    TRUE    <NA>     Sum
-  FALSE    1989       0       0    1989
-  TRUE       87    4630       0    4717
-  <NA>        0       0 2892599 2892599
-  Sum      2076    4630 2892599 2899305
-
 integer(0)
-DataFrame with 70879726 rows and 5 columns
-                       Total   LogProb    PValue   Limited       FDR
-                   <integer> <numeric> <numeric> <logical> <numeric>
-AAACCCAAGAAACCCA-1         2        NA        NA        NA        NA
-AAACCCAAGAAACCCG-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTAC-1         1        NA        NA        NA        NA
-AAACCCAAGAAACTCA-1         0        NA        NA        NA        NA
-AAACCCAAGAAAGTCT-1         0        NA        NA        NA        NA
-...                      ...       ...       ...       ...       ...
-TTTGTTGTCTTAACAG-1         1        NA        NA        NA        NA
-TTTGTTGTCTTCACAT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTGCTCA-1         1        NA        NA        NA        NA
-TTTGTTGTCTTGCTGT-1         1        NA        NA        NA        NA
-TTTGTTGTCTTTGAGA-1         0        NA        NA        NA        NA
-class: SingleCellExperiment 
-dim: 21369 70879726 
-metadata(1): Samples
-assays(1): counts
-rownames: NULL
-rowData names(7): source type ... gene_biotype Symbol.uniq
-colnames(70879726): AAACCCAAGAAACCCA-1 AAACCCAAGAAACCCG-1 ...
-  TTTGTTGTCTTGCTGT-1 TTTGTTGTCTTTGAGA-1
-colData names(9): sample_id Sample ... Barcode key
-reducedDimNames(0):
-mainExpName: NULL
-altExpNames(0):
-[1]  21369 165490
-Warning message:
-In .get_med_and_mad(metric, batch = batch, subset = subset, share.medians = share.medians,  :
-  missing values ignored during outlier detection
+[1]  21369 134685
+[1] "Sample"                "Barcode"               "sum"                  
+[4] "detected"              "subsets_Mito_sum"      "subsets_Mito_detected"
+[7] "subsets_Mito_percent"  "total"                
+Loading objects:
+  sce.dropped
 
-FALSE 
-71760 
+ FALSE   TRUE 
+109967  24718 
        
         LIB210527RC_AB_1A LIB210527RC_AB_1B
-  FALSE              4983              3648
+  FALSE              4184              3856
+  TRUE                799               752
        
         VC_snRNAseq_12_Animal2_Central_Nucleus
-  FALSE                                   3433
+  FALSE                                   3434
+  TRUE                                     674
        
         VC_snRNAseq_12_Animal3_Central_Nucleus
-  FALSE                                   3608
+  FALSE                                   4548
+  TRUE                                     974
        
         VC_snRNAseq_12_Animal4_Central_Nucleus
-  FALSE                                   2124
+  FALSE                                   2130
+  TRUE                                    2048
        
         VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_
-  FALSE                                             1729
+  FALSE                                             2108
+  TRUE                                               278
        
         VC_snRNAseq_12_Animal5_Basal__AP1_ VC_snRNAseq_12_Animal5_Basal__AP2_
-  FALSE                               1845                               2332
+  FALSE                               2575                               3280
+  TRUE                                 340                                665
        
         VC_snRNAseq_12_Animal5_Lateral__AP1_
-  FALSE                                 2248
+  FALSE                                  470
+  TRUE                                    90
        
         VC_snRNAseq_12_Animal5_Lateral__AP2_
-  FALSE                                 2465
+  FALSE                                 2855
+  TRUE                                   395
        
         VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_ VC_snRNAseq_8_Animal3_AB__
-  FALSE                                         1991                       1024
+  FALSE                                         1825                       2581
+  TRUE                                           183                        298
        
         VC_snRNAseq_8_Animal3_BD VC_snRNAseq_8_Animal3_Bd_Bv
-  FALSE                     1150                        1144
+  FALSE                     2147                        3507
+  TRUE                       360                         633
        
         VC_snRNAseq_8_Animal3_BV1 VC_snRNAseq_8_Animal3_BV2
-  FALSE                       915                      1336
+  FALSE                      3912                      3670
+  TRUE                        255                       266
        
         VC_snRNAseq_8_Animal3_LD VC_snRNAseq_8_Animal3_LV
-  FALSE                     1409                     1276
+  FALSE                     3773                     2350
+  TRUE                       558                      260
        
         VC_snRNAseq_8_Animal3_LV3 VC_snRNAseq_9_Animal4_AB
-  FALSE                      1036                     1637
+  FALSE                      1788                     3591
+  TRUE                        443                      616
        
         VC_snRNAseq_9_Animal4_B-Comb VC_snRNAseq_9_Animal4_BD
-  FALSE                         2117                     2129
+  FALSE                         3599                     4073
+  TRUE                           799                     1313
        
         VC_snRNAseq_9_Animal4_BV VC_snRNAseq_9_Animal4_L-Comb
-  FALSE                     2118                         1987
+  FALSE                     3563                         3834
+  TRUE                      1401                         1366
        
         VC_snRNAseq_9_Animal4_LD VC_snRNAseq_9_Animal4_LV1
-  FALSE                     2180                      1388
+  FALSE                     3819                      2216
+  TRUE                      2863                      1779
        
         VC_snRNAseq_9_Animal4_LV2 VC_snRNAseq-7_AccBasalAP1AP2_-7
-  FALSE                      2260                            2082
+  FALSE                      2702                            3446
+  TRUE                        487                             930
        
         VC_snRNAseq-7_BasalDorsalAP1_-3A VC_snRNAseq-7_BasalDorsalAP1_-3B
-  FALSE                             2041                             1766
+  FALSE                             3865                             3497
+  TRUE                               439                              464
        
         VC_snRNAseq-7_BasalVentralAP1_-4 VC_snRNAseq-7_BasalVentralAP2_-5
-  FALSE                             1700                             2785
+  FALSE                             1962                             3443
+  TRUE                               245                              568
        
         VC_snRNAseq-7_LateralDorsalAP1AP2_-8 VC_snRNAseq-7_LateralVentralAP1_-1
-  FALSE                                 1385                               1990
+  FALSE                                 4276                               2764
+  TRUE                                   468                                316
        
         VC_snRNAseq-7_LateralVentralAP2_-2
-  FALSE                               2499
+  FALSE                               4324
+  TRUE                                 393
 
-FALSE  TRUE 
-22241 13815 
+ FALSE   TRUE 
+134514    171 
 
-FALSE  TRUE 
-22241 13815 
+ FALSE   TRUE 
+133322   1363 
        
-        FALSE  TRUE
-  FALSE 22241     0
-  TRUE      0 13815
+         FALSE   TRUE
+  FALSE 133322   1192
+  TRUE       0    171
 
-FALSE  TRUE 
-22241 13815 
+ FALSE   TRUE 
+109142  25543 
+
+ FALSE   TRUE 
+131372   3313 
+
+ FALSE   TRUE 
+107958  26727 
+                                                  
+                                                    FALSE   TRUE    Sum
+  LIB210527RC_AB_1A                                  4184    799   4983
+  LIB210527RC_AB_1B                                  3856    752   4608
+  VC_snRNAseq_12_Animal2_Central_Nucleus             3426    682   4108
+  VC_snRNAseq_12_Animal3_Central_Nucleus             4500   1022   5522
+  VC_snRNAseq_12_Animal4_Central_Nucleus             2128   2050   4178
+  VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_   2097    289   2386
+  VC_snRNAseq_12_Animal5_Basal__AP1_                 2575    340   2915
+  VC_snRNAseq_12_Animal5_Basal__AP2_                 3264    681   3945
+  VC_snRNAseq_12_Animal5_Lateral__AP1_                457    103    560
+  VC_snRNAseq_12_Animal5_Lateral__AP2_               2832    418   3250
+  VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_       1802    206   2008
+  VC_snRNAseq_8_Animal3_AB__                         2581    298   2879
+  VC_snRNAseq_8_Animal3_BD                           2147    360   2507
+  VC_snRNAseq_8_Animal3_Bd_Bv                        3507    633   4140
+  VC_snRNAseq_8_Animal3_BV1                          3912    255   4167
+  VC_snRNAseq_8_Animal3_BV2                          3670    266   3936
+  VC_snRNAseq_8_Animal3_LD                           3773    558   4331
+  VC_snRNAseq_8_Animal3_LV                           2343    267   2610
+  VC_snRNAseq_8_Animal3_LV3                          1788    443   2231
+  VC_snRNAseq_9_Animal4_AB                           3343    864   4207
+  VC_snRNAseq_9_Animal4_B-Comb                       3599    799   4398
+  VC_snRNAseq_9_Animal4_BD                           4073   1313   5386
+  VC_snRNAseq_9_Animal4_BV                           3563   1401   4964
+  VC_snRNAseq_9_Animal4_L-Comb                       3834   1366   5200
+  VC_snRNAseq_9_Animal4_LD                           3793   2889   6682
+  VC_snRNAseq_9_Animal4_LV1                          2133   1862   3995
+  VC_snRNAseq_9_Animal4_LV2                          2450    739   3189
+  VC_snRNAseq-7_AccBasalAP1AP2_-7                    3440    936   4376
+  VC_snRNAseq-7_BasalDorsalAP1_-3A                   3865    439   4304
+  VC_snRNAseq-7_BasalDorsalAP1_-3B                   3497    464   3961
+  VC_snRNAseq-7_BasalVentralAP1_-4                   1940    267   2207
+  VC_snRNAseq-7_BasalVentralAP2_-5                   3420    591   4011
+  VC_snRNAseq-7_LateralDorsalAP1AP2_-8               4276    468   4744
+  VC_snRNAseq-7_LateralVentralAP1_-1                 2751    329   3080
+  VC_snRNAseq-7_LateralVentralAP2_-2                 4323    394   4717
+  Sum                                              109142  25543 134685
                                                   
                                                    FALSE  TRUE   Sum
-  LIB210527RC_AB_1A                                 4983     0  4983
-  LIB210527RC_AB_1B                                 3648  1234  4882
-  VC_snRNAseq_12_Animal2_Central_Nucleus            3433  3047  6480
-  VC_snRNAseq_12_Animal3_Central_Nucleus            3608  3465  7073
-  VC_snRNAseq_12_Animal4_Central_Nucleus               0     0     0
-  VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_     0     0     0
-  VC_snRNAseq_12_Animal5_Basal__AP1_                   0     0     0
-  VC_snRNAseq_12_Animal5_Basal__AP2_                   0     0     0
-  VC_snRNAseq_12_Animal5_Lateral__AP1_                 0     0     0
-  VC_snRNAseq_12_Animal5_Lateral__AP2_                 0     0     0
-  VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_         0     0     0
-  VC_snRNAseq_8_Animal3_AB__                           0     0     0
-  VC_snRNAseq_8_Animal3_BD                             0     0     0
-  VC_snRNAseq_8_Animal3_Bd_Bv                          0     0     0
-  VC_snRNAseq_8_Animal3_BV1                            0     0     0
-  VC_snRNAseq_8_Animal3_BV2                            0     0     0
-  VC_snRNAseq_8_Animal3_LD                             0     0     0
-  VC_snRNAseq_8_Animal3_LV                             0     0     0
-  VC_snRNAseq_8_Animal3_LV3                            0     0     0
-  VC_snRNAseq_9_Animal4_AB                             0     0     0
-  VC_snRNAseq_9_Animal4_B-Comb                         0     0     0
-  VC_snRNAseq_9_Animal4_BD                          2129  1925  4054
-  VC_snRNAseq_9_Animal4_BV                             0     0     0
-  VC_snRNAseq_9_Animal4_L-Comb                         0     0     0
-  VC_snRNAseq_9_Animal4_LD                          2180  1970  4150
-  VC_snRNAseq_9_Animal4_LV1                            0     0     0
-  VC_snRNAseq_9_Animal4_LV2                         2260  2174  4434
-  VC_snRNAseq-7_AccBasalAP1AP2_-7                      0     0     0
-  VC_snRNAseq-7_BasalDorsalAP1_-3A                     0     0     0
-  VC_snRNAseq-7_BasalDorsalAP1_-3B                     0     0     0
-  VC_snRNAseq-7_BasalVentralAP1_-4                     0     0     0
-  VC_snRNAseq-7_BasalVentralAP2_-5                     0     0     0
-  VC_snRNAseq-7_LateralDorsalAP1AP2_-8                 0     0     0
-  VC_snRNAseq-7_LateralVentralAP1_-1                   0     0     0
-  VC_snRNAseq-7_LateralVentralAP2_-2                   0     0     0
-  Sum                                              22241 13815 36056
-                                                  
-                                                   FALSE  TRUE   Sum
-  LIB210527RC_AB_1A                                100.0   0.0 100.0
-  LIB210527RC_AB_1B                                 74.7  25.3 100.0
-  VC_snRNAseq_12_Animal2_Central_Nucleus            53.0  47.0 100.0
-  VC_snRNAseq_12_Animal3_Central_Nucleus            51.0  49.0 100.0
-  VC_snRNAseq_12_Animal4_Central_Nucleus                            
-  VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_                  
-  VC_snRNAseq_12_Animal5_Basal__AP1_                                
-  VC_snRNAseq_12_Animal5_Basal__AP2_                                
-  VC_snRNAseq_12_Animal5_Lateral__AP1_                              
-  VC_snRNAseq_12_Animal5_Lateral__AP2_                              
-  VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_                      
-  VC_snRNAseq_8_Animal3_AB__                                        
-  VC_snRNAseq_8_Animal3_BD                                          
-  VC_snRNAseq_8_Animal3_Bd_Bv                                       
-  VC_snRNAseq_8_Animal3_BV1                                         
-  VC_snRNAseq_8_Animal3_BV2                                         
-  VC_snRNAseq_8_Animal3_LD                                          
-  VC_snRNAseq_8_Animal3_LV                                          
-  VC_snRNAseq_8_Animal3_LV3                                         
-  VC_snRNAseq_9_Animal4_AB                                          
-  VC_snRNAseq_9_Animal4_B-Comb                                      
-  VC_snRNAseq_9_Animal4_BD                          52.5  47.5 100.0
-  VC_snRNAseq_9_Animal4_BV                                          
-  VC_snRNAseq_9_Animal4_L-Comb                                      
-  VC_snRNAseq_9_Animal4_LD                          52.5  47.5 100.0
-  VC_snRNAseq_9_Animal4_LV1                                         
-  VC_snRNAseq_9_Animal4_LV2                         51.0  49.0 100.0
-  VC_snRNAseq-7_AccBasalAP1AP2_-7                                   
-  VC_snRNAseq-7_BasalDorsalAP1_-3A                                  
-  VC_snRNAseq-7_BasalDorsalAP1_-3B                                  
-  VC_snRNAseq-7_BasalVentralAP1_-4                                  
-  VC_snRNAseq-7_BasalVentralAP2_-5                                  
-  VC_snRNAseq-7_LateralDorsalAP1AP2_-8                              
-  VC_snRNAseq-7_LateralVentralAP1_-1                                
-  VC_snRNAseq-7_LateralVentralAP2_-2                                
-  Sum                                               61.7  38.3 100.0
-Warning messages:
-1: Removed 93730 rows containing non-finite values (`stat_ydensity()`). 
-2: Removed 93730 rows containing missing values (`position_quasirandom()`). 
-Warning messages:
-1: Transformation introduced infinite values in continuous y-axis 
-2: Transformation introduced infinite values in continuous y-axis 
-3: Removed 93730 rows containing non-finite values (`stat_ydensity()`). 
-4: Removed 93730 rows containing missing values (`geom_point()`). 
-Warning messages:
-1: Transformation introduced infinite values in continuous y-axis 
-2: Transformation introduced infinite values in continuous y-axis 
-3: Removed 93730 rows containing non-finite values (`stat_ydensity()`). 
-4: Removed 93730 rows containing missing values (`geom_point()`). 
-Warning message:
-Removed 93730 rows containing missing values (`geom_point()`). 
+  LIB210527RC_AB_1A                                 84.0  16.0 100.0
+  LIB210527RC_AB_1B                                 83.7  16.3 100.0
+  VC_snRNAseq_12_Animal2_Central_Nucleus            83.4  16.6 100.0
+  VC_snRNAseq_12_Animal3_Central_Nucleus            81.5  18.5 100.0
+  VC_snRNAseq_12_Animal4_Central_Nucleus            50.9  49.1 100.0
+  VC_snRNAseq_12_Animal5_Accessory_Basal__AP2_AP3_  87.9  12.1 100.0
+  VC_snRNAseq_12_Animal5_Basal__AP1_                88.3  11.7 100.0
+  VC_snRNAseq_12_Animal5_Basal__AP2_                82.7  17.3 100.0
+  VC_snRNAseq_12_Animal5_Lateral__AP1_              81.6  18.4 100.0
+  VC_snRNAseq_12_Animal5_Lateral__AP2_              87.1  12.9 100.0
+  VC_snRNAseq_13_Animal5_Central_Nucleus__AP3_      89.7  10.3 100.0
+  VC_snRNAseq_8_Animal3_AB__                        89.6  10.4 100.0
+  VC_snRNAseq_8_Animal3_BD                          85.6  14.4 100.0
+  VC_snRNAseq_8_Animal3_Bd_Bv                       84.7  15.3 100.0
+  VC_snRNAseq_8_Animal3_BV1                         93.9   6.1 100.0
+  VC_snRNAseq_8_Animal3_BV2                         93.2   6.8 100.0
+  VC_snRNAseq_8_Animal3_LD                          87.1  12.9 100.0
+  VC_snRNAseq_8_Animal3_LV                          89.8  10.2 100.0
+  VC_snRNAseq_8_Animal3_LV3                         80.1  19.9 100.0
+  VC_snRNAseq_9_Animal4_AB                          79.5  20.5 100.0
+  VC_snRNAseq_9_Animal4_B-Comb                      81.8  18.2 100.0
+  VC_snRNAseq_9_Animal4_BD                          75.6  24.4 100.0
+  VC_snRNAseq_9_Animal4_BV                          71.8  28.2 100.0
+  VC_snRNAseq_9_Animal4_L-Comb                      73.7  26.3 100.0
+  VC_snRNAseq_9_Animal4_LD                          56.8  43.2 100.0
+  VC_snRNAseq_9_Animal4_LV1                         53.4  46.6 100.0
+  VC_snRNAseq_9_Animal4_LV2                         76.8  23.2 100.0
+  VC_snRNAseq-7_AccBasalAP1AP2_-7                   78.6  21.4 100.0
+  VC_snRNAseq-7_BasalDorsalAP1_-3A                  89.8  10.2 100.0
+  VC_snRNAseq-7_BasalDorsalAP1_-3B                  88.3  11.7 100.0
+  VC_snRNAseq-7_BasalVentralAP1_-4                  87.9  12.1 100.0
+  VC_snRNAseq-7_BasalVentralAP2_-5                  85.3  14.7 100.0
+  VC_snRNAseq-7_LateralDorsalAP1AP2_-8              90.1   9.9 100.0
+  VC_snRNAseq-7_LateralVentralAP1_-1                89.3  10.7 100.0
+  VC_snRNAseq-7_LateralVentralAP2_-2                91.6   8.4 100.0
+  Sum                                               81.0  19.0 100.0
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
 null device 
           1 
-Error in .local(x, ...) : size factors should be positive
-Calls: logNormCounts ... .local -> normalizeCounts -> normalizeCounts -> .local
-Execution halted
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+null device 
+          1 
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+null device 
+          1 
+null device 
+          1 
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+ 0.00000  0.04176  0.18511  0.58031  0.52164 22.35306 
+        0%         1%         2%         3%         4%         5%         6% 
+ 0.0000000  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000 
+        7%         8%         9%        10%        11%        12%        13% 
+ 0.0040160  0.0078900  0.0083340  0.0087960  0.0095440  0.0104400  0.0133640 
+       14%        15%        16%        17%        18%        19%        20% 
+ 0.0159800  0.0172740  0.0188680  0.0208000  0.0237660  0.0258240  0.0276480 
+       21%        22%        23%        24%        25%        26%        27% 
+ 0.0312000  0.0331320  0.0353120  0.0397260  0.0417600  0.0455000  0.0492960 
+       28%        29%        30%        31%        32%        33%        34% 
+ 0.0527760  0.0569280  0.0606340  0.0657280  0.0697620  0.0750380  0.0794240 
+       35%        36%        37%        38%        39%        40%        41% 
+ 0.0847780  0.0893520  0.0950640  0.1013760  0.1077200  0.1137760  0.1202760 
+       42%        43%        44%        45%        46%        47%        48% 
+ 0.1267520  0.1336400  0.1405600  0.1478400  0.1554660  0.1612960  0.1695560 
+       49%        50%        51%        52%        53%        54%        55% 
+ 0.1767040  0.1851080  0.1935120  0.2019360  0.2103500  0.2204160  0.2288100 
+       56%        57%        58%        59%        60%        61%        62% 
+ 0.2392000  0.2488320  0.2590360  0.2690820  0.2806440  0.2924600  0.3039920 
+       63%        64%        65%        66%        67%        68%        69% 
+ 0.3166900  0.3291560  0.3432000  0.3574080  0.3706200  0.3873600  0.4025920 
+       70%        71%        72%        73%        74%        75%        76% 
+ 0.4198660  0.4384954  0.4572540  0.4780600  0.4974840  0.5216400  0.5464800 
+       77%        78%        79%        80%        81%        82%        83% 
+ 0.5717400  0.5982720  0.6281080  0.6601240  0.6957720  0.7351680  0.7795800 
+       84%        85%        86%        87%        88%        89%        90% 
+ 0.8272440  0.8834040  0.9428200  1.0107720  1.0927280  1.1888762  1.3016608 
+       91%        92%        93%        94%        95%        96%        97% 
+ 1.4649920  1.7002138  2.0277740  2.4369496  2.8989760  3.4742112  4.0860078 
+       98%        99%       100% 
+ 4.9120320  6.1496195 22.3530560 
+# A tibble: 35 × 5
+   Sample                               median   q95  drop drop_percent
+   <chr>                                 <dbl> <dbl> <int>        <dbl>
+ 1 LIB210527RC_AB_1A                    0.159   2.49   224         4.50
+ 2 LIB210527RC_AB_1B                    0.129   2.45   200         4.34
+ 3 VC_snRNAseq-7_AccBasalAP1AP2_-7      0.140   1.73   152         3.47
+ 4 VC_snRNAseq-7_BasalDorsalAP1_-3A     0.0947  1.81   165         3.83
+ 5 VC_snRNAseq-7_BasalDorsalAP1_-3B     0.119   1.51   126         3.18
+ 6 VC_snRNAseq-7_BasalVentralAP1_-4     0.163   1.89    81         3.67
+ 7 VC_snRNAseq-7_BasalVentralAP2_-5     0.201   2.80   204         5.09
+ 8 VC_snRNAseq-7_LateralDorsalAP1AP2_-8 0.114   1.45   133         2.80
+ 9 VC_snRNAseq-7_LateralVentralAP1_-1   0.179   1.63    74         2.40
+10 VC_snRNAseq-7_LateralVentralAP2_-2   0.113   1.48   142         3.01
+# ℹ 25 more rows
+       
+         FALSE   TRUE
+  FALSE 102133   5825
+  TRUE   25422   1305
+[1]  21369 107958
+[1] "Reproducibility information:"
+[1] "2024-06-14 17:26:15 EDT"
+    user   system  elapsed 
+3180.759  215.388 3484.149 
+─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.4.0 Patched (2024-05-22 r86590)
+ os       Rocky Linux 9.2 (Blue Onyx)
+ system   x86_64, linux-gnu
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       US/Eastern
+ date     2024-06-14
+ pandoc   3.1.13 @ /jhpce/shared/community/core/conda_R/4.4/bin/pandoc
+
+─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+ package              * version     date (UTC) lib source
+ abind                * 1.4-5       2016-07-21 [2] CRAN (R 4.4.0)
+ batchelor            * 1.20.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ beachmat               2.20.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ beeswarm               0.4.0       2021-06-01 [2] CRAN (R 4.4.0)
+ Biobase              * 2.64.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocGenerics         * 0.50.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocIO                 1.14.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocNeighbors          1.22.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocParallel           1.38.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ BiocSingular           1.20.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ Biostrings             2.72.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ bit                    4.0.5       2022-11-15 [2] CRAN (R 4.4.0)
+ bit64                  4.0.5       2020-08-30 [2] CRAN (R 4.4.0)
+ bitops                 1.0-7       2021-04-24 [2] CRAN (R 4.4.0)
+ bluster                1.14.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ cli                    3.6.2       2023-12-11 [2] CRAN (R 4.4.0)
+ cluster                2.1.6       2023-12-01 [3] CRAN (R 4.4.0)
+ codetools              0.2-20      2024-03-31 [3] CRAN (R 4.4.0)
+ colorspace             2.1-0       2023-01-23 [2] CRAN (R 4.4.0)
+ cowplot                1.1.3       2024-01-22 [2] CRAN (R 4.4.0)
+ crayon                 1.5.2       2022-09-29 [2] CRAN (R 4.4.0)
+ curl                   5.2.1       2024-03-01 [2] CRAN (R 4.4.0)
+ data.table             1.15.4      2024-03-30 [2] CRAN (R 4.4.0)
+ DelayedArray         * 0.30.1      2024-05-07 [2] Bioconductor 3.19 (R 4.4.0)
+ DelayedMatrixStats     1.26.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ dplyr                * 1.1.4       2023-11-17 [2] CRAN (R 4.4.0)
+ dqrng                  0.4.0       2024-05-15 [2] CRAN (R 4.4.0)
+ edgeR                  4.2.0       2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ fansi                  1.0.6       2023-12-08 [2] CRAN (R 4.4.0)
+ farver                 2.1.2       2024-05-13 [2] CRAN (R 4.4.0)
+ forcats              * 1.0.0       2023-01-29 [2] CRAN (R 4.4.0)
+ generics               0.1.3       2022-07-05 [2] CRAN (R 4.4.0)
+ GenomeInfoDb         * 1.40.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ GenomeInfoDbData       1.2.12      2024-05-23 [2] Bioconductor
+ GenomicAlignments      1.40.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ GenomicRanges        * 1.56.0      2024-05-01 [2] Bioconductor 3.19 (R 4.4.0)
+ ggbeeswarm             0.7.2       2023-04-29 [2] CRAN (R 4.4.0)
+ ggplot2              * 3.5.1       2024-04-23 [2] CRAN (R 4.4.0)
+ ggrepel                0.9.5       2024-01-10 [2] CRAN (R 4.4.0)
+ glue                   1.7.0       2024-01-09 [2] CRAN (R 4.4.0)
+ gridExtra              2.3         2017-09-09 [2] CRAN (R 4.4.0)
+ gtable                 0.3.5       2024-04-22 [2] CRAN (R 4.4.0)
+ HDF5Array            * 1.32.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ here                 * 1.0.1       2020-12-13 [2] CRAN (R 4.4.0)
+ hms                    1.1.3       2023-03-21 [2] CRAN (R 4.4.0)
+ httr                   1.4.7       2023-08-15 [2] CRAN (R 4.4.0)
+ igraph                 2.0.3       2024-03-13 [2] CRAN (R 4.4.0)
+ IRanges              * 2.38.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ irlba                  2.3.5.1     2022-10-03 [2] CRAN (R 4.4.0)
+ jsonlite               1.8.8       2023-12-04 [2] CRAN (R 4.4.0)
+ labeling               0.4.3       2023-08-29 [2] CRAN (R 4.4.0)
+ lattice                0.22-6      2024-03-20 [3] CRAN (R 4.4.0)
+ lifecycle              1.0.4       2023-11-07 [2] CRAN (R 4.4.0)
+ limma                  3.60.2      2024-05-19 [2] Bioconductor 3.19 (R 4.4.0)
+ locfit                 1.5-9.9     2024-03-01 [2] CRAN (R 4.4.0)
+ lubridate            * 1.9.3       2023-09-27 [2] CRAN (R 4.4.0)
+ magrittr               2.0.3       2022-03-30 [2] CRAN (R 4.4.0)
+ MASS                   7.3-60.2    2024-04-26 [3] CRAN (R 4.4.0)
+ Matrix               * 1.7-0       2024-04-26 [3] CRAN (R 4.4.0)
+ MatrixGenerics       * 1.16.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ matrixStats          * 1.3.0       2024-04-11 [2] CRAN (R 4.4.0)
+ metapod                1.12.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ munsell                0.5.1       2024-04-01 [2] CRAN (R 4.4.0)
+ pillar                 1.9.0       2023-03-22 [2] CRAN (R 4.4.0)
+ pkgconfig              2.0.3       2019-09-22 [2] CRAN (R 4.4.0)
+ purrr                * 1.0.2       2023-08-10 [2] CRAN (R 4.4.0)
+ R6                     2.5.1       2021-08-19 [2] CRAN (R 4.4.0)
+ rafalib              * 1.0.0       2015-08-09 [1] CRAN (R 4.4.0)
+ ragg                   1.3.2       2024-05-15 [2] CRAN (R 4.4.0)
+ RColorBrewer           1.1-3       2022-04-03 [2] CRAN (R 4.4.0)
+ Rcpp                   1.0.12      2024-01-09 [2] CRAN (R 4.4.0)
+ RCurl                  1.98-1.14   2024-01-09 [2] CRAN (R 4.4.0)
+ readr                * 2.1.5       2024-01-10 [2] CRAN (R 4.4.0)
+ ResidualMatrix         1.14.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ restfulr               0.0.15      2022-06-16 [2] CRAN (R 4.4.0)
+ rhdf5                * 2.48.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ rhdf5filters           1.16.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ Rhdf5lib               1.26.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ rjson                  0.2.21      2022-01-09 [2] CRAN (R 4.4.0)
+ rlang                  1.1.3       2024-01-10 [2] CRAN (R 4.4.0)
+ rprojroot              2.0.4       2023-11-05 [2] CRAN (R 4.4.0)
+ Rsamtools              2.20.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ rsvd                   1.0.5       2021-04-16 [2] CRAN (R 4.4.0)
+ rtracklayer            1.64.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ S4Arrays             * 1.4.1       2024-05-20 [2] Bioconductor 3.19 (R 4.4.0)
+ S4Vectors            * 0.42.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ ScaledMatrix           1.12.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ scales                 1.3.0       2023-11-28 [2] CRAN (R 4.4.0)
+ scater               * 1.32.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ scDblFinder          * 1.18.0      2024-04-30 [1] Bioconductor 3.19 (R 4.4.0)
+ scran                * 1.32.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ scuttle              * 1.14.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ sessioninfo          * 1.2.2       2021-12-06 [2] CRAN (R 4.4.0)
+ SingleCellExperiment * 1.26.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ SparseArray          * 1.4.5       2024-05-20 [2] Bioconductor 3.19 (R 4.4.0)
+ sparseMatrixStats      1.16.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ statmod                1.5.0       2023-01-06 [2] CRAN (R 4.4.0)
+ stringi                1.8.4       2024-05-06 [2] CRAN (R 4.4.0)
+ stringr              * 1.5.1       2023-11-14 [2] CRAN (R 4.4.0)
+ SummarizedExperiment * 1.34.0      2024-05-01 [2] Bioconductor 3.19 (R 4.4.0)
+ systemfonts            1.1.0       2024-05-15 [2] CRAN (R 4.4.0)
+ textshaping            0.3.7       2023-10-09 [2] CRAN (R 4.4.0)
+ tibble               * 3.2.1       2023-03-20 [2] CRAN (R 4.4.0)
+ tidyr                * 1.3.1       2024-01-24 [2] CRAN (R 4.4.0)
+ tidyselect             1.2.1       2024-03-11 [2] CRAN (R 4.4.0)
+ tidyverse            * 2.0.0       2023-02-22 [2] CRAN (R 4.4.0)
+ timechange             0.3.0       2024-01-18 [2] CRAN (R 4.4.0)
+ tzdb                   0.4.0       2023-05-12 [2] CRAN (R 4.4.0)
+ UCSC.utils             1.0.0       2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ utf8                   1.2.4       2023-10-22 [2] CRAN (R 4.4.0)
+ vctrs                  0.6.5       2023-12-01 [2] CRAN (R 4.4.0)
+ vipor                  0.4.7       2023-12-18 [2] CRAN (R 4.4.0)
+ viridis                0.6.5       2024-01-29 [2] CRAN (R 4.4.0)
+ viridisLite            0.4.2       2023-05-02 [2] CRAN (R 4.4.0)
+ vroom                  1.6.5       2023-12-05 [2] CRAN (R 4.4.0)
+ withr                  3.0.0       2024-01-16 [2] CRAN (R 4.4.0)
+ xgboost                1.7.7.1     2024-01-25 [2] CRAN (R 4.4.0)
+ XML                    3.99-0.16.1 2024-01-22 [2] CRAN (R 4.4.0)
+ XVector                0.44.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+ yaml                   2.3.8       2023-12-11 [2] CRAN (R 4.4.0)
+ zlibbioc               1.50.0      2024-04-30 [2] Bioconductor 3.19 (R 4.4.0)
+
+ [1] /users/mtotty/R/4.4
+ [2] /jhpce/shared/community/core/conda_R/4.4/R/lib64/R/site-library
+ [3] /jhpce/shared/community/core/conda_R/4.4/R/lib64/R/library
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 **** Job ends ****
-Mon Nov  6 04:37:22 PM EST 2023
+Fri Jun 14 05:26:21 PM EDT 2024
