@@ -11,18 +11,21 @@ library("sessioninfo")
 library("HDF5Array")
 library("rafalib")
 library("dplyr")
+library("data.table")
+
+## save directories
+plot_dir = here("plots", "03_quality_control","Macaque","PerCellQC")
+processed_dir = here("processed-data","03_quality_control","Macaque","PerCellQC")
 
 
 ## Load raw data
 load(here("processed-data", "02_build_sce", "sce_macaque_raw_no_sample_info.rda"), verbose = TRUE)
 sce
 
+
+# on to QC ...
 pd <- colData(sce) %>% as.data.frame()
 
-## save directories
-## save directories
-plot_dir = here("plots", "03_quality_control","Macaque","PerCellQC")
-processed_dir = here("processed-data","03_quality_control","Macaque","PerCellQC")
 
 ##get droplet score filepaths
 droplet_paths <- list.files(here("processed-data","03_quality_control","Macaque","droplet_scores"),
@@ -215,6 +218,51 @@ save(sce.dropped,file=here(processed_dir,"sce_drops_removed.rda"))
 load(here(processed_dir, "sce_drops_removed.rda"), verbose = TRUE)
 
 sce <- sce.dropped
+sce$sample_id <- sce$Sample
+
+## Add in sample info
+tmp <- read.delim(here("raw-data","sampleinfo",
+                "master_sampleinfo_2023-10-09.csv"),
+                header = T,sep=',')
+
+# View the subsetted data
+head(tmp)
+
+# Convert tmp to data.table
+tmp_dt <- as.data.table(tmp)
+
+# Create sample_info as a data.table
+sample_info <- tmp_dt[, .(
+  sample_id = paste(Subject, Sample, sep = "-"),
+  sample_name = Sample,
+  subject = Subject,
+  species = Species,
+  region = Region,
+  subregion = Subregion,
+  dv_axis = DV_axis
+)]
+
+# get only macaque and amygdala
+sample_info <- sample_info[species == "Macaque" & region == "Amygdala"]
+sample_info$Sample <- sample_info$sample_name
+
+sce$key <- paste0(sce$Barcode, "_", sce$Sample)
+new_col <- merge(colData(sce), sample_info, by = "Sample")
+new_col$key <- paste0(new_col$Barcode, "_", new_col$Sample)
+new_col <- new_col[match(sce$key, new_col$key), ]
+stopifnot(identical(sce$key, new_col$key))
+rownames(new_col) <- colnames(sce)
+colData(sce) <- new_col
+
+
+# to avoid long names, make a new column called sample_num that goes "Sample 1", "Sample 2", etc
+sce$sample_num <- factor(paste0("Sample ", match(sce$Sample, unique(sce$Sample))))
+
+# > unique(sce$subject)
+# [1] "Mac2" "Mac4" "Mac3" "Mac1" "Mac5"
+
+# rename from "Mac1" to "Macaque 1", etc
+sce$subject <- factor(paste0("Macaque ", match(sce$subject, unique(sce$subject))))
 
 #### Check for low quality nuc ####
 ## High mito
@@ -450,27 +498,39 @@ sce$low_genes <- sce$low_genes | qc.genes
 
 #### QC plots ####
 #### QC plots ####
-png(here(plot_dir, "Violin_Subsets_mito.png"), width=1, height=14, units="in", res=300)
-plotColData(sce, x = "Sample", y = "subsets_Mito_percent", colour_by = "high_mito") +
+png(here(plot_dir, "Violin_Subsets_mito.png"), width=12, height=4, units="in", res=300)
+plotColData(sce, x = "sample_num", y = "subsets_Mito_percent", colour_by = "high_mito") +
   ggtitle("Mito Percent")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+    scale_colour_manual(values = c("grey", "red"), name="Discard")  +
+    facet_grid(. ~ sce$subject, scales="free_x") +
+    xlab(NULL) +
+    ylab("Mitochondrial %") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13))  # Increase the font size to 12
 dev.off()
 
-png(here(plot_dir, "Violin_sum_genes.png"), width=10, height=14, units="in", res=300)
-plotColData(sce, x = "Sample", y = "sum", colour_by = "low_lib") +
+png(here(plot_dir, "Violin_sum_genes.png"), width=12, height=4, units="in", res=300)
+plotColData(sce, x = "sample_num", y = "sum", colour_by = "low_lib") +
   scale_y_log10() +
   ggtitle("Total UMIs")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+    scale_colour_manual(values = c("grey", "red"), name="Discard") +
+    facet_grid(. ~ sce$subject, scales="free_x") +
+    xlab(NULL) +
+    ylab("Mitochondrial %") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13))  # Increase the font size to 12
 dev.off()
 
-png(here(plot_dir, "Violin_detected_genes.png"), width=10, height=14, units="in", res=300)
-plotColData(sce, x = "Sample", y = "detected", colour_by = "low_genes") +
+png(here(plot_dir, "Violin_detected_genes.png"), width=12, height=4, units="in", res=300)
+plotColData(sce, x = "sample_num", y = "detected", colour_by = "low_genes") +
   scale_y_log10() +
   ggtitle("Detected genes")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+    scale_colour_manual(values = c("grey", "red"), name="Discard") +
+    facet_grid(. ~ sce$subject, scales="free_x") +
+    xlab(NULL) +
+    ylab("Mitochondrial %") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13))  # Increase the font size to 12
 dev.off()
 
 

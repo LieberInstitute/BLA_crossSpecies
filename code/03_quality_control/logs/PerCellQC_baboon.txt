@@ -1,10 +1,10 @@
 **** Job starts ****
-Tue Jun 18 01:35:22 PM EDT 2024
+Tue Jun 25 03:34:04 PM EDT 2024
 **** SLURM info ****
 User: mtotty
-Job id: 7632896
+Job id: 7736557
 Job name: PerCellQC_baboon
-Hostname: compute-144
+Hostname: compute-114
 Task id: 
 Loading conda_R/4.4
 
@@ -173,6 +173,8 @@ colData names(10): Sample Barcode ... subregion dv_axis
 reducedDimNames(0):
 mainExpName: NULL
 altExpNames(0):
+[1] "Sample 1" "Sample 2" "Sample 3" "Sample 4" "Sample 5" "Sample 6" "Sample 7"
+[1] "Baboon 1" "Baboon 2"
   [1] "**** Job starts ****"                                                                                                  
   [2] "Mon Dec 11 10:43:24 PM EST 2023"                                                                                       
   [3] "**** SLURM info ****"                                                                                                  
@@ -615,9 +617,9 @@ Signif    FALSE    TRUE    <NA>     Sum
  [1] "Sample"                "Barcode"               "key"                  
  [4] "sample_id"             "sample_name"           "subject"              
  [7] "species"               "region"                "subregion"            
-[10] "dv_axis"               "sum"                   "detected"             
-[13] "subsets_Mito_sum"      "subsets_Mito_detected" "subsets_Mito_percent" 
-[16] "total"                
+[10] "dv_axis"               "sample_num"            "sum"                  
+[13] "detected"              "subsets_Mito_sum"      "subsets_Mito_detected"
+[16] "subsets_Mito_percent"  "total"                
 Loading objects:
   sce.dropped
 
@@ -694,4 +696,4 @@ Error in base::table(...) : all arguments must have the same length
 Calls: table ... standardGeneric -> eval -> eval -> eval -> table -> <Anonymous>
 Execution halted
 **** Job ends ****
-Tue Jun 18 01:44:07 PM EDT 2024
+Tue Jun 25 03:49:44 PM EDT 2024

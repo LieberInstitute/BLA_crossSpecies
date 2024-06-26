@@ -19,6 +19,36 @@ library("dplyr")
 load(here("processed-data", "02_build_sce", "sce_baboon_raw_ncbi.rda"), verbose = TRUE)
 sce
 
+# adding missing subject metadata
+sample_numbers <- c(
+  "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1" = "Sample 1",
+  "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1" = "Sample 2",
+  "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1" = "Sample 3",
+  "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1" = "Sample 4",
+  "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1" = "Sample 5",
+  "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1" = "Sample 6",
+  "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1" = "Sample 7"
+)
+
+subjects <- c(
+  "SNL230508VC_AN__baboon_2_BAMY_1_NeuN_10x_L1" = "Baboon 1",
+  "SNL230508VC_AN_baboon_2_BAMY_2_NeuN_10x_L1" = "Baboon 1",
+  "SNL230508VC_AN_baboon_2_LAMY_1_NeuN_10x_L1" = "Baboon 1",
+  "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_10x_L1" = "Baboon 2",
+  "SNL230508VC_HA_baboon_5_BAMY_1_NeuN_plus_DAPI_10x_L1" = "Baboon 2",
+  "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_10x_L1" = "Baboon 2",
+  "SNL230508VC_HA_baboon_5_LAMY_1_NeuN_plus_DAPI_10x_L1" = "Baboon 2"
+)
+
+# Assign the sample numbers to the new column based on the Sample column
+sce$sample_num <- sample_numbers[sce$Sample]
+sce$subject <- subjects[sce$Sample]
+
+
+# Verify the unique sample numbers
+unique(sce$sample_num)
+unique(sce$subject)
+
 pd <- colData(sce) %>% as.data.frame()
 
 ## save directories
@@ -86,8 +116,8 @@ drop_summary %>%
     arrange(non_empty)
 
 summary(drop_summary$non_empty)
-# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-# 4867    5028    5190    5190    5351    5512 
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#    6231    6388    7944    8337    9173   13064 
 
 #make Louise-style barplot
 drop_barplot <- drop_summary %>%
@@ -235,27 +265,39 @@ write_csv(data.frame(qc_t), file = here(processed_dir, "discarded_summary.csv"))
 
 
 #### QC plots ####
-png(here(plot_dir, "Violin_Subsets_mito.png"), width=7.5, height=5, units="in", res=300)
-plotColData(sce, x = "Sample", y = "subsets_Mito_percent", colour_by = "high_mito") +
-  ggtitle("Mito Percent")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+png(here(plot_dir, "Violin_Subsets_mito.png"), width=5, height=5, units="in", res=300)
+plotColData(sce, x = "sample_num", y = "subsets_Mito_percent", colour_by = "high_mito") +
+    ggtitle("Mito Percent")  +
+    scale_colour_manual(values = c("grey", "red"), name="Discard") +
+    facet_grid(. ~ sce$subject, scales="free_x") +
+    xlab(NULL) +
+    ylab("Mitochondrial %") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13))  # Increase the font size to 12
 dev.off()
 
-png(here(plot_dir, "Violin_sum_genes.png"), width=7.5, height=5, units="in", res=300)
-plotColData(sce, x = "Sample", y = "sum", colour_by = "low_lib") +
+png(here(plot_dir, "Violin_sum_genes.png"), width=5, height=5, units="in", res=300)
+plotColData(sce, x = "sample_num", y = "sum", colour_by = "low_lib") +
   scale_y_log10() +
-  ggtitle("Total UMIs")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+  ggtitle("Library Size")  +
+    scale_colour_manual(values = c("grey", "red"), name="Discard") +
+    facet_grid(. ~ sce$subject, scales="free_x") +
+    xlab(NULL) +
+    ylab("Total UMI") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13))  # Increase the font size to 12
 dev.off()
 
-png(here(plot_dir, "Violin_detected_genes.png"), width=7.5, height=5, units="in", res=300)
-plotColData(sce, x = "Sample", y = "detected", colour_by = "low_genes") +
+png(here(plot_dir, "Violin_detected_genes.png"), width=5, height=5, units="in", res=300)
+plotColData(sce, x = "sample_num", y = "detected", colour_by = "low_genes") +
   scale_y_log10() +
-  ggtitle("Detected genes")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+  ggtitle("Unique genes")  +
+    scale_colour_manual(values = c("grey", "red"), name="Discard") +
+    facet_grid(. ~ sce$subject, scales="free_x") +
+    xlab(NULL) +
+    ylab("Unique detect genes") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13))  # Increase the font size to 12
 dev.off()
 
 

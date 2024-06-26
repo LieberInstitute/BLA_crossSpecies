@@ -15,6 +15,22 @@ library("dplyr")
 
 ## Load raw data
 load(here("processed-data", "02_build_sce", "sce_human_raw.rda"), verbose = TRUE)
+sce
+
+unique(sce$Sample)
+# [1] "Br2327-3c-AMYBLA" "Br8692-4c-AMYBLA" "Br9021-5c-AMYBLA" "Br8331-34ac_scp" 
+# [5] "Br5273-35ac_scp" 
+
+brnum <- c("Br2327-3c-AMYBLA" = "BR2327",
+            "Br8692-4c-AMYBLA" = "Br8692",
+            "Br9021-5c-AMYBLA" = "Br9021",
+            "Br8331-34ac_scp" = "Br8337",
+            "Br5273-35ac_scp" = "Br5273")
+
+sce$brain_num <- brnum[sce$Sample]
+unique(sce$brain_num)
+#[1] "BR2327" "Br8692" "Br9021" "Br8337" "Br5273"
+
 
 pd <- colData(sce) %>% as.data.frame()
 
@@ -279,27 +295,36 @@ sce$low_lib <- sce$low_lib | qc.lib
 sce$low_genes <- sce$low_genes | qc.genes
 
 #### QC plots ####
-png(here(plot_dir, "Violin_Subsets_mito.png"), width=5, height=4, units="in", res=300)
-plotColData(sce, x = "Sample", y = "subsets_Mito_percent", colour_by = "high_mito") +
+png(here(plot_dir, "Violin_Subsets_mito.png"), width=5, height=5, units="in", res=300)
+plotColData(sce, x = "brain_num", y = "subsets_Mito_percent", colour_by = "high_mito") +
   ggtitle("Mito Percent")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+    scale_colour_manual(values = c("grey", "red"), name = "Discard") +
+    xlab(NULL) +
+    ylab("Mitochondrial %") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13)) 
 dev.off()
 
-png(here(plot_dir, "Violin_sum_genes.png"), width=5, height=4, units="in", res=300)
-plotColData(sce, x = "Sample", y = "sum", colour_by = "low_lib") +
+png(here(plot_dir, "Violin_sum_genes.png"), width=5, height=5, units="in", res=300)
+plotColData(sce, x = "brain_num", y = "sum", colour_by = "low_lib") +
   scale_y_log10() +
-  ggtitle("Total UMIs")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+  ggtitle("Library Size")  +
+    scale_colour_manual(values = c("grey", "red"), name = "Discard")  +
+    xlab(NULL) +
+    ylab("Total UMI") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13))  
 dev.off()
 
-png(here(plot_dir, "Violin_detected_genes.png"), width=5, height=4, units="in", res=300)
-plotColData(sce, x = "Sample", y = "detected", colour_by = "low_genes") +
+png(here(plot_dir, "Violin_detected_genes.png"), width=5, height=5, units="in", res=300)
+plotColData(sce, x = "brain_num", y = "detected", colour_by = "low_genes") +
   scale_y_log10() +
-  ggtitle("Detected genes")  +
-    scale_colour_manual(values = c("grey", "red")) +
-      coord_flip()
+  ggtitle("Unique genes")  +
+    scale_colour_manual(values = c("grey", "red"), name = "Discard")  +
+    xlab(NULL) +
+    ylab("Unique detected genes") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+          text = element_text(size = 13))  
 dev.off()
 
 

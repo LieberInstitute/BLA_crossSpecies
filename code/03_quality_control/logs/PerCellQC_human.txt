@@ -1,10 +1,10 @@
 **** Job starts ****
-Fri Jun 14 10:55:42 AM EDT 2024
+Tue Jun 25 09:32:14 PM EDT 2024
 **** SLURM info ****
 User: mtotty
-Job id: 7577591
+Job id: 7806740
 Job name: PerCellQC_human
-Hostname: compute-140
+Hostname: compute-149
 Task id: 
 Loading conda_R/4.4
 
@@ -161,6 +161,21 @@ The following object is masked from ‘package:rhdf5’:
 
 Loading objects:
   sce
+class: SingleCellExperiment 
+dim: 36601 7832046 
+metadata(1): Samples
+assays(1): counts
+rownames(36601): MIR1302-2HG FAM138A ... AC007325.4 AC007325.2
+rowData names(7): source type ... gene_type Symbol.uniq
+colnames(7832046): 1_AAACCCAAGAAACACT-1 1_AAACCCAAGAAACCCA-1 ...
+  5_TTTGTTGTCTTTGATC-1 5_TTTGTTGTCTTTGCTA-1
+colData names(10): Sample Barcode ... subregion dv_axis
+reducedDimNames(0):
+mainExpName: NULL
+altExpNames(0):
+[1] "Br2327-3c-AMYBLA" "Br8692-4c-AMYBLA" "Br9021-5c-AMYBLA" "Br8331-34ac_scp" 
+[5] "Br5273-35ac_scp" 
+[1] "BR2327" "Br8692" "Br9021" "Br8337" "Br5273"
 $`Br2327-3c-AMYBLA`
 DataFrame with 1740467 rows and 5 columns
                          Total   LogProb    PValue   Limited       FDR
@@ -402,9 +417,9 @@ Saving 7 x 17 in image
   TRUE   4161    29
 [1] 36601 21212
 [1] "Reproducibility information:"
-[1] "2024-06-14 11:03:32 EDT"
+[1] "2024-06-25 21:40:32 EDT"
    user  system elapsed 
-432.810  10.560 464.557 
+446.082   9.862 491.249 
 ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.4.0 Patched (2024-05-22 r86590)
@@ -415,7 +430,7 @@ Saving 7 x 17 in image
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       US/Eastern
- date     2024-06-14
+ date     2024-06-25
  pandoc   3.1.13 @ /jhpce/shared/community/core/conda_R/4.4/bin/pandoc
 
 ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -548,4 +563,4 @@ Saving 7 x 17 in image
 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 **** Job ends ****
-Fri Jun 14 11:03:33 AM EDT 2024
+Tue Jun 25 09:40:37 PM EDT 2024
