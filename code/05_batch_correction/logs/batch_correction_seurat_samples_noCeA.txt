@@ -1,10 +1,10 @@
 **** Job starts ****
-Wed Jun 26 01:13:24 PM EDT 2024
+Wed Jun 26 10:50:53 AM EDT 2024
 **** SLURM info ****
 User: mtotty
-Job id: 7808737
+Job id: 7808002
 Job name: batch_correction_seurat_samples
-Hostname: compute-129
+Hostname: compute-146
 Task id: 
 Loading conda_R/4.4
 
@@ -179,4 +179,4 @@ Error in loadNamespace(x) : there is no package called ‘orthogene’
 Calls: loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
 Execution halted
 **** Job ends ****
-Wed Jun 26 01:17:02 PM EDT 2024
+Wed Jun 26 10:54:39 AM EDT 2024

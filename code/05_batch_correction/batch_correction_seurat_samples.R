@@ -388,10 +388,6 @@ rm(sce)
 save(combined, file = here(processed_dir, "sce_combined.rda"))
 
 
-# drop Central Nucleus samples
-combined <- combined[, !grepl("Central Nucleus", colnames(combined))]
-
-
 
 
 
