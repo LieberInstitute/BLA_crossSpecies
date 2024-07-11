@@ -14,11 +14,7 @@ library(SummarizedExperiment)
 processed_dir = here("processed-data", "07_annotation")
 plot_dir = here("plots", "08_species_comparisons", "03_DE_analysis")
 
-sce.inhib <- readRDS(here(processed_dir, "sce.inhib.final.rds"))
 sce.excit <- readRDS(here(processed_dir, "sce.excit.integrated.annotated.rds"))
-
-
-
 
 
 # ======== Pseudobulk analysis ========
@@ -52,7 +48,7 @@ colnames(colData(pseudo))
 
 dds <- DESeqDataSetFromMatrix(countData=counts(pseudo), 
                               colData=colData(pseudo), 
-                              design=~DV_axis)
+                              design=~species+Subregion)
 dds
 
 dds <- DESeq(dds)
@@ -81,14 +77,10 @@ autoplot(pcDat,
          data = sampleinfo, 
          colour="DV_axis",
          size=5,
-         x=3,
-         y=4) +
+         x=2,
+         y=6) +
     ggtitle("PCs 6 seperates DV axis") 
 dev.off()
-
-
-plotPCA(rlogcounts, intgroup=c("DV_axis"), ntop=2000)
-
 
 # DE analysis
 
@@ -97,97 +89,113 @@ res <- lfcShrink(dds,
                  contrast = c("Subregion", "Lateral", "Basal"), res=res, type = 'normal')
 
 
+png(here(plot_dir, "Volcano_LateralVsBasal.png"), width=7, height=8, units="in", res=300)
 EnhancedVolcano(res,
                 lab = rownames(res),
                 x = 'log2FoldChange',
-                y = 'pvalue',
+                y = 'padj',
                 #FCcutoff = 1,
                 pCutoff = 10e-6,
-                #selectLab=c('COL25A1'),
+                selectLab=c('GULP1', 'PEX5L',"COL25A1","SATB1"),
                 title = 'Lateral vs Basal',
                 subtitle='pseudobulk analysis'
 )
+dev.off()
 
 
+# get DEGs < .05 padj and > 1 log2FoldChange from res
+res <- res[order(res$padj),]
+degs <- res[res$padj < 0.05,]
+lateral_degs <- degs[res$log2FoldChange > 1,]
+basal_degs <- degs[res$log2FoldChange < -1,]
+length(lateral_degs)
+# 146
 
-# ======= DV axis DE analysis =======
-# subset to macaque, then lateral and basal
-sce.subset <- sce.excit[, sce.excit$species == "macaque"]
-sce.subset <- sce.subset[, sce.subset$DV_axis %in% c("Dorsal", "Ventral")]
-sce.subset$DV_axis <- as.factor(sce.subset$DV_axis)
+length(basal_degs)
+# 218
 
-sce.lateral <- sce.subset[, sce.subset$Subregion == "Lateral"]
-sce.basal <- sce.subset[, sce.subset$Subregion == "Basal"]
+# save
+write.csv(lateral_degs, here("processed-data", "08_species_comparisons", "pseudobulk_ateral_degs.csv"))
+write.csv(basal_degs, here("processed-data", "08_species_comparisons", "pseudobulk_basal_degs.csv"))
 
-# pseudobulk
-pb.lateral <- aggregateAcrossCells(sce.lateral, ids = colData(sce.lateral)[,c("DV_axis", "Sample")])
-dim(pb.lateral)
+# ======= GO analysis on lateral vs basal DEGs =========
 
-pb.basal <- aggregateAcrossCells(sce.basal, ids = colData(sce.basal)[,c("DV_axis", "Sample")])
-dim(pb.basal)
-
-# filter low expressing genes
-keep <- edgeR::filterByExpr(pb.lateral, group=pb.lateral$DV_axis)
-pb.lateral <- pb.lateral[keep,]
-dim(pb.lateral)
-
-keep <- edgeR::filterByExpr(pb.basal, group=pb.basal$DV_axis)
-pb.basal <- pb.basal[keep,]
-dim(pb.basal)
-
-# ===== DESeq objects =====
-# lateral
-colData(pb.lateral)$sizeFactor <- NULL
-dds.lateral <- DESeqDataSetFromMatrix(countData=counts(pb.lateral), 
-                              colData=colData(pb.lateral), 
-                              design=~DV_axis)
-dds.lateral
-
-dds.lateral <- DESeq(dds.lateral)
-
-
-rlogcounts <- rlog(dds.lateral)
-sampleinfo <- as.data.frame(colData(dds.lateral))
-
-# DE analysis
-res.lateral <- results(dds.lateral, contrast=c("DV_axis", "Dorsal", "Ventral"))
-
-EnhancedVolcano(res.lateral,
-                lab = rownames(res.lateral),
-                x = 'log2FoldChange',
-                y = 'pvalue',
-                FCcutoff = 1.5,
-                pCutoff = .05,
-                #selectLab=c('PEX5L'),
-                title = 'Lateral: Dorsal vs Ventral',
-                subtitle='PB analysis of macaque samples'
-)
-
-
-# basal
-colData(pb.basal)$sizeFactor <- NULL
-dds.basal <- DESeqDataSetFromMatrix(countData=counts(pb.basal), 
-                                      colData=colData(pb.basal), 
-                                      design=~DV_axis)
-dds.basal
-
-dds.basal <- DESeq(dds.basal)
-
-
-rlogcounts <- rlog(dds.basal)
-sampleinfo <- as.data.frame(colData(dds.basal))
-
-# DE analysis
-res.basal <- results(dds.basal, contrast=c("DV_axis", "Dorsal", "Ventral"))
-
-EnhancedVolcano(res.basal,
-                lab = rownames(res.basal),
-                x = 'log2FoldChange',
-                y = 'padj',
-                FCcutoff = 1.5,
-                pCutoff = .01,
-                #selectLab=c('PEX5L'),
-                title = 'Basal: Dorsal vs Ventral',
-                subtitle='PB analysis of macaque samples'
-)
+library(clusterProfiler)
+library(org.Hs.eg.db)
  
+# == Lateral GO enrichment ==
+ego.bp <- enrichGO(gene = rownames(lateral_degs),
+                OrgDb = org.Hs.eg.db,
+                keyType = "SYMBOL",  # Use appropriate keyType for your gene list
+                ont = "BP",  # "BP" for Biological Process, "MF" for Molecular Function, "CC" for Cellular Component
+                pAdjustMethod = "BH",
+                pvalueCutoff = 0.01,
+                qvalueCutoff = 0.05)
+
+ego.cc <- enrichGO(gene = rownames(lateral_degs),
+                OrgDb = org.Hs.eg.db,
+                keyType = "SYMBOL",  # Use appropriate keyType for your gene list
+                ont = "CC",  # "BP" for Biological Process, "MF" for Molecular Function, "CC" for Cellular Component
+                pAdjustMethod = "BH",
+                pvalueCutoff = 0.01,
+                qvalueCutoff = 0.05)
+
+ego.mf <- enrichGO(gene = rownames(lateral_degs),
+                OrgDb = org.Hs.eg.db,
+                keyType = "SYMBOL",  # Use appropriate keyType for your gene list
+                ont = "MF",  # "BP" for Biological Process, "MF" for Molecular Function, "CC" for Cellular Component
+                pAdjustMethod = "BH",
+                pvalueCutoff = 0.01,
+                qvalueCutoff = 0.05)
+
+
+png(here(plot_dir, "Lateral_GO_BiologicalProcess.png"), width=5, height=5, units="in", res=300)
+dotplot(ego.bp, showCategory=30) + ggtitle("Lateral GO Biological Process")
+dev.off()
+
+png(here(plot_dir, "Lateral_GO_CellularComponent.png"), width=5, height=5, units="in", res=300)
+dotplot(ego.cc, showCategory=30) + ggtitle("Lateral GO Cellular Component")
+dev.off()
+
+png(here(plot_dir, "Lateral_GO_MolecularFunction.png"), width=5, height=5, units="in", res=300)
+dotplot(ego.mf, showCategory=30) + ggtitle("Lateral GO Molecular Function")
+dev.off()
+
+# == Basal GO enrichment ==
+ego.bp <- enrichGO(gene = rownames(basal_degs),
+                OrgDb = org.Hs.eg.db,
+                keyType = "SYMBOL",  # Use appropriate keyType for your gene list
+                ont = "BP",  # "BP" for Biological Process, "MF" for Molecular Function, "CC" for Cellular Component
+                pAdjustMethod = "BH",
+                pvalueCutoff = 0.01,
+                qvalueCutoff = 0.05)
+
+ego.cc <- enrichGO(gene = rownames(basal_degs),
+                OrgDb = org.Hs.eg.db,
+                keyType = "SYMBOL",  # Use appropriate keyType for your gene list
+                ont = "CC",  # "BP" for Biological Process, "MF" for Molecular Function, "CC" for Cellular Component
+                pAdjustMethod = "BH",
+                pvalueCutoff = 0.01,
+                qvalueCutoff = 0.05)
+
+ego.mf <- enrichGO(gene = rownames(basal_degs),
+                OrgDb = org.Hs.eg.db,
+                keyType = "SYMBOL",  # Use appropriate keyType for your gene list
+                ont = "MF",  # "BP" for Biological Process, "MF" for Molecular Function, "CC" for Cellular Component
+                pAdjustMethod = "BH",
+                pvalueCutoff = 0.01,
+                qvalueCutoff = 0.05)
+
+
+png(here(plot_dir, "Basal_GO_BiologicalProcess.png"), width=5, height=7.5, units="in", res=300)
+dotplot(ego.bp, showCategory=30) + ggtitle("Basal GO Biological Process")
+dev.off()
+
+# 0 enriched terms found
+#png(here(plot_dir, "Basal_GO_CellularComponent.png"), width=5, height=5, units="in", res=300)
+#dotplot(ego.cc, showCategory=30) + ggtitle("Basal GO Cellular Component")
+#dev.off()
+
+png(here(plot_dir, "Basal_GO_MolecularFunction.png"), width=5, height=5, units="in", res=300)
+dotplot(ego.mf, showCategory=30) + ggtitle("Basal GO Molecular Function")
+dev.off()
