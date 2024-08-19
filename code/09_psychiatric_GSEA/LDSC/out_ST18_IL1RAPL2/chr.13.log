@@ -1,0 +1,60 @@
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--print-snps /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/hapmap3_snps/hm.13.snp \
+--ld-wind-cm 1.0 \
+--out ./out_ST18_IL1RAPL2/chr.13 \
+--bfile /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.13 \
+--thin-annot  \
+--annot ./out_ST18_IL1RAPL2/chr.13.annot.gz \
+--l2  
+
+Beginning analysis at Mon Aug 19 14:42:36 2024
+Read list of 366200 SNPs from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.13.bim
+Read 1 annotations for 366200 SNPs from ./out_ST18_IL1RAPL2/chr.13.annot.gz
+Read list of 489 individuals from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.13.fam
+Reading genotypes from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.13.bed
+Estimating LD Score.
+Reading list of 52010 SNPs for which to print LD Scores from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/hapmap3_snps/hm.13.snp
+After merging with --print-snps, LD Scores for 45136 SNPs will be printed.
+Writing LD Scores for 45136 SNPs to ./out_ST18_IL1RAPL2/chr.13.l2.ldscore.gz
+
+Summary of LD Scores in ./out_ST18_IL1RAPL2/chr.13.l2.ldscore.gz
+         MAF        L2
+mean  0.2329   11.8475
+std   0.1436   36.4030
+min   0.0051   -1.7081
+25%   0.1063    0.0000
+50%   0.2198    0.0000
+75%   0.3548    2.0523
+max   0.5000  516.9481
+
+MAF/LD Score Correlation Matrix
+        MAF      L2
+MAF  1.0000  0.0269
+L2   0.0269  1.0000
+
+Annotation Correlation Matrix
+       ANNOT
+ANNOT    1.0
+
+Annotation Matrix Column Sums
+ANNOT    40351
+
+Summary of Annotation Matrix Row Sums
+count    366200.0000
+mean          0.1102
+std           0.3131
+min           0.0000
+25%           0.0000
+50%           0.0000
+75%           0.0000
+max           1.0000
+Analysis finished at Mon Aug 19 14:43:41 2024
+Total time elapsed: 1.0m:4.93s

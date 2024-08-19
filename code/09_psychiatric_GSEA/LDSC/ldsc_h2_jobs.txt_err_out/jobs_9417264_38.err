@@ -1,0 +1,2 @@
+Loading LIBD SLURM module for ldsc/1.0.1
+slurmstepd: error: Detected 16 oom-kill event(s) in StepId=9417302.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
