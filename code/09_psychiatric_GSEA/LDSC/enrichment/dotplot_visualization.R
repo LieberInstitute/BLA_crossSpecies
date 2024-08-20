@@ -1,14 +1,11 @@
 # originally copied from https://github.com/LieberInstitute/spatialdACC/blob/main/code/17_LDSC/spatial/dotplot_visualization.R
 
-setwd('/dcs04/lieber/marmaypag/spatialdACC_LIBD4125/spatialdACC/')
-
 library(ggplot2)
 library(RColorBrewer)
 library(here)
 
 ###load LDSC results
-ldsc_results <- read.csv(file=here::here('code','17_LDSC',
-                         'spatial','ldsc_results.csv'))
+ldsc_results <- read.csv(file=here::here('code','09_psychiatric_GSEA','LDSC','ldsc_results.csv'))
 
 ##########dotplots#############
 ###make -log10FDR column
@@ -21,7 +18,7 @@ ldsc_results$log10fdr <- -log10(ldsc_results$FDR)
 #ldsc_results<-ldsc_results[ldsc_results$FDR<0.05,]
 
 ###plot
-pdf(here('plots','17_LDSC','spatial','ldsc_results.pdf'),width=10,height=10)
+pdf(here('plots','09_psychiatric_GSEA','LDSC', 'ldsc_results_FDR_0.05.pdf'),width=10,height=10)
 
 ggplot(ldsc_results, aes(x = cell, y = trait, size = log10fdr, color = Coefficient_z.score)) +
     geom_point() +

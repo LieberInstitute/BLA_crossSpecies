@@ -20,6 +20,6 @@ for(i in 1:length(modules)){
     idx <- bed[,1] !="chrX" & bed[,1] !="chrY" & bed[,1] !="chrMT"
     bed <- bed[idx,]
     filename <- paste0(modules[i],".bed")
-    outfile <- here::here("processed-data", "09_psychiatric_GSEA","LDSC", "bedfiles", filename)
+    outfile <- here::here("code", "09_psychiatric_GSEA","LDSC", "bedfiles", filename)
     write.table(bed,outfile,row.names=F,col.names=F,sep="\t",quote=F)
 }
