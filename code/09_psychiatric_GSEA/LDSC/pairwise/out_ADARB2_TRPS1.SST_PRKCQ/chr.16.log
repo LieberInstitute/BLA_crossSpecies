@@ -1,0 +1,60 @@
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--print-snps /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/hapmap3_snps/hm.16.snp \
+--ld-wind-cm 1.0 \
+--out ./out_ADARB2_TRPS1.SST_PRKCQ/chr.16 \
+--bfile /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.16 \
+--thin-annot  \
+--annot ./out_ADARB2_TRPS1.SST_PRKCQ/chr.16.annot.gz \
+--l2  
+
+Beginning analysis at Tue Aug 20 15:34:48 2024
+Read list of 316981 SNPs from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.16.bim
+Read 1 annotations for 316981 SNPs from ./out_ADARB2_TRPS1.SST_PRKCQ/chr.16.annot.gz
+Read list of 489 individuals from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.16.fam
+Reading genotypes from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.16.bed
+Estimating LD Score.
+Reading list of 44710 SNPs for which to print LD Scores from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/hapmap3_snps/hm.16.snp
+After merging with --print-snps, LD Scores for 37656 SNPs will be printed.
+Writing LD Scores for 37656 SNPs to ./out_ADARB2_TRPS1.SST_PRKCQ/chr.16.l2.ldscore.gz
+
+Summary of LD Scores in ./out_ADARB2_TRPS1.SST_PRKCQ/chr.16.l2.ldscore.gz
+         MAF        L2
+mean  0.2370   20.5934
+std   0.1437   48.5143
+min   0.0051   -2.2922
+25%   0.1115    0.0000
+50%   0.2290    0.0166
+75%   0.3589   14.9958
+max   0.5000  565.9068
+
+MAF/LD Score Correlation Matrix
+        MAF      L2
+MAF  1.0000  0.0453
+L2   0.0453  1.0000
+
+Annotation Correlation Matrix
+       ANNOT
+ANNOT    1.0
+
+Annotation Matrix Column Sums
+ANNOT    61907
+
+Summary of Annotation Matrix Row Sums
+count    316981.0000
+mean          0.1953
+std           0.3964
+min           0.0000
+25%           0.0000
+50%           0.0000
+75%           0.0000
+max           1.0000
+Analysis finished at Tue Aug 20 15:35:42 2024
+Total time elapsed: 53.85s

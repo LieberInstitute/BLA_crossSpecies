@@ -1,0 +1,60 @@
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--print-snps /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/hapmap3_snps/hm.19.snp \
+--ld-wind-cm 1.0 \
+--out ./out_ADARB2_TRPS1.ZFHX3_SCN5A/chr.19 \
+--bfile /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.19 \
+--thin-annot  \
+--annot ./out_ADARB2_TRPS1.ZFHX3_SCN5A/chr.19.annot.gz \
+--l2  
+
+Beginning analysis at Tue Aug 20 15:01:20 2024
+Read list of 232363 SNPs from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.19.bim
+Read 1 annotations for 232363 SNPs from ./out_ADARB2_TRPS1.ZFHX3_SCN5A/chr.19.annot.gz
+Read list of 489 individuals from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.19.fam
+Reading genotypes from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.19.bed
+Estimating LD Score.
+Reading list of 26259 SNPs for which to print LD Scores from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/hapmap3_snps/hm.19.snp
+After merging with --print-snps, LD Scores for 21991 SNPs will be printed.
+Writing LD Scores for 21991 SNPs to ./out_ADARB2_TRPS1.ZFHX3_SCN5A/chr.19.l2.ldscore.gz
+
+Summary of LD Scores in ./out_ADARB2_TRPS1.ZFHX3_SCN5A/chr.19.l2.ldscore.gz
+         MAF        L2
+mean  0.2369   36.0549
+std   0.1428   53.7894
+min   0.0051   -2.3811
+25%   0.1125    1.1966
+50%   0.2331   12.6481
+75%   0.3569   51.8740
+max   0.5000  429.7679
+
+MAF/LD Score Correlation Matrix
+        MAF      L2
+MAF  1.0000  0.0982
+L2   0.0982  1.0000
+
+Annotation Correlation Matrix
+       ANNOT
+ANNOT    1.0
+
+Annotation Matrix Column Sums
+ANNOT    83231
+
+Summary of Annotation Matrix Row Sums
+count    232363.0000
+mean          0.3582
+std           0.4795
+min           0.0000
+25%           0.0000
+50%           0.0000
+75%           1.0000
+max           1.0000
+Analysis finished at Tue Aug 20 15:02:44 2024
+Total time elapsed: 1.0m:24.55s

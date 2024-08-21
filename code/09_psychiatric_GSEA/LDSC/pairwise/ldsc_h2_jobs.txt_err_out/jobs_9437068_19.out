@@ -1,0 +1,777 @@
+**** Job starts ****
+Tue Aug 20 04:29:00 PM EDT 2024
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/adhd.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/adhd.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:29:02 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/adhd.gz ...
+Read summary statistics for 1114823 SNPs.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1114820 SNPs remain.
+After merging with regression SNP LD, 1023001 SNPs remain.
+Removed 0 SNPs with chi^2 > 128.213 (1023001 SNPs remain)
+Total Observed scale h2: 0.1743 (0.0093)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.357
+Mean Chi^2: 1.4499
+Intercept: 1.0293 (0.0095)
+Ratio: 0.0652 (0.0211)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/adhd.out.results
+Analysis finished at Tue Aug 20 16:31:46 2024
+Total time elapsed: 2.0m:44.54s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/alcohol_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/alcohol_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:31:47 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/alcohol_ldscore.gz ...
+Read summary statistics for 1161773 SNPs.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1161770 SNPs remain.
+After merging with regression SNP LD, 1064035 SNPs remain.
+Removed 0 SNPs with chi^2 > 537.349 (1064035 SNPs remain)
+Total Observed scale h2: 0.0477 (0.002)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.3146
+Mean Chi^2: 1.4498
+Intercept: 0.9451 (0.0094)
+Ratio < 0 (usually indicates GC correction).
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/alcohol_ldscore.out.results
+Analysis finished at Tue Aug 20 16:34:30 2024
+Total time elapsed: 2.0m:42.6s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/Alzheimer_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/Alzheimer_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:34:31 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/Alzheimer_ldscore.gz ...
+Read summary statistics for 1161072 SNPs.
+Dropped 6 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1161063 SNPs remain.
+After merging with regression SNP LD, 1063772 SNPs remain.
+Removed 15 SNPs with chi^2 > 429.96108 (1063757 SNPs remain)
+Total Observed scale h2: 0.0145 (0.0019)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.0854
+Mean Chi^2: 1.117
+Intercept: 1.018 (0.0186)
+Ratio: 0.1536 (0.159)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/Alzheimer_ldscore.out.results
+Analysis finished at Tue Aug 20 16:37:04 2024
+Total time elapsed: 2.0m:32.68s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/Alzheimer_ldscore2.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/Alzheimer_ldscore2.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:37:05 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/Alzheimer_ldscore2.gz ...
+Read summary statistics for 1167507 SNPs.
+Dropped 852 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1166652 SNPs remain.
+After merging with regression SNP LD, 1067947 SNPs remain.
+Removed 11 SNPs with chi^2 > 762.917 (1067936 SNPs remain)
+Total Observed scale h2: 0.0152 (0.0021)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.0937
+Mean Chi^2: 1.1647
+Intercept: 1.0052 (0.0229)
+Ratio: 0.0317 (0.1388)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/Alzheimer_ldscore2.out.results
+Analysis finished at Tue Aug 20 16:39:35 2024
+Total time elapsed: 2.0m:29.31s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/Alzheimer_ldscore3.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/Alzheimer_ldscore3.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:39:36 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/Alzheimer_ldscore3.gz ...
+Read summary statistics for 1177594 SNPs.
+Dropped 11 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1163909 SNPs remain.
+After merging with regression SNP LD, 1058897 SNPs remain.
+Removed 0 SNPs with chi^2 > 487.511 (1058897 SNPs remain)
+Total Observed scale h2: 0.0247 (0.0028)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.1993
+Mean Chi^2: 1.2734
+Intercept: 1.066 (0.0187)
+Ratio: 0.2415 (0.0684)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/Alzheimer_ldscore3.out.results
+Analysis finished at Tue Aug 20 16:42:00 2024
+Total time elapsed: 2.0m:24.46s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/Anorexia_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/Anorexia_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:42:01 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/Anorexia_ldscore.gz ...
+Read summary statistics for 1111223 SNPs.
+Dropped 12 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1111209 SNPs remain.
+After merging with regression SNP LD, 1019918 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (1019918 SNPs remain)
+Total Observed scale h2: 0.2476 (0.0213)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.2376
+Mean Chi^2: 1.28
+Intercept: 1.0286 (0.0109)
+Ratio: 0.1022 (0.0388)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/Anorexia_ldscore.out.results
+Analysis finished at Tue Aug 20 16:44:22 2024
+Total time elapsed: 2.0m:21.25s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/autism_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/autism_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:44:25 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/autism_ldscore.gz ...
+Read summary statistics for 1112926 SNPs.
+Dropped 13 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1112910 SNPs remain.
+After merging with regression SNP LD, 1021204 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (1021204 SNPs remain)
+Total Observed scale h2: 0.1916 (0.0309)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.1644
+Mean Chi^2: 1.191
+Intercept: 1.0148 (0.0142)
+Ratio: 0.0776 (0.0742)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/autism_ldscore.out.results
+Analysis finished at Tue Aug 20 16:46:46 2024
+Total time elapsed: 2.0m:21.55s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/bmi_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/bmi_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:46:48 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/bmi_ldscore.gz ...
+Read summary statistics for 1003898 SNPs.
+Dropped 2 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1003895 SNPs remain.
+After merging with regression SNP LD, 922310 SNPs remain.
+Removed 21 SNPs with chi^2 > 795.64 (922289 SNPs remain)
+Total Observed scale h2: 0.2174 (0.0065)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 2.7348
+Mean Chi^2: 3.9534
+Intercept: 1.0599 (0.0325)
+Ratio: 0.0203 (0.011)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/bmi_ldscore.out.results
+Analysis finished at Tue Aug 20 16:48:53 2024
+Total time elapsed: 2.0m:5.61s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/bp3_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/bp3_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:48:55 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/bp3_ldscore.gz ...
+Read summary statistics for 1148653 SNPs.
+Dropped 8 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1148643 SNPs remain.
+After merging with regression SNP LD, 1053862 SNPs remain.
+Removed 0 SNPs with chi^2 > 150.669 (1053862 SNPs remain)
+Total Observed scale h2: 0.196 (0.009)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.451
+Mean Chi^2: 1.5939
+Intercept: 1.033 (0.0115)
+Ratio: 0.0555 (0.0194)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/bp3_ldscore.out.results
+Analysis finished at Tue Aug 20 16:51:03 2024
+Total time elapsed: 2.0m:8.73s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/bp_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/bp_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:51:05 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/bp_ldscore.gz ...
+Read summary statistics for 1114546 SNPs.
+Dropped 104 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1114440 SNPs remain.
+After merging with regression SNP LD, 1025019 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (1025019 SNPs remain)
+Total Observed scale h2: 0.3204 (0.0229)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.3192
+Mean Chi^2: 1.3812
+Intercept: 1.0541 (0.0116)
+Ratio: 0.1419 (0.0304)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/bp_ldscore.out.results
+Analysis finished at Tue Aug 20 16:53:09 2024
+Total time elapsed: 2.0m:4.09s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/EA_aud_Jun07.txt_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/EA_aud_Jun07.txt_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:53:10 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/EA_aud_Jun07.txt_ldscore.gz ...
+Read summary statistics for 643155 SNPs.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 643153 SNPs remain.
+After merging with regression SNP LD, 591202 SNPs remain.
+Removed 0 SNPs with chi^2 > 114.847 (591202 SNPs remain)
+Total Observed scale h2: 0.0933 (0.0102)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.1968
+Mean Chi^2: 1.2445
+Intercept: 1.0271 (0.0118)
+Ratio: 0.1107 (0.0481)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/EA_aud_Jun07.txt_ldscore.out.results
+Analysis finished at Tue Aug 20 16:55:12 2024
+Total time elapsed: 2.0m:1.94s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/epilepsyAll.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/epilepsyAll.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:55:13 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/epilepsyAll.gz ...
+Read summary statistics for 892710 SNPs.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 892708 SNPs remain.
+After merging with regression SNP LD, 822076 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (822076 SNPs remain)
+Total Observed scale h2: 0.1102 (0.0197)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.2597
+Mean Chi^2: 1.2701
+Intercept: 1.1171 (0.0143)
+Ratio: 0.4337 (0.0528)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/epilepsyAll.out.results
+Analysis finished at Tue Aug 20 16:57:21 2024
+Total time elapsed: 2.0m:8.1s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/epilepsyFocal.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/epilepsyFocal.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:57:22 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/epilepsyFocal.gz ...
+Read summary statistics for 890792 SNPs.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 890790 SNPs remain.
+After merging with regression SNP LD, 820115 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (820115 SNPs remain)
+Total Observed scale h2: 0.0679 (0.026)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.1683
+Mean Chi^2: 1.1706
+Intercept: 1.1078 (0.0133)
+Ratio: 0.6317 (0.0778)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/epilepsyFocal.out.results
+Analysis finished at Tue Aug 20 16:59:35 2024
+Total time elapsed: 2.0m:13.09s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/epilepsyGGE.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/epilepsyGGE.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 16:59:36 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/epilepsyGGE.gz ...
+Read summary statistics for 888187 SNPs.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 888185 SNPs remain.
+After merging with regression SNP LD, 817452 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (817452 SNPs remain)
+Total Observed scale h2: 0.5876 (0.0669)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.2932
+Mean Chi^2: 1.3487
+Intercept: 1.0642 (0.0167)
+Ratio: 0.1842 (0.048)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/epilepsyGGE.out.results
+Analysis finished at Tue Aug 20 17:01:46 2024
+Total time elapsed: 2.0m:10.16s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_AgeSmk_2022_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_AgeSmk_2022_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 17:01:47 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_AgeSmk_2022_ldscore.gz ...
+Read summary statistics for 1156202 SNPs.
+Dropped 987 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1142095 SNPs remain.
+After merging with regression SNP LD, 1047310 SNPs remain.
+Removed 0 SNPs with chi^2 > 323.386 (1047310 SNPs remain)
+Total Observed scale h2: 0.049 (0.0031)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.2283
+Mean Chi^2: 1.3173
+Intercept: 1.0236 (0.0087)
+Ratio: 0.0743 (0.0273)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_AgeSmk_2022_ldscore.out.results
+Analysis finished at Tue Aug 20 17:04:05 2024
+Total time elapsed: 2.0m:17.2s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_CigDay_2022_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_CigDay_2022_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 17:04:06 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_CigDay_2022_ldscore.gz ...
+Read summary statistics for 1156604 SNPs.
+Dropped 989 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1142452 SNPs remain.
+After merging with regression SNP LD, 1047668 SNPs remain.
+Removed 57 SNPs with chi^2 > 326.497 (1047611 SNPs remain)
+Total Observed scale h2: 0.0837 (0.0055)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.3719
+Mean Chi^2: 1.5461
+Intercept: 1.0541 (0.0112)
+Ratio: 0.099 (0.0206)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_CigDay_2022_ldscore.out.results
+Analysis finished at Tue Aug 20 17:06:19 2024
+Total time elapsed: 2.0m:13.98s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_DrnkWk_2022_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_DrnkWk_2022_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 17:06:21 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_DrnkWk_2022_ldscore.gz ...
+Read summary statistics for 1152884 SNPs.
+Dropped 991 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1139159 SNPs remain.
+After merging with regression SNP LD, 1045129 SNPs remain.
+Removed 0 SNPs with chi^2 > 666.978 (1045129 SNPs remain)
+Total Observed scale h2: 0.0446 (0.0021)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.5266
+Mean Chi^2: 1.7384
+Intercept: 1.1517 (0.0119)
+Ratio: 0.2054 (0.0162)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_DrnkWk_2022_ldscore.out.results
+Analysis finished at Tue Aug 20 17:08:29 2024
+Total time elapsed: 2.0m:8.9s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_SmkCes_2022_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_SmkCes_2022_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 17:08:30 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_SmkCes_2022_ldscore.gz ...
+Read summary statistics for 1155827 SNPs.
+Dropped 991 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1142012 SNPs remain.
+After merging with regression SNP LD, 1047300 SNPs remain.
+Removed 0 SNPs with chi^2 > 388.313 (1047300 SNPs remain)
+Total Observed scale h2: 0.0742 (0.0038)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.4423
+Mean Chi^2: 1.5999
+Intercept: 1.0747 (0.011)
+Ratio: 0.1246 (0.0184)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_SmkCes_2022_ldscore.out.results
+Analysis finished at Tue Aug 20 17:10:41 2024
+Total time elapsed: 2.0m:10.3s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_SmkInit_2022_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_SmkInit_2022_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 17:10:42 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/GSCAN_SmkInit_2022_ldscore.gz ...
+Read summary statistics for 1153995 SNPs.
+Dropped 988 SNPs with duplicated rs numbers.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1140238 SNPs remain.
+After merging with regression SNP LD, 1045975 SNPs remain.
+Removed 0 SNPs with chi^2 > 805.431 (1045975 SNPs remain)
+Total Observed scale h2: 0.0632 (0.0023)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 1.6831
+Mean Chi^2: 2.0645
+Intercept: 1.1107 (0.0148)
+Ratio: 0.104 (0.0139)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/GSCAN_SmkInit_2022_ldscore.out.results
+Analysis finished at Tue Aug 20 17:12:54 2024
+Total time elapsed: 2.0m:12.71s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/height_ldscore.gz \
+--ref-ld-chr ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD. \
+--out ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/height_ldscore.out \
+--overlap-annot  \
+--frqfile-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_frq/1000G.EUR.QC. \
+--w-ld-chr /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Aug 20 17:12:56 2024
+Reading summary statistics from /dcs04/lieber/shared/statsgen/LDSC/base/gwas_brain/height_ldscore.gz ...
+Read summary statistics for 1002716 SNPs.
+Reading reference panel LD Score from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1195563 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_Phase3_weights_hm3_no_MHC/weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1187349 SNPs.
+After merging with reference panel LD, 1002716 SNPs remain.
+After merging with regression SNP LD, 921362 SNPs remain.
+Removed 462 SNPs with chi^2 > 709.703 (920900 SNPs remain)
+Total Observed scale h2: 0.5309 (0.0217)
+Categories: L2_0 baseL2_1 Coding_UCSCL2_1 Coding_UCSC.flanking.500L2_1 Conserved_LindbladTohL2_1 Conserved_LindbladToh.flanking.500L2_1 CTCF_HoffmanL2_1 CTCF_Hoffman.flanking.500L2_1 DGF_ENCODEL2_1 DGF_ENCODE.flanking.500L2_1 DHS_peaks_TrynkaL2_1 DHS_TrynkaL2_1 DHS_Trynka.flanking.500L2_1 Enhancer_AnderssonL2_1 Enhancer_Andersson.flanking.500L2_1 Enhancer_HoffmanL2_1 Enhancer_Hoffman.flanking.500L2_1 FetalDHS_TrynkaL2_1 FetalDHS_Trynka.flanking.500L2_1 H3K27ac_HniszL2_1 H3K27ac_Hnisz.flanking.500L2_1 H3K27ac_PGC2L2_1 H3K27ac_PGC2.flanking.500L2_1 H3K4me1_peaks_TrynkaL2_1 H3K4me1_TrynkaL2_1 H3K4me1_Trynka.flanking.500L2_1 H3K4me3_peaks_TrynkaL2_1 H3K4me3_TrynkaL2_1 H3K4me3_Trynka.flanking.500L2_1 H3K9ac_peaks_TrynkaL2_1 H3K9ac_TrynkaL2_1 H3K9ac_Trynka.flanking.500L2_1 Intron_UCSCL2_1 Intron_UCSC.flanking.500L2_1 PromoterFlanking_HoffmanL2_1 PromoterFlanking_Hoffman.flanking.500L2_1 Promoter_UCSCL2_1 Promoter_UCSC.flanking.500L2_1 Repressed_HoffmanL2_1 Repressed_Hoffman.flanking.500L2_1 SuperEnhancer_HniszL2_1 SuperEnhancer_Hnisz.flanking.500L2_1 TFBS_ENCODEL2_1 TFBS_ENCODE.flanking.500L2_1 Transcr_HoffmanL2_1 Transcr_Hoffman.flanking.500L2_1 TSS_HoffmanL2_1 TSS_Hoffman.flanking.500L2_1 UTR_3_UCSCL2_1 UTR_3_UCSC.flanking.500L2_1 UTR_5_UCSCL2_1 UTR_5_UCSC.flanking.500L2_1 WeakEnhancer_HoffmanL2_1 WeakEnhancer_Hoffman.flanking.500L2_1 GERP.NSL2_1 GERP.RSsup4L2_1 MAFbin1L2_1 MAFbin2L2_1 MAFbin3L2_1 MAFbin4L2_1 MAFbin5L2_1 MAFbin6L2_1 MAFbin7L2_1 MAFbin8L2_1 MAFbin9L2_1 MAFbin10L2_1 MAF_Adj_Predicted_Allele_AgeL2_1 MAF_Adj_LLD_AFRL2_1 Recomb_Rate_10kbL2_1 Nucleotide_Diversity_10kbL2_1 Backgrd_Selection_StatL2_1 CpG_Content_50kbL2_1 MAF_Adj_ASMCL2_1 GTEx_eQTL_MaxCPPL2_1 BLUEPRINT_H3K27acQTL_MaxCPPL2_1 BLUEPRINT_H3K4me1QTL_MaxCPPL2_1 BLUEPRINT_DNA_methylation_MaxCPPL2_1 synonymousL2_1 non_synonymousL2_1 Conserved_Vertebrate_phastCons46wayL2_1 Conserved_Vertebrate_phastCons46way.flanking.500L2_1 Conserved_Mammal_phastCons46wayL2_1 Conserved_Mammal_phastCons46way.flanking.500L2_1 Conserved_Primate_phastCons46wayL2_1 Conserved_Primate_phastCons46way.flanking.500L2_1 BivFlnkL2_1 BivFlnk.flanking.500L2_1 Human_Promoter_VillarL2_1 Human_Promoter_Villar.flanking.500L2_1 Human_Enhancer_VillarL2_1 Human_Enhancer_Villar.flanking.500L2_1 Ancient_Sequence_Age_Human_PromoterL2_1 Ancient_Sequence_Age_Human_Promoter.flanking.500L2_1 Ancient_Sequence_Age_Human_EnhancerL2_1 Ancient_Sequence_Age_Human_Enhancer.flanking.500L2_1 Human_Enhancer_Villar_Species_Enhancer_CountL2_1 Human_Promoter_Villar_ExACL2_1 Human_Promoter_Villar_ExAC.flanking.500L2_1
+Lambda GC: 3.6339
+Mean Chi^2: 8.4971
+Intercept: 1.5304 (0.0932)
+Ratio: 0.0708 (0.0124)
+Reading annot matrix from ./out_ADARB2_TRPS1.RXFP1_KIAA1217/chr.,/dcs04/lieber/shared/statsgen/LDSC/base/baseline2/baselineLD.[1-22] ... (annot)
+Results printed to ./out_ADARB2_TRPS1.RXFP1_KIAA1217_2/height_ldscore.out.results
+Analysis finished at Tue Aug 20 17:15:01 2024
+Total time elapsed: 2.0m:5.53s
+**** Job ends ****
+Tue Aug 20 05:15:02 PM EDT 2024

@@ -1,0 +1,60 @@
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--print-snps /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/hapmap3_snps/hm.12.snp \
+--ld-wind-cm 1.0 \
+--out ./out_LHX8_ANGPT1/chr.12 \
+--bfile /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.12 \
+--thin-annot  \
+--annot ./out_LHX8_ANGPT1/chr.12.annot.gz \
+--l2  
+
+Beginning analysis at Tue Aug 20 15:21:24 2024
+Read list of 480110 SNPs from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.12.bim
+Read 1 annotations for 480110 SNPs from ./out_LHX8_ANGPT1/chr.12.annot.gz
+Read list of 489 individuals from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.12.fam
+Reading genotypes from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/1000G_EUR_Phase3_plink/1000G.EUR.QC.12.bed
+Estimating LD Score.
+Reading list of 68635 SNPs for which to print LD Scores from /dcs04/lieber/shared/statsgen/LDSC/base/referencefiles/hapmap3_snps/hm.12.snp
+After merging with --print-snps, LD Scores for 58127 SNPs will be printed.
+Writing LD Scores for 58127 SNPs to ./out_LHX8_ANGPT1/chr.12.l2.ldscore.gz
+
+Summary of LD Scores in ./out_LHX8_ANGPT1/chr.12.l2.ldscore.gz
+         MAF        L2
+mean  0.2320   13.5707
+std   0.1438   37.6478
+min   0.0051   -2.3295
+25%   0.1063    0.0000
+50%   0.2198    0.0000
+75%   0.3548    3.8950
+max   0.5000  389.5683
+
+MAF/LD Score Correlation Matrix
+        MAF      L2
+MAF  1.0000  0.0273
+L2   0.0273  1.0000
+
+Annotation Correlation Matrix
+       ANNOT
+ANNOT    1.0
+
+Annotation Matrix Column Sums
+ANNOT    54790
+
+Summary of Annotation Matrix Row Sums
+count    480110.0000
+mean          0.1141
+std           0.3180
+min           0.0000
+25%           0.0000
+50%           0.0000
+75%           0.0000
+max           1.0000
+Analysis finished at Tue Aug 20 15:23:02 2024
+Total time elapsed: 1.0m:37.83s

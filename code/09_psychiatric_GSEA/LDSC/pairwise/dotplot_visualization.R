@@ -5,7 +5,7 @@ library(RColorBrewer)
 library(here)
 
 ###load LDSC results
-ldsc_results <- read.csv(file=here::here('code','09_psychiatric_GSEA','LDSC','ldsc_results.csv'))
+ldsc_results <- read.csv(file=here::here('code','09_psychiatric_GSEA','LDSC',"pairwise",'ldsc_results.csv'))
 
 ##########dotplots#############
 ###make -log10FDR column
@@ -29,14 +29,14 @@ ggplot(ldsc_results, aes(x = cell, y = trait, size = log10fdr, color = Coefficie
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     labs(size = "-log10(FDR)",x='group')
 
-ggplot(ldsc_results, aes(x = cell, y = trait, size = ifelse(FDR > 0.05, NA, log10fdr), color = Coefficient_z.score)) +
-    geom_point() +
-    scale_size_continuous(range = c(0, 10)) + # Set minimum size to zero for the size scale
-    scale_color_gradient2(low = 'blue', high = 'red', midpoint = 0,
-                          name = "Coefficient\n(z-score)") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-    labs(size = "-log10(FDR)",x='group',
-         caption = "removed FDR > 0.05")
+# ggplot(ldsc_results, aes(x = cell, y = trait, size = ifelse(FDR > 0.9, NA, log10fdr), color = Coefficient_z.score)) +
+#     geom_point() +
+#     scale_size_continuous(range = c(0, 10)) + # Set minimum size to zero for the size scale
+#     scale_color_gradient2(low = 'blue', high = 'red', midpoint = 0,
+#                           name = "Coefficient\n(z-score)") +
+#     theme_bw() +
+#     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+#     labs(size = "-log10(FDR)",x='group',
+#          caption = "removed FDR > 0.05")
 
 dev.off()
