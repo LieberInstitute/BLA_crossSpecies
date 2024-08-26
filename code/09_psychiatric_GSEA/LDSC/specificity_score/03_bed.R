@@ -6,7 +6,7 @@ gene.meta <- read.table(gene.anno.file,sep="\t",header=T)
 # Load libraries
 library(here)
 
-cell <- read.csv(here::here("processed-data", "09_psychiatric_GSEA","LDSC", "human_sce_score.csv"))
+cell <- read.csv(here::here("processed-data", "09_psychiatric_GSEA","LDSC","specificity_score_putative", "human_sce_score.csv"))
 colnames(cell)[1] <- "geneName"
 modules <- colnames(cell)[-1]
 for(i in 1:length(modules)){
