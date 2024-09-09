@@ -11,12 +11,11 @@ library(scuttle)
 library(circlize)
 
 ## save directories
-plot_dir = here("plots", "07_annotation","06_excit_annotations")
-#processed_dir = here("processed-data","07_annotation")
+plot_dir = here("plots", "07_annotation_and_characterization","04_excit_annotations")
 processed_dir <- here("processed-data")
 
 # load sce
-sce <- readRDS(here("processed-data", "sce_excit_final_subclusters_annotated.rds"))
+sce <- readRDS(here("processed-data", "07_annotation_and_characterization", "sce_excit_final_subclusters_annotated.rds"))
 sce
 
 # ======= UMAPs ========
@@ -132,8 +131,7 @@ mat <- as.matrix(logcounts(out))
 scaled_mat <- scale(t(mat))
 
 # == Creating stacked bar plot species annotations == 
-species_colors <- c("baboon" ="#fe9380", "human" = "#b0d5f5", "macaque" = "#ffc84d")
-
+species_colors <- c("baboon" ="#1b4543", "human" = "#f0be6f", "macaque" = "#b3d0c6")
 
 
 cell_types <- sce$fine_celltype
@@ -141,8 +139,27 @@ species <- sce$species
 
 bar_width <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
 
-species_proportions <- table(cell_types, species) / rowSums(table(cell_types, species))
-ha_species <- rowAnnotation(Species = anno_barplot(species_proportions, gp = gpar(fill = species_colors),
+
+# Calculate the total number of cells in each subregion
+total_cells_per_species <- table(species)
+
+# Calculate the desired proportion 
+desired_proportion <- 1/3
+
+# Calculate the scaling factor for each subregion
+scaling_factors <- desired_proportion / (total_cells_per_species / sum(total_cells_per_species))
+
+# Create a contingency table of cell types vs. species
+cell_type_species_table <- table(cell_types, species)
+
+# Adjust the cell counts by scaling factor
+adjusted_cell_counts <- sweep(cell_type_species_table, 2, scaling_factors, "*")
+
+# Calculate the adjusted proportions
+adjusted_proportions <- adjusted_cell_counts / rowSums(adjusted_cell_counts)
+
+#species_proportions <- table(cell_types, species) / rowSums(table(cell_types, species))
+ha_species <- rowAnnotation(Species = anno_barplot(adjusted_proportions, gp = gpar(fill = species_colors),
                                                    bar_width=.8
 ), 
 border=FALSE,
@@ -158,8 +175,26 @@ subregions <- sce.macaque$Subregion
 
 bar_width <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
 
-subregion_proportions <- table(cell_types, subregions) / rowSums(table(cell_types, subregions))
-ha_subregion <- rowAnnotation(Subregion = anno_barplot(subregion_proportions, gp = gpar(fill = subregion_colors),
+# Calculate the total number of cells in each subregion
+total_cells_per_subregion <- table(subregions)
+
+# Calculate the desired proportion (25% for each of the 4 subregions)
+desired_proportion <- 0.25
+
+# Calculate the scaling factor for each subregion
+scaling_factors <- desired_proportion / (total_cells_per_subregion / sum(total_cells_per_subregion))
+
+# Create a contingency table of cell types vs. subregions
+cell_type_subregion_table <- table(cell_types, subregions)
+
+# Adjust the cell counts by scaling factor
+adjusted_cell_counts <- sweep(cell_type_subregion_table, 2, scaling_factors, "*")
+
+# Calculate the adjusted proportions
+adjusted_proportions <- adjusted_cell_counts / rowSums(adjusted_cell_counts)
+
+#subregion_proportions <- table(cell_types, subregions) / rowSums(table(cell_types, subregions))
+ha_subregion <- rowAnnotation(Subregion = anno_barplot(adjusted_proportions, gp = gpar(fill = subregion_colors),
                                                        bar_width=.8
 ), 
 border=FALSE,
@@ -169,12 +204,9 @@ annotation_legend_param = list(title = "Subregion Proportions")
 
 
 # == Creating celltype label annotations ===
-# Create a named vector mapping cell types to colors
+# Create a named vector mapping cell types to color
 
-colors <- c("#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFA500", 
-            "#800080", "#008000", "#000080", "#FFC0CB", "#D2B48C")
-
-celltype_colors <- setNames(colors, unique(sce$fine_celltype))
+celltype_colors <- setNames(mycolors, unique(sce$fine_celltype))
 
 anno_df <- data.frame(Cell_Type = out$fine_celltype)
 ha_celltypes <- rowAnnotation(Cell_Type = anno_df$Cell_Type, 
@@ -222,6 +254,68 @@ dev.off()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+# ============ Porportion of cell-tyoes per putative region ========
+
+
+# Filter the data for macaque species
+sce.macaque <- sce[, which(colData(sce)$species == "macaque")]
+# drop central
+sce.macaque <- sce.macaque[, which(colData(sce.macaque)$Subregion != "Central Nucleus")]
+
+cell_types <- sce.macaque$fine_celltype
+subregions <- sce.macaque$Subregion  
+
+
+bar_width <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+
+# Create contingency table
+contingency_table <- table(cell_types, subregions)
+
+# Calculate the proportion of each cell type per subregion
+subregion_proportions <- prop.table(contingency_table, margin = 2)
+
+# Convert the data to long format
+data_long <- reshape2::melt(subregion_proportions, variable.name = "Subregion", value.name = "Proportion")
+colnames(data_long) <- c("CellType", "Subregion", "Proportion")
+
+# Set the levels of Subregion factor in the desired order
+data_long$Subregion <- factor(data_long$Subregion, levels = c("Lateral", "Basal","Accessory Basal"))
+# drop NaN
+data_long <- data_long[!is.na(data_long$Proportion),]
+
+# Create the stacked bar plot
+p1 <- ggplot(data_long, aes(x = Subregion, y = Proportion, fill = CellType)) +
+    geom_bar(stat = "identity", position = "stack") +
+    theme_minimal() +
+    labs(title = "Proportion of excitatory cell-types in Macaque",
+         y = "Proportion",
+         x=NULL) +
+    scale_fill_manual(name = "Cell Type", values = mycolors) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    #theme(legend.position = "none") +
+    coord_flip() +
+    # increase font sizes
+    theme(axis.title.x = element_text(size = 20),
+          axis.title.y = element_text(size = 20),
+          axis.text.x = element_text(size = 14),
+          axis.text.y = element_text(size = 14),
+          plot.title = element_text(size = 20, hjust = 0.5))
+
+png(here(plot_dir, "Proportion_excitatory_celltypes_per_subregion.png"), width=10, height=4.5, units="in", res=300)
+p1
+dev.off()
 
 
 

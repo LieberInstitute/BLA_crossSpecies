@@ -9,16 +9,14 @@ library("SingleCellExperiment")
 library(pheatmap)
 library(MetaNeighbor)
 library(ggplot2)
+library(here)
+library(ComplexHeatmap)
 
 # directories
-processed_dir = here("processed-data", "07_annotation")
 plot_dir = here("plots", "08_species_comparisons")
 
-
-sce.excit <- readRDS(here("processed-data", "sce_excit_final_subclusters_annotated.rds"))
-sce.inhib <- readRDS(here("processed-data", "sce_inhib_final_subclusters_annotated.rds"))
-
-
+sce.excit <- readRDS(here("processed-data","07_annotation_and_characterization", "sce_excit_final_subclusters_annotated.rds"))
+sce.inhib <- readRDS(here("processed-data","07_annotation_and_characterization", "sce_inhib_final_subclusters_annotated.rds"))
 
 
 # ====== Copy necessary function from Metaneighbor =======
@@ -34,9 +32,7 @@ order_sym_matrix <- function(M, na_value = 0) {
 
 # ====== Inhibitory cells ======
 #. set up colors
-inhib.colors <- c("#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFA500", 
-                  "#800080", "#008000", "#000080", "#FFC0CB", "#D2B48C", "#808000", "#000000", 
-                  "#808080", "#FF1493", "#1E90FF", "#8B4513")
+inhib.colors <- pals::cols25()[1:18]
 
 inhib_celltype_colors <- setNames(inhib.colors, unique(sce.inhib$fine_celltype))
 

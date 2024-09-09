@@ -11,14 +11,14 @@ library(scuttle)
 library(circlize)
 
 ## save directories
-plot_dir = here("plots", "07_annotation","broad_annotations")
+plot_dir = here("plots", "07_annotation_and_characterization","01_broad_annotations")
 #processed_dir = here("processed-data","07_annotation")
 processed_dir <- here("processed-data")
 
 # load sce
-sce.excit <- readRDS(here("processed-data", "sce_excit_final_subclusters_annotated.rds"))
-sce.inhib <- readRDS(here("processed-data", "sce_inhib_final_subclusters_annotated.rds"))
-sce.other <- readRDS(here("processed-data", "JHPCE","sce_other_final_celltypes.rds"))
+sce.excit <- readRDS(here("processed-data", "07_annotation_and_characterization","sce_excit_final_subclusters_annotated.rds"))
+sce.inhib <- readRDS(here("processed-data","07_annotation_and_characterization", "sce_inhib_final_subclusters_annotated.rds"))
+sce.other <- readRDS(here("processed-data","07_annotation_and_characterization", "sce_other_final_celltypes.rds"))
 
 # combine SCE objects
 sce.inhib$subcluster_idents <- NULL
@@ -31,7 +31,8 @@ sce <- cbind(sce.neurons, sce.other)
 rm(sce.excit, sce.inhib, sce.other, sce.neurons)
 gc()
 
-
+# save sce
+saveRDS(sce, here("processed-data","07_annotation_and_characterization","sce_FINAL_all_celltypes.rds"))
 
 # ===== Dendrogram based on HVG expression =====
 
@@ -51,8 +52,10 @@ genes <- c(
     #"SNAP25", 
     "SYT1",
     "SLC17A7",
-    #"GAD1"
-    "GAD2"
+    "SLC17A6",
+    "GAD1",
+    "GAD2",
+    "SIM1"
     #"SLC1A2", # astrocyte
     #"FOXJ1", # ependymal
     #"MBP", # oligodendrocyte
@@ -138,7 +141,7 @@ lgd_list <- list(lgd_species, lgd_subregion)
 
 
 #Heatmap Scale
-color_scale <- colorRamp2(c(-4, 0, max(scaled_mat)), c("blue", "#EEEEEE", "red"))
+color_scale <- circlize::colorRamp2(c(-4, 0, max(scaled_mat)), c("blue", "#EEEEEE", "red"))
 
 
 ht <- Heatmap(scaled_mat,
@@ -159,9 +162,9 @@ ht_legend <- Legend(at = c(-4, 0, max(4)), col_fun = color_scale, title = "cente
 lgd_list <- packLegend(ht_legend, lgd_species, lgd_subregion, direction = "vertical")
 
 
-#png(here(plot_dir, "Heatmap_excitatory_celltypes.png"), width=10, height=6, units="in", res=300)
+png(here(plot_dir, "Heatmap_excitatory_celltypes_SIM1.png"), width=8, height=6, units="in", res=300)
 draw(ht, annotation_legend_list = lgd_list)
-#dev.off()
+dev.off()
 
 
 

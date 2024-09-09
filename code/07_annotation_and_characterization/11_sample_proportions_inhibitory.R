@@ -33,10 +33,7 @@ df <- df %>%
   filter(!is.na(Proportion))
 
 # Define custom colors for cell types
-colors <- c("#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFA500", 
-            "#800080", "#008000", "#000080", "#FFC0CB", "#D2B48C", "#808000", "#000000", 
-            "#808080", "#FF1493", "#1E90FF", "#8B4513")
-
+colors <- pals::cols25()[1:18]
 celltype_colors <- setNames(colors, unique(df$CellType))
 
 # Create the stacked bar plot with facet wrap for subregion
@@ -74,10 +71,7 @@ df <- df %>%
   filter(!is.na(Proportion))
 
 # Define custom colors for cell types
-colors <- c("#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFA500", 
-            "#800080", "#008000", "#000080", "#FFC0CB", "#D2B48C", "#808000", "#000000", 
-            "#808080", "#FF1493", "#1E90FF", "#8B4513")
-
+colors <- pals::cols25()[1:18]
 celltype_colors <- setNames(colors, unique(df$CellType))
 
 # Create the stacked bar plot with facet wrap for subregion
@@ -115,10 +109,7 @@ df <- df %>%
   filter(!is.na(Proportion))
 
 # Define custom colors for cell types
-colors <- c("#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFA500", 
-            "#800080", "#008000", "#000080", "#FFC0CB", "#D2B48C", "#808000", "#000000", 
-            "#808080", "#FF1493", "#1E90FF", "#8B4513")
-
+colors <- pals::cols25()[1:18]
 celltype_colors <- setNames(colors, unique(df$CellType))
 
 # Create the stacked bar plot with facet wrap for subregion
