@@ -94,7 +94,7 @@ res$gene_name <- rownames(res)
 # get log2foldChange > 1 and baseMean > 25
 itc1_top_5 <- res  |> 
     as.data.frame() |> 
-    filter(log2FoldChange > 1 & baseMean > 25) |> 
+    filter(log2FoldChange > 1 & baseMean > 5) |> 
     arrange(desc(log2FoldChange)) |> 
     head(n=5)
 itc1_top_5
@@ -102,7 +102,7 @@ itc1_top_5
 # get log2foldChange > 1 and baseMean > 25
 itc2_top_5 <- res  |> 
     as.data.frame() |> 
-    filter(log2FoldChange < -1 & baseMean > 25) |> 
+    filter(log2FoldChange < -1 & baseMean > 5) |> 
     arrange((log2FoldChange)) |> 
     head(n=5)
 itc2_top_5
@@ -239,6 +239,5 @@ ComplexHeatmap::Heatmap(heat.vals,
                         col=cols,
                         name="centered.scaled"
 )
-
 
 dev.off()
