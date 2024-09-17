@@ -45,10 +45,12 @@ dim(sce_human)
 #             "#808080", "#FF1493", "#1E90FF", "#8B4513")
 
 mycolors <- pals::cols25()[1:18]
+celltype_colors <- setNames(mycolors, unique(sce$fine_celltype))
+celltype_colors
 
 png(here(plot_dir, "UMAP_inhib_annotated_celltype_colors.png"), width=7, height=7, units="in", res=300)
 p1 <- plotReducedDim(sce, dimred = "UMAP", colour_by = "fine_celltype", text_by="fine_celltype", point_size=0.75) +
-    scale_color_manual(values = mycolors) +
+    scale_color_manual(values = celltype_colors) +
     theme_void() +
     theme(legend.position="none") 
 
@@ -200,7 +202,6 @@ ha_subregion <- rowAnnotation(Subregion = anno_barplot(adjusted_proportions, gp 
 #             "#800080", "#008000", "#000080", "#FFC0CB", "#D2B48C", "#808000", "#000000", 
 #             "#808080", "#FF1493", "#1E90FF", "#8B4513")
 
-celltype_colors <- setNames(mycolors, unique(sce$fine_celltype))
 
 anno_df <- data.frame(Cell_Type = out$fine_celltype)
 ha_celltypes <- rowAnnotation(Cell_Type = anno_df$Cell_Type, 
@@ -285,7 +286,7 @@ p1 <- ggplot(data_long, aes(x = Subregion, y = Proportion, fill = CellType)) +
     labs(title = "Proportion of inhibitory cell-types in Macaque",
          y = "Proportion",
          x=NULL) +
-    scale_fill_manual(name = "Cell Type", values = mycolors) +
+    scale_fill_manual(name = "Cell Type", values = celltype_colors) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     #theme(legend.position = "none") +
     coord_flip() +

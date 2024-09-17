@@ -46,12 +46,17 @@ dim(sce_human)
 # Define the number of colors you want
 nb.cols <- length(unique(sce$fine_celltype))
 mycolors <- colorRampPalette(brewer.pal(9, "Set1"))(nb.cols)
+celltype_colors <- setNames(mycolors, unique(sce$fine_celltype))
+
+# mycolors <- pals::cols25()[1:18]
+# mycolors <- setNames(mycolors, unique(sce$fine_celltype))
+# celltype_colors
 
 png(here(plot_dir, "UMAP_excit_annotated_celltypes.png"), width=7, height=7, units="in", res=300)
 p1 <- plotReducedDim(sce, dimred = "UMAP", colour_by = "fine_celltype", text_by="fine_celltype", point_size=0.75) +
-    scale_color_manual(values = mycolors) +
+    scale_color_manual(values = celltype_colors) +
     theme_void() +
-    theme(legend.position="none") 
+    theme(legend.position="none")
 
 p1
 dev.off()
@@ -302,7 +307,7 @@ p1 <- ggplot(data_long, aes(x = Subregion, y = Proportion, fill = CellType)) +
     labs(title = "Proportion of excitatory cell-types in Macaque",
          y = "Proportion",
          x=NULL) +
-    scale_fill_manual(name = "Cell Type", values = mycolors) +
+    scale_fill_manual(name = "Cell Type", values = celltype_colors) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     #theme(legend.position = "none") +
     coord_flip() +

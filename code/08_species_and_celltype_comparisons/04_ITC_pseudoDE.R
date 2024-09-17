@@ -9,10 +9,10 @@ library(scater)
 library(spatialLIBD)
 
 # directories
-processed_dir = here("processed-data", "07_annotation")
-plot_dir = here("plots", "08_species_comparisons")
+processed_dir = here("processed-data", "07_annotation_and_characterization")
+plot_dir = here("plots", "08_species_comparisons", "04_DE_ITCs")
 
-sce.inhib <- readRDS(here("processed-data", "sce_inhib_final_subclusters_annotated.rds"))
+sce.inhib <- readRDS(here("processed-data", "07_annotation_and_characterization", "sce_inhib_final_subclusters_annotated.rds"))
 sce.inhib
 
 rowData(sce.inhib)$gene_name <- rownames(sce.inhib)
@@ -143,8 +143,8 @@ dim(itc2_degs)
 # [1] 116   8
 
 # save
-write.csv(itc1_degs, here("processed-data", "08_species_comparisons", "pseudobulk_itc1_degs.csv"))
-write.csv(itc2_degs, here("processed-data", "08_species_comparisons", "pseudobulk_itc2_degs.csv"))
+write.csv(itc1_degs, here("processed-data", "08_species_comparisons","04_DE_ITCs", "pseudobulk_itc1_degs.csv"))
+write.csv(itc2_degs, here("processed-data", "08_species_comparisons","04_DE_ITCs", "pseudobulk_itc2_degs.csv"))
 
 
 
@@ -242,4 +242,3 @@ ComplexHeatmap::Heatmap(heat.vals,
 
 
 dev.off()
-
