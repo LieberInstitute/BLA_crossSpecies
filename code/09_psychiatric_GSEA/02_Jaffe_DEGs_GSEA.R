@@ -63,7 +63,7 @@ down_df <- as.data.frame(down_enricher_results)
 # Add direction information
 down_df$direction <- "Down-regulated"
 
-png(here(plot_dir, "OverRep_PTSD_downregulated.png"), width = 5, height = 5, units = "in", res = 300)
+png(here(plot_dir, "OverRep_PTSD_downregulated.png"), width = 6, height = 6, units = "in", res = 300)
 dotplot(down_enricher_results, showCategory = 20)
 dev.off()
 

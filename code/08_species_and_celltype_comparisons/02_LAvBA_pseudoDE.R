@@ -10,13 +10,10 @@ library(scater)
 
 
 # directories
-processed_dir = here("processed-data", "07_annotation")
+processed_dir = here("processed-data", "07_annotation_and_characterization")
 plot_dir = here("plots", "08_species_comparisons", "03_DE_analysis")
 
-sce.excit <- readRDS(here("processed-data", "sce_excit_final_subclusters_annotated.rds"))
-
-
-plotReducedDim(sce.excit, dimred="UMAP", colour_by="DV_axis")
+sce.excit <- readRDS(here(processed_dir, "sce_excit_final_subclusters_annotated.rds"))
 
 
 # ======== Pseudobulk analysis ========
@@ -154,12 +151,12 @@ write.csv(basal_degs, here("processed-data", "08_species_comparisons", "pseudobu
 # combine putative LA, BA, and aBA clusters
 LA_clusters <- c("GULP1_TRHDE", "ZBTB20_SLC4A4")
 BA_clusters <- c("PEX5L_MYRIP", "MEIS2_COL25A1")
-#aBA_clusters <- c("ESR1_ADRA1A", "GRIK3_TNS3")
+aBA_clusters <- c("ESR1_ADRA1A", "GRIK3_TNS3")
 
 sce.excit$subregion_celltype <- NA
 sce.excit$subregion_celltype[sce.excit$fine_celltype %in% LA_clusters] <- "LA"
 sce.excit$subregion_celltype[sce.excit$fine_celltype %in% BA_clusters] <- "BA"
-#sce.excit$subregion_celltype[sce.excit$fine_celltype %in% aBA_clusters] <- "aBA"
+sce.excit$subregion_celltype[sce.excit$fine_celltype %in% aBA_clusters] <- "aBA"
 
 # drop NA
 sce.subset <- sce.excit[,!is.na(sce.excit$subregion_celltype)]
@@ -182,7 +179,7 @@ dds <- DESeqDataSetFromMatrix(countData=counts(pseudo),
                               design=~species + subregion_celltype)
 dds
 
-gene2plot <- c("GULP1", "COL25A1")
+gene2plot <- c("GULP1", "COL25A1", "ESR1")
 sampleinfo <- as.data.frame(colData(dds))
 
 rlogcounts <- rlog(dds)
@@ -201,12 +198,12 @@ df<- df |>
 
 df$gene <- factor(df$gene, levels=gene2plot)
 
-png(here(plot_dir, "Boxplot_putative_LAvBA_marker_genes.png"), width=6, height=4, units="in", res=300)
+png(here(plot_dir, "Boxplot_putative_LAvBA_marker_genes.png"), width=6, height=5, units="in", res=300)
 ggplot(df, aes(x=subregion_celltype, y=expression, fill=subregion_celltype)) +
+    #geom_point(aes(group=subregion_celltype)) +
+    geom_line(aes(group = interaction(Sample, gene)), alpha = 0.2) +
     geom_boxplot() +
-    geom_point(aes(group=subregion_celltype)) +
-    geom_line(aes(group = interaction(Sample, gene)), alpha = 0.6) +
-    ggh4x::facet_grid2(vars(gene), vars(species)) +
+    ggh4x::facet_grid2(vars(species),vars(gene)) +
     labs(title="Putative marker genes across species",
          y="Logcounts",
          x=NULL) +
@@ -218,6 +215,60 @@ ggplot(df, aes(x=subregion_celltype, y=expression, fill=subregion_celltype)) +
           axis.ticks.x = element_blank())
 
 dev.off()
+
+
+
+
+
+
+library(ggpubr)
+library(rstatix)
+
+
+# Example: Replace 'df' with your dataframe
+
+# Calculate p-values using rstatix
+stat.test <- df %>%
+  group_by(gene, species) %>%  # Adjust grouping if needed
+  t_test(expression ~ subregion_celltype, paired = FALSE, comparisons = list(c("aBA", "BA"), c("BA", "LA"), c("aBA", "LA"))) %>%
+  add_significance() %>%  # Adds significance stars
+  filter(p.adj.signif != "ns")  # Filter out non-significant results
+
+# Modify y.position to adjust where the p-values are displayed
+stat.test <- stat.test %>%
+  add_xy_position(x = "subregion_celltype")  # Adjust this based on your plot
+
+
+
+
+pdf(here(plot_dir, "Boxplot_putative_LAvBA_marker_genes.pdf"), width = 4, height = 5)
+ggboxplot(df, 
+          x = "subregion_celltype", 
+          y = "expression", 
+          fill = "subregion_celltype", 
+          facet.by = c("gene", "species"), 
+          add = "jitter",  # Adding jitter to show points
+          ylab = "Regularized Logcounts", 
+          xlab = NULL) +
+  theme(axis.title = element_text(size = 12),
+        axis.text = element_text(size = 10),
+        plot.title = element_text(size = 12),
+        plot.subtitle = element_text(size = 12),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "bottom",
+        legend.direction = "horizontal",
+        legend.box = "horizontal",
+        panel.border = element_rect(linewidth = .3),
+         strip.background = element_rect(colour = "black", size = .3)) +
+        
+   scale_fill_manual(values = c("LA" ="#00BFC4", "BA" = "#F8766D", "aBA" = "#C77CFF")) +  # Adjust colors as needed
+  
+  # Add p-values manually using stat_pvalue_manual with ggboxplot
+  stat_pvalue_manual(stat.test)
+dev.off()
+
+
 
 
 

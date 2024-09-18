@@ -117,21 +117,30 @@ cor_val <- cor(merged.df$macaque_std.logFC, merged.df$human_std.logFC)
 
 # plot using ggplot
 
+# set seed
+set.seed(1234)
 png(here(plot_dir, "correlation_std.logFC_LA.png"), width = 3, height = 3, units = "in", res = 300)
 ggplot(merged.df, aes(x = human_std.logFC, y = macaque_std.logFC )) +
-    geom_point(size=.5) +
+    geom_point(size = 0.5) +  # Default points in black
     theme_minimal() +
     labs(x = "Human LA std.logFC", y = "Macaque LA std.logFC") +
     ggtitle(paste0("r = ", print(plyr::round_any(cor_val, .001)))) +
     xlim(-3, 3) +
     ylim(-3, 3) +
-    #geom_text_repel(data = merged.df[order(merged.df$macaque_std.logFC, decreasing = TRUE),][1:5,],
-                    #aes(label = gene), box.padding = 0.2) +
+    # Add horizontal and vertical lines
     geom_hline(yintercept = 0, linetype = "dotted") +
     geom_vline(xintercept = 0, linetype = "dotted") +
-    theme(panel.border = element_rect(colour = "black", fill=NA))+ 
-    # show GULP1 and SATB1
-    geom_text_repel(data = merged.df[merged.df$gene %in% c("GULP1", "SATB1"),], aes(label = gene), box.padding = 0.2)
+    theme(panel.border = element_rect(colour = "black", fill = NA)) + 
+    # Add red points for GULP1 and SATB1
+    geom_point(data = merged.df[merged.df$gene %in% c("GULP1", "SATB1"),], 
+               aes(x = human_std.logFC, y = macaque_std.logFC), 
+               color = "#00BFC4", size = 1.5) +  # Make specific points red and slightly larger
+    # Add red labels for GULP1 and SATB1
+    geom_text_repel(data = merged.df[merged.df$gene %in% c("GULP1", "SATB1"),], 
+                    aes(label = gene), 
+                    color = "#00BFC4", 
+                    box.padding = .2,
+                    fontface = "bold")
 dev.off()
 
 
@@ -191,6 +200,35 @@ ggplot(merged.df, aes(x = human_std.logFC, y = macaque_std.logFC )) +
 dev.off()
 
 
+# set seed
+set.seed(18995)
+png(here(plot_dir, "correlation_std.logFC_BA.png"), width = 3, height = 3, units = "in", res = 300)
+ggplot(merged.df, aes(x = human_std.logFC, y = macaque_std.logFC )) +
+    geom_point(size = 0.5) +  # Default points in black
+    theme_minimal() +
+    labs(x = "Human BA std.logFC", y = "Macaque BA std.logFC") +
+    ggtitle(paste0("r = ", print(plyr::round_any(cor_val, .001)))) +
+    xlim(-3, 3) +
+    ylim(-3, 3) +
+    # Add horizontal and vertical lines
+    geom_hline(yintercept = 0, linetype = "dotted") +
+    geom_vline(xintercept = 0, linetype = "dotted") +
+    theme(panel.border = element_rect(colour = "black", fill = NA)) + 
+    # Add red points for GULP1 and SATB1
+    geom_point(data = merged.df[merged.df$gene %in% c("COL25A1",  "PEX5L"),], 
+               aes(x = human_std.logFC, y = macaque_std.logFC), 
+               color = "#F8766D", size = 1.5) +  # Make specific points red and slightly larger
+    # Add red labels for GULP1 and SATB1
+    geom_text_repel(data = merged.df[merged.df$gene %in% c("COL25A1",  "PEX5L"),], 
+                    aes(label = gene), 
+                    box.padding = 0.2,
+                    color="#F8766D",
+                    fontface = "bold"
+                    )
+dev.off()
+
+
+
 
 # ======= Accessort Basal  =========
 celltype.of.interest <- "aBA"
@@ -231,17 +269,45 @@ cor_val <- cor(merged.df$macaque_std.logFC, merged.df$human_std.logFC)
 
 # plot using ggplot
 
+# png(here(plot_dir, "correlation_std.logFC_aBA.png"), width = 3, height = 3, units = "in", res = 300)
+# ggplot(merged.df, aes(x = human_std.logFC, y = macaque_std.logFC )) +
+#     geom_point(size=.5) +
+#     theme_minimal() +
+#     labs(x = "Human aBA std.logFCistic", y = "Macaque aBA std.logFCistic") +
+#     ggtitle(paste0("r = ", print(plyr::round_any(cor_val, .001)))) +
+#     xlim(-3, 3) +
+#     ylim(-3, 3) +
+#     geom_text_repel(data = merged.df[order(merged.df$macaque_std.logFC, decreasing = TRUE),][1:10,],
+#                   aes(label = gene), box.padding = 0.5) +
+#     geom_hline(yintercept = 0, linetype = "dotted") +
+#     geom_vline(xintercept = 0, linetype = "dotted") +
+#     theme(panel.border = element_rect(colour = "black", fill=NA)) 
+# dev.off()
+
+
+
+set.seed(18995)
 png(here(plot_dir, "correlation_std.logFC_aBA.png"), width = 3, height = 3, units = "in", res = 300)
 ggplot(merged.df, aes(x = human_std.logFC, y = macaque_std.logFC )) +
-    geom_point(size=.5) +
+    geom_point(size = 0.5) +  # Default points in black
     theme_minimal() +
-    labs(x = "Human aBA std.logFCistic", y = "Macaque aBA std.logFCistic") +
+    labs(x = "Human aBA std.logFC", y = "Macaque aBA std.logFC") +
     ggtitle(paste0("r = ", print(plyr::round_any(cor_val, .001)))) +
     xlim(-3, 3) +
     ylim(-3, 3) +
-    geom_text_repel(data = merged.df[order(merged.df$macaque_std.logFC, decreasing = TRUE),][1:10,],
-                  aes(label = gene), box.padding = 0.5) +
+    # Add horizontal and vertical lines
     geom_hline(yintercept = 0, linetype = "dotted") +
     geom_vline(xintercept = 0, linetype = "dotted") +
-    theme(panel.border = element_rect(colour = "black", fill=NA)) 
+    theme(panel.border = element_rect(colour = "black", fill = NA)) + 
+    # Add red points for GULP1 and SATB1
+    geom_point(data = merged.df[merged.df$gene %in% c("ESR1"),], 
+               aes(x = human_std.logFC, y = macaque_std.logFC), 
+               color = "#C77CFF", size = 1.5) +  # Make specific points red and slightly larger
+    # Add red labels for GULP1 and SATB1
+    geom_text_repel(data = merged.df[merged.df$gene %in% c("ESR1"),], 
+                    aes(label = gene), 
+                    box.padding = 0.2,
+                    color="#C77CFF",
+                    fontface = "bold"
+                    )
 dev.off()
