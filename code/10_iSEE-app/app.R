@@ -7,10 +7,10 @@ library("SpatialExperiment")
 library("here")
 
 #Load the object
-load(here("code","10_iSEE-app","sce_FINAL_all_celltypes.rda"), verbose = TRUE)
+load("sce_FINAL_all_celltypes.rda", verbose = TRUE)
 #sce <- rda
 
-colors <- readRDS(here("code","10_iSEE-app","celltype_colors.rds"))
+colors <- readRDS("celltype_colors.rds")
 colors
 # LAMP5_NTNG1      VIP_ADRA1B    THSD7B_CALB2         TSHZ1.1        SST_NOS1     PVALB_MYO5B 
 # "#1F78C8"       "#ff0000"       "#33a02c"       "#6A33C2"       "#ff7f00"       "#565656" 
@@ -29,7 +29,7 @@ colors
 #rownames(sce) <-  uniquifyFeatureNames(rowData(sce)$gene_id, rowData(sce)$gene_name)
 
 #Source
-source(here("code","10_iSEE-app","initial.R"), print.eval = TRUE)
+source("initial.R", print.eval = TRUE)
 
 #increase max number of colors
 rda <- registerAppOptions(rda, color.maxlevels = length(unique(rda$fine_celltype)))
