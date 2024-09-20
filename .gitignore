@@ -9,6 +9,7 @@
 *.Rdata
 *.rds
 *.h5ad
+*.h5
 
 
 

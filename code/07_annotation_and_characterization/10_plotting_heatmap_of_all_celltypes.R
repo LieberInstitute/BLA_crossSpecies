@@ -188,6 +188,9 @@ other_colors <- setNames(greys, unique(sce.other$fine_celltype))
 # combine all colors
 celltype_colors <- c(inhibitory_colors, excitatory_colors, other_colors)
 
+# save celltype colors
+saveRDS(celltype_colors, here("processed-data", "07_annotation_and_characterization", "celltype_colors.rds"))
+
 anno_df <- data.frame(Cell_Type = out$fine_celltype)
 anno_df <- anno_df[row_order_indices, , drop = FALSE]
 
