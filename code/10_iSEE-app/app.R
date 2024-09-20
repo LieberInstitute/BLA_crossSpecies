@@ -6,9 +6,22 @@ library("scuttle")
 library("SpatialExperiment")
 library("here")
 
+
+
 #Load the object
 load("sce_FINAL_all_celltypes.rda", verbose = TRUE)
 #sce <- rda
+# [1] "orig.ident"             "nCount_originalexp"     "nFeature_originalexp"   "Sample_num"            
+# [5] "Sample"                 "Species"                "Subject"                "Sex"                   
+# [9] "Region"                 "Subregion"              "DV_axis"                "PI.NeuN"               
+# [13] "batch"                  "Barcode"                "sum"                    "detected"              
+# [17] "subsets_Mito_sum"       "subsets_Mito_detected"  "subsets_Mito_percent"   "total"                 
+# [21] "high_mito"              "low_lib"                "low_genes"              "discard_auto"          
+# [25] "doubletScore"           "sizeFactor"             "species"                "unintegrated_clusters" 
+# [29] "seurat_clusters"        "integrated_snn_res.0.5" "ident"                  "key"                   
+# [33] "broad_celltype"         "fine_celltype"   
+
+
 
 colors <- readRDS("celltype_colors.rds")
 colors
