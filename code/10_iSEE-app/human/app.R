@@ -36,7 +36,7 @@ colors
 source("initial.R", print.eval = TRUE)
 
 #increase max number of colors
-rda <- registerAppOptions(rda, color.maxlevels = length(unique(rda$fine_celltype)))
+rda.human <- registerAppOptions(rda.human, color.maxlevels = length(unique(rda.human$fine_celltype)))
 
 #Deploy app
 iSEE(

@@ -9,7 +9,7 @@ library("here")
 
 
 #Load the object
-load("sce_FINAL_baboon.rda"), verbose = TRUE)
+load("sce_FINAL_baboon.rda", verbose = TRUE)
 
 
 
@@ -35,7 +35,7 @@ colors
 source("initial.R", print.eval = TRUE)
 
 #increase max number of colors
-rda <- registerAppOptions(rda, color.maxlevels = length(unique(rda$fine_celltype)))
+rda.baboon <- registerAppOptions(rda.baboon, color.maxlevels = length(unique(rda.baboon$fine_celltype)))
 
 #Deploy app
 iSEE(

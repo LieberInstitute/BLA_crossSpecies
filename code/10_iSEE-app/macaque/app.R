@@ -14,7 +14,7 @@ load("sce_FINAL_macaque.rda", verbose = TRUE)
 
 
 colors <- readRDS("celltype_colors.rds")
-colors
+#colors
 # LAMP5_NTNG1      VIP_ADRA1B    THSD7B_CALB2         TSHZ1.1        SST_NOS1     PVALB_MYO5B 
 # "#1F78C8"       "#ff0000"       "#33a02c"       "#6A33C2"       "#ff7f00"       "#565656" 
 # PRKCD_DRD2       SST_PRKCQ       LAMP5_KIT        CCK_CNR1     ZFHX3_SCN5A     PVALB_UNC5B 
@@ -35,7 +35,7 @@ colors
 source("initial.R", print.eval = TRUE)
 
 #increase max number of colors
-rda <- registerAppOptions(rda, color.maxlevels = length(unique(rda$fine_celltype)))
+rda.macaque <- registerAppOptions(rda.macaque, color.maxlevels = length(unique(rda.macaque$fine_celltype)))
 
 #Deploy app
 iSEE(
