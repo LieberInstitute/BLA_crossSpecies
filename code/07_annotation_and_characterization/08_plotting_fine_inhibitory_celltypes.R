@@ -301,3 +301,51 @@ png(here(plot_dir, "Proportion_inhibitory_celltypes_per_subregion.png"), width=1
 p1
 dev.off()
 
+
+
+
+
+# ============ Tukey test for significant differences in cell-type proportions =========
+
+library(rstatix)
+library(dplyr)
+library(ggpubr)
+
+
+# Perform post-hoc Tukey test for each cell type and store results
+tukey_results <- cell_proportions %>%
+  group_by(CellType) %>%
+  tukey_hsd(Proportion ~ Subregion) %>%
+  add_significance() %>%
+  filter(p.adj.signif != "ns") %>%
+  add_xy_position(x="Subregion")  # Filter to keep only significant results
+
+# Modify the y.position for plotting (for manual adjustment of p-value locations)
+tukey_results <- tukey_results 
+
+# Now plot using ggplot2 and manually add the significant p-values
+p3 <- ggplot(cell_proportions, aes(x = Subregion, y = Proportion)) +
+  geom_boxplot(aes(fill = Subregion)) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  #theme_minimal() +
+  labs(title = "Proportion of Cell Types per Sample by Subregion in Macaques", 
+       y = "Proportion", 
+       x = "Subregion") +
+  scale_fill_manual(name = "Subregion", values = subregion_colors) +
+  facet_wrap(~ CellType, scales = "free") +
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text.y = element_text(size = 12),
+        plot.title = element_text(size = 18, hjust = 0.5),
+        strip.text = element_text(size = 14),
+        # Adjust legend size
+        legend.text = element_text(size = 14),  # Increase legend text size
+        legend.title = element_text(size = 16),  # Increase legend title size
+        legend.key.size = unit(1.5, "lines")) +  # Increase legend key size) +
+  stat_pvalue_manual(tukey_results, label.size=6)
+
+# Save the plot with the significant p-values only
+png(here(plot_dir, "Faceted_Boxplot_CellType_Subregion_Proportion_SignificantOnly.png"), width = 13, height = 13, units = "in", res = 300)
+p3
+dev.off()
