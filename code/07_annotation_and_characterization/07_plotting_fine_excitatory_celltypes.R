@@ -260,17 +260,6 @@ dev.off()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 # ============ Porportion of cell-tyoes per putative region ========
 
 
@@ -325,6 +314,82 @@ dev.off()
 
 
 
+
+
+
+# ============ Tukey test for significant differences in cell-type proportions =========
+
+library(rstatix)
+library(dplyr)
+library(ggpubr)
+
+subregion_colors <- c( "Accessory Basal" ="#8A2BE2", "Basal" = "#FF4500","Central Nucleus" = "#FFD700", "Lateral" = "#00BFFF")
+
+
+# Filter the data for macaque species
+sce.macaque <- sce[, which(colData(sce)$species == "macaque")]
+
+# Extract cell types, subregions, and sample information
+cell_types <- sce.macaque$fine_celltype
+subregions <- sce.macaque$Subregion  
+samples <- sce.macaque$Sample
+
+# Create a data frame with counts per sample
+cell_data <- data.frame(
+  CellType = cell_types,
+  Subregion = subregions,
+  Sample = samples
+)
+
+# Calculate the proportion of each cell type per sample
+cell_proportions <- cell_data %>%
+  group_by(Sample, Subregion, CellType) %>%
+  summarize(Count = n(), .groups = "drop") %>%  # Add .groups = "drop"
+  group_by(Sample, Subregion) %>%
+  mutate(Proportion = Count / sum(Count)) %>%
+  ungroup()
+
+# Set the levels of Subregion factor in the desired order
+cell_proportions$Subregion <- factor(cell_proportions$Subregion, 
+                                     levels = c("Lateral", "Basal", "Accessory Basal", "Central Nucleus"))
+
+# Perform post-hoc Tukey test for each cell type and store results
+tukey_results <- cell_proportions %>%
+  group_by(CellType) %>%
+  tukey_hsd(Proportion ~ Subregion) %>%
+  add_significance() %>%
+  filter(p.adj.signif != "ns") %>%
+  add_xy_position(x="Subregion")  # Filter to keep only significant results
+
+# Modify the y.position for plotting (for manual adjustment of p-value locations)
+tukey_results <- tukey_results 
+
+# Now plot using ggplot2 and manually add the significant p-values
+p3 <- ggplot(cell_proportions, aes(x = Subregion, y = Proportion)) +
+  geom_boxplot(aes(fill = Subregion)) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  #theme_minimal() +
+  labs(title = "Proportion of Cell Types per Sample by Subregion in Macaques", 
+       y = "Proportion", 
+       x = "Subregion") +
+  scale_fill_manual(name = "Subregion", values = subregion_colors) +
+  facet_wrap(~ CellType, scales = "free") +
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text.y = element_text(size = 12),
+        plot.title = element_text(size = 18, hjust = 0.5),
+        strip.text = element_text(size = 14),
+        # Adjust legend size
+        legend.text = element_text(size = 14),  # Increase legend text size
+        legend.title = element_text(size = 16),  # Increase legend title size
+        legend.key.size = unit(1.5, "lines")) +  # Increase legend key size) +
+  stat_pvalue_manual(tukey_results, label.size=6)
+
+# Save the plot with the significant p-values only
+png(here(plot_dir, "Faceted_Boxplot_Excit_Celltype_Subregion_Proportion_SignificantOnly.png"), width = 13, height = 13, units = "in", res = 300)
+p3
+dev.off()
 
 
 

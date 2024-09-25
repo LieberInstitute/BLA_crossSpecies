@@ -250,12 +250,6 @@ dev.off()
 
 
 
-
-
-
-
-
-
 # ============ Porportion of cell-tyoes per putative region ========
 
 
@@ -311,6 +305,29 @@ library(rstatix)
 library(dplyr)
 library(ggpubr)
 
+# Filter the data for macaque species
+sce.macaque <- sce[, which(colData(sce)$species == "macaque")]
+
+# Extract cell types, subregions, and sample information
+cell_types <- sce.macaque$fine_celltype
+subregions <- sce.macaque$Subregion  
+samples <- sce.macaque$Sample
+
+# Create a data frame with counts per sample
+cell_data <- data.frame(
+  CellType = cell_types,
+  Subregion = subregions,
+  Sample = samples
+)
+
+# Calculate the proportion of each cell type per sample
+cell_proportions <- cell_data %>%
+  group_by(Sample, Subregion, CellType) %>%
+  summarize(Count = n(), .groups = "drop") %>%  # Add .groups = "drop"
+  group_by(Sample, Subregion) %>%
+  mutate(Proportion = Count / sum(Count)) %>%
+  ungroup()
+
 
 # Perform post-hoc Tukey test for each cell type and store results
 tukey_results <- cell_proportions %>%
@@ -348,4 +365,97 @@ p3 <- ggplot(cell_proportions, aes(x = Subregion, y = Proportion)) +
 # Save the plot with the significant p-values only
 png(here(plot_dir, "Faceted_Boxplot_CellType_Subregion_Proportion_SignificantOnly.png"), width = 13, height = 13, units = "in", res = 300)
 p3
+dev.off()
+
+
+
+
+
+
+library(rstatix)
+library(dplyr)
+library(ggpubr)
+
+# Filter the data for macaque species
+sce.macaque <- sce[, which(colData(sce)$species == "macaque")]
+
+# Extract cell types, subregions, and sample information
+cell_types <- sce.macaque$fine_celltype
+subregions <- sce.macaque$Subregion  
+samples <- sce.macaque$Sample
+
+# Create a data frame with counts per sample
+cell_data <- data.frame(
+  CellType = cell_types,
+  Subregion = subregions,
+  Sample = samples
+)
+
+# List of samples to relabel and highlight
+samples_to_relabel <- c("VC_snRNAseq-7_LateralDorsalAP1AP2_-8", "VC_snRNAseq_8_Animal3_LD")
+
+# Modify the Subregion for those specific samples and keep the rest unchanged
+cell_data <- cell_data %>%
+  mutate(Subregion = as.character(Subregion)) %>%
+  mutate(Subregion = ifelse(Sample %in% samples_to_relabel, 
+                            "Central Nucleus", Subregion))  # Only change for these specific samples
+
+# Recalculate the cell proportions after modifying the subregions
+cell_proportions <- cell_data %>%
+  group_by(Sample, Subregion, CellType) %>%
+  summarize(Count = n(), .groups = "drop") %>%
+  group_by(Sample, Subregion) %>%
+  mutate(Proportion = Count / sum(Count)) %>%
+  ungroup()
+
+# Add a new column to highlight swapped samples (set as "Swapped" or "Normal")
+cell_proportions <- cell_proportions %>%
+  mutate(Relabel = ifelse(Sample %in% samples_to_relabel, "LA > CeA", "Clean"))
+
+# Set the levels of Subregion factor in the desired order
+cell_proportions$Subregion <- factor(cell_proportions$Subregion, 
+                                     levels = c("Lateral", "Basal", "Accessory Basal", "Central Nucleus"))
+
+# Perform post-hoc Tukey test for each cell type and store results
+tukey_results <- cell_proportions %>%
+  group_by(CellType) %>%
+  tukey_hsd(Proportion ~ Subregion) %>%
+  add_significance() %>%
+  add_xy_position(x = "Subregion", step.increase = 0.1)  %>%
+  filter(p.adj.signif != "ns") 
+
+
+# Define colors for all subregions
+subregion_colors <- c(
+  "Lateral" = "#00BFFF", 
+  "Basal" = "#FF4500", 
+  "Accessory Basal" = "#8A2BE2", 
+  "Central Nucleus" = "#FFD700",
+  "Swapped" = "#0000FF"  # Blue for the swapped samples
+)
+
+# Now plot using ggplot2 and manually add the significant p-values
+p3 <- ggplot(cell_proportions, aes(x = Subregion, y = Proportion)) +
+  geom_boxplot(aes(fill=Subregion)) +
+  geom_jitter(aes(color = Relabel), width = 0.2, alpha = 0.5) +  # Color the swapped samples differently
+  labs(title = "Proportion of Cell Types per Sample by Subregion in Macaques", 
+       y = "Proportion", 
+       x = "Subregion") +
+  scale_fill_manual(name = "Subregion", values = subregion_colors) +  # Explicitly set colors for each subregion
+  scale_color_manual(values = c("LA > CeA" = "#00BFFF")) +  # Highlight swapped samples in blue
+  facet_wrap(~ CellType, scales = "free") +
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text.y = element_text(size = 12),
+        plot.title = element_text(size = 18, hjust = 0.5),
+        strip.text = element_text(size = 14),
+        legend.text = element_text(size = 14),  # Increase legend text size
+        legend.title = element_text(size = 16),  # Increase legend title size
+        legend.key.size = unit(1.5, "lines")) +  # Increase legend key size
+  stat_pvalue_manual(tukey_results, label.size = 6, , label = "p.adj.signif")
+
+# Save the plot with the significant p-values only
+png(here(plot_dir, "Faceted_Sample_Swapped_Boxplot_CellType_Subregion_Proportion_SignificantOnly.png"), width = 13, height = 13, units = "in", res = 300)
+print(p3)
 dev.off()
