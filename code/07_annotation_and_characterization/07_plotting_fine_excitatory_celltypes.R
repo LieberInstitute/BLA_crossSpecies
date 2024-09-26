@@ -393,3 +393,40 @@ dev.off()
 
 
 
+
+# ========== Plot subset of cell types for main figure ===========
+
+# Define the subset of cell types you're interested in
+selected_celltypes <- c("ESR1_ADRA1A", "GULP1_TRHDE", "MEIS1_PARD3B", "MEIS2_COL25A1", "PEX5L_MYRIP", "ZBTB20_SLC4A4")
+
+# Filter cell_proportions and tukey_results for the selected cell types
+cell_proportions_subset <- cell_proportions %>%
+  filter(CellType %in% selected_celltypes)
+
+tukey_results_subset <- tukey_results %>%
+  filter(CellType %in% selected_celltypes)
+
+# Now plot using ggplot2 and manually add the significant p-values
+p_subset <- ggplot(cell_proportions_subset, aes(x = Subregion, y = Proportion)) +
+  geom_boxplot(aes(fill = Subregion)) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  labs(title = "Proportion of Selected Cell Types per Sample by Subregion in Macaques", 
+       y = "Proportion", 
+       x = "Subregion") +
+  scale_fill_manual(name = "Subregion", values = subregion_colors) +
+  facet_wrap(~ CellType, nrow = 1, scales = "free") +  # Ensure the plot is in a single row
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text.y = element_text(size = 12),
+        plot.title = element_text(size = 18, hjust = 0.5),
+        strip.text = element_text(size = 12),
+        legend.text = element_text(size = 14),  # Increase legend text size
+        legend.title = element_text(size = 16),  # Increase legend title size
+        legend.key.size = unit(1.5, "lines")) +  # Increase legend key size
+  stat_pvalue_manual(tukey_results_subset, label.size = 6)
+
+# Save the plot with the significant p-values only
+png(here(plot_dir, "Facet_Boxplots_Selected_Celltypes_Boxplot.png"), width = 15, height = 4, units = "in", res = 300)
+print(p_subset)
+dev.off()

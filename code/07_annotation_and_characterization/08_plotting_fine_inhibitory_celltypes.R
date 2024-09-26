@@ -458,4 +458,50 @@ p3 <- ggplot(cell_proportions, aes(x = Subregion, y = Proportion)) +
 # Save the plot with the significant p-values only
 png(here(plot_dir, "Faceted_Sample_Swapped_Boxplot_CellType_Subregion_Proportion_SignificantOnly.png"), width = 13, height = 13, units = "in", res = 300)
 print(p3)
+dev.off()  
+
+
+
+
+
+
+
+
+
+
+# Define the subset of cell types you're interested in
+selected_celltypes <- c("CCK_CNR1", "LAMP5_KIT", "PRKCD_DRD1", "PRKCD_DRD2", 
+                        "PVALB_MYOSB", "SST_NOS1", "SST_PRKCQ", "TSHZ1.1", "VIP_ADRA1B")
+
+# Filter cell_proportions and tukey_results for the selected cell types
+cell_proportions_subset <- cell_proportions %>%
+  filter(CellType %in% selected_celltypes)
+
+tukey_results_subset <- tukey_results %>%
+  filter(CellType %in% selected_celltypes)
+
+# Now plot using ggplot2 and manually add the significant p-values
+p_subset <- ggplot(cell_proportions_subset, aes(x = Subregion, y = Proportion)) +
+  geom_boxplot(aes(fill = Subregion)) +
+  geom_jitter(aes(color = Relabel), width = 0.2, alpha = 0.5) +  # Color the swapped samples differently
+  labs(title = "Proportion of Cell Types across Subregion", 
+       y = "Proportion", 
+       x = "Subregion") +
+  scale_fill_manual(name = "Subregion", values = subregion_colors) +  # Explicitly set colors for each subregion
+  scale_color_manual(values = c("LA > CeA" = "#00BFFF")) +  # Highlight swapped samples in blue
+  facet_wrap(~ CellType, nrow = 2, scales = "free") +  # Plot on two rows
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text.y = element_text(size = 12),
+        plot.title = element_text(size = 18, hjust = 0.5),
+        strip.text = element_text(size = 14),
+        legend.text = element_text(size = 14),  # Increase legend text size
+        legend.title = element_text(size = 16),  # Increase legend title size
+        legend.key.size = unit(1.5, "lines")) +  # Increase legend key size
+  stat_pvalue_manual(tukey_results_subset, label.size = 6, label = "p.adj.signif")
+
+# Save the plot with the significant p-values only
+png(here(plot_dir, "Selected_Celltypes_Boxplot_TwoRows.png"), width = 10, height = 6, units = "in", res = 300)
+print(p_subset)
 dev.off()

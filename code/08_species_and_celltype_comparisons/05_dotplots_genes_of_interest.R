@@ -57,23 +57,44 @@ opioid_genes <- opioid_genes[opioid_genes %in% rownames(sce.excit)]
 dopamine_genes <- dopamine_genes[dopamine_genes %in% rownames(sce.excit)]
 norepinephrine_genes <- norepinephrine_genes[norepinephrine_genes %in% rownames(sce.excit)]
 cannabinoid_genes <- cannabinoid_genes[cannabinoid_genes %in% rownames(sce.excit)]
-cholinergic_genes <- cholinergic_genes[cholinergic_genes %in% rownames(sce.excit)]
+#cholinergic_genes <- cholinergic_genes[cholinergic_genes %in% rownames(sce.excit)]
+muscarinic_genes <- muscarinic_genes[muscarinic_genes %in% rownames(sce.excit)]
 
 
-# Assign receptor class labels to each gene
+# Combine all genes and receptor classes
+all_genes <- c(serotonin_genes, opioid_genes, dopamine_genes, norepinephrine_genes, cannabinoid_genes, muscarinic_genes)
 receptor_class <- c(
   rep("Serotonin", length(serotonin_genes)),
   rep("Opioid", length(opioid_genes)),
   rep("Dopamine", length(dopamine_genes)),
   rep("Norepinephrine", length(norepinephrine_genes)),
   rep("CBRs", length(cannabinoid_genes)),
-  rep("Acetylcholine", length(cholinergic_genes))
+  rep("Acetylcholine", length(muscarinic_genes))
 )
+
 
 # Create a data frame to map genes to their receptor class
 gene_receptor_map <- data.frame(gene = all_genes, receptor_class = receptor_class)
 
+# ======== Calculate percentage of cells expressing > 0 counts ========
+sce.subset <- sce.excit[all_genes,]
+percent_expressing <- apply(assay(sce.subset, "counts") > 0, 1, function(x) {
+  tapply(x, sce.subset$fine_celltype, mean) * 100
+})
 
+# Convert to a long format data frame
+percent_expressing_df <- as.data.frame(percent_expressing)
+percent_expressing_df$gene <- rownames(percent_expressing_df)
+percent_expressing_long <- percent_expressing_df %>%
+  pivot_longer(cols = -gene, names_to = "fine_celltype", values_to = "percent_expressing")
+
+# change gene column name to "fine_celltype", and visa vers
+percent_expressing_long <- percent_expressing_long %>% rename(fine_celltype = gene, gene = fine_celltype)
+
+# Merge with receptor class information
+percent_data <- merge(percent_expressing_long, gene_receptor_map, by = "gene", all.x = TRUE)
+
+# ========= Pseudobulk for mean logcounts ========
 # Aggregate expression data across all defined genes
 sce.excit_pseudo <- aggregateAcrossCells(
   sce.excit, 
@@ -94,28 +115,37 @@ expr_data_long <- expr_data %>%
 # Merge with receptor class information
 expr_data_long <- merge(expr_data_long, gene_receptor_map, by = "gene")
 
+
+# ========== Get subregion info and emerge it all =======
 # Extract subcluster information from colData
 subcluster_info <- colData(sce.excit_pseudo) %>% as.data.frame()
 subcluster_info$fine_celltype <- rownames(subcluster_info)
 
 # Merge the expression data with subcluster information
 plot_data <- merge(expr_data_long, subcluster_info, by = "fine_celltype", all.x = TRUE)
+plot_data <- merge(plot_data, percent_data, by = c("fine_celltype", "gene"), all.x = TRUE)
 
 
-# Create a dot plot using ggplot2
+# ======== Create the dot plot using ggplot2 ========
 png(here(plot_dir, "dotplot_excit_receptor_classes.png"), width = 15, height = 5, units = "in", res = 300)
-ggplot(plot_data, aes(x = gene, y = fine_celltype, fill = expression)) +
-  geom_tile() +
+ggplot(plot_data, aes(x = gene, y = fine_celltype, size = percent_expressing, fill = expression)) +
+  geom_point(shape = 21) +  # Dot plot with filled points
   scale_fill_gradient(low = "white", high = "red") +
+  scale_size_continuous(range = c(0, 8)) +  # Adjust the range for the size of the points
   theme_minimal() +
-  labs(x = "Gene", y = "Fine Cell Type", color = "Scaled Expression") +
+  labs(x = "Gene", y = "Fine Cell Type", fill = "Logcounts", size = "Percent Expressing") +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
     strip.background = element_rect(fill = "grey80", color = "grey50"),
     strip.text = element_text(face = "bold")
   ) +
-  facet_grid(subregion_celltype ~ receptor_class, scales = "free", space = "free")  # Facet by receptor class and subregion
+  facet_grid(subregion_celltype ~ receptor_class.y, scales = "free", space = "free")  # Facet by receptor class and subregion
 dev.off()
+
+
+
+
+
 
 
 
@@ -142,30 +172,51 @@ muscarinic_genes <- c(
 )
 
 # keep only in sce
-serotonin_genes <- serotonin_genes[serotonin_genes %in% rownames(sce.excit)]
-opioid_genes <- opioid_genes[opioid_genes %in% rownames(sce.excit)]
-dopamine_genes <- dopamine_genes[dopamine_genes %in% rownames(sce.excit)]
-norepinephrine_genes <- norepinephrine_genes[norepinephrine_genes %in% rownames(sce.excit)]
-cannabinoid_genes <- cannabinoid_genes[cannabinoid_genes %in% rownames(sce.excit)]
-cholinergic_genes <- cholinergic_genes[cholinergic_genes %in% rownames(sce.excit)]
+serotonin_genes <- serotonin_genes[serotonin_genes %in% rownames(sce.inhib)]
+opioid_genes <- opioid_genes[opioid_genes %in% rownames(sce.inhib)]
+dopamine_genes <- dopamine_genes[dopamine_genes %in% rownames(sce.inhib)]
+norepinephrine_genes <- norepinephrine_genes[norepinephrine_genes %in% rownames(sce.inhib)]
+cannabinoid_genes <- cannabinoid_genes[cannabinoid_genes %in% rownames(sce.inhib)]
+#cholinergic_genes <- cholinergic_genes[cholinergic_genes %in% rownames(sce.inhib)]
+muscarinic_genes <- muscarinic_genes[muscarinic_genes %in% rownames(sce.inhib)]
 
 
-# Assign receptor class labels to each gene
+# Combine all genes and receptor classes
+all_genes <- c(serotonin_genes, opioid_genes, dopamine_genes, norepinephrine_genes, cannabinoid_genes, muscarinic_genes)
 receptor_class <- c(
   rep("Serotonin", length(serotonin_genes)),
   rep("Opioid", length(opioid_genes)),
   rep("Dopamine", length(dopamine_genes)),
   rep("Norepinephrine", length(norepinephrine_genes)),
   rep("CBRs", length(cannabinoid_genes)),
-  rep("Acetylcholine", length(cholinergic_genes))
+  rep("Acetylcholine", length(muscarinic_genes))
 )
+
 
 # Create a data frame to map genes to their receptor class
 gene_receptor_map <- data.frame(gene = all_genes, receptor_class = receptor_class)
 
+# ======== Calculate percentage of cells expressing > 0 counts ========
+sce.subset <- sce.inhib[all_genes,]
+percent_expressing <- apply(assay(sce.subset, "counts") > 0, 1, function(x) {
+  tapply(x, sce.subset$fine_celltype, mean) * 100
+})
 
+# Convert to a long format data frame
+percent_expressing_df <- as.data.frame(percent_expressing)
+percent_expressing_df$gene <- rownames(percent_expressing_df)
+percent_expressing_long <- percent_expressing_df %>%
+  pivot_longer(cols = -gene, names_to = "fine_celltype", values_to = "percent_expressing")
+
+# change gene column name to "fine_celltype", and visa vers
+percent_expressing_long <- percent_expressing_long %>% rename(fine_celltype = gene, gene = fine_celltype)
+
+# Merge with receptor class information
+percent_data <- merge(percent_expressing_long, gene_receptor_map, by = "gene", all.x = TRUE)
+
+# ========= Pseudobulk for mean logcounts ========
 # Aggregate expression data across all defined genes
-sce.excit_pseudo <- aggregateAcrossCells(
+sce.inhib_pseudo <- aggregateAcrossCells(
   sce.inhib, 
   ids = sce.inhib$fine_celltype, 
   subset_row = all_genes,
@@ -174,7 +225,7 @@ sce.excit_pseudo <- aggregateAcrossCells(
 )
 
   # Extract expression data from the SingleCellExperiment object
-expr_data <- as.data.frame(assay(sce.excit_pseudo, "logcounts"))
+expr_data <- as.data.frame(assay(sce.inhib_pseudo, "logcounts"))
 
 # Add gene and fine cell type information
 expr_data$gene <- rownames(expr_data)
@@ -184,27 +235,32 @@ expr_data_long <- expr_data %>%
 # Merge with receptor class information
 expr_data_long <- merge(expr_data_long, gene_receptor_map, by = "gene")
 
+
+# ========== Get subregion info and emerge it all =======
 # Extract subcluster information from colData
-subcluster_info <- colData(sce.excit_pseudo) %>% as.data.frame()
+subcluster_info <- colData(sce.inhib_pseudo) %>% as.data.frame()
 subcluster_info$fine_celltype <- rownames(subcluster_info)
 
 # Merge the expression data with subcluster information
 plot_data <- merge(expr_data_long, subcluster_info, by = "fine_celltype", all.x = TRUE)
+plot_data <- merge(plot_data, percent_data, by = c("fine_celltype", "gene"), all.x = TRUE)
+
 
 
 # Create a dot plot using ggplot2
 png(here(plot_dir, "dotplot_inhib_receptor_classes.png"), width = 15, height = 5, units = "in", res = 300)
-ggplot(plot_data, aes(x = gene, y = fine_celltype, fill = expression)) +
-  geom_tile() +
+ggplot(plot_data, aes(x = gene, y = fine_celltype, size=percent_expressing, fill = expression)) +
+  geom_point(shape = 21) +  # Dot plot with filled points
   scale_fill_gradient(low = "white", high = "red") +
+  scale_size_continuous(range = c(0, 7)) +  # Adjust the range for the size of the points
   theme_minimal() +
-  labs(x = "Gene", y = "Fine Cell Type", color = "Scaled Expression") +
+  labs(x = "Gene", y = "Fine Cell Type", fill = "Logcounts", size = "Percent Expressing") +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
     strip.background = element_rect(fill = "grey80", color = "grey50"),
     strip.text = element_text(face = "bold")
   ) +
-  facet_grid( ~receptor_class, scales = "free", space = "free")  # Facet by receptor class and subregion
+  facet_grid( ~receptor_class.y, scales = "free", space = "free")  # Facet by receptor class and subregion
 dev.off()
 
 
