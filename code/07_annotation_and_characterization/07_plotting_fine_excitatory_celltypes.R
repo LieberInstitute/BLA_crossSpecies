@@ -393,6 +393,17 @@ dev.off()
 
 
 
+# export the date to a csv
+write.csv(cell_proportions, here(processed_dir, "Excitatory_cell_proportions.csv"), row.names = FALSE)
+
+# get average per celltype / subregion and export
+cell_proportions_avg <- cell_proportions %>%
+  group_by(CellType, Subregion) %>%
+  summarize(AvgProportion = mean(Proportion), .groups = "drop")
+
+write.csv(cell_proportions_avg, here(processed_dir, "Excitatory_cell_proportions_avg.csv"), row.names = FALSE)
+
+
 
 # ========== Plot subset of cell types for main figure ===========
 
