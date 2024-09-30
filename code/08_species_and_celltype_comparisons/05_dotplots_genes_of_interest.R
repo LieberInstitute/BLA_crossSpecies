@@ -130,7 +130,7 @@ plot_data <- merge(plot_data, percent_data, by = c("fine_celltype", "gene"), all
 png(here(plot_dir, "dotplot_excit_receptor_classes.png"), width = 15, height = 5, units = "in", res = 300)
 ggplot(plot_data, aes(x = gene, y = fine_celltype, size = percent_expressing, fill = expression)) +
   geom_point(shape = 21) +  # Dot plot with filled points
-  scale_fill_gradient(low = "white", high = "red", limits = c(0, 2.5)) +
+  scale_fill_gradient(low = "white", high = "red", limits = c(0, 2.5), oob = scales::squish) +
   scale_size_continuous(range = c(0, 8)) +  # Adjust the range for the size of the points
   theme_minimal() +
   labs(x = "Gene", y = "Fine Cell Type", fill = "Logcounts", size = "Percent Expressing") +

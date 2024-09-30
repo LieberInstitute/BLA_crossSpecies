@@ -111,23 +111,28 @@ itc2_top_5
 res$sig <- ifelse(res$padj < 0.0001 & res$log2FoldChange > 1, "up",
                   ifelse(res$padj < 0.0001 & res$log2FoldChange < -1, "down", NA))
 
-png(here(plot_dir, "Volcano_ITCs_psuedobulk_ggplot.png"), width=5, height=5, units="in", res=300)
+png(here(plot_dir, "Volcano_ITCs_psuedobulk_ggplot.png"), width=4.5, height=4.5, units="in", res=300)
 ggplot(res, aes(x=log2FoldChange, y=-log10(padj))) +
     geom_point(aes(color=sig), alpha=0.6) +
     theme_linedraw() +
     theme(legend.position="none") +
-    labs(title="TSHZ1.1 vs TSHZ1.2",
+    labs(title="TSHZ1. <--> TSHZ1.1",
          #subtitle="ITC pseudobulk DGE",
          x="log2FoldChange",
          y="-log10(p-adj)") +
-    geom_text_repel(data=itc1_top_5, aes(x=log2FoldChange, y=-log10(padj), label=gene_name), vjust=1, hjust=1) +
-    geom_text_repel(data=itc2_top_5, aes(x=log2FoldChange, y=-log10(padj), label=gene_name), vjust=1, hjust=1) +
+    #geom_text_repel(data=itc1_top_5, aes(x=log2FoldChange, y=-log10(padj), label=gene_name), vjust=1, hjust=1) +
+    #geom_text_repel(data=itc2_top_5, aes(x=log2FoldChange, y=-log10(padj), label=gene_name), vjust=1, hjust=1) +
+        geom_text_repel(data=subset(res, gene_name %in% c("DRD3","DISC1", "PRKG1","CDH9","RARB", "GULP1","SHISA9", "ADAM23")),
+                aes(x=log2FoldChange, y=-log10(padj), label=gene_name),  vjust=1, hjust=-.75) +
+    geom_text_repel(data=subset(res, gene_name %in% c("HTR7", "GRIK1", "CHRM3", "CPNE4", "CPNE8", "COL25A1", "DSCAM", "EPHA5")),
+                aes(x=log2FoldChange, y=-log10(padj), label=gene_name),  vjust=.5, hjust=1.5) +
     xlim(c(-5, 5)) +
     # increase font sizes
     theme(axis.title=element_text(size=16),
           axis.text=element_text(size=12),
           plot.title=element_text(size=16),
-          plot.subtitle=element_text(size=14))
+          plot.subtitle=element_text(size=14)) +
+    scale_color_manual(values=c("#3498DB", "#9B59B6")) 
 dev.off()
 
 
@@ -240,4 +245,20 @@ ComplexHeatmap::Heatmap(heat.vals,
                         name="centered.scaled"
 )
 
+dev.off()
+
+
+
+
+# ======== Violins for main figure ==========
+
+
+itc1_genes <- c( "PRKG1","CDH9", "GULP1", "SHISA9", "DRD3")
+itc2_genes <-  c( "CHRM3", "CPNE4",  "COL25A1", "EPHA5", "HTR7")
+
+png(here(plot_dir, "Violin_top_ITC_genes.png"), width=7, height=3.5, units="in", res=300)
+plotExpression(sce.itc, features=top5_genes, x="fine_celltype", ncol=5, colour_by="fine_celltype") +
+    theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+    scale_color_manual(values=c("#9B59B6", "#3498DB")) 
 dev.off()

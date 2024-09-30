@@ -115,25 +115,35 @@ prkcd2_top_5
 res$sig <- ifelse(res$padj < 0.05 & res$log2FoldChange > 1, "up",
                   ifelse(res$padj < 0.05 & res$log2FoldChange < -1, "down", NA))
 
-png(here(plot_dir, "Volcano_prkcds_psuedobulk_ggplot.png"), width=5, height=5, units="in", res=300)
+# prkcd colors
+mycolors <- pals::cols25()[1:18]
+celltype_colors <- setNames(mycolors, unique(sce.inhib$fine_celltype))
+celltype_colors
+
+# get prkcd colors using grep
+prkcd_colors <- celltype_colors[grep("PRKCD", names(celltype_colors))]
+
+png(here(plot_dir, "Volcano_prkcds_psuedobulk_ggplot.png"), width=4.5, height=4.5, units="in", res=300)
 ggplot(res, aes(x=log2FoldChange, y=-log10(padj))) +
     geom_point(aes(color=sig), alpha=0.6) +
     theme_linedraw() +
     theme(legend.position="none") +
-    labs(title= "PRKCD_DRD1", "PRKCD_DRD2",
+    labs(title= "PRKCD_DRD2 <--> PRKCD_DRD1", 
          #subtitle="prkcd pseudobulk DGE",
          x="log2FoldChange",
          y="-log10(p-adj)") +
-    geom_text_repel(data=subset(res, gene_name %in% c("DRD3", "GRIK2", "PDYN", "EBF1", "GRIK4", "CNR1", "FOXP2", "ERBB4", "TAC1", "SST")),
+    geom_text_repel(data=subset(res, gene_name %in% c("DRD3", "GRIK2", "PDYN", "EBF1", "GRIK4", "CNR1", "FOXP2", "ERBB4", "TAC1")),
                 aes(x=log2FoldChange, y=-log10(padj), label=gene_name),  vjust=1, hjust=-.75) +
     geom_text_repel(data=subset(res, gene_name %in% c("DRD2", "GRIK3",  "PENK", "EYA4", "CHRM3", "PTPRM", "HTR2C", "CALCRL","HCN1")),
                 aes(x=log2FoldChange, y=-log10(padj), label=gene_name),  vjust=1, hjust=1.25) +
     xlim(c(-5, 5)) +
+    ylim(c(0, 50)) +
     # increase font sizes
     theme(axis.title=element_text(size=16),
           axis.text=element_text(size=12),
           plot.title=element_text(size=16),
-          plot.subtitle=element_text(size=14))
+          plot.subtitle=element_text(size=14)) +
+    scale_color_manual(values=unname(prkcd_colors))
 dev.off()
 
 
@@ -215,4 +225,25 @@ ggplot(df_prkcd2, aes(x=fine_celltype, y=expression, fill=fine_celltype)) +
           plot.subtitle=element_text(size=14)) +
     theme(axis.text.x = element_blank(),
           axis.ticks.x = element_blank())
+dev.off()
+
+
+
+
+
+
+# ======== Violins for main figure ==========
+
+
+prkcd1_genes <- c( "ERBB4", "FOXP2",  "GRIK4",  "TAC1", "DRD3")
+prkcd2_genes <-  c( "HTR2C", "CALCRL", "GRIK3",  "PENK",  "DRD2")
+
+# join
+top5_genes <- c(prkcd1_genes, prkcd2_genes)
+
+png(here(plot_dir, "Violin_top_PRKCD_genes.png"), width=7, height=3.5, units="in", res=300)
+plotExpression(sce.prkcd, features=top5_genes, x="fine_celltype", ncol=5, colour_by="fine_celltype") +
+    theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+    scale_color_manual(values=prkcd_colors) 
 dev.off()
