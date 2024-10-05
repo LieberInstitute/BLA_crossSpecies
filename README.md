@@ -10,9 +10,9 @@ This dataset includes high-quality snRNA-seq data generated from multiple human 
 ### Explore the Data Interactively
 We have provided an interective website that allow you to explore all of the data at single nucleus resolution. This is powered by [iSEE](https://bioconductor.org/packages/release/bioc/html/iSEE.html) that allows you to add, hide, customize panels for visualizing the data. Due to the size of total dataset we have split the data into three separate apps, one for each species. You can create any custom visualizations that you want and download both the code to make them as well as the figures you make. Please check the [iSEE](https://bioconductor.org/packages/release/bioc/html/iSEE.html) documentation for instructions on how to customize the panels.
 
-Human BLA Shiny App: https://libd.shinyapps.io/BLA_Human/
-Macaque BLA Shiny App: https://libd.shinyapps.io/BLA_Baboon/
-Baboon BLA Shiny App: https://libd.shinyapps.io/BLA_Macaque/
+- Human BLA Shiny App: https://libd.shinyapps.io/BLA_Human/
+- Macaque BLA Shiny App: https://libd.shinyapps.io/BLA_Macaque/ 
+- Baboon BLA Shiny App: https://libd.shinyapps.io/BLA_Baboon/
 
 ### Access the data
 
