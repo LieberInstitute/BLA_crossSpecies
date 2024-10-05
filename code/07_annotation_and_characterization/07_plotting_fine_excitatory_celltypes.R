@@ -113,7 +113,7 @@ genes <- c(
     "ESR1", "ADRA1A",
     "GRIK3", "TNS3", 
     "GULP1", "TRHDE", 
-    "MEIS1", "PARD3B", 
+    "MEIS1", "SIM1", "OTP",
     "MEIS2", "COL25A1", 
     "PEX5L", "MYRIP", 
     "RXFP1", "KIAA1217", 
@@ -407,17 +407,14 @@ write.csv(cell_proportions_avg, here(processed_dir, "Excitatory_cell_proportions
 
 # ========== Plot subset of cell types for main figure ===========
 
-# Define the subset of cell types you're interested in
-selected_celltypes <- c("ESR1_ADRA1A", "GULP1_TRHDE", "MEIS1_PARD3B", "MEIS2_COL25A1", "PEX5L_MYRIP", "ZBTB20_SLC4A4")
+# Define the desired order of the CellType factor
+desired_order <- c("GULP1_TRHDE", "ZBTB20_SLC4A4", "MEIS2_COL25A1", "PEX5L_MYRIP", "ESR1_ADRA1A", "MEIS1_PARD3B")
 
-# Filter cell_proportions and tukey_results for the selected cell types
-cell_proportions_subset <- cell_proportions %>%
-  filter(CellType %in% selected_celltypes)
+# Update the factor levels of CellType to the desired order
+cell_proportions_subset$CellType <- factor(cell_proportions_subset$CellType, levels = desired_order)
+tukey_results_subset$CellType <- factor(tukey_results_subset$CellType, levels = desired_order)
 
-tukey_results_subset <- tukey_results %>%
-  filter(CellType %in% selected_celltypes)
-
-# Now plot using ggplot2 and manually add the significant p-values
+# Now plot using ggplot2 with the updated order
 p_subset <- ggplot(cell_proportions_subset, aes(x = Subregion, y = Proportion)) +
   geom_boxplot(aes(fill = Subregion)) +
   geom_jitter(width = 0.2, alpha = 0.5) +
@@ -441,3 +438,5 @@ p_subset <- ggplot(cell_proportions_subset, aes(x = Subregion, y = Proportion)) 
 png(here(plot_dir, "Facet_Boxplots_Selected_Celltypes_Boxplot.png"), width = 15, height = 4, units = "in", res = 300)
 print(p_subset)
 dev.off()
+
+

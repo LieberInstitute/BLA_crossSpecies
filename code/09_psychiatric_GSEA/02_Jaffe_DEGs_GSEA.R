@@ -48,7 +48,10 @@ term2gene <- data.frame(
 
 # Separate DEGs by up-regulated and down-regulated
 up_genes <- names(PTSD_degs_vector)[PTSD_BLA_lfc > 0]
+length(up_genes)
+
 down_genes <- names(PTSD_degs_vector)[PTSD_BLA_lfc < 0]
+
 
 # Run enrichment analysis for up-regulated genes
 up_enricher_results <- enricher(up_genes, TERM2GENE = term2gene)
