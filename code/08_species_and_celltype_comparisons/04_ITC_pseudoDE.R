@@ -256,9 +256,15 @@ dev.off()
 itc1_genes <- c( "PRKG1","CDH9", "GULP1", "SHISA9", "DRD3")
 itc2_genes <-  c( "CHRM3", "CPNE4",  "COL25A1", "EPHA5", "HTR7")
 
+# join
+top5_genes <- c(itc1_genes, itc2_genes)
+
+# swap fine_celltype factor order
+sce.itc$fine_celltype <- factor(sce.itc$fine_celltype, levels=c("TSHZ1.2", "TSHZ1.1"))
+
 png(here(plot_dir, "Violin_top_ITC_genes.png"), width=7, height=3.5, units="in", res=300)
 plotExpression(sce.itc, features=top5_genes, x="fine_celltype", ncol=5, colour_by="fine_celltype") +
     theme(axis.text.x = element_blank(),
         axis.ticks.x = element_blank()) +
-    scale_color_manual(values=c("#9B59B6", "#3498DB")) 
+    scale_color_manual(values=c("#3498DB", "#9B59B6")) 
 dev.off()

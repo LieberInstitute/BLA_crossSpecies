@@ -241,9 +241,13 @@ prkcd2_genes <-  c( "HTR2C", "CALCRL", "GRIK3",  "PENK",  "DRD2")
 # join
 top5_genes <- c(prkcd1_genes, prkcd2_genes)
 
+# swap fine_celltype factor order
+sce.prkcd$fine_celltype <- factor(sce.prkcd$fine_celltype)
+sce.prkcd$fine_celltype <- factor(sce.prkcd$fine_celltype, levels=c("PRKCD_DRD2", "PRKCD_DRD1"))
+
 png(here(plot_dir, "Violin_top_PRKCD_genes.png"), width=7, height=3.5, units="in", res=300)
 plotExpression(sce.prkcd, features=top5_genes, x="fine_celltype", ncol=5, colour_by="fine_celltype") +
     theme(axis.text.x = element_blank(),
         axis.ticks.x = element_blank()) +
-    scale_color_manual(values=prkcd_colors) 
+    scale_color_manual(values=c(prkcd_colors[2], prkcd_colors[1]))
 dev.off()

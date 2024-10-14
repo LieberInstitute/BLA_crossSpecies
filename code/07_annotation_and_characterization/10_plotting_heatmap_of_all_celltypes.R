@@ -435,6 +435,7 @@ other_colors <- setNames(greys, unique(sce.other$fine_celltype))
 celltype_colors <- c(inhibitory_colors, excitatory_colors, other_colors)
 
 region_colors <- c("Basal" = "#E41A1C", "Lateral" = "#377EB8", "Central Nucleus" = "#4DAF4A", "Accessory Basal" = "#984EA3", "NA" = "black")
+species_colors <- c("baboon" ="#1b4543", "human" = "#f0be6f", "macaque" = "#b3d0c6")
 
 # reorder again to best show differences across subregions
 sce$species <- forcats::fct_relevel(sce$species, "human", "baboon", "macaque")
@@ -470,17 +471,21 @@ p2 <- plotReducedDim(sce, dimred = "UMAP_new", colour_by = "broad_celltype", poi
    ) +
    guides(colour = guide_legend(override.aes = list(size=5, alpha = 1)))
 
+sce$species <- forcats::fct_relevel(sce$species,"macaque", "baboon",  "human",)
+sce <- sce[,order(colData(sce)$species)]
 
-p3 <- plotReducedDim(sce, dimred = "UMAP_new", colour_by = "fine_celltype", point_size=0.2) +
-    scale_color_manual(values = celltype_colors) +
+p3 <- plotReducedDim(sce, dimred = "UMAP_new", colour_by = "species", point_size=0.2) +
+    scale_color_manual(values = species_colors) +
     theme_void() +
-    ggtitle("Fine cell types")  +
-    theme(legend.position="none",
-    axis.line = element_blank(), # Remove the default axis lines
+    ggtitle("Species")  +
+    theme(axis.line = element_blank(), # Remove the default axis lines
     axis.text = element_blank(), # Remove axis text
     axis.title = element_blank(),  # Remove axis titles
-    plot.title = element_text(size = 18)
-    ) +
+    plot.title = element_text(size = 18),
+    legend.position = c(0.85, 0.9),
+    legend.text = element_text(size = 12), # Increase legend text size
+    legend.title = element_blank()
+   ) +
    guides(colour = guide_legend(override.aes = list(size=5, alpha = 1)))
 
 p1+p2+p3

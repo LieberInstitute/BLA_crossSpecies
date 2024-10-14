@@ -9,6 +9,7 @@ library(RColorBrewer)
 library(ComplexHeatmap)
 library(scuttle)
 library(circlize)
+library(dplyr)
 
 ## save directories
 plot_dir = here("plots", "07_annotation_and_characterization","04_excit_annotations")
@@ -48,15 +49,34 @@ nb.cols <- length(unique(sce$fine_celltype))
 mycolors <- colorRampPalette(brewer.pal(9, "Set1"))(nb.cols)
 celltype_colors <- setNames(mycolors, unique(sce$fine_celltype))
 
-# mycolors <- pals::cols25()[1:18]
-# mycolors <- setNames(mycolors, unique(sce$fine_celltype))
-# celltype_colors
+# == calculating centroid for geom_labels ==
+# Extract t-SNE coordinates
+umap_coords <- reducedDim(sce, "UMAP")
+
+# Create a data frame for plotting
+plot_data <- data.frame(umap_coords, Celltype = sce$fine_celltype)
+
+# Calculate centroids for each group
+centroid_data <- plot_data %>%
+  group_by(Celltype) %>%
+  summarize(CentroidX = mean(UMAP_1), CentroidY = mean(UMAP_2), .groups = 'keep')
+
+# Match colors to annotations in centroid_data
+centroid_data$Color <- celltype_colors[centroid_data$Celltype]
+
 
 png(here(plot_dir, "UMAP_excit_annotated_celltypes.png"), width=7, height=7, units="in", res=300)
-p1 <- plotReducedDim(sce, dimred = "UMAP", colour_by = "fine_celltype", text_by="fine_celltype", point_size=0.75) +
+p1 <- plotReducedDim(sce, dimred = "UMAP", colour_by = "fine_celltype", point_size=0.75) +
     scale_color_manual(values = celltype_colors) +
-    theme_void() +
-    theme(legend.position="none")
+  ggrepel::geom_label_repel(data = centroid_data, aes(x = CentroidX, y = CentroidY, label = Celltype),
+               #color = centroid_data$Color,  
+               fontface = "bold.italic", size=5.5) +
+  theme(axis.line=element_blank(),axis.text.x=element_blank(),
+        axis.text.y=element_blank(),axis.ticks=element_blank(),
+        axis.title.x=element_blank(),
+        axis.title.y=element_blank(),legend.position="none",
+        panel.background=element_blank(),panel.border=element_blank(),panel.grid.major=element_blank(),
+        panel.grid.minor=element_blank(),plot.background=element_blank())
 
 p1
 dev.off()
