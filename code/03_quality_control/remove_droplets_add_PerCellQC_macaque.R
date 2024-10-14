@@ -516,7 +516,7 @@ plotColData(sce, x = "sample_num", y = "sum", colour_by = "low_lib") +
     scale_colour_manual(values = c("grey", "red"), name="Discard") +
     facet_grid(. ~ sce$subject, scales="free_x") +
     xlab(NULL) +
-    ylab("Mitochondrial %") +
+    ylab("Total UMI") +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
           text = element_text(size = 13))  # Increase the font size to 12
 dev.off()
@@ -528,7 +528,7 @@ plotColData(sce, x = "sample_num", y = "detected", colour_by = "low_genes") +
     scale_colour_manual(values = c("grey", "red"), name="Discard") +
     facet_grid(. ~ sce$subject, scales="free_x") +
     xlab(NULL) +
-    ylab("Mitochondrial %") +
+    ylab("Unique genes detected") +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
           text = element_text(size = 13))  # Increase the font size to 12
 dev.off()
