@@ -16,9 +16,32 @@ sce <- readRDS(here(processed_dir, "sce_excit_final_subclusters_annotated.rds"))
 
 #subset to different species
 sce_macaque <- sce[,which(colData(sce)$species == "macaque")]
+colnames(colData(sce_macaque))
+sce_macaque$Sample_num
+
+# read in new sample labels
+new_labels <- read.csv(here("raw-data","sampleinfo", "relabeling_macaque_metadata.csv"))
+
+# add new Sample_num coldata that's Sample1 - Sample 35 --- to new_labels
+new_labels$Sample_num <- paste0("Sample", 1:35)
+
+# make new coldata for "$Sample_num _ ONPRC.ID _ Region _ Dorsal.Ventral" to new_labels
+new_labels$Final <- paste0(new_labels$Sample_num, "_", new_labels$ONPRC.ID, "_", new_labels$Region, "_", new_labels$Dorsal.Ventral)
+
+
+# now merge this to sce_macaque coldata using new_label$Current.Label.in.Metadata to match with sce_macaque$Sample
+sce_macaque$Sample <- factor(sce_macaque$Sample)
+new_labels$Current.Label.in.Metadata <- factor(new_labels$Current.Label.in.Metadata)
+new_coldata <- merge(colData(sce_macaque), new_labels, by.x = "Sample", by.y = "Current.Label.in.Metadata", all=TRUE)
+
+# now replace coldata in sce_macaque with new_coldata
+colData(sce_macaque) <- new_coldata
+
+
+library(dplyr)
 
 # Create the table
-celltype_table <- table(sce_macaque$fine_celltype, sce_macaque$Sample, sce_macaque$Subregion)
+celltype_table <- table(sce_macaque$fine_celltype, sce_macaque$Final, sce_macaque$Subregion)
 
 # Convert the table to a data frame
 df <- as.data.frame(celltype_table)
@@ -49,6 +72,13 @@ ggplot(df, aes(x = Sample, y = Proportion, fill = CellType)) +
   scale_fill_manual(values = celltype_colors) +
   facet_grid(Subregion~., scales="free", space="free")  # Adjust the number of columns in the facet wrap
 dev.off()
+
+
+
+
+
+
+
 
 
 
