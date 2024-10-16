@@ -19,6 +19,11 @@ sce_macaque <- sce[,which(colData(sce)$species == "macaque")]
 colnames(colData(sce_macaque))
 sce_macaque$Sample_num
 
+sce_macaque$Subregion <- as.character(sce_macaque$Subregion)  # Convert to character
+sce_macaque$Subregion[sce_macaque$Subregion == "Accessory Basal"] <- "aBA"  # Make the change
+sce_macaque$Subregion <- as.factor(sce_macaque$Subregion)  # Convert back to factor if needed
+
+
 # read in new sample labels
 new_labels <- read.csv(here("raw-data","sampleinfo", "relabeling_macaque_metadata.csv"))
 
@@ -60,7 +65,7 @@ colors <- pals::cols25()[1:18]
 celltype_colors <- setNames(colors, unique(df$CellType))
 
 # Create the stacked bar plot with facet wrap for subregion
-png(here(plot_dir, "stackedbars_macaque_sample_by_celltype_subregion.png"), width = 8, height = 10, units = "in", res = 300)
+png(here(plot_dir, "stackedbars_macaque_sample_by_celltype_subregion.png"), width = 6, height = 10, units = "in", res = 300)
 ggplot(df, aes(x = Sample, y = Proportion, fill = CellType)) +
   geom_bar(stat = "identity") +
   labs(x = "Sample", y = "Proportion", fill = "Cell Type") +
