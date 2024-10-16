@@ -1,5 +1,7 @@
 # BLA_crossSpecies
 
+[![DOI](https://zenodo.org/badge/676605218.svg)](https://doi.org/10.5281/zenodo.13942662)
+
 ### Study Design
 This project, led by Michael Totty, Rita Juanes, and Svitlana Bach, provides an in-depth transcriptomic analysis of amygdala cell types across human and two non-human primate (NHP) species. Using single nucleus RNA sequencing (10x Genomics), the study successfully characterizes the molecular diversity of neuronal cell types found within various subregions of the human and NHP amygdala, including the lateral (LA), basal (BA), accessory basal (aBA), and central nuclei (CeA).
 
