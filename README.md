@@ -1,7 +1,9 @@
 # BLA_crossSpecies
 
+[![DOI](https://zenodo.org/badge/676605218.svg)](https://doi.org/10.5281/zenodo.13942662)
+
 ### Study Design
-This project, led by Michael Totty, Rita Juanes, and Svitlana Bach, provides an in-depth transcriptomic analysis of amygdala cell types across human and two non-human primate (NHP) species. Using single nucleus RNA sequencing (10x Genomics), the study successfully characterizes the molecular diversity of neuronal cell types found within various subregions of the human and NHP amygdala, including the lateral (LA), basal (BA), accessory basal (aBA), and central nuclei (CeA).
+This project, led by Michael Totty, Rita Juanes, and Svitlana Bach, provides an in-depth transcriptomic analysis of amygdala cell types across human and two non-human primate (NHP) species. Using single nucleus RNA sequencing (10x Genomics), the study successfully characterizes the molecular diversity of neuronal cell types found within various subregions of the human and NHP amygdala, including the lateral (LA), basal (BA), accessory basal (aBA), and central nuclei (CeA). [The preprint can be found here](https://www.biorxiv.org/content/10.1101/2024.10.18.618721v1).
 
 ![BLA_sample_generation](./images/BLA_sample_generation.png)
 
@@ -16,9 +18,9 @@ We have provided an interective website that allow you to explore all of the dat
 
 ### Access the data
 
-Links to access the raw and processed data will be made avaiable here shortly.
+Links to access the raw and processed data will be made avaiable here upon publication.
 
 ### How to Cite
-Please cite the peer-reviewed publication when using this data in your research:
 
-Citation information will be added here once the preprint is available. 
+Totty, M.S., Cervera-Juanes, R., Bach, S.V., Ben Ameur, L., Valentine, M.R., Simons, E., Romac, M.D., Trinh, H., Henderson, K., Del Rosario, I., et al. (2024). Transcriptomic diversity of amygdalar subdivisions across humans and nonhuman primates. BioRxiv. 10.1101/2024.10.18.618721.
+
