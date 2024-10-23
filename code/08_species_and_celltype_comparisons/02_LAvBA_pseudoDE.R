@@ -119,8 +119,8 @@ ggplot(res, aes(x=log2FoldChange, y=-log10(padj))) +
          #subtitle="ITC pseudobulk DGE",
          x="log2FoldChange",
          y="-log10(p-adj)") +
-    geom_text_repel(data=lateral_top_5, aes(x=log2FoldChange, y=-log10(padj), label=gene_name), vjust=1, hjust=1) +
-    geom_text_repel(data=basal_top_5, aes(x=log2FoldChange, y=-log10(padj), label=gene_name), vjust=1, hjust=1) +
+    geom_text_repel(data=lateral_top_5, aes(x=log2FoldChange, y=-log10(padj), label=gene_name), vjust=1, hjust=-1) +
+    geom_text_repel(data=basal_top_5, aes(x=log2FoldChange, y=-log10(padj), label=gene_name), vjust=1, hjust=1.5) +
     xlim(c(-5, 5)) +
     # increase font sizes
     theme(axis.title=element_text(size=16),
@@ -156,7 +156,7 @@ aBA_clusters <- c("ESR1_ADRA1A", "GRIK3_TNS3")
 sce.excit$subregion_celltype <- NA
 sce.excit$subregion_celltype[sce.excit$fine_celltype %in% LA_clusters] <- "LA"
 sce.excit$subregion_celltype[sce.excit$fine_celltype %in% BA_clusters] <- "BA"
-sce.excit$subregion_celltype[sce.excit$fine_celltype %in% aBA_clusters] <- "aBA"
+sce.excit$subregion_celltype[sce.excit$fine_celltype %in% aBA_clusters] <- "AB"
 
 # drop NA
 sce.subset <- sce.excit[,!is.na(sce.excit$subregion_celltype)]
@@ -230,7 +230,7 @@ library(rstatix)
 # Calculate p-values using rstatix
 stat.test <- df %>%
   group_by(gene, species) %>%  # Adjust grouping if needed
-  t_test(expression ~ subregion_celltype, paired = FALSE, comparisons = list(c("aBA", "BA"), c("BA", "LA"), c("aBA", "LA"))) %>%
+  t_test(expression ~ subregion_celltype, paired = FALSE, comparisons = list(c("AB", "BA"), c("BA", "LA"), c("AB", "LA"))) %>%
   add_significance() %>%  # Adds significance stars
   filter(p.adj.signif != "ns")  # Filter out non-significant results
 
@@ -262,7 +262,7 @@ ggboxplot(df,
         panel.border = element_rect(linewidth = .3),
          strip.background = element_rect(colour = "black", size = .3)) +
         
-   scale_fill_manual(values = c("LA" ="#00BFC4", "BA" = "#F8766D", "aBA" = "#C77CFF")) +  # Adjust colors as needed
+   scale_fill_manual(values = c("LA" ="#00BFC4", "BA" = "#F8766D", "AB" = "#C77CFF")) +  # Adjust colors as needed
   
   # Add p-values manually using stat_pvalue_manual with ggboxplot
   stat_pvalue_manual(stat.test)

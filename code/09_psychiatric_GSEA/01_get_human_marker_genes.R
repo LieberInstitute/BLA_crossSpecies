@@ -42,6 +42,10 @@ sce.human
 # mainExpName: originalexp
 # altExpNames(0):
 
+
+# get percent neurons to non-neurons in "broad_celltype"
+table(sce.human$broad_celltype)
+
 # ======= Load original human data =======
 
 sce.human.og <- readRDS(here("processed-data", "04_normalization", "sce.human_normalized.rds"))
@@ -58,6 +62,8 @@ sce.human.og
 # reducedDimNames(0):
 # mainExpName: NULL
 # altExpNames(0):
+
+
 
 
 # ======== Copying over meta data =========

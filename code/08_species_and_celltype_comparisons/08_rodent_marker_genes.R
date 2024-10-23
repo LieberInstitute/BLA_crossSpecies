@@ -81,7 +81,7 @@ aBA_clusters <- c("ESR1_ADRA1A", "GRIK3_TNS3")
 sce.excit$subregion_celltype <- "Other"
 sce.excit$subregion_celltype[sce.excit$fine_celltype %in% LA_clusters] <- "LA"
 sce.excit$subregion_celltype[sce.excit$fine_celltype %in% BA_clusters] <- "BA"
-sce.excit$subregion_celltype[sce.excit$fine_celltype %in% aBA_clusters] <- "aBA"
+sce.excit$subregion_celltype[sce.excit$fine_celltype %in% aBA_clusters] <- "AB"
 unique(sce.excit$subregion_celltype)
 # [1] "aBA"   "BA"    "Other" "LA"   
 
@@ -119,8 +119,12 @@ percent_expressing_df$gene <- rownames(percent_expressing_df)
 percent_expressing_long <- percent_expressing_df %>%
   pivot_longer(cols = -gene, names_to = "fine_celltype", values_to = "percent_expressing")
 
-# change gene column name to "fine_celltype", and visa vers
-percent_expressing_long <- percent_expressing_long %>% rename(fine_celltype = gene, gene = fine_celltype)
+# Swap the contents of gene and fine_celltype without renaming columns
+percent_expressing_long <- percent_expressing_long %>%
+    mutate(temp_column = gene) %>% 
+    mutate(gene = fine_celltype, fine_celltype = temp_column) %>%
+    select(-temp_column)  # Remove the temporary column
+
 
 # Merge with marker class information
 percent_data <- merge(percent_expressing_long, gene_marker_map, by = "gene", all.x = TRUE)

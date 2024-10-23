@@ -20,7 +20,7 @@ colnames(colData(sce_macaque))
 sce_macaque$Sample_num
 
 sce_macaque$Subregion <- as.character(sce_macaque$Subregion)  # Convert to character
-sce_macaque$Subregion[sce_macaque$Subregion == "Accessory Basal"] <- "aBA"  # Make the change
+sce_macaque$Subregion[sce_macaque$Subregion == "Accessory Basal"] <- "AB"  # Make the change
 sce_macaque$Subregion <- as.factor(sce_macaque$Subregion)  # Convert back to factor if needed
 
 

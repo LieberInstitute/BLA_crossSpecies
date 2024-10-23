@@ -28,7 +28,7 @@ aBA_clusters <- c("ESR1_ADRA1A", "GRIK3_TNS3")
 sce.excit$subregion_celltype <- sce.excit$fine_celltype
 sce.excit$subregion_celltype[sce.excit$fine_celltype %in% LA_clusters] <- "LA"
 sce.excit$subregion_celltype[sce.excit$fine_celltype %in% BA_clusters] <- "BA"
-sce.excit$subregion_celltype[sce.excit$fine_celltype %in% aBA_clusters] <- "aBA"
+sce.excit$subregion_celltype[sce.excit$fine_celltype %in% aBA_clusters] <- "AB"
 
 #subset species
 sce.excit.human <- sce.excit[,which(colData(sce.excit)$species == "human")]
@@ -57,12 +57,6 @@ markers.baboon <- findMarkers_1vAll(sce.excit.baboon,
                                     add_symbol = FALSE,
                                     mod = "~Sample",
                                     verbose = TRUE)
-
-
-# MORE NOTES:
-#
-# I forgot to define putative BA vs LA vs aBA celltypes
-# This would be a more interesting comparison of marker genes. 
 
 
 
@@ -231,7 +225,7 @@ dev.off()
 
 
 # ======= Accessort Basal  =========
-celltype.of.interest <- "aBA"
+celltype.of.interest <- "AB"
 
 markers.human_PEX5L_MYRIP <- markers.human %>%
     filter(cellType.target == celltype.of.interest)
@@ -291,7 +285,7 @@ png(here(plot_dir, "correlation_std.logFC_aBA.png"), width = 3, height = 3, unit
 ggplot(merged.df, aes(x = human_std.logFC, y = macaque_std.logFC )) +
     geom_point(size = 0.5) +  # Default points in black
     theme_minimal() +
-    labs(x = "Human aBA std.logFC", y = "Macaque aBA std.logFC") +
+    labs(x = "Human AB std.logFC", y = "Macaque AB std.logFC") +
     ggtitle(paste0("r = ", print(plyr::round_any(cor_val, .001)))) +
     xlim(-3, 3) +
     ylim(-3, 3) +
