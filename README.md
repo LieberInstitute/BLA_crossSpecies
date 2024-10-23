@@ -21,7 +21,6 @@ We have provided an interective website that allow you to explore all of the dat
 Links to access the raw and processed data will be made avaiable here upon publication.
 
 ### How to Cite
-Please cite the peer-reviewed publication when using this data in your research:
 
 Totty, M.S., Cervera-Juanes, R., Bach, S.V., Ben Ameur, L., Valentine, M.R., Simons, E., Romac, M.D., Trinh, H., Henderson, K., Del Rosario, I., et al. (2024). Transcriptomic diversity of amygdalar subdivisions across humans and nonhuman primates. BioRxiv. 10.1101/2024.10.18.618721.
 
