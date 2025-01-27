@@ -14,8 +14,8 @@ library(ggpubr)
 library(RColorBrewer)
 
 ## save directories
-plot_dir = here("plots", "07_annotation", "01_broad_annotations")
-processed_dir = here("processed-data","07_annotation",  "01_broad_annotations")
+plot_dir = here("plots", "07_annotation_and_characterization", "01_broad_annotations")
+processed_dir = here("processed-data","07_annotation_and_characterization",  "01_broad_annotations")
 
 # load sce
 load(here("processed-data","06_clustering", "seurat_integrated_final.rda"))
@@ -259,7 +259,8 @@ features <- c("SNAP25", "SYT1",
               "GFAP", "AQP4",
               "CD74","C3",
               "PDGFRA", "VCAN",
-              "CLDN5", "FLT1"
+              "CLDN5", "FLT1",
+              "SIM1", "CARTPT"
             )
 
 # drop any genes in features that are not in sce
@@ -290,8 +291,8 @@ dev.off()
 
 # ======== Annotation broad cell types ========
 
-excit <- c(0,1,2,8,12,16,20,22,25)
-inhib <- c(9,10,11,13,15,17,18,21,24,26,28)
+excit <- c(0,1,2,8,12,16,20,22,24,25)
+inhib <- c(9,10,11,13,15,17,18,21,26,28)
 non_neuronal <- c(3,4,5,6,7,14,23,30,31,32,33)
 drop <- c(19,27,29)
 
@@ -313,4 +314,4 @@ plotReducedDim(sce, dimred = "UMAP", colour_by = "broad_celltype", point_size=0.
 dev.off()
 
 # save broad annotations
-saveRDS(sce, here("processed-data", "07_annotation", "sce_broad_annotations.rds"))
+saveRDS(sce, here("processed-data", "07_annotation_and_characterization", "sce_broad_annotations.rds"))

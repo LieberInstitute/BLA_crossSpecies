@@ -12,12 +12,12 @@ library(Seurat)
 
 
 ## save directories
-plot_dir = here("plots", "07_annotation")
-processed_dir = here("processed-data","07_annotation")
+plot_dir = here("plots", "07_annotation_and_characterization")
+processed_dir = here("processed-data","07_annotation_and_characterization")
 
 
 # load sce
-sce <- readRDS(here("processed-data", "07_annotation", "sce_broad_annotations.rds"))
+sce <- readRDS(here("processed-data", "07_annotation_and_characterization", "sce_broad_annotations.rds"))
 sce
 
 
@@ -27,6 +27,8 @@ sce.inhib <- sce[, sce$broad_celltype == "Inhibitory"]
 
 # ========= Conver to Seurat v4 ==========
 
+
+set.seed(1234)
 sce.objects <- list("sce.excit", "sce.inhib")
 names <- c("excit", "inhib")
 
@@ -57,11 +59,11 @@ for (i in 1:length(sce.objects)) {
     saveRDS(seurat, file = paste0(processed_dir, "/seurat_v4/", names[i], "_unintegrated.rds"))
     
     # plot uncorrected data
-    pdf(here(plot_dir, "02_subclustering", names[i], "UMAP_species_uncorrected.pdf"))
+    pdf(here(plot_dir, "02_subclustering", names[i], "UMAP_species_uncorrected_new.pdf"))
     DimPlot(seurat, reduction = "umap.unintegrated", group.by = c("species"))
     dev.off()
     
-    pdf(here(plot_dir, "02_subclustering", names[i], "UMAP_samples_uncorrected.pdf"))
+    pdf(here(plot_dir, "02_subclustering", names[i], "UMAP_samples_uncorrected_new.pdf"))
     DimPlot(seurat, reduction = "umap.unintegrated", group.by = c("Sample")) + NoLegend()
     dev.off()
     
@@ -102,11 +104,11 @@ for (i in 1:length(sce.objects)) {
     saveRDS(seurat.int, file = paste0(processed_dir, "/seurat_v4/", names[i], ".integrated.rds"))
     
     # plot integrated data
-    pdf(here(plot_dir, "02_subclustering", names[i], "UMAP_species_integrated.pdf"))
+    pdf(here(plot_dir, "02_subclustering", names[i], "UMAP_species_integrated_new.pdf"))
     print(DimPlot(seurat.int, reduction = "umap", group.by = c("species")))
     dev.off()
     
-    pdf(here(plot_dir, "02_subclustering", names[i], "UMAP_samples_integrated.pdf"))
+    pdf(here(plot_dir, "02_subclustering", names[i], "UMAP_samples_integrated_new.pdf"))
     print(DimPlot(seurat.int, reduction = "umap", group.by = c("Sample")) + NoLegend())
     dev.off()
 
@@ -116,8 +118,8 @@ for (i in 1:length(sce.objects)) {
 
 # ===== load for re-plotting =======
 
-seurat.excit <- readRDS(here("processed-data", "07_annotation", "seurat_v4", "excit.integrated.rds"))
-seurat.inhib <- readRDS(here("processed-data", "07_annotation", "seurat_v4", "inhib.integrated.rds"))
+seurat.excit <- readRDS(here("processed-data", "07_annotation_and_characterization", "seurat_v4", "excit.integrated.rds"))
+seurat.inhib <- readRDS(here("processed-data", "07_annotation_and_characterization", "seurat_v4", "inhib.integrated.rds"))
 
 
 # plot integrated data
@@ -131,7 +133,7 @@ dev.off()
 
 
 pdf(here(plot_dir, "seurat_subclustering_batch_correction", "inhib", "UMAP_species_integrated.pdf"))
-print(DimPlot(seurat.inhib, reduction = "umap", group.by = c("species")))
+print(DimPlot(seurat.inhib, reduction = "umap", group.by = c("species"))) 
 dev.off()
 
 pdf(here(plot_dir, "seurat_subclustering_batch_correction", "inhib", "UMAP_samples_integrated.pdf"))

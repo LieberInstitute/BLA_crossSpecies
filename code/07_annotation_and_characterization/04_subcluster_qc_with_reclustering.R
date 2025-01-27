@@ -12,12 +12,12 @@ library(Seurat)
 
 
 ## save directories
-plot_dir = here("plots", "07_annotation","03_fine_annotations")
-processed_dir = here("processed-data","07_annotation")
+plot_dir = here("plots", "07_annotation_and_characterization","03_fine_annotations")
+processed_dir = here("processed-data","07_annotation_and_characterization")
 
 
-seurat.excit <- readRDS(here("processed-data", "07_annotation", "seurat_v4", "excit.integrated.rds"))
-seurat.inhib <- readRDS(here("processed-data", "07_annotation", "seurat_v4", "inhib.integrated.rds"))
+seurat.excit <- readRDS(here("processed-data", "07_annotation_and_characterization", "seurat_v4", "excit.integrated.rds"))
+seurat.inhib <- readRDS(here("processed-data", "07_annotation_and_characterization", "seurat_v4", "inhib.integrated.rds"))
 
 
 # ===== Plotting subclustered UMAPs =====
@@ -42,8 +42,10 @@ print(p1+p2+p3)
 dev.off()
 
 # Plotting UMAPs with ident labels
+# Set the active ident to the clustering you expect
+Idents(seurat.excit) <- "seurat_clusters"
 
-png(here(plot_dir, "UMAP_excit_idents.png"), width=10, height=10, units="in", res=300)
+png(here(plot_dir, "UMAP_excit_idents_new.png"), width=10, height=10, units="in", res=300)
 p1 <- DimPlot(seurat.excit, reduction = "umap", group.by = c("ident")) 
 LabelClusters(plot = p1, id = "ident")
 dev.off()
@@ -54,9 +56,48 @@ LabelClusters(plot = p1, id = "ident")
 dev.off()
 
 
-# drop low quality "splatter" clusters
-excit_to_drop <- c("19") 
-inhib_to_drop <- c("23","16","15","18","24","21","19")
+# change to full gene set in seurat inmstead of HVGs
+DefaultAssay(seurat.excit) <- "originalexp"
+
+# dot plots of marker genes
+Excit.markers <- c( "SNAP25", "SYT1",
+                    "SLC17A7", "SLC17A6", "SLC17A8",
+                    "GAD1", "GAD2", "SLC32A1",
+                    "CARTPT", "SIM1",
+                    "COL25A1", "GULP1",
+                    "LAMP5", "VGLL3",
+                    "VWA5B1", "SATB2",
+                    "HGF", "HTR2A",
+                    # non neuronal markers
+                    "MBP", "GFAP", "ACE",
+                    "DCX", "ST8SIA1",
+                    "ESR1", "PDYN",
+                    "ADARB2", "PEX5L",
+                    "CNR1") 
+
+# subset to only genes in dataset
+Excit.markers <- intersect(Excit.markers, rownames(seurat.excit))
+
+
+
+png(here(plot_dir, "dotplot_excit.png"), width=10, height=10, units="in", res=300)
+DotPlot(seurat.excit, features = Excit.markers, group.by = "seurat_clusters") +
+ coord_flip()
+
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Subset the Seurat object to keep only the clusters you want
 seurat.excit <- subset(seurat.excit, idents = setdiff(Idents(seurat.excit), excit_to_drop))
