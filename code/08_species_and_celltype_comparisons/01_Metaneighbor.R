@@ -18,6 +18,8 @@ plot_dir = here("plots", "08_species_comparisons")
 sce.excit <- readRDS(here("processed-data","07_annotation_and_characterization", "sce_excit_final_subclusters_annotated.rds"))
 sce.inhib <- readRDS(here("processed-data","07_annotation_and_characterization", "sce_inhib_final_subclusters_annotated.rds"))
 
+sce <- readRDS(here("code","10_iSEE-app", "sce_FINAL_all_celltypes.rds"))
+sce
 
 # ====== Copy necessary function from Metaneighbor =======
 
