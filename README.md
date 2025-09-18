@@ -18,7 +18,11 @@ We have provided an interective website that allow you to explore all of the dat
 
 ### Access the data
 
-Links to access the raw and processed data will be made avaiable here upon publication.
+#### Processed Data
+A public globus endpoint was created and contains objects too large for github. It can be found on [https://research.libd.org/globus/](https://research.libd.org/globus/) under jhpce#BLA_crossSpecies. A direct link to the public globus endpoint is available at [jhpce#BLA_crossSpecies](https://research.libd.org/globus/jhpce_BLA_crossSpecies/index.html).
+
+#### Raw Data
+Sequencing data has been uploaded to GEO with the accession number GSE281366.
 
 ### How to Cite
 
